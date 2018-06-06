@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.card.dao.BDLTaskMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.card.model.BDLTask">
+    <id column="taskId" jdbcType="INTEGER" property="taskid" />
+    <result column="cardId" jdbcType="INTEGER" property="cardid" />
+    <result column="taskType" jdbcType="VARCHAR" property="tasktype" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="taskStatus" jdbcType="VARCHAR" property="taskstatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    taskId, cardId, taskType, description, taskStatus
+  </sql>
+  <select id="selectTaskListByCardId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_task
+    where cardId = #{cardid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_task
+    where taskId = #{taskid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bdl_task
+    where taskId = #{taskid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.card.model.BDLTask">
+    insert into bdl_task (taskId, cardId, taskType, 
+      description, taskStatus)
+    values (#{taskid,jdbcType=INTEGER}, #{cardid,jdbcType=INTEGER}, #{tasktype,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{taskstatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.card.model.BDLTask">
+    insert into bdl_task
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="taskid != null">
+        taskId,
+      </if>
+      <if test="cardid != null">
+        cardId,
+      </if>
+      <if test="tasktype != null">
+        taskType,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="taskstatus != null">
+        taskStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="taskid != null">
+        #{taskid,jdbcType=INTEGER},
+      </if>
+      <if test="cardid != null">
+        #{cardid,jdbcType=INTEGER},
+      </if>
+      <if test="tasktype != null">
+        #{tasktype,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="taskstatus != null">
+        #{taskstatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.card.model.BDLTask">
+    update bdl_task
+    <set>
+      <if test="cardid != null">
+        cardId = #{cardid,jdbcType=INTEGER},
+      </if>
+      <if test="tasktype != null">
+        taskType = #{tasktype,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="taskstatus != null">
+        taskStatus = #{taskstatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where taskId = #{taskid,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.blchina.card.model.BDLTask">
+    update bdl_task
+    set cardId = #{cardid,jdbcType=INTEGER},
+      taskType = #{tasktype,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      taskStatus = #{taskstatus,jdbcType=VARCHAR}
+    where taskId = #{taskid,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateTaskStatusComplete" parameterType="com.blchina.card.model.BDLTask">
+    update bdl_task
+    set 
+      taskStatus = #{taskstatus,jdbcType=VARCHAR}
+    where cardId = #{cardid,jdbcType=INTEGER} and  description = #{description,jdbcType=VARCHAR}
+  </update>
+</mapper>

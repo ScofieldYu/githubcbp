@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.employee.dao.BDLEmployeeMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.employee.model.BDLEmployee">
+    <id column="employeeId" jdbcType="INTEGER" property="employeeid" />
+    <result column="employeeName" jdbcType="VARCHAR" property="employeename" />
+    <result column="departmentId" jdbcType="INTEGER" property="departmentid" />
+    <result column="dutyId" jdbcType="INTEGER" property="dutyid" />
+    <result column="titleId" jdbcType="INTEGER" property="titleid" />
+    <result column="companyCode" jdbcType="VARCHAR" property="companycode" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="upDomainAccount" jdbcType="VARCHAR" property="updomainaccount" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="phoneNumber" jdbcType="BIGINT" property="phonenumber" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="birth" jdbcType="VARCHAR" property="birth" />
+    <result column="enterDate" jdbcType="VARCHAR" property="enterdate" />
+    <result column="updutyId" jdbcType="INTEGER" property="updutyid" />
+    <result column="ZZF1" jdbcType="VARCHAR" property="zzf1" />
+    <result column="ZZF2" jdbcType="VARCHAR" property="zzf2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    employeeId, employeeName, departmentId, dutyId, titleId, companyCode, status, upDomainAccount, 
+    sex, phoneNumber, email, birth, enterDate, updutyId, ZZF1, ZZF2
+  </sql>
+  
+  
+  <select id="getPhoneNumberByCompanycode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_employee where companyCode = #{companycode} and  titleId = '10000060';
+  </select>
+  <select id="getEmployeeListByBrandId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_employee where companyCode in(${companycode}) and  titleId = '10000049';
+  </select>
+  <select id="getEmployeeDirectorList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_employee where titleId = #{integer} 
+  </select>
+  <select id="getEmployeeListByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_employee
+    where employeeName = #{employeename}
+  </select>
+  <select id="getEmployeeListByEmployeeIdList" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_employee
+    where updutyId in (select e.dutyId from bdl_employee e where e.employeeId in (${employeeId}))
+  </select>
+  <select id="getEmployeeListByEmployeeId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_employee
+    where updutyId = (select e.dutyId from bdl_employee e where e.employeeId = #{employeeid})
+  </select>
+  <!-- 通过部门ID查找员工 -->
+  <select id="selectEmployeeByDepartmentId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_employee
+    where departmentId = #{departmentid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_employee
+    where employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bdl_employee
+    where employeeId = #{employeeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.employee.model.BDLEmployee">
+    insert into bdl_employee (employeeId, employeeName, departmentId, 
+      dutyId, titleId, companyCode, 
+      status, upDomainAccount, sex, 
+      phoneNumber, email, birth, 
+      enterDate, updutyId, ZZF1, 
+      ZZF2)
+    values (#{employeeid,jdbcType=INTEGER}, #{employeename,jdbcType=VARCHAR}, #{departmentid,jdbcType=INTEGER}, 
+      #{dutyid,jdbcType=INTEGER}, #{titleid,jdbcType=INTEGER}, #{companycode,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{updomainaccount,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{phonenumber,jdbcType=BIGINT}, #{email,jdbcType=VARCHAR}, #{birth,jdbcType=VARCHAR}, 
+      #{enterdate,jdbcType=VARCHAR}, #{updutyid,jdbcType=INTEGER}, #{zzf1,jdbcType=VARCHAR}, 
+      #{zzf2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.employee.model.BDLEmployee">
+    insert into bdl_employee
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="employeeid != null">
+        employeeId,
+      </if>
+      <if test="employeename != null">
+        employeeName,
+      </if>
+      <if test="departmentid != null">
+        departmentId,
+      </if>
+      <if test="dutyid != null">
+        dutyId,
+      </if>
+      <if test="titleid != null">
+        titleId,
+      </if>
+      <if test="companycode != null">
+        companyCode,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="updomainaccount != null">
+        upDomainAccount,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="phonenumber != null">
+        phoneNumber,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="birth != null">
+        birth,
+      </if>
+      <if test="enterdate != null">
+        enterDate,
+      </if>
+      <if test="updutyid != null">
+        updutyId,
+      </if>
+      <if test="zzf1 != null">
+        ZZF1,
+      </if>
+      <if test="zzf2 != null">
+        ZZF2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="employeeid != null">
+        #{employeeid,jdbcType=INTEGER},
+      </if>
+      <if test="employeename != null">
+        #{employeename,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentid != null">
+        #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="dutyid != null">
+        #{dutyid,jdbcType=INTEGER},
+      </if>
+      <if test="titleid != null">
+        #{titleid,jdbcType=INTEGER},
+      </if>
+      <if test="companycode != null">
+        #{companycode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="updomainaccount != null">
+        #{updomainaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null">
+        #{phonenumber,jdbcType=BIGINT},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null">
+        #{birth,jdbcType=VARCHAR},
+      </if>
+      <if test="enterdate != null">
+        #{enterdate,jdbcType=VARCHAR},
+      </if>
+      <if test="updutyid != null">
+        #{updutyid,jdbcType=INTEGER},
+      </if>
+      <if test="zzf1 != null">
+        #{zzf1,jdbcType=VARCHAR},
+      </if>
+      <if test="zzf2 != null">
+        #{zzf2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.employee.model.BDLEmployee">
+    update bdl_employee
+    <set>
+      <if test="employeename != null">
+        employeeName = #{employeename,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentid != null">
+        departmentId = #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="dutyid != null">
+        dutyId = #{dutyid,jdbcType=INTEGER},
+      </if>
+      <if test="titleid != null">
+        titleId = #{titleid,jdbcType=INTEGER},
+      </if>
+      <if test="companycode != null">
+        companyCode = #{companycode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="updomainaccount != null">
+        upDomainAccount = #{updomainaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null">
+        phoneNumber = #{phonenumber,jdbcType=BIGINT},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null">
+        birth = #{birth,jdbcType=VARCHAR},
+      </if>
+      <if test="enterdate != null">
+        enterDate = #{enterdate,jdbcType=VARCHAR},
+      </if>
+      <if test="updutyid != null">
+        updutyId = #{updutyid,jdbcType=INTEGER},
+      </if>
+      <if test="zzf1 != null">
+        ZZF1 = #{zzf1,jdbcType=VARCHAR},
+      </if>
+      <if test="zzf2 != null">
+        ZZF2 = #{zzf2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where employeeId = #{employeeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.employee.model.BDLEmployee">
+    update bdl_employee
+    set employeeName = #{employeename,jdbcType=VARCHAR},
+      departmentId = #{departmentid,jdbcType=INTEGER},
+      dutyId = #{dutyid,jdbcType=INTEGER},
+      titleId = #{titleid,jdbcType=INTEGER},
+      companyCode = #{companycode,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      upDomainAccount = #{updomainaccount,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      phoneNumber = #{phonenumber,jdbcType=BIGINT},
+      email = #{email,jdbcType=VARCHAR},
+      birth = #{birth,jdbcType=VARCHAR},
+      enterDate = #{enterdate,jdbcType=VARCHAR},
+      updutyId = #{updutyid,jdbcType=INTEGER},
+      ZZF1 = #{zzf1,jdbcType=VARCHAR},
+      ZZF2 = #{zzf2,jdbcType=VARCHAR}
+    where employeeId = #{employeeid,jdbcType=INTEGER}
+  </update>
+  <select id="getEmployeeByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT * FROM bdl_employee WHERE  email = #{email,jdbcType=VARCHAR}
+  </select>
+  <select id="getEmpoyeeByPhonenumber" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT * FROM bdl_employee WHERE  phoneNumber = #{phonenumber,jdbcType=BIGINT}
+  </select>
+  <select id="getEmployeeBrandFlag" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+       SELECT t.* FROM bdl_employee t  INNER JOIN bdl_store  s on s.brandId=t.companyCode where t.employeeId=#{employeeid,jdbcType=INTEGER}
+  </select>
+  <select id="getEmployeeIdByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+      SELECT * FROM bdl_employee WHERE   employeeName = #{employeename,jdbcType=VARCHAR}
+  </select>
+  <select id="getEmployUserIdAndEmployeeId" parameterType="com.blchina.employee.model.BDLEmployee" resultMap="BaseResultMap">
+    SELECT * FROM bdl_employee WHERE  companyCode = #{companycode,jdbcType=VARCHAR} and  titleId = #{titleid,jdbcType=INTEGER}
+  </select>
+  <select id="getTitleIdAndTitleName" parameterType="java.lang.Integer" resultType="com.blchina.employee.dto.EmployeeDTO">
+    SELECT t.titleId,d.objectName as titleName FROM bdl_employee t LEFT JOIN bdl_title d on t.titleId=d.titleId  where t.employeeId=#{employeeid,jdbcType=INTEGER}
+  </select>
+</mapper>

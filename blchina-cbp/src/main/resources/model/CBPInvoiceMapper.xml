@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPInvoiceMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPInvoice">
+    <id column="invoiceId" jdbcType="INTEGER" property="invoiceid" />
+    <result column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="customerName" jdbcType="VARCHAR" property="customername" />
+    <result column="idCard" jdbcType="VARCHAR" property="idcard" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    invoiceId, orderId, customerName, idCard
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_invoice
+    where invoiceId = #{invoiceid,jdbcType=INTEGER}
+  </select>
+  <select id="getInvoiceByOrderId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_invoice
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_invoice
+    where invoiceId = #{invoiceid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPInvoice">
+    insert into cbp_invoice (invoiceId, orderId, customerName, 
+      idCard)
+    values (#{invoiceid,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, #{customername,jdbcType=VARCHAR}, 
+      #{idcard,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPInvoice">
+    insert into cbp_invoice
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="invoiceid != null">
+        invoiceId,
+      </if>
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="customername != null">
+        customerName,
+      </if>
+      <if test="idcard != null">
+        idCard,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="invoiceid != null">
+        #{invoiceid,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="customername != null">
+        #{customername,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPInvoice">
+    update cbp_invoice
+    <set>
+      <if test="orderid != null">
+        orderId = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="customername != null">
+        customerName = #{customername,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        idCard = #{idcard,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where invoiceId = #{invoiceid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByOrderId" parameterType="com.blchina.cbp.model.CBPInvoice">
+    update cbp_invoice
+    <set>
+      <if test="customername != null">
+        customerName = #{customername,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        idCard = #{idcard,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPInvoice">
+    update cbp_invoice
+    set orderId = #{orderid,jdbcType=INTEGER},
+      customerName = #{customername,jdbcType=VARCHAR},
+      idCard = #{idcard,jdbcType=VARCHAR}
+    where invoiceId = #{invoiceid,jdbcType=INTEGER}
+  </update>
+</mapper>

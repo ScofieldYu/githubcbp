@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <script type="text/javascript" src="../js/config.js"></script>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/paperlessOfficeSales/orderSearch.css">
+    <title>订单搜索</title>
+</head>
+<body>
+<div class="orderSearch">
+    <div class="search">
+        <div class="inputRegion">
+            <em class="searchIcon"></em>
+            <form action='' onsubmit="return false;">
+                <input type="search" placeholder="点击输入关键字" id="searchInput" />
+            </form>
+        </div>
+        <a class="searchCancel" onclick="history.back();" href="javascript:void 0">取消</a>
+    </div>
+    <div class="searchHistory">
+        <p class="historyTitle">
+            历史记录
+            <a id="clearSearchHistory" href="javascript:void 0"></a>
+        </p>
+        <ul class="historyList">
+            <li>阿萨德</li>
+            <li>阿萨德阿萨德</li>
+            <li>阿萨德</li>
+            <li>阿萨德</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/paperlessOfficeSales/orderSearch.js"></script>
+</html>

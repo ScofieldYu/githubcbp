@@ -1,0 +1,66 @@
+﻿.plugin_dropdownlist_div {
+    position: relative;
+    height: 0.34rem;
+    line-height: 0.34rem;
+}
+
+.plugin_dropdownlist_div label {
+    display: block;
+    margin-left: 0.12rem;
+    font-size: 0.14rem;
+    color: #262626;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    user-select: none;
+}
+.plugin_dropdownlist_div .arrow {
+    position: absolute;
+    right: 0.12rem;
+    top: 0.14rem;
+    /*float: right;*/
+    /*margin-top: -0.18rem;*/
+    /*margin-right: 0.1rem;*/
+    width: 0.11rem;
+    height: 0.07rem;
+    background: url('/arrow.png') no-repeat;
+    background-size: 100%;
+}
+
+.plugin_dropdownlist_div ul, .plugin_dropdownlist_div li {
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+.plugin_dropdownlist_div ul {
+    display: none;
+    position: absolute;
+    top: 0.31rem;
+    left: -0.005rem;
+    border: 0.005rem solid #dddddd;
+    border-bottom-left-radius: 0.04rem;
+    border-bottom-right-radius: 0.04rem;
+    width: 100%;
+    z-index: 110;
+    background: #fff;
+    overflow-y: auto;
+}
+
+.plugin_dropdownlist_div li {
+    margin-left: 0.12rem;
+    height: 0.34rem;
+    line-height: 0.34rem;
+    color: #666666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.plugin_dropdownlist_div li.active {
+    color: #2899dd;
+}
+
+.plugin_disable {
+    background: #ddd
+}

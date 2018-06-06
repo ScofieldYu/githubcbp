@@ -1,0 +1,1081 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPOrderMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPOrder">
+    <id column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="customerId" jdbcType="INTEGER" property="customerid" />
+    <result column="orderStatus" jdbcType="VARCHAR" property="orderstatus" />
+    <result column="orderDate" jdbcType="VARCHAR" property="orderdate" />
+    <result column="carType" jdbcType="VARCHAR" property="cartype" />
+    <result column="vinNo" jdbcType="VARCHAR" property="vinno" />
+    <result column="sapOrderId" jdbcType="VARCHAR" property="saporderid" />
+    <result column="employeeId" jdbcType="INTEGER" property="employeeid" />
+    <result column="deliverTime" jdbcType="VARCHAR" property="delivertime" />
+    <result column="phoneNumber" jdbcType="VARCHAR" property="phonenumber" />
+    <result column="idCardNum" jdbcType="VARCHAR" property="idcardnum" />
+    <result column="organizeCode" jdbcType="VARCHAR" property="organizecode" />
+    <result column="buyerIdCardNum" jdbcType="VARCHAR" property="buyeridcardnum" />
+    <result column="orderType" jdbcType="VARCHAR" property="ordertype" />
+    <result column="brandId" jdbcType="VARCHAR" property="brandid" />
+    <result column="realVinNo" jdbcType="VARCHAR" property="realvinno" />
+    <result column="customerName" jdbcType="VARCHAR" property="customername" />
+    <result column="buyerName" jdbcType="VARCHAR" property="buyername" />
+    <result column="organizeName" jdbcType="VARCHAR" property="organizename" />
+    <result column="contractFlag" jdbcType="VARCHAR" property="contractflag" />
+    <result column="carId" jdbcType="VARCHAR" property="carid" />
+    <result column="allPrice" jdbcType="VARCHAR" property="allprice" />
+    <result column="openId" jdbcType="VARCHAR" property="openid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    orderId, customerId, orderStatus, orderDate, carType, vinNo, sapOrderId, employeeId,
+    deliverTime, phoneNumber, idCardNum, organizeCode, buyerIdCardNum, orderType, brandId,
+    realVinNo, customerName, buyerName, organizeName,contractFlag,carId,allPrice,openId
+  </sql>
+  
+  
+  
+  <select id="getOrderListBySearchCard" parameterType="com.blchina.cbp.dto.CardDTO" resultMap="BaseResultMap">
+    select e.* FROM (select * from cbp_order where employeeId = #{employeeId}) e
+where e.customerName like CONCAT('%',#{customerName},'%') 
+or e.orderId like CONCAT('%',#{customerName},'%')
+or e.phoneNumber like CONCAT('%',#{customerName},'%') 
+or e.sapOrderId like CONCAT('%',#{customerName},'%')
+or e.carType like CONCAT('%',#{customerName},'%')
+  </select>
+  
+  <select id="getOrderListByBrandIdAndCustomerId" parameterType="com.blchina.cbp.model.CBPOrder" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_order
+    where customerId = #{customerid} and brandId = #{brandid}
+  </select>
+  
+  <select id="getOrderListByEmployeeIdAndCustomerId" parameterType="com.blchina.cbp.model.CBPOrder" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_order
+    where customerId = #{customerid} and employeeId = #{employeeid}
+  </select>
+  
+  <select id="getOrderCountByBrandIdAndOrderStatus" parameterType="com.blchina.cbp.dto.SignMonitorDTO" resultType="java.lang.Integer">
+    select COUNT(orderId) from cbp_order where 
+    brandId = #{brandId} and orderStatus = '2'
+    <if test='dateStart !=null'>
+          and unix_timestamp(DATE_FORMAT(orderDate,'%Y-%m-%d')) &gt;= unix_timestamp(#{dateStart})
+        </if>
+        <if test='dateEnd !=null'>
+          and unix_timestamp(DATE_FORMAT(orderDate,'%Y-%m-%d')) &lt;= unix_timestamp(#{dateEnd})
+        </if>;
+  </select>
+  
+      <select id="selectOrderByCarId" parameterType="java.lang.String" resultMap="BaseResultMap">
+      select 'true' as QUERYID,
+      <include refid="Base_Column_List" />
+      from cbp_order
+      where carId = #{carid}
+    </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_order
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getOrderByEmployeeId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_order
+    where employeeId = #{employeeId}
+  </select>
+  <!-- 私户 -->
+  <select id="getOrderListByEmployeeId" parameterType="java.util.Map" resultMap="BaseResultMap">
+  select  distinct c.idCardNum ,
+ c.customerName,  c.phoneNumber ,c.employeeId from cbp_order c
+  where employeeId in (${employeeId}) and (c.organizeCode is null OR c.organizeCode = '')  
+   order by  c.employeeId&lt;&gt;#{employeeIdOwn}   limit #{index},#{pageSize} 
+  </select>
+  <select id="getOrderListCountByEmployeeId" parameterType="java.util.Map" resultType="java.lang.Integer">
+	select COUNT(distinct  c.idCardNum ,
+ c.customerName,  c.phoneNumber ,c.employeeId) from cbp_order c where employeeId in (${employeeId}) and (organizeCode is null OR organizeCode = '')
+  </select>
+  <!-- 公户 -->
+	<select id="getOrderListByEmployeeIds" parameterType="java.util.Map" resultMap="BaseResultMap">
+  select  distinct c.idCardNum ,c.employeeId,
+ c.customerName,  c.phoneNumber ,c.organizeCode,c.organizeName from cbp_order c
+  where employeeId in (${employeeId}) and (c.buyerIdCardNum is null OR c.buyerIdCardNum = '')  
+    order by  c.employeeId&lt;&gt;#{employeeIdOwn}  limit #{index},#{pageSize}
+  </select>
+<select id="getOrderListCountByEmployeeIds" parameterType="java.util.Map" resultType="java.lang.Integer">
+	select COUNT(distinct c.idCardNum ,
+ c.customerName,  c.phoneNumber ,c.organizeCode,c.organizeName,c.employeeId) from cbp_order c  where employeeId in (${employeeId}) and (buyerIdCardNum is null OR buyerIdCardNum = '')
+  </select>
+  
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_order
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPOrder">
+    <selectKey keyProperty="orderid" resultType="int">
+      select LAST_INSERT_ID()
+    </selectKey>
+    insert into cbp_order (orderId, customerId, orderStatus,
+    orderDate, carType, vinNo,
+    sapOrderId, employeeId, deliverTime,
+    phoneNumber, idCardNum, organizeCode,
+    buyerIdCardNum, orderType, brandId,
+    realVinNo, customerName, buyerName,
+    organizeName,contractFlag,carId,allPrice,openId)
+    values (#{orderid,jdbcType=INTEGER}, #{customerid,jdbcType=INTEGER}, #{orderstatus,jdbcType=VARCHAR},
+    #{orderdate,jdbcType=VARCHAR}, #{cartype,jdbcType=VARCHAR}, #{vinno,jdbcType=VARCHAR},
+    #{saporderid,jdbcType=VARCHAR}, #{employeeid,jdbcType=INTEGER}, #{delivertime,jdbcType=VARCHAR},
+    #{phonenumber,jdbcType=VARCHAR}, #{idcardnum,jdbcType=VARCHAR}, #{organizecode,jdbcType=VARCHAR},
+    #{buyeridcardnum,jdbcType=VARCHAR}, #{ordertype,jdbcType=VARCHAR}, #{brandid,jdbcType=VARCHAR},
+    #{realvinno,jdbcType=VARCHAR}, #{customername,jdbcType=VARCHAR}, #{buyername,jdbcType=VARCHAR},
+    #{organizename,jdbcType=VARCHAR},#{contractflag,jdbcType=VARCHAR},#{carid,jdbcType=VARCHAR},#{allprice,jdbcType=VARCHAR},#{openid})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPOrder">
+    insert into cbp_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="customerid != null">
+        customerId,
+      </if>
+      <if test="orderstatus != null">
+        orderStatus,
+      </if>
+      <if test="orderdate != null">
+        orderDate,
+      </if>
+      <if test="cartype != null">
+        carType,
+      </if>
+      <if test="vinno != null">
+        vinNo,
+      </if>
+      <if test="saporderid != null">
+        sapOrderId,
+      </if>
+      <if test="employeeid != null">
+        employeeId,
+      </if>
+      <if test="delivertime != null">
+        deliverTime,
+      </if>
+      <if test="phonenumber != null">
+        phoneNumber,
+      </if>
+      <if test="idcardnum != null">
+        idCardNum,
+      </if>
+      <if test="organizecode != null">
+        organizeCode,
+      </if>
+      <if test="buyeridcardnum != null">
+        buyerIdCardNum,
+      </if>
+      <if test="ordertype != null">
+        orderType,
+      </if>
+      <if test="brandid != null">
+        brandId,
+      </if>
+      <if test="realvinno != null">
+        realVinNo,
+      </if>
+      <if test="customername != null">
+        customerName,
+      </if>
+      <if test="buyername != null">
+        buyerName,
+      </if>
+      <if test="organizename != null">
+        organizeName,
+      </if>
+      <if test="contractflag != null">
+        contractFlag,
+      </if>
+      <if test="carid != null">
+        carId,
+      </if>
+      <if test="allprice != null">
+        allPrice,
+      </if>
+      <if test="openid != null">
+        openId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="customerid != null">
+        #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="orderstatus != null">
+        #{orderstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orderdate != null">
+        #{orderdate,jdbcType=VARCHAR},
+      </if>
+      <if test="cartype != null">
+        #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="vinno != null">
+        #{vinno,jdbcType=VARCHAR},
+      </if>
+      <if test="saporderid != null">
+        #{saporderid,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeid != null">
+        #{employeeid,jdbcType=INTEGER},
+      </if>
+      <if test="delivertime != null">
+        #{delivertime,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null">
+        #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardnum != null">
+        #{idcardnum,jdbcType=VARCHAR},
+      </if>
+      <if test="organizecode != null">
+        #{organizecode,jdbcType=VARCHAR},
+      </if>
+      <if test="buyeridcardnum != null">
+        #{buyeridcardnum,jdbcType=VARCHAR},
+      </if>
+      <if test="ordertype != null">
+        #{ordertype,jdbcType=VARCHAR},
+      </if>
+      <if test="brandid != null">
+        #{brandid,jdbcType=VARCHAR},
+      </if>
+      <if test="realvinno != null">
+        #{realvinno,jdbcType=VARCHAR},
+      </if>
+      <if test="customername != null">
+        #{customername,jdbcType=VARCHAR},
+      </if>
+      <if test="buyername != null">
+        #{buyername,jdbcType=VARCHAR},
+      </if>
+      <if test="organizename != null">
+        #{organizename,jdbcType=VARCHAR},
+      </if>
+      <if test="contractflag != null">
+        #{contractflag,jdbcType=VARCHAR},
+      </if>
+      <if test="carid != null">
+        #{carid,jdbcType=VARCHAR},
+      </if>
+      <if test="allprice != null">
+        #{allprice,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPOrder">
+    update cbp_order
+    <set>
+      <if test="customerid != null">
+        customerId = #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="orderstatus != null">
+        orderStatus = #{orderstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orderdate != null">
+        orderDate = #{orderdate,jdbcType=VARCHAR},
+      </if>
+      <if test="cartype != null">
+        carType = #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="vinno != null">
+        vinNo = #{vinno,jdbcType=VARCHAR},
+      </if>
+      <if test="saporderid != null">
+        sapOrderId = #{saporderid,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeid != null">
+        employeeId = #{employeeid,jdbcType=INTEGER},
+      </if>
+      <if test="delivertime != null">
+        deliverTime = #{delivertime,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null">
+        phoneNumber = #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardnum != null">
+        idCardNum = #{idcardnum,jdbcType=VARCHAR},
+      </if>
+      <if test="organizecode != null">
+        organizeCode = #{organizecode,jdbcType=VARCHAR},
+      </if>
+      <if test="buyeridcardnum != null">
+        buyerIdCardNum = #{buyeridcardnum,jdbcType=VARCHAR},
+      </if>
+      <if test="ordertype != null">
+        orderType = #{ordertype,jdbcType=VARCHAR},
+      </if>
+      <if test="brandid != null">
+        brandId = #{brandid,jdbcType=VARCHAR},
+      </if>
+      <if test="realvinno != null">
+        realVinNo = #{realvinno,jdbcType=VARCHAR},
+      </if>
+      <if test="customername != null">
+        customerName = #{customername,jdbcType=VARCHAR},
+      </if>
+      <if test="buyername != null">
+        buyerName = #{buyername,jdbcType=VARCHAR},
+      </if>
+      <if test="organizename != null">
+        organizeName = #{organizename,jdbcType=VARCHAR},
+      </if>
+      <if test="contractflag != null">
+        contractFlag = #{contractflag,jdbcType=VARCHAR},
+      </if>
+      <if test="carid != null">
+        carId = #{carid,jdbcType=VARCHAR},
+      </if>
+      <if test="allprice != null">
+        allPrice = #{allprice,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        openId = #{openid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPOrder">
+    update cbp_order
+    set customerId = #{customerid,jdbcType=INTEGER},
+      orderStatus = #{orderstatus,jdbcType=VARCHAR},
+      orderDate = #{orderdate,jdbcType=VARCHAR},
+      carType = #{cartype,jdbcType=VARCHAR},
+      vinNo = #{vinno,jdbcType=VARCHAR},
+      sapOrderId = #{saporderid,jdbcType=VARCHAR},
+      employeeId = #{employeeid,jdbcType=INTEGER},
+      deliverTime = #{delivertime,jdbcType=VARCHAR},
+      phoneNumber = #{phonenumber,jdbcType=VARCHAR},
+      idCardNum = #{idcardnum,jdbcType=VARCHAR},
+      organizeCode = #{organizecode,jdbcType=VARCHAR},
+      buyerIdCardNum = #{buyeridcardnum,jdbcType=VARCHAR},
+      orderType = #{ordertype,jdbcType=VARCHAR},
+      brandId = #{brandid,jdbcType=VARCHAR},
+      realVinNo = #{realvinno,jdbcType=VARCHAR},
+      customerName = #{customername,jdbcType=VARCHAR},
+      buyerName = #{buyername,jdbcType=VARCHAR},
+      organizeName = #{organizename,jdbcType=VARCHAR},
+       contractFlag = #{contractflag,jdbcType=VARCHAR},
+       carId = #{carid,jdbcType=VARCHAR},
+       allPrice = #{allprice,jdbcType=VARCHAR},
+       openId = #{openid,jdbcType=VARCHAR}
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+  <select id="getOrderByEmployeeAndContract"
+          parameterType="com.blchina.cbp.dto.OrderDTO"
+          resultType="com.blchina.cbp.dto.OrderDTO">
+    SELECT
+    o.orderId,
+    o.customerId,
+    o.orderStatus,
+    DATE_FORMAT(o.orderDate, '%Y-%m-%d') AS orderDate,
+    o.carType,
+    o.sapOrderId,
+    o.employeeId,
+    o.deliverTime,
+    o.phoneNumber,
+    o.idCardNum,
+    o.organizeCode,
+    ifnull(
+    o.buyerIdCardNum,
+    o.idcardNum
+    ) AS buyeridcardnum,
+    orderType,
+    t.contractdate,
+    ifnull(o.buyerName, o.customerName) AS buyername,
+    o.customerName AS customername,
+    o.organizeName AS organizename,
+    t.contractId AS contractid,
+    o.realVinNo AS vinno,
+    t.appearanceInterior AS appearanceinterior,
+    t.ischanged,
+    l.contractId AS lastid,
+    if(t.contractstatus!='3',t.contractstatus,if(f.contractId is null,1,t.contractstatus))  AS contractstatus
+    FROM
+    cbp_order o
+    LEFT JOIN (
+    SELECT
+    c.*
+    FROM
+    `cbp_contract` c
+    WHERE
+    c.contractId IN (
+    SELECT
+    max(b.contractId)
+    FROM
+    cbp_contract b
+    GROUP BY
+    b.orderId
+    )
+    ) t ON t.orderId = o.orderId
+    LEFT JOIN (SELECT MAX(itemId),contractId from cbp_contract_item  where contractstatus='2'  GROUP BY contractId ) f ON f.contractId=t.contractId
+    LEFT JOIN (
+    SELECT
+    c.contractId,
+    c.orderId
+    FROM
+    cbp_contract c
+    WHERE
+    c.contractId IN (
+    SELECT
+    max(d.contractId)
+    FROM
+    cbp_contract d
+    WHERE
+    d.contractId NOT IN (
+    SELECT
+    max(e.contractId)
+    FROM
+    cbp_contract e
+    GROUP BY
+    e.orderId
+    )
+    GROUP BY
+    d.orderId
+    )
+    ) l ON l.orderId = o.orderId
+    WHERE o.employeeId
+    <foreach  collection="employelist" item="employelist" open="in (" close=")" separator=",">
+      #{employelist}
+    </foreach>
+    <if test='contractstatus =="2"'>
+      and f.contractId is not null and t.contractstatus='2'
+    </if>
+    <if test='contractstatus =="1"'>
+      and  f.contractId is  null  and t.contractstatus!='2' and t.contractstatus!='4'
+    </if>
+    <if test="ischanged != null and ischanged !=''">
+      and t.ischanged = 'Y'
+    </if>
+    ORDER BY  o.employeeId  &lt;&gt; #{employeeid},o.orderId DESC
+  </select>
+  <select id="getOrderAndContractById" parameterType="java.lang.Integer"
+          resultType="com.blchina.cbp.dto.OrderDTO">
+    SELECT
+    o.*,t.contractstatus,t.contractdate,t.contractId,t.vinNo,t.appearanceInterior
+    FROM `cbp_order` o LEFT JOIN (
+	SELECT
+		c.*
+	FROM
+		`cbp_contract` c
+	WHERE
+		c.contractId IN (
+			SELECT
+				max(b.contractId)
+			FROM
+				cbp_contract b
+			GROUP BY
+				b.orderId
+		)
+) t ON t.orderId = o.orderId
+    where o.orderId= #{orderid,jdbcType=INTEGER} and   orderType NOT IN ('Q008','Q007')
+  </select>
+  <select id="getOrderList" parameterType="java.lang.String"  resultMap="BaseResultMap">
+     SELECT * FROM cbp_order WHERE   customerId = #{customerid,jdbcType=INTEGER} AND   orderType NOT IN ('Q008','Q007') and orderStatus !='4'
+  </select>
+  <select id="getOrderBySapId" parameterType="java.lang.String" resultMap="BaseResultMap">
+      SELECT * FROM cbp_order WHERE   sapOrderId = #{saporderid,jdbcType=VARCHAR}
+  </select>
+  <update id="updateOrderBySapId" parameterType="com.blchina.cbp.model.CBPOrder">
+    update cbp_order
+    <set>
+      <if test="customerid != null">
+        customerId = #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="orderstatus != null">
+        orderStatus = #{orderstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orderdate != null">
+        orderDate = #{orderdate,jdbcType=VARCHAR},
+      </if>
+      <if test="cartype != null">
+        carType = #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="vinno != null">
+        vinNo = #{vinno,jdbcType=VARCHAR},
+      </if>
+      <if test="saporderid != null">
+        sapOrderId = #{saporderid,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeid != null">
+        employeeId = #{employeeid,jdbcType=INTEGER},
+      </if>
+      <if test="delivertime != null">
+        deliverTime = #{delivertime,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null">
+        phoneNumber = #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardnum != null">
+        idCardNum = #{idcardnum,jdbcType=VARCHAR},
+      </if>
+      <if test="organizecode != null">
+        organizeCode = #{organizecode,jdbcType=VARCHAR},
+      </if>
+      <if test="buyeridcardnum != null">
+        buyerIdCardNum = #{buyeridcardnum,jdbcType=VARCHAR},
+      </if>
+      <if test="ordertype != null">
+        orderType = #{ordertype,jdbcType=VARCHAR},
+      </if>
+      <if test="brandid != null">
+        brandId = #{brandid,jdbcType=VARCHAR},
+      </if>
+        realVinNo = #{realvinno,jdbcType=VARCHAR},
+      <if test="customername != null">
+        customerName = #{customername,jdbcType=VARCHAR},
+      </if>
+      <if test="buyername != null">
+        buyerName = #{buyername,jdbcType=VARCHAR},
+      </if>
+      <if test="organizename != null">
+        organizeName = #{organizename,jdbcType=VARCHAR},
+      </if>
+      <if test="contractflag != null and contractflag!=''">
+        contractFlag = #{contractflag,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        openId = #{openid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sapOrderId = #{saporderid,jdbcType=VARCHAR}
+  </update>
+  <select id="getOrderByVinNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT * FROM  cbp_order WHERE  vinNo = #{vinno,jdbcType=VARCHAR}
+  </select>
+  <select id="getOrderListByphone" parameterType="com.blchina.cbp.model.CBPOrder"  resultType="com.blchina.cbp.dto.OrderDTO">
+    SELECT
+    o.orderId,
+    o.sapOrderId,
+    o.brandId,
+    o.phoneNumber,
+    o.employeeId,
+    o.organizeCode,
+    o.organizeName,
+    o.buyerName,
+    o.buyerIdCardNum,
+    o.customerName,
+    o.idCardNum,
+    o.carType,
+    o.realVinNo AS vinno,
+    t.totalprice,
+    t.contractstatus,
+    t.contractdate,
+    t.contractId,
+    t.appearanceInterior,
+    DATE_FORMAT(I.requestTime,'%Y.%m.%d') as requestTime,
+    d.depositSum as deposittotal,
+    d.depositFirst as depositSum,
+    d.depositStatus,
+    if(o.deliverTime='',null, m. STATUS) as status,
+    g.`status` AS logistStatus,
+    DATE_FORMAT(g.senddate,'%m月%d日') as senddate,
+    if(o.deliverTime='',null,CONCAT(DATE_FORMAT(w.date,'%m月%d日')," ",w.startTime)) as apptime
+    FROM
+    `cbp_order` o
+    LEFT JOIN (
+    SELECT
+    c.*
+    FROM
+    `cbp_contract` c
+    WHERE
+    c.contractId IN (
+    SELECT
+    max(b.contractId)
+    FROM
+    cbp_contract b
+    GROUP BY
+    b.orderId
+    )
+    ) t ON t.orderId = o.orderId
+    LEFT JOIN cbp_deposit d ON d.sapOrderId = o.sapOrderId
+    LEFT JOIN (SELECT * from cbp_contract_item p where p.itemId in (SELECT MAX(itemId) FROM cbp_contract_item GROUP BY contractId)) I ON I.contractId = t.contractId
+    LEFT JOIN cbp_deliverMessage m ON m.orderId = o.orderId
+    LEFT JOIN (
+    SELECT
+    s.`status`,
+    s.orderId,
+    s.senddate
+    FROM
+    `cbp_logistics` s
+    WHERE
+    s.logisticsId IN (
+    SELECT
+    max(p.logisticsId)
+    FROM
+    cbp_logistics p
+    GROUP BY
+    p.orderId
+    )
+    ) g ON g.orderId = o.orderId
+    LEFT JOIN (SELECT r.orderId,r.date,r.startTime from cbp_returnCarTime r where r.retCarId in(SELECT MAX(retCarId) from cbp_returnCarTime GROUP BY orderId)) w
+    on w.orderId=o.orderId
+    WHERE
+    t.contractstatus IN ('2', '3')  and customerId = #{customerid,jdbcType=INTEGER}
+    AND o.orderType NOT IN ('Q008', 'Q007')
+    <if test="brandid != null">
+      and o.brandId= #{brandid,jdbcType=VARCHAR}
+    </if>
+    ORDER BY
+    o.orderId DESC
+  </select>
+  <select id="getOrderListByCustomerIdAndStatus" parameterType="com.blchina.cbp.model.CBPOrder" resultMap="BaseResultMap">
+     SELECT  *  FROM  cbp_order WHERE   customerId = #{customerid,jdbcType=VARCHAR} AND  orderType IN ('350x','Q005')
+    <if test="orderstatus != null">
+      AND orderStatus = #{orderstatus,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="getCustomerByEmployeeId" parameterType="java.lang.Integer"
+          resultType="com.blchina.cbp.dto.OrderDTO">
+     SELECT
+    h.retCarId as retcarid,
+    b.status as logisticstatus,
+    a.*
+    FROM
+    cbp_order a
+    LEFT JOIN (
+    SELECT
+    c.`status`,
+    c.orderId
+    FROM
+    cbp_logistics c
+    WHERE
+    c.logisticsId IN (
+    SELECT
+    MAX(logisticsId)
+    FROM
+    cbp_logistics d
+    GROUP BY
+    d.orderId
+    )
+    ) b ON b.orderid = a.orderId
+    LEFT JOIN (
+    SELECT
+    e.retCarId,
+    e.orderId
+    FROM
+    cbp_returnCarTime e
+    WHERE
+    e.retCarId IN (
+    SELECT
+    MAX(retCarId)
+    FROM
+    cbp_returnCarTime f
+    GROUP BY
+    f.orderId
+    )
+    ) h ON h.orderId = a.orderId
+    WHERE  a.employeeId = #{employeeid,jdbcType=INTEGER}
+    and   a.orderType NOT IN ('Q008','Q007') and a.delivertime is not NULL  and a.delivertime !=''
+    and  b. status !="车辆已出库" and h.retCarId is  NULL
+</select>
+  <select id="getCustomerByEmployeeIdBase" parameterType="java.lang.Integer"
+          resultType="com.blchina.cbp.dto.OrderDTO">
+     SELECT
+  b.status as logisticstatus,
+  a.*
+  FROM
+  cbp_order a
+  LEFT JOIN (
+  SELECT
+  c.`status`,
+  c.orderId
+  FROM
+  cbp_logistics c
+  WHERE
+  c.logisticsId IN (
+  SELECT
+  MAX(logisticsId)
+  FROM
+  cbp_logistics d
+  GROUP BY
+  d.orderId
+  )
+  ) b ON b.orderid = a.orderId
+  WHERE  a.employeeId = #{employeeid,jdbcType=INTEGER}
+  and   a.orderType NOT IN ('Q008','Q007') and a.delivertime is not NULL  and a.delivertime !=''
+  and  b. status !="车辆已出库"
+  </select>
+  <select id="searchContract"
+          parameterType="com.blchina.cbp.dto.ContractSearchDTO"
+          resultType="com.blchina.cbp.dto.OrderDTO">
+    SELECT
+    o.orderId,
+    o.customerId,
+    o.orderStatus,
+    DATE_FORMAT(o.orderDate, '%Y-%m-%d') AS orderDate,
+    o.carType,
+    o.sapOrderId,
+    o.employeeId,
+    o.deliverTime,
+    o.phoneNumber,
+    o.idCardNum,
+    o.organizeCode,
+    ifnull(
+    o.buyerIdCardNum,
+    o.idcardNum
+    ) AS buyeridcardnum,
+    orderType,
+    t.contractdate,
+    ifnull(o.buyerName, o.customerName) AS buyername,
+    o.customerName AS customername,
+    o.organizeName AS organizename,
+    t.contractId AS contractid,
+    o.realVinNo AS vinno,
+    t.appearanceInterior AS appearanceinterior,
+    t.ischanged,
+    l.contractId AS lastid,
+    if(t.contractstatus!='3',t.contractstatus,if(f.contractId is null,1,t.contractstatus))  AS contractstatus
+    FROM
+    cbp_order o
+    LEFT JOIN (
+    SELECT
+    c.*
+    FROM
+    `cbp_contract` c
+    WHERE
+    c.contractId IN (
+    SELECT
+    max(b.contractId)
+    FROM
+    cbp_contract b
+    GROUP BY
+    b.orderId
+    )
+    ) t ON t.orderId = o.orderId
+    LEFT JOIN (SELECT MAX(itemId),contractId from cbp_contract_item  where contractstatus='2'  GROUP BY contractId ) f ON f.contractId=t.contractId
+    LEFT JOIN (
+    SELECT
+    c.contractId,
+    c.orderId
+    FROM
+    cbp_contract c
+    WHERE
+    c.contractId IN (
+    SELECT
+    max(d.contractId)
+    FROM
+    cbp_contract d
+    WHERE
+    d.contractId NOT IN (
+    SELECT
+    max(e.contractId)
+    FROM
+    cbp_contract e
+    GROUP BY
+    e.orderId
+    )
+    GROUP BY
+    d.orderId
+    )
+    ) l ON l.orderId = o.orderId
+    WHERE o.employeeId
+    <foreach  collection="employelist" item="employelist" open="in (" close=")" separator=",">
+      #{employelist}
+    </foreach>
+    <if test='contractstatus =="2"'>
+      and f.contractId is not null and t.contractstatus='2'
+    </if>
+    <if test='contractstatus =="1"'>
+      and  f.contractId is  null  and t.contractstatus!='2' and t.contractstatus!='4'
+    </if>
+    <if test="ischanged != null and ischanged !=''">
+      and t.ischanged = 'Y'
+    </if>
+    <if test="saporderid != null and saporderid !=''">
+      and o.sapOrderId like CONCAT('%', #{saporderid},'%')
+    </if>
+    <if test="customerName != null and customerName !=''">
+      and (o.customerName like CONCAT('%',#{customerName},'%') or o.buyerName like CONCAT('%',#{customerName},'%'))
+    </if>
+    <if test="idCardNum != null and idCardNum!='' ">
+      and ( o.idCardNum like CONCAT('%',#{idCardNum},'%') or o.buyerIdCardNum like CONCAT('%',#{idCardNum},'%'))
+    </if>
+    <if test="phoneNumber != null and phoneNumber !=''">
+      and o.phoneNumber like CONCAT('%',#{phoneNumber},'%')
+    </if>
+    <if test="date != null">
+      and  unix_timestamp(o.orderDate) >= unix_timestamp(now())- #{date,jdbcType=INTEGER}*24*60*60*1000
+    </if>
+    ORDER BY  o.employeeId &lt;&gt; #{employeeId},o.orderId DESC
+  </select>
+  <select id="searchCustomerPrivate" parameterType="com.blchina.cbp.dto.CustomerInfoQueryDTO" resultType="com.blchina.cbp.dto.SearchCustomerDTO">
+    SELECT DISTINCT t.employeeId,t.customerName,t.phoneNumber,t.idCardNum,t.organizeCode,t.organizeName FROM `cbp_order` t
+    WHERE employeeId
+    <foreach  collection="employelist" item="employelist" open="in (" close=")" separator=",">
+      #{employelist}
+    </foreach>
+    and t.organizeCode is NULL
+    <if test="customerName != null and customerName !=''">
+      and (t.customerName like CONCAT('%',#{customerName},'%'))
+    </if>
+    <if test="idCardNum != null and idCardNum!='' ">
+      and ( t.idCardNum like CONCAT('%',#{idCardNum},'%'))
+    </if>
+    <if test="phoneNumber != null and phoneNumber !=''">
+      and t.phoneNumber like CONCAT('%',#{phoneNumber},'%')
+    </if>
+    order by  t.employeeId &lt;&gt; #{employeeId}
+  </select>
+  <select id="searchCustomerPublic" parameterType="com.blchina.cbp.dto.CustomerInfoQueryDTO" resultType="com.blchina.cbp.dto.SearchCustomerDTO">
+    SELECT DISTINCT t.employeeId,t.customerName,t.phoneNumber,t.idCardNum,t.organizeCode,t.organizeName FROM `cbp_order` t
+    WHERE  employeeid
+    <foreach  collection="employelist" item="employelist" open="in (" close=")" separator=",">
+      #{employelist}
+    </foreach>
+    and t.organizeCode is NOT NULL
+    <if test="customerName != null and customerName !=''">
+      and (t.customerName like CONCAT('%',#{customerName},'%'))
+    </if>
+    <if test="idCardNum != null and idCardNum!='' ">
+      and ( t.idCardNum like CONCAT('%',#{idCardNum},'%') OR t.organizeCode LIKE  CONCAT('%',#{idCardNum},'%'))
+    </if>
+    <if test="phoneNumber != null and phoneNumber !=''">
+      and t.phoneNumber like CONCAT('%',#{phoneNumber},'%')
+    </if>
+    <if test="organizeName != null and organizeName !=''">
+      and t.organizeName like CONCAT('%',#{organizeName},'%')
+    </if>
+    order by  t.employeeId &lt;&gt; #{employeeId}
+  </select>
+  <select id="searchOrderMonitorManager" parameterType="com.blchina.cbp.dto.MonitorSearchDTO" resultType="com.blchina.cbp.dto.MonitorSearchDTO">
+    SELECT
+    o.orderId,
+    o.sapOrderId,
+    o.brandId,
+    o.phoneNumber,
+    o.employeeId,
+    DATE_FORMAT(o.orderDate,'%Y-%m-%d') as orderdate,
+    o.organizeCode,
+    o.deliverTime,
+    o.organizeName,
+    o.buyerName,
+    o.orderStatus,
+    o.buyerIdCardNum,
+    o.customerName,
+    o.idCardNum,
+    o.carType,
+    t.contractstatus,
+    g.`status` AS logistStatus,
+    IF(v.status='2',1,0) as employeeSet,
+    IF(r.orderId is NULL,0,1) as customerSet
+    FROM
+    `cbp_order` o
+    LEFT JOIN (
+    SELECT
+    c.*
+    FROM
+    `cbp_contract` c
+    WHERE
+    c.contractId IN (
+    SELECT
+    max(b.contractId)
+    FROM
+    cbp_contract b
+    GROUP BY
+    b.orderId
+    )
+    ) t ON t.orderId = o.orderId
+    LEFT JOIN (
+    SELECT
+    s.`status`,
+    s.orderId,
+    s.senddate
+    FROM
+    `cbp_logistics` s
+    WHERE
+    s.logisticsId IN (
+    SELECT
+    max(p.logisticsId)
+    FROM
+    cbp_logistics p
+    GROUP BY
+    p.orderId
+    )
+    ) g ON g.orderId = o.orderId
+    LEFT JOIN cbp_deliverMessage v on v.orderId=o.orderId
+    LEFT JOIN ( SELECT orderId from cbp_returnCarTime m GROUP BY m.orderId) r on r.orderId=o.orderId
+    LEFT JOIN (SELECT MAX(itemId),contractId from cbp_contract_item  where contractstatus='2'  GROUP BY contractId ) f on f.contractId=t.contractId
+    WHERE 1=1
+
+    <if test='issign =="Y"'>
+      and f.contractId is not null
+    </if>
+    <if test='issign !="Y"'>
+      and f.contractId is  null
+    </if>
+    <if test='brandid !=null and brandid !=""'>
+      and o.brandid=#{brandid}
+    </if>
+    <if test='employeeid !=null'>
+      and o.employeeId=#{employeeid}
+    </if>
+    <if test='orderdateStart !=null'>
+      and unix_timestamp(DATE_FORMAT(o.orderDate,'%Y-%m-%d')) &gt;= unix_timestamp(#{orderdateStart})
+    </if>
+    <if test='orderdateEnd !=null'>
+      and unix_timestamp(DATE_FORMAT(o.orderDate,'%Y-%m-%d')) &lt;= unix_timestamp(#{orderdateEnd})
+    </if>
+    ORDER BY
+    orderdate DESC
+ </select>
+  <select id="searchOrderMonitorBrand" parameterType="com.blchina.cbp.dto.MonitorSearchDTO" resultType="com.blchina.cbp.dto.MonitorSearchDTO">
+    SELECT
+    o.orderId,
+    o.sapOrderId,
+    o.brandId,
+    o.phoneNumber,
+    o.employeeId,
+    DATE_FORMAT(o.orderDate, '%Y-%m-%d') AS orderdate,
+    o.organizeCode,
+    o.deliverTime,
+    o.organizeName,
+    o.buyerName,
+    o.buyerIdCardNum,
+    o.customerName,
+    o.idCardNum,
+    o.carType,
+    t.contractstatus,
+    g.`status` AS logistStatus,
+
+    IF (v. STATUS = '2', 1, 0) AS employeeSet,
+
+    IF (r.orderId IS NULL, 0, 1) AS customerSet
+    FROM
+    `cbp_order` o
+    LEFT JOIN (
+    SELECT
+    c.*
+    FROM
+    `cbp_contract` c
+    WHERE
+    c.contractId IN (
+    SELECT
+    max(b.contractId)
+    FROM
+    cbp_contract b
+    GROUP BY
+    b.orderId
+    )
+    ) t ON t.orderId = o.orderId
+    LEFT JOIN (
+    SELECT
+    s.`status`,
+    s.orderId,
+    s.senddate
+    FROM
+    `cbp_logistics` s
+    WHERE
+    s.logisticsId IN (
+    SELECT
+    max(p.logisticsId)
+    FROM
+    cbp_logistics p
+    GROUP BY
+    p.orderId
+    )
+    ) g ON g.orderId = o.orderId
+    LEFT JOIN cbp_deliverMessage v ON v.orderId = o.orderId
+    LEFT JOIN (SELECT MAX(itemId),contractId from cbp_contract_item  where contractstatus='2'  GROUP BY contractId ) f on f.contractId=t.contractId
+    LEFT JOIN (
+    SELECT
+    orderId
+    FROM
+    cbp_returnCarTime m
+    GROUP BY
+    m.orderId
+    ) r ON r.orderId = o.orderId
+    WHERE 1=1
+
+    <if test='issign =="Y"'>
+      and f.contractId is not null
+    </if>
+    <if test='issign !="Y"'>
+      and f.contractId is  null
+    </if>
+    <if test='brandid !=null and brandid !=""'>
+      and o.brandid=#{brandid}
+    </if>
+    <if test='employeeid !=null'>
+      and o.employeeId=#{employeeid}
+    </if>
+    <if test='orderdateStart !=null'>
+      and unix_timestamp(DATE_FORMAT(o.orderDate,'%Y-%m-%d')) &gt;= unix_timestamp(#{orderdateStart})
+    </if>
+    <if test='orderdateEnd !=null'>
+      and unix_timestamp(DATE_FORMAT(o.orderDate,'%Y-%m-%d')) &lt;= unix_timestamp(#{orderdateEnd})
+    </if>
+    ORDER BY
+    orderdate DESC
+  </select>
+  <select id="showOrderSignMonitor" parameterType="com.blchina.cbp.dto.SignMonitorDTO" resultType="com.blchina.cbp.dto.SignMonitorDTO">
+    SELECT  MAX(c.brandId) as brandId,c.employeeId,SUM(1) as employeeSum,SUM(IF(f.contractId is null,0,1))/SUM(1) as signPecent,
+    SUM(IF(s.closeType='1',1,0))/IF(SUM(IF(s.closeType is null,0,1))=0,1,SUM(IF(s.closeType is null,0,1))) as closeOnePecent,
+    SUM(IF(s.closeType='2',1,0))/IF(SUM(IF(s.closeType is null,0,1))=0,1,SUM(IF(s.closeType is null,0,1))) as closeTwoPecent,
+    SUM(IF(s.closeType='3',1,0))/IF(SUM(IF(s.closeType is null,0,1))=0,1,SUM(IF(s.closeType is null,0,1))) as closeThreePecent,
+    SUM(IF(s.closeType='4',1,0))/IF(SUM(IF(s.closeType is null,0,1))=0,1,SUM(IF(s.closeType is null,0,1))) as closeFourPecent,
+    SUM(IF(c.openId is not null,1,0))/SUM(1) AS focusPecent,SUM(IF(d.status='2',1,0))/SUM(1) AS employeeSetPecent,
+    SUM(IF(l.sendStatus='1',1,0))/SUM(1) AS logisticPecent,
+    SUM(IF(g.orderId is null,0,1))/SUM(1) as customerSetSum,
+    SUM(IF(ss.closeType='1',1,0))/IF(SUM(IF(ss.closeType is null,0,1))=0,1,SUM(IF(ss.closeType is null,0,1))) as unsignOnePecent,
+    SUM(IF(ss.closeType='2',1,0))/IF(SUM(IF(ss.closeType is null,0,1))=0,1,SUM(IF(ss.closeType is null,0,1))) as unsignTwoPecent,
+    SUM(IF(ss.closeType='3',1,0))/IF(SUM(IF(ss.closeType is null,0,1))=0,1,SUM(IF(ss.closeType is null,0,1))) as unsignThreePecent,
+    SUM(IF(ss.closeType='4',1,0))/IF(SUM(IF(ss.closeType is null,0,1))=0,1,SUM(IF(ss.closeType is null,0,1))) as unsignFourPecent
+    FROM `cbp_order`  c
+    LEFT JOIN (SELECT p.contractstatus,p.contractId,p.orderId from cbp_contract p where p.contractId in (select max(contractId) from cbp_contract GROUP BY orderId)) t  on t.orderId=c.orderId
+    LEFT JOIN (SELECT MAX(itemId),contractId from cbp_contract_item  where contractstatus='2'  GROUP BY contractId ) f on f.contractId=t.contractId
+    LEFT JOIN cbp_closeCause s on s.contractId=t.contractId
+    LEFT JOIN (SELECT t.sendStatus,t.orderId from cbp_logistics t where t.logisticsId in (SELECT max(logisticsId) from cbp_logistics GROUP BY orderId)) l on l.orderId=c.orderId
+    LEFT JOIN cbp_deliverMessage d on d.orderId=c.orderId
+    LEFT JOIN (SELECT r.orderId from cbp_returnCarTime r where r.retCarId in (SELECT MAX(e.retCarId) from cbp_returnCarTime e GROUP BY e.orderId)) g on g.orderId=c.orderId
+    LEFT JOIN  cbp_unsignReason ss on ss.contractId=t.contractId where 1=1
+        <if test="employeelist !=null">
+           AND c.employeeId
+          <foreach  collection="employeelist" item="employeelist" open="in (" close=")" separator=",">
+            #{employeelist}
+          </foreach>
+        </if>
+        <if test="brandId !=null">
+            and c.brandId=#{brandId}
+        </if>
+        <if test="brandIdList !=null">
+          AND c.brandId
+          <foreach  collection="brandIdList" item="brandIdList" open="in (" close=")" separator=",">
+            #{brandIdList}
+          </foreach>
+        </if>
+        <if test='dateStart !=null and dateStart !=""'>
+          and unix_timestamp(DATE_FORMAT(c.orderDate,'%Y-%m-%d')) &gt;= unix_timestamp(#{dateStart})
+        </if>
+        <if test='dateEnd !=null and dateEnd !=""'>
+          and unix_timestamp(DATE_FORMAT(c.orderDate,'%Y-%m-%d')) &lt;= unix_timestamp(#{dateEnd})
+        </if>
+        GROUP BY c.employeeId  ORDER BY brandId,employeeId
+  </select>
+  <select id="getOrderProcess" parameterType="java.lang.Integer" resultType="com.blchina.cbp.dto.ProcessDTO">
+    SELECT t.orderId,c.boutiqueOrderId as boutiqueId,s.appraiserId as secondCarId,i.insuranceId,h.checkCarNumId,f.financeOrderId as financeId FROM  cbp_order t LEFT JOIN cbp_boutique_Order c on c.orderId=t.orderId LEFT JOIN cbp_secondHandCar_Order s on s.orderId=t.orderId
+ LEFT JOIN cbp_insurance_Order i on i.orderId=t.orderId LEFT JOIN cbp_checkCarNum_Order h on h.orderId=t.orderId
+ LEFT JOIN cbp_finance_Order f on f.orderId=t.orderId where t.orderId=#{orderid}
+  </select>
+  <select id="getAllOrder" resultMap="BaseResultMap">
+    SELECT * from cbp_order
+  </select>
+</mapper>

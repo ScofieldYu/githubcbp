@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.customer.dao.BDLCustomerStoreMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.customer.model.BDLCustomerStore">
+    <id column="customerstoreId" jdbcType="INTEGER" property="customerstoreid" />
+    <result column="customerId" jdbcType="INTEGER" property="customerid" />
+    <result column="openId" jdbcType="VARCHAR" property="openid" />
+    <result column="brandId" jdbcType="VARCHAR" property="brandid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    customerstoreId, customerId, openId, brandId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_customerStore
+    where customerstoreId = #{customerstoreid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bdl_customerStore
+    where customerstoreId = #{customerstoreid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.customer.model.BDLCustomerStore">
+    insert into bdl_customerStore (customerstoreId, customerId, openId, 
+      brandId)
+    values (#{customerstoreid,jdbcType=INTEGER}, #{customerid,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, 
+      #{brandid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.customer.model.BDLCustomerStore">
+    insert into bdl_customerStore
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="customerstoreid != null">
+        customerstoreId,
+      </if>
+      <if test="customerid != null">
+        customerId,
+      </if>
+      <if test="openid != null">
+        openId,
+      </if>
+      <if test="brandid != null">
+        brandId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="customerstoreid != null">
+        #{customerstoreid,jdbcType=INTEGER},
+      </if>
+      <if test="customerid != null">
+        #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="brandid != null">
+        #{brandid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.customer.model.BDLCustomerStore">
+    update bdl_customerStore
+    <set>
+      <if test="customerid != null">
+        customerId = #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null">
+        openId = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="brandid != null">
+        brandId = #{brandid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where customerstoreId = #{customerstoreid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.customer.model.BDLCustomerStore">
+    update bdl_customerStore
+    set customerId = #{customerid,jdbcType=INTEGER},
+      openId = #{openid,jdbcType=VARCHAR},
+      brandId = #{brandid,jdbcType=VARCHAR}
+    where customerstoreId = #{customerstoreid,jdbcType=INTEGER}
+  </update>
+  <select id="getCustomerStore" parameterType="com.blchina.customer.model.BDLCustomerStore" resultType="com.blchina.customer.model.BDLCustomerStore">
+    SELECT * FROM bdl_customerStore WHERE customerId = #{customerid,jdbcType=INTEGER} AND brandId = #{brandid,jdbcType=VARCHAR}
+  </select>
+  <select id="getCustomerStoreByOpenid" parameterType="java.lang.String" resultMap="BaseResultMap">
+       SELECT * FROM bdl_customerStore WHERE openId = #{openid,jdbcType=VARCHAR}
+  </select>
+</mapper>

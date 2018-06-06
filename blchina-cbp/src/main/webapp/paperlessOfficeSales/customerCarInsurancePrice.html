@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>车险报价</title>
+    <script src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/paperlessOfficeSales/carInsurancePrice.css">
+</head>
+<body>
+<div class="carInsurancePrice" id="carInsurancePrice">
+    <div class="selectInsuranceTit">
+        <a href="javascript:void 0" onclick="history.back();"></a>
+        <p>添加保险</p>
+    </div>
+    <div class="insurance">
+        <div class="insuranceTitle">
+            <p>保险公司</p>
+        </div>
+        <ul id="listCompany" class="companyList alignment">
+            <li class="on">
+                <em></em><span>平安</span>
+            </li>
+            <li>
+                <em></em><span>平安</span>
+            </li>
+            <li>
+                <em></em><span>平安</span>
+            </li>
+            <li>
+                <em></em><span>国寿财</span>
+            </li>
+        </ul>
+    </div>
+    <div class="insurance">
+        <div class="aSingle">
+            <span>不计免赔</span>
+            <div id="issign" class="tarSwitch on">
+                <div class="tarRound"></div>
+            </div>
+        </div>
+    </div>
+    <div id="threeInsurance" class="insurance">
+        <div class="insuranceTitle">
+            <p>三者险</p>
+        </div>
+        <ul class="priceList" id="threeInsuranceList">
+            <li class="on">
+                <em></em><span>20万</span>
+            </li>
+            <li>
+                <em></em><span>50万</span>
+            </li>
+            <li>
+                <em></em><span>100万</span>
+            </li>
+        </ul>
+        <div class="Other">
+            <em></em><span>其他</span>
+            <p>
+                <input type="text" value="" placeholder="自定义价格">
+            </p>
+            <b>万</b>
+        </div>
+    </div>
+    <div id="carUsers" class="insurance">
+        <div class="insuranceTitle">
+            <p>车上人员险</p>
+        </div>
+        <ul id="carUsersList" class="priceList">
+            <li class="on">
+                <em></em><span>1万</span>
+            </li>
+            <li>
+                <em></em><span>2万</span>
+            </li>
+        </ul>
+        <div class="Other">
+            <em></em><span>其他</span>
+            <p>
+                <input type="text" value="" placeholder="自定义价格">
+            </p>
+            <b>万</b>
+        </div>
+    </div>
+    <div id="scratchInsurance" class="insurance">
+        <div class="insuranceTitle">
+            <p>划痕险</p>
+        </div>
+        <ul id="scratchList" class="priceList">
+            <li class="on">
+                <em></em><span>5000</span>
+            </li>
+            <li>
+                <em></em><span>10000</span>
+            </li>
+        </ul>
+        <div class="Other">
+            <em></em><span>其他</span>
+            <p>
+                <input type="text" value="" placeholder="自定义价格">
+            </p>
+        </div>
+    </div>
+    <div id="otherInsurance" class="insurance">
+        <div class="insuranceTitle">
+            <p>其他险种（多选）</p>
+        </div>
+        <ul id="otherList" class="companyList">
+            <li class="on">
+                <em></em><span>车损险</span>
+            </li>
+            <li>
+                <em></em><span>盗抢险</span>
+            </li>
+            <li>
+                <em></em><span>自然险</span>
+            </li>
+            <li>
+                <em></em><span>涉水险</span>
+            </li>
+            <li>
+                <em></em><span>玻璃险</span>
+            </li>
+            <li class="widthDefault">
+                <em></em><span>无法找到第三方特约险</span>
+            </li>
+        </ul>
+    </div>
+    <div class="insurance">
+        <div class="aSingle">
+            <span>第一受益人或被保险人</span>
+            <p>
+                <input id="insurancebeneficiary" type="text" value="" placeholder="第一受益人或被保险人">
+            </p>
+        </div>
+    </div>
+    <div class="insurance">
+        <div class="insuranceTitle">
+            <p>保险增值税发票</p>
+        </div>
+        <ul id="insuranceinvoice" class="priceList">
+            <li insuranceinvoice="1">
+                <em></em><span>普票</span>
+            </li>
+            <li insuranceinvoice="2">
+                <em></em><span>专票</span>
+            </li>
+        </ul>
+    </div>
+    <div class="insurance">
+        <div class="insuranceTitle">
+            <p>是否赠保险</p>
+        </div>
+        <ul id="giveinsurance" class="priceList">
+            <li giveinsurance="1">
+                <em></em><span>否</span>
+            </li>
+            <li giveinsurance="2">
+                <em></em><span>是</span>
+            </li>
+        </ul>
+    </div>
+    <div class="insurance">
+        <div class="aSingle">
+            <span>交强险</span>
+            <p class="unitPrice">
+                <b>￥</b>
+                <input id="compulsoryInsurance" type="text" value="" placeholder="交强险价格">
+            </p>
+        </div>
+        <div class="aSingle">
+            <span>商业险</span>
+            <p class="unitPrice">
+                <b>￥</b>
+                <input id="businessInsurance" type="text" value="" placeholder="商业险价格">
+            </p>
+        </div>
+    </div>
+    <div class="insuranceBtn">
+        <a id="saveInsurance" href="javascript:void 0">完成</a>
+    </div>
+</div>
+</body>
+<script src="../js/paperlessOfficeSales/customerCarInsurancePrice.js"></script>
+</html>

@@ -1,0 +1,290 @@
+﻿
+html {
+  font-size: 100px;
+}
+html,body {
+  height: 100%;
+  width: 100%;
+  min-width: 3.2rem;
+  background: #f1f0ed;
+  font-family: PingFangSC-Regular, sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.text{
+  color:#4d4d4d;
+}
+.clearfix{
+  display: flex;
+  flex-wrap: nowrap;
+  height: auto;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+.imgBulb{
+  height: .25rem;
+  width: .18rem;
+  padding: 0 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.imgBulb img{
+  height: .2rem;
+  width: .16rem;
+  background-size: cover;
+}
+.middleM{
+  display: flex;
+  align-items: center;
+}
+.phone{
+  text-decoration:underline;
+  color: blue;
+}
+.titleMessage{
+  width:100%;
+  white-space: nowrap;
+  font-size: .12rem;
+  background:#fff;
+  height: .31rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.refreshBtn {
+  position: absolute;
+  top: .35rem;
+  right: 0;
+  width: 0.55rem;
+  height: 0.55rem;
+  text-align: center;
+  vertical-align: 1rem;
+}
+.refreshBtn i {
+  margin-top: 0.15rem;
+  display: inline-block;
+  width: 0.24rem;
+  height: 0.24rem;
+  background: url("../img/fresh.png") no-repeat;
+  background-size: 100%;
+}
+.bookingContent .content .dateTit {
+  height: 0.55rem;
+  line-height: 0.55rem;
+  background: #f2f2f2;
+  text-align: center;
+  font-size: 0.18rem;
+  font-weight: 600;
+  color: #4d4d4d;
+}
+.bookingContent .content .dateTit i {
+  display: inline-block;
+  margin-right: 0.1rem;
+  width: 0.09rem;
+  height: 0.09rem;
+  background: url("../img/tit_icon.png") no-repeat;
+  background-size: 100%;
+  vertical-align: 0.02rem;
+}
+.bookingContent .content .dateCon {
+  height: auto;
+}
+.bookingContent .content .dateCon .dateConTime:nth-child(odd) {
+  background: #272530;
+}
+.bookingContent .content .dateCon .dateConTime:nth-child(even) {
+  background: #1d1c24;
+}
+.bookingContent .content .dateCon .dateConTime {
+  position: relative;
+  float: left;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: rgba(255, 255, 255, 0.25);
+}
+.bookingContent .content .dateCon .dateConTime.busy .clock .center_dot,
+.bookingContent .content .dateCon .dateConTime.select .clock .center_dot {
+  border-color: #FFFFFF;
+}
+.bookingContent .content .dateCon .dateConTime.busy .clock .minute_zhen,
+.bookingContent .content .dateCon .dateConTime.busy .clock .hour_zhen ,
+.bookingContent .content .dateCon .dateConTime.select .clock .minute_zhen,
+.bookingContent .content .dateCon .dateConTime.select .clock .hour_zhen {
+  background: #FFFFFF;
+}
+.bookingContent .content .dateCon .dateConTime.busy .amOrPm,
+.bookingContent .content .dateCon .dateConTime.busy .timeSlot,
+
+.bookingContent .content .dateCon .dateConTime.select .amOrPm,
+.bookingContent .content .dateCon .dateConTime.select .timeSlot {
+  color: #FFFFFF;
+}
+.bookingContent .content .dateCon .dateConTime.select .q1 {
+  display: block;
+}
+.bookingContent .content .dateCon .dateConTime.select .q2 {
+  display: block;
+}
+.bookingContent .content .dateCon .dateConTime .clock {
+  position: absolute;
+  top: 0.17rem;
+  left: 0.12rem;
+  width: 0.45rem;
+  height: 0.45rem;
+}
+.bookingContent .content .dateCon .dateConTime .clock .center_dot {
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: -0.225rem;
+  margin-left: -0.225rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  border: 0.01rem solid rgba(255, 255, 255, 0.25);
+}
+.bookingContent .content .dateCon .dateConTime .clock .minute_zhen,
+.bookingContent .content .dateCon .dateConTime .clock .hour_zhen {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: 50% 80%;
+  background: rgba(255, 255, 255, 0.25);
+}
+.bookingContent .content .dateCon .dateConTime .clock .minute_zhen {
+  margin-top: -0.176rem;
+  margin-left: -0.005rem;
+  width: 0.01rem;
+  height: 0.22rem;
+}
+.bookingContent .content .dateCon .dateConTime .clock .hour_zhen {
+  margin-top: -0.112rem;
+  margin-left: -0.005rem;
+  width: 0.01rem;
+  height: 0.14rem;
+}
+.bookingContent .content .dateCon .dateConTime .amOrPm {
+  position: absolute;
+  top: 0.36rem;
+  right: 0.12rem;
+  font-size: 0.1rem;
+}
+.bookingContent .content .dateCon .dateConTime .timeSlot {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.12rem;
+  font-size: 0.175rem;
+}
+.bookingContent .content .dateCon .dateConTime .lock {
+  position: absolute;
+  bottom: 0.02rem;
+  left: 0.12rem;
+  width: 0.24rem;
+  height: 0.24rem;
+}
+.bookingContent .content .dateCon .dateConTime .lock.on {
+  background: url("../img/lock.jpg") no-repeat;
+  background-size: 100%;
+}
+.bookingContent .content .dateCon .dateConTime .lock.off {
+  background: url("../img/unlock.jpg") no-repeat;
+  background-size: 100%;
+}
+/*已选*/
+.bookingContent .content .dateCon .dateConTime .q2{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0.78rem;
+  height: 0.2rem;
+  background: url("../img/agreef.jpg") no-repeat;
+  background-size: cover;
+}
+
+/*约满*/
+.bookingContent .content .dateCon .dateConTime .q1 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0.78rem;
+  height: 0.2rem;
+  background: url("../img/yy-tab1.png") no-repeat;
+  background-size: cover;
+}
+/*忙碌*/
+.bookingContent .content .dateCon .dateConTime.busy em{
+  display: block;
+}
+
+.bookingContent .content .dateCon .dateConTime.busy em {
+ background-image: url("../img/agree.png");
+}
+.bookingBtn{
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 0.9rem;
+  line-height: 0.9rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.3);
+  bottom: 0;
+}
+.bookingBtn a {
+  display: block;
+  /*margin: 0.1rem auto 0;*/
+  /*margin-top:0.45rem;*/
+  
+  position: absolute;
+  left:50%;
+  margin-left:-1.45rem;
+  margin-top: 0.21rem;
+  border-radius: 0.04rem;
+  box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.3);
+  width: 2.89rem;
+  height: 0.43rem;
+  line-height: 0.43rem;
+  background: #546e9a;
+  color: #FFFFFF;
+  font-size: 0.15rem;
+}
+.booking{
+  display: flex;
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: .9rem;
+  background: rgba(0, 0, 0, 0.3);
+  bottom: 0;
+  line-height: .9rem;
+}
+.booking a{
+  
+  float: left;
+  flex:1;
+  text-align: center;
+  display: block;
+  line-height: 0.43rem;
+  background: #546e9a;
+  color: #FFFFFF;
+  font-size: .14rem;
+  margin-top: .22rem;
+  border-radius: .04rem;
+  box-shadow: 0 0 .2rem rgba(0, 0, 0, 0.3);
+  width:  1.6rem;
+  height: .44rem;
+  font-size: .15rem;
+}
+.booking a:nth-child(1){
+  background: #f2f2f2;
+  color:#262626;
+  margin-right:.16rem;
+  margin-left:0.2rem;
+}
+.booking a:nth-child(2){
+  background: #546e9a;
+  color:#fff;
+}

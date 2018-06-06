@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.insurance.dao.BDLInsuranceMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.insurance.model.BDLInsurance">
+    <id column="insuranceId" jdbcType="INTEGER" property="insuranceid" />
+    <result column="insuranceName" jdbcType="VARCHAR" property="insurancename" />
+    <result column="insuranceType" jdbcType="VARCHAR" property="insurancetype" />
+    <result column="isNoDeductible" jdbcType="VARCHAR" property="isnodeductible" />
+    <result column="expense" jdbcType="VARCHAR" property="expense" />
+    <result column="subjectType" jdbcType="VARCHAR" property="subjecttype" />
+    <result column="isShowNoDeductible" jdbcType="VARCHAR" property="isshownodeductible" />
+    <result column="isIncludeLimit" jdbcType="VARCHAR" property="isincludelimit" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    insuranceId, insuranceName, insuranceType, isNoDeductible, expense, subjectType, 
+    isShowNoDeductible, isIncludeLimit
+  </sql>
+  <select id="selectListByInsuranceId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_insurance
+    where insuranceId in (${insuranceid})
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_insurance
+    where insuranceId = #{insuranceid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bdl_insurance
+    where insuranceId = #{insuranceid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.insurance.model.BDLInsurance">
+    insert into bdl_insurance (insuranceId, insuranceName, insuranceType, 
+      isNoDeductible, expense, subjectType, 
+      isShowNoDeductible, isIncludeLimit)
+    values (#{insuranceid,jdbcType=INTEGER}, #{insurancename,jdbcType=VARCHAR}, #{insurancetype,jdbcType=VARCHAR}, 
+      #{isnodeductible,jdbcType=VARCHAR}, #{expense,jdbcType=VARCHAR}, #{subjecttype,jdbcType=VARCHAR}, 
+      #{isshownodeductible,jdbcType=VARCHAR}, #{isincludelimit,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.insurance.model.BDLInsurance">
+    insert into bdl_insurance
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="insuranceid != null">
+        insuranceId,
+      </if>
+      <if test="insurancename != null">
+        insuranceName,
+      </if>
+      <if test="insurancetype != null">
+        insuranceType,
+      </if>
+      <if test="isnodeductible != null">
+        isNoDeductible,
+      </if>
+      <if test="expense != null">
+        expense,
+      </if>
+      <if test="subjecttype != null">
+        subjectType,
+      </if>
+      <if test="isshownodeductible != null">
+        isShowNoDeductible,
+      </if>
+      <if test="isincludelimit != null">
+        isIncludeLimit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="insuranceid != null">
+        #{insuranceid,jdbcType=INTEGER},
+      </if>
+      <if test="insurancename != null">
+        #{insurancename,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancetype != null">
+        #{insurancetype,jdbcType=VARCHAR},
+      </if>
+      <if test="isnodeductible != null">
+        #{isnodeductible,jdbcType=VARCHAR},
+      </if>
+      <if test="expense != null">
+        #{expense,jdbcType=VARCHAR},
+      </if>
+      <if test="subjecttype != null">
+        #{subjecttype,jdbcType=VARCHAR},
+      </if>
+      <if test="isshownodeductible != null">
+        #{isshownodeductible,jdbcType=VARCHAR},
+      </if>
+      <if test="isincludelimit != null">
+        #{isincludelimit,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.insurance.model.BDLInsurance">
+    update bdl_insurance
+    <set>
+      <if test="insurancename != null">
+        insuranceName = #{insurancename,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancetype != null">
+        insuranceType = #{insurancetype,jdbcType=VARCHAR},
+      </if>
+      <if test="isnodeductible != null">
+        isNoDeductible = #{isnodeductible,jdbcType=VARCHAR},
+      </if>
+      <if test="expense != null">
+        expense = #{expense,jdbcType=VARCHAR},
+      </if>
+      <if test="subjecttype != null">
+        subjectType = #{subjecttype,jdbcType=VARCHAR},
+      </if>
+      <if test="isshownodeductible != null">
+        isShowNoDeductible = #{isshownodeductible,jdbcType=VARCHAR},
+      </if>
+      <if test="isincludelimit != null">
+        isIncludeLimit = #{isincludelimit,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where insuranceId = #{insuranceid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.insurance.model.BDLInsurance">
+    update bdl_insurance
+    set insuranceName = #{insurancename,jdbcType=VARCHAR},
+      insuranceType = #{insurancetype,jdbcType=VARCHAR},
+      isNoDeductible = #{isnodeductible,jdbcType=VARCHAR},
+      expense = #{expense,jdbcType=VARCHAR},
+      subjectType = #{subjecttype,jdbcType=VARCHAR},
+      isShowNoDeductible = #{isshownodeductible,jdbcType=VARCHAR},
+      isIncludeLimit = #{isincludelimit,jdbcType=VARCHAR}
+    where insuranceId = #{insuranceid,jdbcType=INTEGER}
+  </update>
+  <select id="getAllInsuranceByCompany" parameterType="com.blchina.insurance.dto.InsuranceDTO" resultMap="BaseResultMap">
+    SELECT * FROM  bdl_insurance t LEFT  JOIN bdl_insuranceandCom c on c.insuranceId=t.insuranceId and c.insuranceCompanyId =#{insurancecompanyid}
+  </select>
+  <select id="getAllInsurance" resultMap="BaseResultMap">
+    SELECT * from  bdl_insurance
+  </select>
+</mapper>

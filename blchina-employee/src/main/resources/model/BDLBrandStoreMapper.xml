@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.employee.dao.BDLBrandStoreMapper">
+  <resultMap type="com.blchina.employee.model.BDLBrandStore" id="BaseResultMap">
+ 	 <result column="storeCnShort" jdbcType="VARCHAR" property="storeCnShort" />
+ 	 <result column="brandType" jdbcType="INTEGER" property="brandType" />
+ 	 <result column="brandId" jdbcType="VARCHAR" property="brandId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    storeId, brandId, storeName, storeEnShort, storeCnShort, area, appId, appSecret, 
+    merchantNum, merchantAPIKey, payUpper, signStoreId, ZZF1, ZZF2, ZZF3,cardTemplateId
+  </sql>
+  <select id="getAllBrandStore" resultType="com.blchina.employee.model.BDLBrandStore" parameterType="com.blchina.employee.model.BDLBrandStore">
+	select brandId,storeCnShort,brandType from bdl_store where (storeCnShort is not null and storeCnShort!='') and brandId=(select companyCode from bdl_employee where employeeId =#{employeeId,jdbcType=INTEGER});
+  </select>
+  <select id="getTitleIdByEmployeeId" resultType="com.blchina.employee.model.BDLBrandStore" parameterType="com.blchina.employee.model.BDLBrandStore">
+	select titleId from bdl_employee  where employeeId =#{employeeId,jdbcType=INTEGER});
+  </select>
+  <select id="getBrandStore" resultType="com.blchina.employee.model.BrandStore" parameterType="java.lang.String">
+	select brandId,storeCnShort from bdl_store where (storeCnShort is not null and storeCnShort!='') and brandType =#{brandType,jdbcType=VARCHAR};
+  </select>
+</mapper>

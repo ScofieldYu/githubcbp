@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.employee.dao.BDLTitleMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.employee.model.BDLTitle">
+    <id column="titleId" jdbcType="INTEGER" property="titleid" />
+    <result column="objectName" jdbcType="VARCHAR" property="objectname" />
+    <result column="startDate" jdbcType="VARCHAR" property="startdate" />
+    <result column="endDate" jdbcType="VARCHAR" property="enddate" />
+    <result column="ZZF1" jdbcType="VARCHAR" property="zzf1" />
+    <result column="ZZF2" jdbcType="VARCHAR" property="zzf2" />
+    <result column="ZZF3" jdbcType="VARCHAR" property="zzf3" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    titleId, objectName, startDate, endDate, ZZF1, ZZF2, ZZF3
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_title
+    where titleId = #{titleid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bdl_title
+    where titleId = #{titleid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.employee.model.BDLTitle">
+    insert into bdl_title (titleId, objectName, startDate, 
+      endDate, ZZF1, ZZF2, 
+      ZZF3)
+    values (#{titleid,jdbcType=INTEGER}, #{objectname,jdbcType=VARCHAR}, #{startdate,jdbcType=VARCHAR}, 
+      #{enddate,jdbcType=VARCHAR}, #{zzf1,jdbcType=VARCHAR}, #{zzf2,jdbcType=VARCHAR}, 
+      #{zzf3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.employee.model.BDLTitle">
+    insert into bdl_title
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="titleid != null">
+        titleId,
+      </if>
+      <if test="objectname != null">
+        objectName,
+      </if>
+      <if test="startdate != null">
+        startDate,
+      </if>
+      <if test="enddate != null">
+        endDate,
+      </if>
+      <if test="zzf1 != null">
+        ZZF1,
+      </if>
+      <if test="zzf2 != null">
+        ZZF2,
+      </if>
+      <if test="zzf3 != null">
+        ZZF3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="titleid != null">
+        #{titleid,jdbcType=INTEGER},
+      </if>
+      <if test="objectname != null">
+        #{objectname,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null">
+        #{startdate,jdbcType=VARCHAR},
+      </if>
+      <if test="enddate != null">
+        #{enddate,jdbcType=VARCHAR},
+      </if>
+      <if test="zzf1 != null">
+        #{zzf1,jdbcType=VARCHAR},
+      </if>
+      <if test="zzf2 != null">
+        #{zzf2,jdbcType=VARCHAR},
+      </if>
+      <if test="zzf3 != null">
+        #{zzf3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.employee.model.BDLTitle">
+    update bdl_title
+    <set>
+      <if test="objectname != null">
+        objectName = #{objectname,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null">
+        startDate = #{startdate,jdbcType=VARCHAR},
+      </if>
+      <if test="enddate != null">
+        endDate = #{enddate,jdbcType=VARCHAR},
+      </if>
+      <if test="zzf1 != null">
+        ZZF1 = #{zzf1,jdbcType=VARCHAR},
+      </if>
+      <if test="zzf2 != null">
+        ZZF2 = #{zzf2,jdbcType=VARCHAR},
+      </if>
+      <if test="zzf3 != null">
+        ZZF3 = #{zzf3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where titleId = #{titleid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.employee.model.BDLTitle">
+    update bdl_title
+    set objectName = #{objectname,jdbcType=VARCHAR},
+      startDate = #{startdate,jdbcType=VARCHAR},
+      endDate = #{enddate,jdbcType=VARCHAR},
+      ZZF1 = #{zzf1,jdbcType=VARCHAR},
+      ZZF2 = #{zzf2,jdbcType=VARCHAR},
+      ZZF3 = #{zzf3,jdbcType=VARCHAR}
+    where titleId = #{titleid,jdbcType=INTEGER}
+  </update>
+</mapper>

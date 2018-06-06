@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--<link rel="stylesheet" type="text/css" href="./css/bootstrap-switch.css" />
+     <link rel="stylesheet" type="text/css"  href="./css/datepicker.css">  -->
+    <script type="text/javascript" src="./js/config.js"></script>
+    <script type="text/javascript" src="./js/bdl_rem.js"></script>
+    <link rel="stylesheet" href="./css/reset.css">
+    <!--<link rel="stylesheet" type="text/css" href="css/moment/zzsc.css">-->
+    <!--<link rel="stylesheet" href="css/moment/dcalendar.picker.css"/>-->
+    <link rel="stylesheet" href="./css/bdlSell_list.css">
+    <title>任务详情</title>
+    <style>
+body { font:12px/1.5 Arial; color:#666; background:#fff;}
+
+ul,li{ list-style:none;}
+
+img{border:0 none;}
+.date_selector, .date_selector *{width: auto;height: auto;border: none;background: none;margin: 0;padding: 0;text-align: left;text-decoration: none;}
+
+.date_selector{background:#fbfbfb;border: 1px solid #ccc;padding: 10px;margin:0;margin-top:-1px;position: absolute;z-index:100000;display:none;border-radius: 3px;box-shadow: 0 0 5px #aaa;box-shadow:0 2px 2px #ccc; width:2rem;}
+
+.date_selector_ieframe{position: absolute;z-index: 99999;display: none;}
+
+.date_selector .nav{display: flex}
+
+.date_selector .nav p{clear: none;}
+
+.date_selector .month_nav, .date_selector .year_nav{margin: 0 0 3px 0;padding: 0;display: block;position: relative;text-align: center;}
+
+.date_selector .month_nav{float: left;width: 50%;}
+
+.date_selector .year_nav{float: right;width: 50%;margin-right: -8px;}
+
+.date_selector .month_name, .date_selector .year_name{font-weight: bold;line-height: 20px;}
+
+.date_selector .button{display: block;position: absolute;top: 0;width:18px;height:18px;line-height:16px;font-weight:bold;color:#5985c7;text-align: center;font-size:12px;overflow:hidden;border: 1px solid #ccc;border-radius:2px;}
+
+.date_selector .button:hover, .date_selector .button.hover{background:#5985c7;color: #fff;cursor: pointer;border-color:#3a930d;}
+
+.date_selector .prev{left: 0;}
+
+.date_selector .next{right: 0;}
+
+.date_selector table{border-spacing: 0;border-collapse: collapse;clear: both;margin: 0; width:2rem;}
+
+.date_selector th, .date_selector td{width: 2.5em;height: 2em;padding: 0 !important;text-align: center !important;color: #666;font-weight: normal;}
+
+.date_selector th{font-size: 12px;}
+
+.date_selector td{border:1px solid #f1f1f1;line-height: 2em;text-align: center;white-space: nowrap;color:#5985c7;background: #fff;}
+
+.date_selector td.today{background: #eee;}
+
+.date_selector td.unselected_month{color: #ccc;}
+
+.date_selector td.selectable_day{cursor: pointer;}
+
+.date_selector td.selected{background:#2b579a;color: #fff;font-weight: bold;}
+
+.date_selector td.selectable_day:hover, .date_selector td.selectable_day.hover{background:#5985c7;color: #fff;}
+
+    </style>
+</head>
+<body>
+    <div class="bdl_main">
+        <div class="bdl_title">
+                <span class="bdl_boxT"></span>
+                <span class="bdl_card" style="font-weight:normal">任务详情</span>
+                <span class="bdl_boxS"><img src="./img/icon02.png" class="bdl_img">
+                    
+                </span>
+                <div class="bdl_push" display = "false" style="height:auto;">
+                        <span class="orY">
+                            <!--三角形-->
+                        </span>
+                        <p class="bdl_CarSearch"><span class="bdl_serach"></span><span>搜索任务</span></p>
+                        <!--<p class="bdl_CarAdd"><span class="bdl_add"></span><span>添加任务</span></p>-->
+                        <p class="bdl_CarMain"><span class="bdl_main"></span><span>首页看板</span></p>
+                </div>
+        </div>
+        <section class="bdl_sec">
+            <div class="bdl_Ltitle car">
+                <span style="width: 2.66rem;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;" class="textSpan"><span class="sureText">请为</span><span class="name"></span>的订单(编号<span class="num"></span>)<span class="bdl_task"></span></span>  
+                <a class="spanBox">
+                    <span class="bdl_phone">
+                        <span class="phone"> </span>
+                    </span> 
+                    <span>联系客户</span>  
+                </a>
+            </div>
+            <div class="bdl_Ltitle">
+                <span class="icon book"></span>   
+                <p class="bld_mest">
+                    <span>子任务:</span>  
+                    <span><span class="numOne">0</span>/<span class="numtwo">  </span></span>
+                </p>
+            </div>
+            <div class="bdl_boxAdd">   
+                <!--<div class="bdl_Ltitler" id="bdlLetter">
+                <span class="icon"></span>   
+                <p class="bld_mest">
+                    <span class="listBdl">
+                        <span class="okIcon no"></span>
+                        <span class="add">添加保险</span>
+                    </span>
+                </p>
+                <span class="addPu"></span>
+                </div>-->
+                
+                
+            </div>
+            
+           
+            <div class="bdl_LtitleTime">
+                <span class="icon time"></span>   
+                <p class="bld_mest">
+                    <span class="finsh">预计完成时间</span>
+                    <input type="text" class="tim" id="tim">  
+                </p>
+                <span class="addPu"></span>
+            </div>
+            <div class="bdl_Ltitle timeOk" style="display:none;line-height: .55rem;height: 0.55rem;">
+                <div style="float:left;display:flex;align-items: center;height: 0.55rem;"><span class="icon whring" ></span></div>
+                <div class="timerTxxt" style="color:#aaa"><span class="YMD" ></span> <span class="HOUR"></span>完成了"为客户的订单办理车险"</div>
+            </div>
+            <div class="bdl_pushAdd">
+                <input type="button" value="确认" class="inputFile back">
+                <input type="button" value="查看订单" class="inputFile complete" >
+            </div>
+            
+                
+        </section>
+        <!--<footer >
+             
+        </footer>-->
+    </div>
+</body>
+<script type="text/javascript" src="./js/jq 1.8.3.js"></script>
+<script type="text/javascript" src="./js/jquery.date_input.pack.js"></script>
+<script type="text/javascript" src="./js/bdlSell_list.js"></script>
+
+</html>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.card.dao.BDLCardMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.card.model.BDLCard">
+    <id column="cardId" jdbcType="INTEGER" property="cardid" />
+    <result column="cardStatus" jdbcType="VARCHAR" property="cardstatus" />
+    <result column="customerId" jdbcType="INTEGER" property="customerid" />
+    <result column="employeeId" jdbcType="INTEGER" property="employeeid" />
+    <result column="endDate" jdbcType="VARCHAR" property="enddate" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="cardType" jdbcType="VARCHAR" property="cardtype" />
+    <result column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="customerName" jdbcType="VARCHAR" property="customername" />
+    <result column="isDeleted" jdbcType="VARCHAR" property="isdeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cardId, cardStatus, customerId, employeeId, endDate, description, cardType, orderId, 
+    customerName, isDeleted
+  </sql>
+    <select id="selectCardListByCustomerNameAll" parameterType="com.blchina.card.dto.CardDTO" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_card
+    where employeeId = #{employeeId}
+    <if test="customerName != null and customerName !=''">
+      and orderId in (${customerName})
+    </if>
+    ORDER BY endDate desc
+  </select>
+  <select id="selectCardListByCustomerName" parameterType="com.blchina.card.dto.CardDTO" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_card
+    where cardStatus = #{cardStatus} and employeeId = #{employeeId}
+    <if test="customerName != null and customerName !=''">
+      and orderId in (${customerName})
+    </if>
+    ORDER BY endDate desc
+  </select>
+  <select id="selectByCardIdAndEmployeeId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_card
+    where cardId = #{cardid} and employeeId = #{employeeid}
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_card
+    where cardId = #{cardid,jdbcType=INTEGER}
+  </select>
+  <select id="selectCardByOrderId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_card
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </select>
+  <select id="selectCardByOrderIdAndEmployeeId" parameterType="com.blchina.card.model.BDLCard" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_card
+    where orderId = #{orderid,jdbcType=INTEGER} and employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
+  <select id="getCardByOrderIdAndCardType" parameterType="com.blchina.card.model.BDLCard" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_card
+    where orderId = #{orderid,jdbcType=INTEGER} and cardType = #{cardtype,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bdl_card
+    where cardId = #{cardid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.card.model.BDLCard">
+    <selectKey keyProperty="cardid" resultType="int">
+      select LAST_INSERT_ID()
+    </selectKey>
+    insert into bdl_card (cardId, cardStatus, customerId, 
+      employeeId, endDate, description, 
+      cardType, orderId, customerName, 
+      isDeleted)
+    values (#{cardid,jdbcType=INTEGER}, #{cardstatus,jdbcType=VARCHAR}, #{customerid,jdbcType=INTEGER}, 
+      #{employeeid,jdbcType=INTEGER}, #{enddate,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{cardtype,jdbcType=VARCHAR}, #{orderid,jdbcType=INTEGER}, #{customername,jdbcType=VARCHAR}, 
+      #{isdeleted,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.card.model.BDLCard">
+    insert into bdl_card
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cardid != null">
+        cardId,
+      </if>
+      <if test="cardstatus != null">
+        cardStatus,
+      </if>
+      <if test="customerid != null">
+        customerId,
+      </if>
+      <if test="employeeid != null">
+        employeeId,
+      </if>
+      <if test="enddate != null">
+        endDate,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="cardtype != null">
+        cardType,
+      </if>
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="customername != null">
+        customerName,
+      </if>
+      <if test="isdeleted != null">
+        isDeleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cardid != null">
+        #{cardid,jdbcType=INTEGER},
+      </if>
+      <if test="cardstatus != null">
+        #{cardstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="customerid != null">
+        #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="employeeid != null">
+        #{employeeid,jdbcType=INTEGER},
+      </if>
+      <if test="enddate != null">
+        #{enddate,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="cardtype != null">
+        #{cardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="customername != null">
+        #{customername,jdbcType=VARCHAR},
+      </if>
+      <if test="isdeleted != null">
+        #{isdeleted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.card.model.BDLCard">
+    update bdl_card
+    <set>
+      <if test="cardstatus != null">
+        cardStatus = #{cardstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="customerid != null">
+        customerId = #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="employeeid != null">
+        employeeId = #{employeeid,jdbcType=INTEGER},
+      </if>
+      <if test="enddate != null">
+        endDate = #{enddate,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="cardtype != null">
+        cardType = #{cardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null">
+        orderId = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="customername != null">
+        customerName = #{customername,jdbcType=VARCHAR},
+      </if>
+      <if test="isdeleted != null">
+        isDeleted = #{isdeleted,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cardId = #{cardid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.card.model.BDLCard">
+    update bdl_card
+    set cardStatus = #{cardstatus,jdbcType=VARCHAR},
+      customerId = #{customerid,jdbcType=INTEGER},
+      employeeId = #{employeeid,jdbcType=INTEGER},
+      endDate = #{enddate,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      cardType = #{cardtype,jdbcType=VARCHAR},
+      orderId = #{orderid,jdbcType=INTEGER},
+      customerName = #{customername,jdbcType=VARCHAR},
+      isDeleted = #{isdeleted,jdbcType=VARCHAR}
+    where cardId = #{cardid,jdbcType=INTEGER}
+  </update>
+   <select id="queryCardByEmploy" parameterType="com.blchina.card.model.BDLCard" resultMap="BaseResultMap">
+    SELECT * FROM bdl_card WHERE employeeId = #{employeeid,jdbcType=INTEGER}
+    <if test='cardstatus != null and cardstatus!="0"'>
+      and cardStatus= #{cardstatus,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

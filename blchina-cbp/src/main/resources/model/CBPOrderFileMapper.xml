@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPOrderFileMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPOrderFile">
+    <id column="orderFileId" jdbcType="INTEGER" property="orderfileid" />
+    <result column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="customerCardUUID" jdbcType="VARCHAR" property="customercarduuid" />
+    <result column="buyerIDCardUUID" jdbcType="VARCHAR" property="buyeridcarduuid" />
+    <result column="busiLicenseUUID" jdbcType="VARCHAR" property="busilicenseuuid" />
+    <result column="attorneyUUID" jdbcType="VARCHAR" property="attorneyuuid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    orderFileId, orderId, customerCardUUID, buyerIDCardUUID, busiLicenseUUID, attorneyUUID
+  </sql>
+  <select id="getFileCountByBrandIdAndOrderStatus" parameterType="com.blchina.cbp.dto.SignMonitorDTO" resultType="java.lang.Integer">
+	select SUM(IF(f.customerCardUUID is not null and f.customerCardUUID
+	!='',1,0)
+	+IF(f.busiLicenseUUID is not null and f.busiLicenseUUID
+	!='',1,0)
+	+IF(f.buyerIDCardUUID is not null and f.buyerIDCardUUID
+	!='',1,0)
+	+IF(f.attorneyUUID is not null and f.attorneyUUID !='',1,0))
+	as orderFileCount
+	from cbp_order o
+	LEFT JOIN cbp_OrderFile f on f.orderId
+	= o.orderId and o.orderStatus = '2'
+		AND brandId = #{brandId}
+	<if test='dateStart !=null'>
+		and unix_timestamp(DATE_FORMAT(orderDate,'%Y-%m-%d')) &gt;=
+		unix_timestamp(#{dateStart})
+	</if>
+	<if test='dateEnd !=null'>
+		and unix_timestamp(DATE_FORMAT(orderDate,'%Y-%m-%d')) &lt;=
+		unix_timestamp(#{dateEnd})
+	</if>
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_OrderFile
+    where orderFileId = #{orderfileid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_OrderFile
+    where orderFileId = #{orderfileid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPOrderFile">
+    insert into cbp_OrderFile (orderFileId, orderId, customerCardUUID, 
+      buyerIDCardUUID, busiLicenseUUID, attorneyUUID
+      )
+    values (#{orderfileid,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, #{customercarduuid,jdbcType=VARCHAR}, 
+      #{buyeridcarduuid,jdbcType=VARCHAR}, #{busilicenseuuid,jdbcType=VARCHAR}, #{attorneyuuid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPOrderFile">
+    insert into cbp_OrderFile
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderfileid != null">
+        orderFileId,
+      </if>
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="customercarduuid != null">
+        customerCardUUID,
+      </if>
+      <if test="buyeridcarduuid != null">
+        buyerIDCardUUID,
+      </if>
+      <if test="busilicenseuuid != null">
+        busiLicenseUUID,
+      </if>
+      <if test="attorneyuuid != null">
+        attorneyUUID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderfileid != null">
+        #{orderfileid,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="customercarduuid != null">
+        #{customercarduuid,jdbcType=VARCHAR},
+      </if>
+      <if test="buyeridcarduuid != null">
+        #{buyeridcarduuid,jdbcType=VARCHAR},
+      </if>
+      <if test="busilicenseuuid != null">
+        #{busilicenseuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="attorneyuuid != null">
+        #{attorneyuuid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPOrderFile">
+    update cbp_OrderFile
+    <set>
+      <if test="orderid != null">
+        orderId = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="customercarduuid != null">
+        customerCardUUID = #{customercarduuid,jdbcType=VARCHAR},
+      </if>
+      <if test="buyeridcarduuid != null">
+        buyerIDCardUUID = #{buyeridcarduuid,jdbcType=VARCHAR},
+      </if>
+      <if test="busilicenseuuid != null">
+        busiLicenseUUID = #{busilicenseuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="attorneyuuid != null">
+        attorneyUUID = #{attorneyuuid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where orderFileId = #{orderfileid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPOrderFile">
+    update cbp_OrderFile
+    set orderId = #{orderid,jdbcType=INTEGER},
+      customerCardUUID = #{customercarduuid,jdbcType=VARCHAR},
+      buyerIDCardUUID = #{buyeridcarduuid,jdbcType=VARCHAR},
+      busiLicenseUUID = #{busilicenseuuid,jdbcType=VARCHAR},
+      attorneyUUID = #{attorneyuuid,jdbcType=VARCHAR}
+    where orderFileId = #{orderfileid,jdbcType=INTEGER}
+  </update>
+  <select id="getFileByOrderId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT * FROM cbp_OrderFile WHERE  orderId = #{orderid,jdbcType=INTEGER}
+  </select>
+</mapper>

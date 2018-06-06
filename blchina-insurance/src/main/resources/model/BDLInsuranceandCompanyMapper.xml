@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.insurance.dao.BDLInsuranceandCompanyMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.insurance.model.BDLInsuranceandCompany">
+    <id column="insuranceandComId" jdbcType="INTEGER" property="insuranceandcomid" />
+    <result column="insuranceId" jdbcType="INTEGER" property="insuranceid" />
+    <result column="insuranceCompanyId" jdbcType="INTEGER" property="insurancecompanyid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    insuranceandComId, insuranceId, insuranceCompanyId
+  </sql>
+  <select id="selectListByInsuranceId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_insuranceandCom
+    where insuranceId in (${substring})
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_insuranceandCom
+    where insuranceandComId = #{insuranceandcomid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bdl_insuranceandCom
+    where insuranceandComId = #{insuranceandcomid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.insurance.model.BDLInsuranceandCompany">
+    insert into bdl_insuranceandCom (insuranceandComId, insuranceId, insuranceCompanyId
+      )
+    values (#{insuranceandcomid,jdbcType=INTEGER}, #{insuranceid,jdbcType=INTEGER}, #{insurancecompanyid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.insurance.model.BDLInsuranceandCompany">
+    insert into bdl_insuranceandCom
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="insuranceandcomid != null">
+        insuranceandComId,
+      </if>
+      <if test="insuranceid != null">
+        insuranceId,
+      </if>
+      <if test="insurancecompanyid != null">
+        insuranceCompanyId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="insuranceandcomid != null">
+        #{insuranceandcomid,jdbcType=INTEGER},
+      </if>
+      <if test="insuranceid != null">
+        #{insuranceid,jdbcType=INTEGER},
+      </if>
+      <if test="insurancecompanyid != null">
+        #{insurancecompanyid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.insurance.model.BDLInsuranceandCompany">
+    update bdl_insuranceandCom
+    <set>
+      <if test="insuranceid != null">
+        insuranceId = #{insuranceid,jdbcType=INTEGER},
+      </if>
+      <if test="insurancecompanyid != null">
+        insuranceCompanyId = #{insurancecompanyid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where insuranceandComId = #{insuranceandcomid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.insurance.model.BDLInsuranceandCompany">
+    update bdl_insuranceandCom
+    set insuranceId = #{insuranceid,jdbcType=INTEGER},
+      insuranceCompanyId = #{insurancecompanyid,jdbcType=INTEGER}
+    where insuranceandComId = #{insuranceandcomid,jdbcType=INTEGER}
+  </update>
+</mapper>

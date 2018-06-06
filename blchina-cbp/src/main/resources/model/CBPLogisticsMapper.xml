@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPLogisticsMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPLogistics">
+    <id column="logisticsId" jdbcType="INTEGER" property="logisticsid" />
+    <result column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="senddate" jdbcType="VARCHAR" property="senddate" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="carType" jdbcType="VARCHAR" property="cartype" />
+    <result column="sequence" jdbcType="VARCHAR" property="sequence" />
+    <result column="sendStatus" jdbcType="VARCHAR" property="sendStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    logisticsId, orderId, senddate, status, carType,sequence,sendStatus
+  </sql>
+  
+  
+  
+  <select id="getMaxStatusByOrderId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT c.* FROM cbp_logistics c
+    WHERE c.logisticsId IN ( SELECT MAX(logisticsId) FROM cbp_logistics 
+    where orderId = #{orderid})
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_logistics
+    where logisticsId = #{logisticsid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_logistics
+    where logisticsId = #{logisticsid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPLogistics">
+    insert into cbp_logistics (logisticsId, orderId, senddate, 
+      status, carType,sequence,sendStatus)
+    values (#{logisticsid,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, #{senddate,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{cartype,jdbcType=VARCHAR},#{sequence,jdbcType=VARCHAR},#{sendStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPLogistics">
+    insert into cbp_logistics
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="logisticsid != null">
+        logisticsId,
+      </if>
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="senddate != null">
+        senddate,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="cartype != null">
+        carType,
+      </if>
+      <if test="sequence != null">
+        sequence,
+      </if>
+      <if test="sendStatus != null">
+        sendStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="logisticsid != null">
+        #{logisticsid,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="senddate != null">
+        #{senddate,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="cartype != null">
+        #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="sequence != null">
+        #{sequence,jdbcType=VARCHAR},
+      </if>
+      <if test="sendStatus!= null">
+        #{sendStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPLogistics">
+    update cbp_logistics
+    <set>
+      <if test="orderid != null">
+        orderId = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="senddate != null">
+        senddate = #{senddate,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="cartype != null">
+        carType = #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="sequence != null">
+        sequence= #{sequence,jdbcType=VARCHAR},
+      </if>
+      <if test="sendStatus != null">
+        sendStatus= #{sendStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where logisticsId = #{logisticsid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPLogistics">
+    update cbp_logistics
+    set orderId = #{orderid,jdbcType=INTEGER},
+      senddate = #{senddate,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      carType = #{cartype,jdbcType=VARCHAR},
+       sequence= #{sequence,jdbcType=VARCHAR}
+    where logisticsId = #{logisticsid,jdbcType=INTEGER}
+  </update>
+  <select id="selectLogisticsID" resultType="com.blchina.cbp.model.CBPLogistics">
+    SELECT *
+    FROM cbp_logistics
+    WHERE orderId = #{orderid,jdbcType=INTEGER} and status = #{status,jdbcType=VARCHAR}
+  </select>
+  <select id="selectCBPLogistics" resultType="com.blchina.cbp.model.CBPLogistics">
+    SELECT <include refid="Base_Column_List" />
+    FROM cbp_logistics
+    WHERE orderId = #{orderid,jdbcType=INTEGER}
+    ORDER by sequence DESC
+
+  </select>
+  <delete id="deleteLogisticInfoByOrder" parameterType="java.lang.Integer">
+    DELETE  FROM  cbp_logistics  WHERE orderId = #{orderid,jdbcType=INTEGER}
+  </delete>
+</mapper>

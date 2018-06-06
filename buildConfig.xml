@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="properties">
+	<property file="ant.properties" />
+	<property name="basedir" value="." />
+	<property name="charset" value="UTF-8" />
+	<property name="web.dir" value="${basedir}/webapp" />
+	<property name="resource.dir" value="${basedir}/resource" />
+	<property name="classes.dir" value="${web.dir}/WEB-INF/classes" />
+	
+	<property name="src.dir" value="${basedir}/src" />
+	
+	<property name="config.dir" value="${resource.dir}/config" />
+	
+	<property name="configto.dir" value="${web.dir}/WEB-INF/classes" />
+	<property name="lib.dir" location="${resource.dir}/lib" />
+	<property name="libto.dir" value="${web.dir}/WEB-INF/lib" />
+	<path id="devlib.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+</project>

@@ -1,0 +1,817 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>个人资料</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <link href="css/ydui.css" rel="stylesheet"/>
+    <link href="css/demo.css" rel="stylesheet"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/bootstrapValidator.min.css" rel="stylesheet"/>
+    <script src="js/ydui.flexible.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .xian {
+            width: 100%;
+            height: 2px;
+            font-size: 15px;
+            background: #b7b7b7;
+            text-align: center;
+        }
+
+        #xinxi tr td {
+            font-size: 27px
+        }
+
+        label {
+
+        }
+
+        .sh {
+            background-color: #8796b0;
+        }
+
+        .gh {
+            background-color: #e0e0de;
+        }
+
+        .file {
+            position: relative;
+            display: inline-block;
+            background: #f3f3f3;
+            border: 1px solid #808080;
+            border-radius: 4px;
+            padding: 4px 12px;
+            overflow: hidden;
+            color: #666666;
+            text-decoration: none;
+            text-indent: 0;
+            text-align: center;
+            background-position: center, center;
+            background-repeat: no-repeat;
+            background-image: url(img/icon-委托书.png);
+            width: 200px;
+        }
+
+        .file span {
+            position: relative;
+            margin: 0, auto;
+        }
+
+        .file input {
+
+            position: absolute;
+            font-size: 100px;
+            right: 0;
+            top: 0;
+            opacity: 0;
+        }
+
+        .file:hover {
+            background-color: #b7b7b7;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div id="top">
+
+    <div id="sh" class="col-xs-6 sh" style="text-align:center;height:50px;line-height:50px;font-size:25px;">
+        私户
+    </div>
+
+    <div id="gh" class="col-xs-6 gh" style="text-align:center;height:50px;line-height:50px;font-size:25px;">
+        公户
+    </div>
+
+</div>
+<!--私户-->
+<div id="shihu" class="container-fluid" style="background-color:#f3f3f3" >
+    <div class="row">
+        <div style="background-color:#ffffff;height:20px"></div>
+    </div>
+    <div class="row">
+        <div style="height:45px;line-height:45px;font-size:23px;padding-left:20px">实名认证</div>
+    </div>
+
+    <div class="row">
+        <div class="xian"></div>
+    </div>
+
+    <form class="form-horizontal" style="padding-top:30px" id="gerenrenzheng">
+        <div class="form-group">
+            <label for="inputEmail3" class="col-xs-3 control-label">姓&nbsp;&nbsp;名</label>
+            <div class="col-xs-9">
+                <input type="text" class="form-control" id="customername" name="customername"/>
+
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputPassword3" class="col-xs-3 control-label">身份证号</label>
+            <div class="col-xs-9">
+                <input type="text" class="form-control" id="identitycardnum" name="identitycardnum">
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="inputPassword3" class="col-xs-3 control-label">手机号</label>
+            <div class="col-xs-9">
+                <input type="text" class="form-control" id="phonenumber" name="phonenumber"/>
+            </div>
+        </div>
+
+        <div class="form-group" style="text-align:center">
+            <div class="col-xs-12">
+                <button id="certified" type="button" class="btn btn-default" style="background-color:#8796b0;width:150px">
+                    去认证
+                </button>
+            </div>
+        </div>
+    </form>
+    <!--白线-->
+    <div class="row">
+        <div style="background-color:#ffffff;height:20px"></div>
+    </div>
+
+
+    <div class="row">
+        <div style="height:45px;line-height:45px;font-size:23px;padding-left:20px">详细信息</div>
+    </div>
+
+    <div class="row">
+        <div class="xian"></div>
+    </div>
+
+
+    <form class="form-horizontal" style="padding-top:30px" id="xiangxixinxi">
+        <div class="form-group">
+            <label for="inputEmail3" class="col-xs-3 control-label">Email</label>
+
+            <div class="col-xs-9">
+                <input type="email" class="form-control" id="email" name="email">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputPassword3" class="col-xs-3 control-label">所在地区</label>
+
+            <div class="col-xs-9">
+
+                <input type="text" class="form-control  cell-input" id="J_Address" name="J_Address" style="height:30px"
+                       placeholder="点击选择地区">
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="inputPassword3" class="col-xs-3 control-label">详细地址</label>
+            <div class="col-xs-9">
+                <input type="text" class="form-control" id="Area"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputPassword3" class="col-xs-3 control-label">邮编</label>
+
+            <div class="col-xs-9">
+                <input type="text" class="form-control" id="youbian" name="youbian"/>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div style="background-color:#ffffff;height:20px"></div>
+        </div>
+
+        <div class="row">
+            <div style="height:45px;line-height:45px;font-size:23px;padding-left:20px">指标信息</div>
+        </div>
+
+        <div class="row">
+            <div class="xian"></div>
+        </div>
+
+        <div class="form-group" style="margin-top:45px">
+            <label for="inputEmail3" class="col-xs-3 control-label">是否自有指标</label>
+            <div class="col-xs-9">
+                <select class="form-control" id="isindex">
+                    <option value="1">是</option>
+                    <option value="2">否</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="inputPassword3" class="col-xs-3 control-label">指标人姓名</label>
+            <div class="col-xs-9">
+                <input type="text" class="form-control" id="Area" name="zhibiaorenname"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputPassword3" class="col-xs-3 control-label">指标人身份证号</label>
+            <div class="col-xs-9">
+                <input type="text" class="form-control" id="Area" name="zhibiaorencardid"/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12" style="text-align:center;height:150px;line-height:100px;padding-top:10px">
+                <a id="attorneyFile" href="javascript:;" class="file">
+                    <div style="padding-bottom:0px;">
+                        <input type="file" name="" id="attorneyUpload">
+                        委托书上传
+                    </div>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="row form-group">
+            <div class="col-xs-12"
+                 style="text-align:center;padding-bottom:20px;padding-top:20px;background-color:#ffffff">
+
+                <button id="detailsUpload" type="button" class="btn btn-default" style="background-color:#8796b0;width:150px">
+                    完成
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<!--公户-->
+<div id="gonghu" class="container-fluid" style="background-color:#f3f3f3;display:none">
+    <div class="row">
+        <div style="background-color:#ffffff;height:20px"></div>
+    </div>
+    <div class="row">
+        <div style="height:45px;line-height:45px;font-size:23px;background-color:#f3f3f3;padding-left:20px">企业实名认证</div>
+    </div>
+
+    <div class="row">
+        <div class="xian"></div>
+    </div>
+    <div class="row" style="padding-top:20px">
+        <div class="col-xs-12" style="text-align:center;height:150px;line-height:100px;padding-top:30px">
+
+            <a href="javascript:;" class="file" style="background-image:url(../img/icon-营业执照.png)">
+                营业执照上传
+                <input type="file" name="" id="">
+            </a>
+        </div>
+    </div>
+
+
+    <form class="form-horizontal" style="padding-top:30px" id="lianxiren">
+
+        <div class="form-group">
+            <label for="inputEmail3" class="col-xs-3 control-label">企业名称</label>
+
+            <div class="col-xs-9">
+                <input type="text" class="form-control" id="organizename">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputPassword3" class="col-xs-3 control-label">组织机构代码</label>
+            <div class="col-xs-9">
+                <input type="text" class="form-control" id="organizeid">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-xs-3 control-label">姓&nbsp;&nbsp;名</label>
+            <div class="col-xs-9">
+                <input type="text" class="form-control" id="customername1" name="customername1">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputPassword3" class="col-xs-3 control-label">身份证号</label>
+            <div class="col-xs-9">
+                <input type="text" class="form-control" id="identitycardnum1" name="identitycardnum1">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputPassword3" class="col-xs-3 control-label">手机号</label>
+            <div class="col-xs-9">
+                <input type="text" class="form-control" id="phonenumber1" name="phonenumber1">
+            </div>
+        </div>
+
+        <div class="form-group" style="text-align:center">
+            <div class="col-xs-12">
+                <button type="button" class="btn btn-default" style="background-color:#8796b0;width:150px"  id="companyApprove">联系人实名认证
+
+                </button>
+
+            </div>
+        </div>
+    </form>
+
+    <!--白线-->
+    <div class="row">
+        <div style="background-color:#ffffff;height:20px"></div>
+    </div>
+
+    <div class="row">
+        <div style="height:45px;line-height:45px;font-size:23px;background-color:#f3f3f3;padding-left:20px">联系人详细信息
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="xian"></div>
+    </div>
+
+    <form class="form-horizontal" style="padding-top:30px" id="lianxirenxiangxi">
+
+        <div class="form-group">
+            <label for="inputEmail3" class="col-xs-3 control-label">Email</label>
+            <div class="col-xs-9">
+                <input type="email" class="form-control" id="email1" name="email1">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputPassword3" class="col-xs-3 control-label">所在地区</label>
+            <div class="col-xs-9">
+                <input type="text" class="form-control cell-input" id="J_Address2" style="height:30px"
+                       placeholder="点击选择地区">
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="inputPassword3" class="col-xs-3 control-label">详细地址</label>
+            <div class="col-xs-9">
+                <input type="text" class="form-control" id="Area1"/>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputPassword3" class="col-xs-3 control-label">邮编</label>
+            <div class="col-xs-9">
+                <input type="text" class="form-control" id="postcode"/>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div style="background-color:#ffffff;height:20px"></div>
+        </div>
+
+        <div class="row">
+            <div style="height:45px;line-height:45px;font-size:23px;padding-left:20px">委托信息</div>
+        </div>
+
+        <div class="row">
+            <div class="xian"></div>
+        </div>
+
+
+        <div class="form-group" style="margin-top:35px">
+            <label for="inputEmail3" class="col-xs-3 control-label">是否携带公章</label>
+            <div class="col-xs-9">
+
+                <select class="form-control" id="isSeal" onchange='btnChange(this[selectedIndex].value);'>
+                    <option value="1">是</option>
+                    <option value="2">否</option>
+                </select>
+            </div>
+        </div>
+
+        <!--委托书上传-->
+
+        <div class="row" id="power" style="display:none">
+            <div class="col-xs-12" style="text-align:center;height:150px;line-height:100px;padding-top:10px">
+                <a href="javascript:;" class="file">
+                    <div style="padding-bottom:0px;">
+                        <input type="file" name="" id="">
+                        委托书上传
+                    </div>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-12"
+                 style="text-align:center;padding-bottom:20px;padding-top:20px;background-color:#ffffff">
+                <button type="button" class="btn btn-default" style="background-color:#8796b0;width:150px" id="contactsdetail">完成
+                </button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+</body>
+</html>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/config.js"></script>
+<script type="text/javascript" src="js/ydui.js"></script>
+<script type="text/javascript" src="js/ydui.citys.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrapValidator.min.js"></script>
+<script src="js/zh_CN.js"></script>
+<script>
+    $(function () {
+        /*文本框输入格式验证*/
+        $('#gerenrenzheng').bootstrapValidator({
+            fields: {
+                customername: {
+                    /*姓名认证*/
+                    message: '姓名验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '姓名不能为空'
+                        },
+                        regexp: {
+                            regexp: /[\u4E00-\u9FA5]{2,5}(?:·[\u4E00-\u9FA5]{2,5})*/,
+                            message: '姓名格式不正确'
+                        }
+                    }
+                },
+                identitycardnum: {
+                    /*身份证认证*/
+                    message: '身份证验证失败！',
+                    validators: {
+                        notEmpty: {
+                            message: "身份证不能为空！"
+                        },
+                        stringLength: {
+                            min: 15,
+                            max: 18,
+                            message: "身份证必须为18位"
+                        },
+                    }
+                },
+                phonenumber: {
+                    /*手机号认证*/
+                    message: "手机号验证失败！",
+                    validators: {
+                        notEmpty: {
+                            message: "手机号不能为空！"
+                        },
+                        regexp: {
+                            regexp: /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/,
+                            message: "手机号格式不正确！",
+                        }
+                    }
+                }
+            }
+        });
+        $("#xiangxixinxi").bootstrapValidator({
+            fields: {
+                email: {
+                    /*邮箱验证*/
+                    validators: {
+                        notEmpty: {
+                            message: "邮箱不能为空！",
+                        },
+                    }
+                },
+                youbian: {
+                    message: "邮编验证失败！",
+                    validators: {
+                        notEmpty: {
+                            message: '邮编不能为空！',
+                        },
+                        regexp: {
+                            regexp: /^[1-9]\d{5}$/,
+                            message: "邮箱格式不正确！",
+                        }
+                    }
+                },
+                zhibiaorenname: {
+                    message: '姓名验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '姓名不能为空'
+                        },
+                        regexp: {
+                            regexp: /[\u4E00-\u9FA5]{2,5}(?:·[\u4E00-\u9FA5]{2,5})*/,
+                            message: '姓名格式不正确'
+                        }
+                    }
+                },
+                zhibiaorencardid: {
+                    message: '身份证验证失败！',
+                    validators: {
+                        notEmpty: {
+                            message: "身份证不能为空！"
+                        },
+                        stringLength: {
+                            min: 15,
+                            max: 18,
+                            message: "身份证最少为15位，最多为18位"
+                        }
+                    }
+                }
+            }
+        });
+        $("#lianxiren").bootstrapValidator({
+            /*联系人认证*/
+            fields: {
+                customername1: {
+                    /*姓名认证*/
+                    message: '姓名验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '姓名不能为空'
+                        },
+                        regexp: {
+                            regexp: /[\u4E00-\u9FA5]{2,5}(?:·[\u4E00-\u9FA5]{2,5})*/,
+                            message: '姓名格式不正确'
+                        }
+                    }
+                },
+                identitycardnum1: {
+                    /*身份证认证*/
+                    message: '身份证验证失败！',
+                    validators: {
+                        notEmpty: {
+                            message: "身份证不能为空！"
+                        },
+                        stringLength: {
+                            min: 15,
+                            max: 18,
+                            message: "身份证必须为18位"
+                        },
+                    }
+                },
+                phonenumber1: {
+                    /*手机号认证*/
+                    message: "手机号验证失败！",
+                    validators: {
+                        notEmpty: {
+                            message: "手机号不能为空！"
+                        },
+                        regexp: {
+                            regexp: /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/,
+                            message: "手机号格式不正确！",
+                        }
+                    }
+                }
+            }
+        });
+        $("#lianxirenxiangxi").bootstrapValidator({
+            fields: {
+                email1: {
+                    validators: {
+                        notEmpty: {
+                            message: "邮箱不能为空！"
+                        }
+                    }
+                }
+            }
+        });
+        /*绑定事件和切换效果*/
+        $("#top div").click(function () {
+            $("#top div").removeClass("sh").siblings().removeClass("gh");
+            $(this).addClass("sh").siblings().addClass("gh");
+        });
+        $("#gh").click(btn_gonghu);
+        $("#sh").click(btn_shihu);
+        function btn_gonghu() {
+            $("#shihu").hide();
+            $("#gonghu").show();
+        }
+
+        function btn_shihu() {
+            $("#shihu").show();
+            $("#gonghu").hide();
+            $("#sh").addClass('sh');
+            $("#sh").removeClass("gh");
+        }
+
+        /**
+         * 省市级联控件
+         */
+        var $target = $('#J_Address');
+        $target.citySelect();
+        $target.on('click', function (event) {
+            event.stopPropagation();
+            $target.citySelect('open');
+        });
+        $target.on('done.ydui.cityselect', function (ret) {
+
+            $(this).val(ret.provance + ' ' + ret.city + ' ' + ret.area);
+
+        });
+
+        var target2 = $("#J_Address2");
+        target2.citySelect();
+        target2.on("click", function (event) {
+            event.stopPropagation();
+            target2.citySelect('open');
+        });
+        target2.on('done.ydui.cityselect', function (ret) {
+            $(this).val(ret.provance + ' ' + ret.city + ' ' + ret.area);
+        });
+
+
+        /*认证信息ajax交互*/
+        //获取token
+        var url = window.location.href; //获取当前页url
+        var tokenQuery = url.queryURLParameter(); //转query
+        /* tokenQuery 的样子
+        {secret	手机号+“!!”+时间戳base64加密
+         nickname	昵称
+         openid	微信号
+         identitycardnum	身份证
+         wxheadimgurl	微信图像
+         store4sid	门店Id
+         sapcustomerid	SAP客户编号}*/
+        var token = '';
+        $.ajax({ //获取token
+            type: "POST",
+            url: srcConfig.getToken,
+            dataType: 'json',
+            contentType: "application/json",
+            data: JSON.stringify(tokenQuery) ,
+            success: function (data) {
+                if (data.code == 0) {//返回token成功
+                    console.log('token', data.data);
+                    token = data.data;
+                }
+            },
+            error: function (data1) {
+                console.log(data1)
+            }
+        });
+        /*个人认证*/
+        $("#certified").click(function () {
+            var bootstrapValidator = $("#gerenrenzheng").data('bootstrapValidator');
+            bootstrapValidator.validate();
+            if (bootstrapValidator.isValid()) {
+//            张苏毅
+//            13661357786
+//            110101198108250030
+                var sendData = {
+                    customername: $("#customername").val(),//客户姓名
+                    idcardnum: $("#identitycardnum").val(),//身份证
+                    phonenumber: $("#phonenumber").val()//手机号
+                };
+                $.ajax({
+                    type: "POST",
+                    url: srcConfig.selfauth,
+                    dataType: 'json',
+                    contentType: "application/json",
+                    data: JSON.stringify(sendData),
+                    beforeSend: function (request) {
+                        request.setRequestHeader("MSESSIONID", token);
+                    },
+                    success: function (data) {
+                        console.log(data)
+                        /*if (data == "code0") {
+                         alert("提交成功");
+                         }*/
+                    },
+                    error: function (data1) {
+                        console.log(data1)
+                    }
+                })
+            }
+            else {
+                alert("错了");
+            }
+        });
+
+        /*详细信息*/
+        $("#detailsUpload").click(function () {
+            var bootstrapValidator = $("#gerenrenzheng").data('bootstrapValidator');
+            bootstrapValidator.validate();
+            if (bootstrapValidator.isValid()) {
+                var detailsData = {
+                    phonenumber: $("#phonenumber").val(),//手机号
+                    customername: $("#customername").val(),//客户姓名
+                    idcardnum: $("#identitycardnum").val(),//身份证
+                    email: $("#email").val(),//邮箱
+                    address: $("#J_Address").val() + $("#Area").val(),//地址
+                    postcode: $("#youbian").val(),//客户邮编
+                    isindex: $("#isindex").find("option:selected").text(),//是否自有指标
+                    isseal: '',//是否带有公章
+                    accounttype:'',//账户类型1私户2公户
+                    organizecode:'',	//组织机构代码
+                    organizename:'',	//组织机构名称
+                    buyername:'',	//指标人
+                    buyeridcarduuid:'',	//买家身份证照片
+                    busilicenseuuid:'',	//营业执照
+                    buyeridcardnum:'',	//指标人身份证号
+                    attorneyuuid:$('#attorneyUpload').val(),	//委托书
+                    customercarduuid:''	//联系人身份证照片
+                };
+                console.log(detailsData);
+                $.ajax({
+                    type: "POST",
+                    url: srcConfig.updateCustmer,
+                    dataType: 'json',
+                    contentType: "application/json",
+                    data: JSON.stringify(detailsData) ,
+                    success: function (data) {
+                        if (data == 0) {
+                            alert("已成功提交");
+                        }
+                    },
+                    error: function (data) {
+                        console.log(data)
+                    }
+                })
+            }
+        });
+
+
+
+        /*企业联系人认证*/
+        function lianxirenrenzheng() {
+
+            var bootstrapValidator = $("#lianxiren").data('bootstrapValidator');
+            bootstrapValidator.validate();
+            if (bootstrapValidator.isValid()) {
+
+                var organizename = $("#organizename").val();
+                var organizeid = $("#organizeid").val();
+                var phonenumber = $("#phonenumber1").val();
+                var customername = $("#customername1").val();
+                var identitycardnum = $("#identitycardnum1").val();
+
+                $.ajax({
+                    type: "post",
+                    url: "http://192.168.101.57:8080/blchina-cbp/cbp/selfauth",
+                    data: {
+                        'organizename': organizename,
+                        'organizeid': organizeid,
+                        'phonenumber': phonenumber,
+                        'customername': customername,
+                        'identitycardnum': identitycardnum
+                    },
+
+                    success: function (data) {
+
+                        if (data == "code0") {
+                            alert("已发送");
+                        }
+
+                    }
+                })
+            }
+            else {
+                alert("您的信息填写有错误，请填写准确的信息！");
+            }
+        }
+
+        /*联系人详细信息*/
+        function lianxirenxiangxi() {
+
+
+            var email = $("#email1").val();
+            var diqu1 = $("#J_Address2").val();
+            var xiangxi1 = $("#Area1").val();
+            var address = diqu1 + xiangxi1;
+            var postcode = $("#postcode").val();
+            var isSeal = $("#isSeal").find("option:selected").val();
+            alert(isSeal);
+            $.ajax({
+
+                type: "post",
+                url: "http://192.168.101.57:8080/blchina-cbp/cbp/updateCustmer",
+                data: {
+                    customername: $("#customername1").val(),
+                    identitycardnum: $("#identitycardnum1").val(),
+                    phonenumber: $("#phonenumber1").val(),
+                    email: email,
+                    address: address,
+                    isSeal: isSeal
+                },
+                success: function (data) {
+
+                    if (data == 0) {
+
+                        alert("发送成功");
+
+                    }
+
+                }
+            })
+        }
+    });
+</script>
+
+
+
+
+
+
+

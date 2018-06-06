@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPUnsignReasonMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPUnsignReason">
+    <id column="unsignReasonId" jdbcType="INTEGER" property="unsignreasonid" />
+    <result column="contractId" jdbcType="INTEGER" property="contractid" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="closeType" jdbcType="VARCHAR" property="closetype" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    unsignReasonId, contractId, description, closeType
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_unsignReason
+    where unsignReasonId = #{unsignreasonid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_unsignReason
+    where unsignReasonId = #{unsignreasonid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPUnsignReason">
+    insert into cbp_unsignReason (unsignReasonId, contractId, description, 
+      closeType)
+    values (#{unsignreasonid,jdbcType=INTEGER}, #{contractid,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, 
+      #{closetype,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPUnsignReason">
+    insert into cbp_unsignReason
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="unsignreasonid != null">
+        unsignReasonId,
+      </if>
+      <if test="contractid != null">
+        contractId,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="closetype != null">
+        closeType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="unsignreasonid != null">
+        #{unsignreasonid,jdbcType=INTEGER},
+      </if>
+      <if test="contractid != null">
+        #{contractid,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="closetype != null">
+        #{closetype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPUnsignReason">
+    update cbp_unsignReason
+    <set>
+      <if test="contractid != null">
+        contractId = #{contractid,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="closetype != null">
+        closeType = #{closetype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where unsignReasonId = #{unsignreasonid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPUnsignReason">
+    update cbp_unsignReason
+    set contractId = #{contractid,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      closeType = #{closetype,jdbcType=VARCHAR}
+    where unsignReasonId = #{unsignreasonid,jdbcType=INTEGER}
+  </update>
+  <select id="getUnsignReasonByContractId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT * FROM  cbp_unsignReason WHERE contractId = #{contractid,jdbcType=INTEGER}
+  </select>
+</mapper>

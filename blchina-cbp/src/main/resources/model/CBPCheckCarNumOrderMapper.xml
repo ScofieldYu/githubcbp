@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPCheckCarNumOrderMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPCheckCarNumOrder">
+    <id column="checkCarNumId" jdbcType="INTEGER" property="checkcarnumid" />
+    <result column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="buyTax" jdbcType="VARCHAR" property="buytax" />
+    <result column="buyTaxValue" jdbcType="VARCHAR" property="buytaxvalue" />
+    <result column="tempPlate" jdbcType="VARCHAR" property="tempplate" />
+    <result column="tempPlateValue" jdbcType="VARCHAR" property="tempplatevalue" />
+    <result column="checkCar" jdbcType="VARCHAR" property="checkcar" />
+    <result column="checkCarValue" jdbcType="VARCHAR" property="checkcarvalue" />
+    <result column="reserveCheckCarTime" jdbcType="VARCHAR" property="reservecheckcartime" />
+    <result column="tempPlateCount" jdbcType="INTEGER" property="tempplatecount" />
+    <result column="chooseType" jdbcType="VARCHAR" property="chooseType" />
+    <result column="chooseName" jdbcType="VARCHAR" property="chooseName" />
+    <result column="sumValues" jdbcType="VARCHAR" property="sumValues" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    checkCarNumId, orderId, buyTax, buyTaxValue, tempPlate, tempPlateValue, checkCar, 
+    checkCarValue, reserveCheckCarTime, tempPlateCount,chooseType, status ,chooseName ,sumValues
+  </sql>
+  
+  
+  <select id="selectCheckCarNumByOrderId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_checkCarNum_Order
+    where orderId = #{orderid}
+  </select>
+  <select id="getCheckCarNumByOrderId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_checkCarNum_Order
+    where orderId = #{orderid}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_checkCarNum_Order
+    where checkCarNumId = #{checkcarnumid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_checkCarNum_Order
+    where checkCarNumId = #{checkcarnumid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPCheckCarNumOrder">
+    insert into cbp_checkCarNum_Order (checkCarNumId, orderId, buyTax, 
+      buyTaxValue, tempPlate, tempPlateValue, 
+      checkCar, checkCarValue, reserveCheckCarTime, 
+      tempPlateCount, chooseType, status ,chooseName ,sumValues)
+    values (#{checkcarnumid,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, #{buytax,jdbcType=VARCHAR}, 
+      #{buytaxvalue,jdbcType=VARCHAR}, #{tempplate,jdbcType=VARCHAR}, #{tempplatevalue,jdbcType=VARCHAR}, 
+      #{checkcar,jdbcType=VARCHAR}, #{checkcarvalue,jdbcType=VARCHAR}, #{reservecheckcartime,jdbcType=VARCHAR}, 
+      #{tempplatecount,jdbcType=INTEGER}, #{chooseType,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
+      #{chooseName,jdbcType=VARCHAR}, #{sumValues,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPCheckCarNumOrder">
+    insert into cbp_checkCarNum_Order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="checkcarnumid != null">
+        checkCarNumId,
+      </if>
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="buytax != null">
+        buyTax,
+      </if>
+      <if test="buytaxvalue != null">
+        buyTaxValue,
+      </if>
+      <if test="tempplate != null">
+        tempPlate,
+      </if>
+      <if test="tempplatevalue != null">
+        tempPlateValue,
+      </if>
+      <if test="checkcar != null">
+        checkCar,
+      </if>
+      <if test="checkcarvalue != null">
+        checkCarValue,
+      </if>
+      <if test="reservecheckcartime != null">
+        reserveCheckCarTime,
+      </if>
+      <if test="tempplatecount != null">
+        tempPlateCount,
+      </if>
+      <if test="chooseType != null">
+        chooseType,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="chooseName != null">
+        chooseName,
+      </if>
+      <if test="sumValues != null">
+        sumValues,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="checkcarnumid != null">
+        #{checkcarnumid,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="buytax != null">
+        #{buytax,jdbcType=VARCHAR},
+      </if>
+      <if test="buytaxvalue != null">
+        #{buytaxvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="tempplate != null">
+        #{tempplate,jdbcType=VARCHAR},
+      </if>
+      <if test="tempplatevalue != null">
+        #{tempplatevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="checkcar != null">
+        #{checkcar,jdbcType=VARCHAR},
+      </if>
+      <if test="checkcarvalue != null">
+        #{checkcarvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="reservecheckcartime != null">
+        #{reservecheckcartime,jdbcType=VARCHAR},
+      </if>
+      <if test="tempplatecount != null">
+        #{tempplatecount,jdbcType=INTEGER},
+      </if>
+      <if test="chooseType != null">
+        #{chooseType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="chooseName != null">
+        #{chooseName,jdbcType=VARCHAR},
+      </if>
+      <if test="sumValues != null">
+        #{sumValues,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPCheckCarNumOrder">
+    update cbp_checkCarNum_Order
+    <set>
+      <if test="orderid != null">
+        orderId = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="buytax != null">
+        buyTax = #{buytax,jdbcType=VARCHAR},
+      </if>
+      <if test="buytaxvalue != null">
+        buyTaxValue = #{buytaxvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="tempplate != null">
+        tempPlate = #{tempplate,jdbcType=VARCHAR},
+      </if>
+      <if test="tempplatevalue != null">
+        tempPlateValue = #{tempplatevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="checkcar != null">
+        checkCar = #{checkcar,jdbcType=VARCHAR},
+      </if>
+      <if test="checkcarvalue != null">
+        checkCarValue = #{checkcarvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="reservecheckcartime != null">
+        reserveCheckCarTime = #{reservecheckcartime,jdbcType=VARCHAR},
+      </if>
+      <if test="tempplatecount != null">
+        tempPlateCount = #{tempplatecount,jdbcType=INTEGER},
+      </if>
+      <if test="chooseType != null">
+        chooseType = #{chooseType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="chooseName != null">
+        #{chooseName,jdbcType=VARCHAR},
+      </if>
+      <if test="sumValues != null">
+        #{sumValues,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where checkCarNumId = #{checkcarnumid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByOrderId" parameterType="com.blchina.cbp.model.CBPCheckCarNumOrder">
+    update cbp_checkCarNum_Order
+    <set>
+      <if test="buytax != null">
+        buyTax = #{buytax,jdbcType=VARCHAR},
+      </if>
+      <if test="buytaxvalue != null">
+        buyTaxValue = #{buytaxvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="tempplate != null">
+        tempPlate = #{tempplate,jdbcType=VARCHAR},
+      </if>
+      <if test="tempplatevalue != null">
+        tempPlateValue = #{tempplatevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="checkcar != null">
+        checkCar = #{checkcar,jdbcType=VARCHAR},
+      </if>
+      <if test="checkcarvalue != null">
+        checkCarValue = #{checkcarvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="reservecheckcartime != null">
+        reserveCheckCarTime = #{reservecheckcartime,jdbcType=VARCHAR},
+      </if>
+      <if test="tempplatecount != null">
+        tempPlateCount = #{tempplatecount,jdbcType=INTEGER},
+      </if>
+      <if test="chooseType != null">
+        chooseType = #{chooseType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="chooseName != null">
+        chooseName = #{chooseName,jdbcType=VARCHAR},
+      </if>
+      <if test="sumValues != null">
+        sumValues = #{sumValues,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPCheckCarNumOrder">
+    update cbp_checkCarNum_Order
+    set orderId = #{orderid,jdbcType=INTEGER},
+      buyTax = #{buytax,jdbcType=VARCHAR},
+      buyTaxValue = #{buytaxvalue,jdbcType=VARCHAR},
+      tempPlate = #{tempplate,jdbcType=VARCHAR},
+      tempPlateValue = #{tempplatevalue,jdbcType=VARCHAR},
+      checkCar = #{checkcar,jdbcType=VARCHAR},
+      checkCarValue = #{checkcarvalue,jdbcType=VARCHAR},
+      reserveCheckCarTime = #{reservecheckcartime,jdbcType=VARCHAR},
+      tempPlateCount = #{tempplatecount,jdbcType=INTEGER},
+      chooseType = #{chooseType,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      chooseName = #{chooseName,jdbcType=VARCHAR},
+      sumValues = #{sumValues,jdbcType=VARCHAR}
+    where checkCarNumId = #{checkcarnumid,jdbcType=INTEGER}
+  </update>
+  
+</mapper>

@@ -1,0 +1,435 @@
+html{
+  /*1rem == 100px*/
+  font-size: 100px;
+}
+
+html,body{
+  height: 100%;
+  font-family: PingFangSC-Regular, sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.orderList{
+  display: none;
+  position: relative;
+  width: 100%;
+  background: #FFFFFF;
+  .titleBg{
+    height: 0.48rem;
+    background: #475d82;
+  }
+  .orderCon{
+    margin: -0.48rem 0.12rem 0;
+    .orderTit{
+      width: 100%;
+      height: 0.43rem;
+      line-height: 0.43rem;
+      text-align: center;
+      background: #546e9a;
+      font-size: 0.18rem;
+      color: #FFFFFF;
+      &:before ,&:after {
+        content:'';
+        position:absolute;
+        width: 0.12rem;
+        height: 0.42rem;
+        background: #546e9a;
+      }
+      &:before{
+        left: 0.06rem;
+        transform:skewX(15deg);
+      }
+      &:after{
+        right: 0.06rem;
+        transform:skewX(-15deg);
+      }
+      .saporder{
+        float: left;
+        margin-left: 0.05rem;
+        margin-right: 0.05rem;
+      }
+      .signing{
+        float: left;
+        font-size: 0.13rem;
+        i{
+          display: inline-block;
+          margin-right: 0.04rem;
+          width: 0.01rem;
+          height: 0.16rem;
+          vertical-align: -0.04rem;
+          background: url("../img/dd-line.png") no-repeat;
+          background-size: 100%;
+        }
+        p{
+          display: inline-block;
+          position: relative;
+          z-index: 1;
+        }
+      }
+    }
+    .orderDetail{
+      box-sizing: border-box;
+      border: 0.01rem solid #f1f1f1;
+      border-bottom: 0.02rem solid #f1f1f1;
+      padding: 0.15rem 0.2rem;
+      background: #fbfbfb;
+      ul{
+        border-top: 0.01rem solid #f1f1f1;
+        li{
+          margin: 0.06rem;
+          font-size: 0.13rem;
+          color: #262626;
+          p{
+            display: inline-block;
+          }
+          .cartype{
+            width: 2.5rem;
+            vertical-align: top;
+            display: inline-block;
+          }
+        }
+        &.buyer{
+          border-top: none;
+        }
+      }
+      .orderState{
+        box-sizing: border-box;
+        margin: 0 -0.09rem;
+        border-top: 0.005rem solid #f1f1f1;
+        height: 0.4rem;
+        .payment{
+          float: left;
+          margin-top: 0.15rem;
+          margin-left: 0.13rem;
+        }
+        p{
+          font-size: 0.13rem;
+          color: #262626;
+        }
+      }
+    }
+    .buyingFile, .logistics, .payment{
+      margin-top: 0.05rem;
+      background: #fbfbfb;
+      .bfTit, .lgTit, .paymentTit{
+        height: 0.4rem;
+        line-height: 0.4rem;
+        background: #fbfbfb;
+        font-size: 0.15rem;
+        color: #666666;
+        border: 0.005rem solid #f1f1f1;
+        border-bottom: none;
+        i{
+          margin-left: 0.12rem;
+          margin-right: 0.12rem;
+          display: inline-block;
+          width: 0.18rem;
+          height: 0.18rem;
+          vertical-align: -0.04rem;
+          background: url("../img/f-icon.png") no-repeat;
+          background-size: 100%;
+          &.p-icon{
+            background-image: url("../img/p-icon.png");
+          }
+          &.w-icon{
+            background-image: url("../img/w-icon.png");
+          }
+        }
+      }
+      .bfList, .lgList, .paymentList{
+        box-sizing: border-box;
+        border: 0.01rem solid #f1f1f1;
+        border-bottom: 0.02rem solid #f1f1f1;
+        //height: 0.78rem;
+        text-align: center;
+        font-size: 0.13rem;
+        color: #262626;
+        .select{
+          margin-top: 0.21rem;
+          border: 0.005rem solid #dddddd;
+          border-radius: 0.04rem;
+          width: 0.85rem;
+          height: 0.34rem;
+          line-height: 0.34rem;
+          text-align: center;
+          font-size: 0.14rem;
+          color: #262626;
+          &.file, &.download{
+            display: inline-block;
+            margin-left: 0.1rem;
+            background: #FFFFFF;
+            color: #666666;
+            &:active{
+              background-color: #e7e7e7;
+            }
+          }
+        }
+      }
+      .bfList{
+        height: 0.78rem;
+        .viewTheContract{
+          box-sizing: border-box;
+          margin: 0.17rem auto 0;
+          border: 0.005rem solid #546e9a;
+          width: 2.89rem;
+          height: 0.43rem;
+          line-height: 0.43rem;
+          text-align: center;
+          background: #546e9a;
+          border-radius: 0.04rem;
+          box-shadow: 0 0.01rem 0.01rem rgba(0,0,0,0.2);
+          &:active{
+            background-color: #475d82;
+          }
+          a{
+            display: block;
+            width: 100%;
+            height: 100%;
+            font-size: 0.15rem;
+            color: #ffffff;
+            i{
+              display: inline-block;
+              margin-right: 0.1rem;
+              width: 0.21rem;
+              height: 0.18rem;
+              vertical-align: -0.03rem;
+              background-image: url("../img/ht-btn.png");
+              background-size: 100%;
+            }
+          }
+        }
+      }
+      .lgList{
+        p{
+          margin: 0.21rem 0;
+          font-size: 0.14rem;
+          text-align: center;
+          color: #262626;
+          &.confirmDemand{
+            display: none;
+          }
+          &.toShop{
+            display: block;
+          }
+        }
+        .extractCarBtn{
+          display: none;
+          box-sizing: border-box;
+          margin: 0.17rem auto 0.17rem;
+          border: 0.005rem solid #546e9a;
+          width: 2.89rem;
+          height: 0.43rem;
+          line-height: 0.43rem;
+          text-align: center;
+          background: #546e9a;
+          border-radius: 0.04rem;
+          box-shadow: 0 0.01rem 0.01rem rgba(0,0,0,0.2);
+          &:active{
+            background-color: #475d82;
+          }
+          a{
+            display: block;
+            width: 100%;
+            height: 100%;
+            font-size: 0.15rem;
+            color: #ffffff;
+            i{
+              display: inline-block;
+              margin-right: 0.1rem;
+              width: 0.21rem;
+              height: 0.18rem;
+              vertical-align: -0.03rem;
+              background-image: url("../img/wl-btn.png");
+              background-size: 100%;
+            }
+          }
+        }
+        .changeTimeBtn{
+          display: none;
+          margin: 0.21rem 0;
+          font-size: 0.14rem;
+          text-align: center;
+          color: #262626;
+          i{
+            color: #C9C9C9;
+          }
+        }
+      }
+      .wholeBtn{
+        float: right;
+        font-size: 0.12rem;
+        color: #666666;
+        b{
+          display: inline-block;
+          /* font-size: 20px; */
+          vertical-align: 0.01rem;
+          margin-left: 0.02rem;
+          margin-right: 0.12rem;
+          color: #C9C9C9;
+        }
+      }
+      .paymentList{
+        padding-top: 0.35rem;
+        .worth{
+          margin: 0.1rem auto;
+          font-size: 0.18rem;
+          width: 2.88rem;
+          color: #262626;
+          span{
+            display: inline-block;
+            width: 1.5rem;
+            text-align: right;
+            &:last-child{
+              width: 1.3rem;
+              text-align: left;
+            }
+          }
+        }
+        .btn{
+          box-sizing: border-box;
+          margin: 0.17rem auto 0;
+          border: 0.005rem solid #546e9a;
+          width: 2.89rem;
+          height: 0.43rem;
+          line-height: 0.43rem;
+          text-align: center;
+          background: #546e9a;
+          border-radius: 0.04rem;
+          box-shadow: 0 0.01rem 0.01rem rgba(0,0,0,0.2);
+          &:active{
+            background-color: #475d82;
+          }
+          a{
+            display: block;
+            width: 100%;
+            height: 100%;
+            font-size: 0.15rem;
+            color: #ffffff;
+            i{
+              display: inline-block;
+              margin-right: 0.1rem;
+              width: 0.21rem;
+              height: 0.18rem;
+              vertical-align: -0.03rem;
+              background-image: url("../img/dd-btn1.png");
+              background-size: 100%;
+            }
+          }
+          &.prove{
+            a{
+              i{
+                background-image: url("../img/dd-btn3-2.png");
+              }
+            }
+          }
+          /*&.prove{
+            border-color: #546e9a;
+            background: #ffffff;
+            &:active{
+              background-color: #e7e7e7;
+            }
+            a{
+              color: #546e9a;
+              i{
+                background-image: url("../img/dd-btn3.png");
+              }
+            }
+          }*/
+        }
+        .msg{
+          margin: 0.17rem auto 0.2rem;
+          font-size: 0.12rem;
+          color: #999999;
+          a{
+            text-decoration:underline;
+            color: #546e9a;
+          }
+        }
+      }
+    }
+    .m20{
+      margin-top: 0.05rem;
+      width: 100%;
+      height: 0.001rem;
+    }
+  }
+}
+.moreList{
+  position: relative;
+  z-index: 1;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  background: #fbfbfb;
+  font-size: 0.15rem;
+  color: #666666;
+  border: 0.005rem solid #f1f1f1;
+  i{
+    margin-left: 0.12rem;
+    margin-right: 0.12rem;
+    display: inline-block;
+    width: 0.18rem;
+    height: 0.18rem;
+    vertical-align: -0.04rem;
+    background: url("../img/f-icon.png") no-repeat;
+    background-size: 100%;
+  }
+  .mBtn{
+    float: right;
+    margin: 0.15rem 0.25rem 0;
+    width: 0.14rem;
+    height: 0.09rem;
+    background-image: url("../img/dd-arrow1.png");
+    background-size: 100%;
+    &.on{
+      background-image: url("../img/dd-arrow2.png");
+    }
+  }
+  &.m30{
+    margin-bottom: 0.15rem;
+  }
+}
+.contract{
+  display: none;
+  position: fixed;
+  top:0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: #FFFFFF;
+  .ifreamClose{
+    display: block;
+    position: absolute;
+    left: 0.1rem;
+    top: 0.1rem;
+    width: 0.8rem;
+    height:0.3rem;
+    line-height: 0.3rem;
+    background: #546e9a;
+    color: #ffffff;
+    text-align: center;
+    font-size: 0.14rem;
+    border-radius: 0.4rem;
+    z-index: 1;
+    opacity: 0.8;
+  }
+  img{
+    width: 100%;
+    height: 100%;
+  }
+  iframe{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+}
+.paymentConfirm{
+  span{
+    display: block;
+    margin-top: 0.09rem;
+    font-size: 0.17rem;
+    color: #666666;
+    text-align: center;
+  }
+}

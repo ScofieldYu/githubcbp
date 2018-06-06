@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.employee.dao.BDLRoleMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.employee.model.BDLRole">
+    <id column="roleId" jdbcType="INTEGER" property="roleid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="roleKey" jdbcType="VARCHAR" property="rolekey" />
+    <result column="available" jdbcType="VARCHAR" property="available" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    roleId, name, roleKey, available
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_role
+    where roleId = #{roleid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByRoleKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_role
+    where roleKey = #{rolekey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bdl_role
+    where roleId = #{roleid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.employee.model.BDLRole">
+    insert into bdl_role (roleId, name, roleKey, 
+      available)
+    values (#{roleid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{rolekey,jdbcType=VARCHAR}, 
+      #{available,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.employee.model.BDLRole">
+    insert into bdl_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleid != null">
+        roleId,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="rolekey != null">
+        roleKey,
+      </if>
+      <if test="available != null">
+        available,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleid != null">
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="rolekey != null">
+        #{rolekey,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null">
+        #{available,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.employee.model.BDLRole">
+    update bdl_role
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="rolekey != null">
+        roleKey = #{rolekey,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null">
+        available = #{available,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where roleId = #{roleid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.employee.model.BDLRole">
+    update bdl_role
+    set name = #{name,jdbcType=VARCHAR},
+      roleKey = #{rolekey,jdbcType=VARCHAR},
+      available = #{available,jdbcType=VARCHAR}
+    where roleId = #{roleid,jdbcType=INTEGER}
+  </update>
+</mapper>

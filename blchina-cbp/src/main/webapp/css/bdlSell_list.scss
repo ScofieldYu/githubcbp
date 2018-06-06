@@ -1,0 +1,279 @@
+@import 'mixin';
+html,body{
+    @include body;
+    font-size: .12rem;
+}
+.bdl_main{
+    @include Dom;
+    display: flex;
+    flex-direction: column;
+    .bdl_title{
+        @include title;
+        border-bottom: 1px solid #dddddd;
+        // position: fixed;
+        // top:0;
+        // z-index: 1000;
+        flex-shrink: 0;
+        box-sizing: border-box;
+    }
+   .bdl_card{
+       @include bdl_card;
+   }
+   .bdl_boxT{
+       @include bdl_boxT;
+   }
+   .bdl_boxS{
+       @include bdl_boxS;
+   }
+   .bdl_img{
+       @include bdl_img;
+   }
+   .bdl_pushAdd{
+    //    flex-shrink: 0;
+        width: 100%;
+        display: flex;
+        // margin-top: 1.9rem;
+        
+        // position: fixed;
+        // bottom:.3rem;
+        position: absolute;
+        height: auto;
+        // bottom: .55rem;
+        margin-top: 1.9rem;
+        flex-direction: column;
+        margin-bottom:.55rem;
+   }
+   .bdl_pushAdd input:nth-child(2){
+       margin-top:.1rem;
+       background: #fff;
+       border:1px solid rgb(55,100,190);
+       color:#333;
+   }
+   .inputFile{
+        width: 3.35rem;
+        background: rgb(55,100,190);
+        color:rgb(255,255,255);
+        font-size: .15rem;
+        margin: 0 auto;
+        height: .43rem;
+        border-radius: .05rem;
+   }
+   
+}
+.bdl_sec{
+    height: auto;
+    box-sizing: border-box;
+    position: relative;
+    // margin-top:.4rem;
+    // flex-grow: 1;
+    // overflow-y: auto;
+    // height: auto;
+    flex-shrink: 1;
+    flex-grow: 1;
+    overflow-y: auto;
+    color:rgb(51,51,51);
+    .bdl_Ltitle{
+      display: flex;
+      background: #fff;
+      height:.55rem;
+      align-items: center;
+      padding:0 .2rem;
+      font-size: .15rem;
+      border-bottom:1px solid #fafafa;
+      white-space: nowrap;
+    }
+    .bdl_Ltitler{
+        display: flex;
+        background: #fff;
+        height:.55rem;
+        align-items: center;
+        padding:0 .2rem;
+        font-size: .15rem;
+        border-bottom:1px solid #fafafa;
+        white-space: nowrap;
+    }
+    .bdl_LtitleTime{
+        display: flex;
+      background: #fff;
+      height:.55rem;
+      position: relative;
+      align-items: center;
+      padding:0 .2rem;
+      font-size: .15rem;
+      border-bottom:1px solid #fafafa;
+      white-space: nowrap;
+    }
+    .bdl_Ltitle:nth-child(1){
+        margin-top:.1rem;
+    }
+    .bdl_phone{
+      
+        height:.15rem;
+        width: .15rem;
+        margin-right:.05rem;
+        background: url(../img/icon11.png) no-repeat;
+        background-size: cover;
+    }
+    .car{
+        justify-content: space-between;
+    }
+    a:hover{
+        color:#3764be;;
+    }
+    .icon{
+        height:.15rem;
+        width: .21rem;
+        margin:0 .04rem;
+    }
+    .book{
+        background: url(../img/icon12.png) no-repeat;
+        background-size: cover;
+    }
+    .okIcon{
+        height: .15rem;
+        width: .15rem;
+        display: flex;
+    }
+    .listBdl{
+        align-items: center;
+        display: flex;
+    }
+    .okIcon{
+        margin-right:.15rem;
+    }
+    .time{
+        height:.17rem;
+        width: .17rem;
+        background: url(../img/icon14.png) no-repeat;
+        background-size: cover;
+    }
+    .addPu{
+        @include addPu;
+        margin: 0 0;
+    }
+    .add{
+        display: flex;
+        // flex:1;
+    }
+    .bld_mest{
+        flex:1;
+    }
+    .finsh{
+        display: flex;
+
+    }
+    .bld_mest{
+        display: flex;
+        height: 100%;
+        align-items: center;
+    }
+    .tim{
+        flex:1;
+        height: 100%;
+        box-sizing: border-box;
+        border:0;
+        font-size: .13rem;
+        display: flex;
+        text-align: right;
+        padding-right:.1rem;
+    }
+    .whring{
+        height: .13rem;
+        width: .13rem;
+        background: url(../img/icon13.png) no-repeat;
+        background-size: cover;
+ 
+    }
+    .bdl_Ltitle{
+        display: flex;
+    }
+    .timerTxxt{
+        font-size: .12rem;
+    }
+    
+    .phone{
+        height: 100%;
+        width: 100%;
+        // position: absolute;
+        // z-index: 99;
+        // top: 0;   
+        // left: 0;
+    }
+    .bld_mest{margin: 0;}
+    .ok{
+        background: url(../img/icon15.png) no-repeat;
+        background-size: cover;
+    }
+    .no{
+        background: url(../img/icon16.png) no-repeat;
+        background-size: cover;
+    }
+    .timeOk{
+        display: none;
+        background: rgb(255,251,244);
+    }
+    
+}
+
+.bdl_push{
+       display: none;
+       position: absolute;
+       height: 1.31rem;
+       width: 1.38rem;
+       border-radius: .05rem;
+       background: rgb(58, 57, 60);
+       font-size: .15rem;
+       color:#fff;
+       z-index: 1000;
+       top:.41rem;
+       right:.05rem;
+       p{
+           height: .43rem;
+           display: flex;
+           margin: 0 .1rem;
+           align-items: center;
+           border-bottom:1px solid #5b5b5b;
+       }
+       .orY{
+            position: absolute;
+            width:0; height:0; 
+            border-width:.1rem; 
+            border-style:solid; 
+            border-color: transparent transparent rgb(58, 57, 60) transparent;
+            top:-.16rem;
+            right:.1rem;
+       }
+       .bdl_serach,.bdl_add,.bdl_main{
+           height:.17rem;
+           width: .17rem;
+           margin-right:.15rem;
+       }
+       .bdl_serach{
+           background: url(../img/icon05.png) no-repeat;
+           background-size: cover;
+       }
+       .bdl_main{
+           background: url(../img/icon06.png) no-repeat;
+           background-size: cover;
+       }
+       .bdl_add{
+           background: url(../img/icon07.png) no-repeat;
+           background-size: cover;
+       }
+   }
+   .spanBox{
+       display: flex;
+    //    background: #f88888;
+       border:1px solid #3764be;
+       color:#3764be;
+       align-items: center;
+       border-radius: .25rem;
+       height: 70%;
+       margin-left:.2rem;
+       padding-left:.1rem;
+       padding-right:.1rem;
+       font-size: .12rem;
+   }
+   a:hover{
+       color:#fff;
+   }

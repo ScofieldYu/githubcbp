@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPContractMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPContract">
+    <id column="contractId" jdbcType="INTEGER" property="contractid" />
+    <result column="contractstatus" jdbcType="VARCHAR" property="contractstatus" />
+    <result column="contractdate" jdbcType="VARCHAR" property="contractdate" />
+    <result column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="vinNo" jdbcType="VARCHAR" property="vinno" />
+    <result column="totalPrice" jdbcType="VARCHAR" property="totalprice" />
+    <result column="appearanceInterior" jdbcType="VARCHAR" property="appearanceinterior" />
+    <result column="derivename" jdbcType="VARCHAR" property="derivename" />
+    <result column="ischanged" jdbcType="VARCHAR" property="ischanged" />
+    <result column="contractUUID" jdbcType="VARCHAR" property="contractUUID" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    contractId, contractstatus, contractdate, orderId, vinNo, totalPrice, appearanceInterior, 
+    derivename, ischanged,contractUUID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_contract
+    where contractId = #{contractid,jdbcType=INTEGER}
+  </select>
+  <select id="selectCBPContractListByOrderId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select * from cbp_contract where orderId  = #{orderid}
+and contractId NOT IN  (SELECT 
+ max(e.contractId) 
+FROM
+cbp_contract e where e.orderId  = #{orderid})
+ and contractstatus = '1'
+  </select>
+  <select id="cancelContract" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    SELECT
+ max(d.contractId)
+FROM
+cbp_contract d
+WHERE
+d.contractId NOT IN (
+SELECT 
+ max(e.contractId) 
+FROM
+cbp_contract e 
+GROUP BY
+e.orderId  
+) and d.orderId = #{orderid}  and d.contractstatus = '2' GROUP BY d.orderId
+  </select>
+  <select id="selectByOrderId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_contract
+    where orderId = #{parseInt,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_contract
+    where contractId = #{contractid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPContract">
+    <selectKey keyProperty="contractid" resultType="int">
+      select LAST_INSERT_ID()
+    </selectKey>
+    insert into cbp_contract (contractId, contractstatus, contractdate, 
+      orderId, vinNo, totalPrice, 
+      appearanceInterior, derivename, ischanged,contractUUID
+      )
+    values (#{contractid,jdbcType=INTEGER}, #{contractstatus,jdbcType=VARCHAR}, #{contractdate,jdbcType=VARCHAR}, 
+      #{orderid,jdbcType=INTEGER}, #{vinno,jdbcType=VARCHAR}, #{totalprice,jdbcType=VARCHAR}, 
+      #{appearanceinterior,jdbcType=VARCHAR}, #{derivename,jdbcType=VARCHAR}, #{ischanged,jdbcType=VARCHAR}, #{contractUUID,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPContract">
+    insert into cbp_contract
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="contractid != null">
+        contractId,
+      </if>
+      <if test="contractstatus != null">
+        contractstatus,
+      </if>
+      <if test="contractdate != null">
+        contractdate,
+      </if>
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="vinno != null">
+        vinNo,
+      </if>
+      <if test="totalprice != null">
+        totalPrice,
+      </if>
+      <if test="appearanceinterior != null">
+        appearanceInterior,
+      </if>
+      <if test="derivename != null">
+        derivename,
+      </if>
+      <if test="ischanged != null">
+        ischanged,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="contractid != null">
+        #{contractid,jdbcType=INTEGER},
+      </if>
+      <if test="contractstatus != null">
+        #{contractstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="contractdate != null">
+        #{contractdate,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="vinno != null">
+        #{vinno,jdbcType=VARCHAR},
+      </if>
+      <if test="totalprice != null">
+        #{totalprice,jdbcType=VARCHAR},
+      </if>
+      <if test="appearanceinterior != null">
+        #{appearanceinterior,jdbcType=VARCHAR},
+      </if>
+      <if test="derivename != null">
+        #{derivename,jdbcType=VARCHAR},
+      </if>
+      <if test="ischanged != null">
+        #{ischanged,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPContract">
+    update cbp_contract
+    <set>
+      <if test="contractstatus != null">
+        contractstatus = #{contractstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="contractdate != null">
+        contractdate = #{contractdate,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null">
+        orderId = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="totalprice != null">
+        totalPrice = #{totalprice,jdbcType=VARCHAR},
+      </if>
+      <if test="appearanceinterior != null">
+        appearanceInterior = #{appearanceinterior,jdbcType=VARCHAR},
+      </if>
+      <if test="derivename != null">
+        derivename = #{derivename,jdbcType=VARCHAR},
+      </if>
+      <if test="ischanged != null">
+        ischanged = #{ischanged,jdbcType=VARCHAR},
+      </if>
+      <if test="contractUUID != null">
+        contractUUID = #{contractUUID,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where contractId = #{contractid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPContract">
+    update cbp_contract
+    set contractstatus = #{contractstatus,jdbcType=VARCHAR},
+      contractdate = #{contractdate,jdbcType=VARCHAR},
+      orderId = #{orderid,jdbcType=INTEGER},
+      vinNo = #{vinno,jdbcType=VARCHAR},
+      totalPrice = #{totalprice,jdbcType=VARCHAR},
+      appearanceInterior = #{appearanceinterior,jdbcType=VARCHAR},
+      derivename = #{derivename,jdbcType=VARCHAR},
+      ischanged = #{ischanged,jdbcType=VARCHAR},
+       contractUUID = #{contractUUID,jdbcType=VARCHAR}
+    where contractId = #{contractid,jdbcType=INTEGER}
+  </update>
+  <update id="updateConstractByOrderId" parameterType="com.blchina.cbp.model.CBPContract">
+    update cbp_contract
+    <set>
+      <if test="contractstatus != null">
+        contractstatus = #{contractstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="contractdate != null">
+        contractdate = #{contractdate,jdbcType=VARCHAR},
+      </if>
+      <if test="vinno != null">
+        vinNo = #{vinno,jdbcType=VARCHAR},
+      </if>
+      <if test="totalprice != null">
+        totalPrice = #{totalprice,jdbcType=VARCHAR},
+      </if>
+      <if test="appearanceinterior != null">
+        appearanceInterior = #{appearanceinterior,jdbcType=VARCHAR},
+      </if>
+      <if test="derivename != null">
+        derivename = #{derivename,jdbcType=VARCHAR},
+      </if>
+      <if test="contractUUID != null">
+        contractUUID = #{contractUUID,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where   orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+  <update id="updateConstractByVinNo" parameterType="com.blchina.cbp.model.CBPContract">
+    update cbp_contract SET ischanged='Y'
+    where   vinNo = #{vinno,jdbcType=VARCHAR}
+  </update>
+  <select id="findConstract" parameterType="com.blchina.cbp.model.CBPContract" resultMap="BaseResultMap">
+    SELECT * from cbp_contract WHERE
+     contractId=(  SELECT max(contractId) from cbp_contract WHERE
+      orderId = #{orderid,jdbcType=INTEGER} and contractstatus = #{contractstatus,jdbcType=VARCHAR})
+  </select>
+  <select id="getMaxConstract" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+      SELECT * from cbp_contract WHERE
+      orderId = #{orderid,jdbcType=INTEGER} AND contractId=(  SELECT max(contractId) from cbp_contract WHERE
+      orderId = #{orderid,jdbcType=INTEGER})
+  </select>
+  <update id="updateisChangeByOrderId" parameterType="com.blchina.cbp.model.CBPContract">
+    update cbp_contract SET ischanged='Y'
+    where  orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+</mapper>

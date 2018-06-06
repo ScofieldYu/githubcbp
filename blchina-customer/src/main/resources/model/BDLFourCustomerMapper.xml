@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.customer.dao.BDLFourCustomerMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.customer.model.BDLFourCustomer">
+    <id column="fourCustomerId" jdbcType="INTEGER" property="fourcustomerid" />
+    <result column="customerId" jdbcType="INTEGER" property="customerid" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="typeName" jdbcType="VARCHAR" property="typename" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="idCard" jdbcType="VARCHAR" property="idcard" />
+    <result column="phoneNumber" jdbcType="VARCHAR" property="phonenumber" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    fourCustomerId, customerId, type, typeName, name, idCard, phoneNumber,address,area
+  </sql>
+  
+  <select id="searchFourCustomer" parameterType="com.blchina.customer.dto.CardDTO" resultMap="BaseResultMap">
+select name,any_value(customerId) as customerId,idCard,phoneNumber,
+any_value(address) as address
+,any_value(area) as area
+from bdl_fourCustomer where name = #{customerName} 
+GROUP BY name,idCard,phoneNumber;
+  </select>
+  <select id="selectFourListByCustomeridAndType" parameterType="com.blchina.customer.model.BDLFourCustomer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_fourCustomer
+    where customerId = #{customerid} and type=#{type}
+  </select>
+  
+  <select id="selectFourListByCustomerid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_fourCustomer
+    where customerId = #{customerid}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_fourCustomer
+    where fourCustomerId = #{fourcustomerid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bdl_fourCustomer
+    where fourCustomerId = #{fourcustomerid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.customer.model.BDLFourCustomer">
+    insert into bdl_fourCustomer (fourCustomerId, customerId, type, 
+      typeName, name, idCard, 
+      phoneNumber,address,area)
+    values (#{fourcustomerid,jdbcType=INTEGER}, #{customerid,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, 
+      #{typename,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, 
+      #{phonenumber,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.customer.model.BDLFourCustomer">
+    insert into bdl_fourCustomer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fourcustomerid != null">
+        fourCustomerId,
+      </if>
+      <if test="customerid != null">
+        customerId,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="typename != null">
+        typeName,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="idcard != null">
+        idCard,
+      </if>
+      <if test="phonenumber != null">
+        phoneNumber,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fourcustomerid != null">
+        #{fourcustomerid,jdbcType=INTEGER},
+      </if>
+      <if test="customerid != null">
+        #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="typename != null">
+        #{typename,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null">
+        #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.customer.model.BDLFourCustomer">
+    update bdl_fourCustomer
+    <set>
+      <if test="customerid != null">
+        customerId = #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="typename != null">
+        typeName = #{typename,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        idCard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null">
+        phoneNumber = #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where fourCustomerId = #{fourcustomerid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.customer.model.BDLFourCustomer">
+    update bdl_fourCustomer
+    set customerId = #{customerid,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      typeName = #{typename,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      idCard = #{idcard,jdbcType=VARCHAR},
+      phoneNumber = #{phonenumber,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR}
+    where fourCustomerId = #{fourcustomerid,jdbcType=INTEGER}
+  </update>
+</mapper>

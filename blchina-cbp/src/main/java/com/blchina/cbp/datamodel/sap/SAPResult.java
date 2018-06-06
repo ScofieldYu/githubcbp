@@ -1,0 +1,30 @@
+/*   
+ * @(#)SAPResult.java       Nov 2, 2017  
+ *   
+ * 百得利集团拥有完全的版权   
+ * 使用者必须经过许可   
+ */ 
+package com.blchina.cbp.datamodel.sap;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+/** 
+ * 和SAP接口交付的数据模板    
+ *
+ * @author Scofield 
+ * @since JDK 1.8
+ */
+public class SAPResult<T> {
+   @JsonProperty
+   private T Records;
+   @JsonIgnore
+   public T getRecords() {
+      return Records;
+   }
+   @JsonIgnore
+   public void setRecords(T records) {
+      Records = records;
+   }
+   
+}

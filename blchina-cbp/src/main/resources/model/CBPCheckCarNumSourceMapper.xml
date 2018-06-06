@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPCheckCarNumSourceMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPCheckCarNumSource">
+    <id column="checkCarNumSourceId" jdbcType="INTEGER" property="checkcarnumsourceid" />
+    <result column="checkCarNumId" jdbcType="INTEGER" property="checkcarnumid" />
+    <result column="sourceType" jdbcType="VARCHAR" property="sourcetype" />
+    <result column="isChoiced" jdbcType="VARCHAR" property="ischoiced" />
+    <result column="belongType" jdbcType="VARCHAR" property="belongtype" />
+    <result column="sourceName" jdbcType="VARCHAR" property="sourcename" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    checkCarNumSourceId, checkCarNumId, sourceType, isChoiced, belongType, sourceName
+  </sql>
+  
+  <select id="selectCheckCarNumSourceListByType" parameterType="com.blchina.cbp.model.CBPCheckCarNumSource" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_checkCarNumSource
+    where checkCarNumId = #{checkcarnumid} and belongType = #{belongtype}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_checkCarNumSource
+    where checkCarNumSourceId = #{checkcarnumsourceid,jdbcType=INTEGER}
+  </select>
+  <select id="getInfoBySelected" parameterType="com.blchina.cbp.model.CBPCheckCarNumSource" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_checkCarNumSource
+    where checkCarNumId = #{checkcarnumid,jdbcType=INTEGER}
+  </select>
+  <select id="getInfoByTypeAndNumId" parameterType="com.blchina.cbp.model.CBPCheckCarNumSource" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_checkCarNumSource
+    where checkCarNumId = #{checkcarnumid,jdbcType=INTEGER} and sourceType = #{sourcetype,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_checkCarNumSource
+    where checkCarNumSourceId = #{checkcarnumsourceid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPCheckCarNumSource">
+    insert into cbp_checkCarNumSource (checkCarNumSourceId, checkCarNumId, 
+      sourceType, isChoiced, belongType, 
+      sourceName)
+    values (#{checkcarnumsourceid,jdbcType=INTEGER}, #{checkcarnumid,jdbcType=INTEGER}, 
+      #{sourcetype,jdbcType=VARCHAR}, #{ischoiced,jdbcType=VARCHAR}, #{belongtype,jdbcType=VARCHAR}, 
+      #{sourcename,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPCheckCarNumSource">
+    insert into cbp_checkCarNumSource
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="checkcarnumsourceid != null">
+        checkCarNumSourceId,
+      </if>
+      <if test="checkcarnumid != null">
+        checkCarNumId,
+      </if>
+      <if test="sourcetype != null">
+        sourceType,
+      </if>
+      <if test="ischoiced != null">
+        isChoiced,
+      </if>
+      <if test="belongtype != null">
+        belongType,
+      </if>
+      <if test="sourcename != null">
+        sourceName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="checkcarnumsourceid != null">
+        #{checkcarnumsourceid,jdbcType=INTEGER},
+      </if>
+      <if test="checkcarnumid != null">
+        #{checkcarnumid,jdbcType=INTEGER},
+      </if>
+      <if test="sourcetype != null">
+        #{sourcetype,jdbcType=VARCHAR},
+      </if>
+      <if test="ischoiced != null">
+        #{ischoiced,jdbcType=VARCHAR},
+      </if>
+      <if test="belongtype != null">
+        #{belongtype,jdbcType=VARCHAR},
+      </if>
+      <if test="sourcename != null">
+        #{sourcename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPCheckCarNumSource">
+    update cbp_checkCarNumSource
+    <set>
+      <if test="checkcarnumid != null">
+        checkCarNumId = #{checkcarnumid,jdbcType=INTEGER},
+      </if>
+      <if test="sourcetype != null">
+        sourceType = #{sourcetype,jdbcType=VARCHAR},
+      </if>
+      <if test="ischoiced != null">
+        isChoiced = #{ischoiced,jdbcType=VARCHAR},
+      </if>
+      <if test="belongtype != null">
+        belongType = #{belongtype,jdbcType=VARCHAR},
+      </if>
+      <if test="sourcename != null">
+        sourceName = #{sourcename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where checkCarNumSourceId = #{checkcarnumsourceid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPCheckCarNumSource">
+    update cbp_checkCarNumSource
+    set checkCarNumId = #{checkcarnumid,jdbcType=INTEGER},
+      sourceType = #{sourcetype,jdbcType=VARCHAR},
+      isChoiced = #{ischoiced,jdbcType=VARCHAR},
+      belongType = #{belongtype,jdbcType=VARCHAR},
+      sourceName = #{sourcename,jdbcType=VARCHAR}
+    where checkCarNumSourceId = #{checkcarnumsourceid,jdbcType=INTEGER}
+  </update>
+    <update id="updateSource" parameterType="com.blchina.cbp.model.CBPCheckCarNumSource">
+    update cbp_checkCarNumSource
+    set checkCarNumId = #{checkcarnumid,jdbcType=INTEGER},
+      sourceType = #{sourcetype,jdbcType=VARCHAR},
+      isChoiced = #{ischoiced,jdbcType=VARCHAR}
+    where checkCarNumId = #{checkcarnumid,jdbcType=INTEGER} and sourceType = #{sourcetype,jdbcType=INTEGER}
+  </update>
+  
+</mapper>

@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.customer.dao.BDLCustomerInfoMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.customer.model.BDLCustomerInfo">
+    <id column="customerInfoId" jdbcType="INTEGER" property="customerinfoid" />
+    <result column="customerId" jdbcType="INTEGER" property="customerid" />
+    <result column="storeId" jdbcType="INTEGER" property="storeid" />
+    <result column="accountType" jdbcType="VARCHAR" property="accounttype" />
+    <result column="isIndex" jdbcType="VARCHAR" property="isindex" />
+    <result column="organizeCode" jdbcType="VARCHAR" property="organizecode" />
+    <result column="organizeName" jdbcType="VARCHAR" property="organizename" />
+    <result column="isSeal" jdbcType="VARCHAR" property="isseal" />
+    <result column="buyerName" jdbcType="VARCHAR" property="buyername" />
+    <result column="buyerIdCardNum" jdbcType="VARCHAR" property="buyeridcardnum" />
+    <result column="customerCardUUID" jdbcType="VARCHAR" property="customercarduuid" />
+    <result column="buyerIDCardUUID" jdbcType="VARCHAR" property="buyeridcarduuid" />
+    <result column="busiLicenseUUID" jdbcType="VARCHAR" property="busilicenseuuid" />
+    <result column="attorneyUUID" jdbcType="VARCHAR" property="attorneyuuid" />
+    <result column="signCustomerId" jdbcType="VARCHAR" property="signcustomerid" />
+    <result column="signCount" jdbcType="INTEGER" property="signcount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    customerInfoId, customerId, storeId, accountType, isIndex, organizeCode, organizeName, 
+    isSeal, buyerName, buyerIdCardNum, customerCardUUID, buyerIDCardUUID, busiLicenseUUID, 
+    attorneyUUID, signCustomerId,signCount
+  </sql>
+  <select id="getCustomerInfoListByCustomerIdAndAccountTypes"
+	parameterType="java.util.Map" resultType="com.blchina.customer.dto.CustomerMessageDTO">
+	select bdl_customerInfo.customerInfoId , bdl_customerInfo.organizeName
+, bdl_customerInfo.organizeCode,
+bdl_customer.customerName,bdl_customer.idcardNum,bdl_customer.phoneNumber
+ from 
+bdl_customerInfo ,  bdl_customer 
+where  bdl_customer.customerId = bdl_customerInfo.customerId 
+and  bdl_customerInfo.accountType= #{accountType} and bdl_customerInfo.customerId in (${customerId}) limit #{index},#{pageSize}
+	
+	</select>
+  <select id="getCustomerInfoListByCustomerIdAndAccountType" parameterType="java.util.Map" resultType="com.blchina.customer.dto.CustomerMessageDTO">
+    select bdl_customerInfo.customerInfoId ,bdl_customer.phoneNumber, 
+	bdl_customerInfo.buyerIdCardNum,bdl_customer.customerName,bdl_customer.idcardNum,
+	bdl_customerInfo.buyerName from 
+	bdl_customerInfo ,  bdl_customer 
+	where  bdl_customer.customerId = bdl_customerInfo.customerId 
+	and  bdl_customerInfo.accountType = #{accountType} and bdl_customerInfo.customerId in (${customerId})
+	  limit #{index},#{pageSize}	
+  </select>
+  <select id="getCustomerInfoCountByByCustomerIdAndAccountType" parameterType="java.util.Map" resultType="java.lang.Integer">
+  select COUNT(b.customerInfoId)   from (select a.* from bdl_customerInfo a WHERE
+   a.customerId in (${customerId})) b where  b.accountType= #{accountType}
+  </select>
+  
+  <select id="selectCustomerInfo" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_customerInfo
+    where customerId = #{customerId} 
+    <if test="buyerIdCardNum != null and buyerIdCardNum !='' ">
+  AND buyerIdCardNum = #{buyerIdCardNum}
+	</if>
+	<if test="buyerIdCardNum == '' ">
+  AND (buyerIdCardNum is null OR buyerIdCardNum='')
+  	</if>
+  </select>
+  
+  <select id="selectCustomerInfo1" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_customerInfo
+    where customerId = #{customerId} and organizeCode = #{organizeCode}
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_customerInfo
+    where customerInfoId = #{customerinfoid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bdl_customerInfo
+    where customerInfoId = #{customerinfoid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.customer.model.BDLCustomerInfo">
+    insert into bdl_customerInfo (customerInfoId, customerId, storeId, 
+      accountType, isIndex, organizeCode, 
+      organizeName, isSeal, buyerName, 
+      buyerIdCardNum, customerCardUUID, buyerIDCardUUID, 
+      busiLicenseUUID, attorneyUUID, signCustomerId,signCount
+      )
+    values (#{customerinfoid,jdbcType=INTEGER}, #{customerid,jdbcType=INTEGER}, #{storeid,jdbcType=INTEGER}, 
+      #{accounttype,jdbcType=VARCHAR}, #{isindex,jdbcType=VARCHAR}, #{organizecode,jdbcType=VARCHAR}, 
+      #{organizename,jdbcType=VARCHAR}, #{isseal,jdbcType=VARCHAR}, #{buyername,jdbcType=VARCHAR}, 
+      #{buyeridcardnum,jdbcType=VARCHAR}, #{customercarduuid,jdbcType=VARCHAR}, #{buyeridcarduuid,jdbcType=VARCHAR}, 
+      #{busilicenseuuid,jdbcType=VARCHAR}, #{attorneyuuid,jdbcType=VARCHAR}, #{signcustomerid,jdbcType=VARCHAR},#{signcount,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.customer.model.BDLCustomerInfo">
+    insert into bdl_customerInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="customerinfoid != null">
+        customerInfoId,
+      </if>
+      <if test="customerid != null">
+        customerId,
+      </if>
+      <if test="storeid != null">
+        storeId,
+      </if>
+      <if test="accounttype != null">
+        accountType,
+      </if>
+      <if test="isindex != null">
+        isIndex,
+      </if>
+      <if test="organizecode != null">
+        organizeCode,
+      </if>
+      <if test="organizename != null">
+        organizeName,
+      </if>
+      <if test="isseal != null">
+        isSeal,
+      </if>
+      <if test="buyername != null">
+        buyerName,
+      </if>
+      <if test="buyeridcardnum != null">
+        buyerIdCardNum,
+      </if>
+      <if test="customercarduuid != null">
+        customerCardUUID,
+      </if>
+      <if test="buyeridcarduuid != null">
+        buyerIDCardUUID,
+      </if>
+      <if test="busilicenseuuid != null">
+        busiLicenseUUID,
+      </if>
+      <if test="attorneyuuid != null">
+        attorneyUUID,
+      </if>
+      <if test="signcustomerid != null">
+        signCustomerId,
+      </if>
+      <if test="signcount!= null">
+        signCount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="customerinfoid != null">
+        #{customerinfoid,jdbcType=INTEGER},
+      </if>
+      <if test="customerid != null">
+        #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="storeid != null">
+        #{storeid,jdbcType=INTEGER},
+      </if>
+      <if test="accounttype != null">
+        #{accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="isindex != null">
+        #{isindex,jdbcType=VARCHAR},
+      </if>
+      <if test="organizecode != null">
+        #{organizecode,jdbcType=VARCHAR},
+      </if>
+      <if test="organizename != null">
+        #{organizename,jdbcType=VARCHAR},
+      </if>
+      <if test="isseal != null">
+        #{isseal,jdbcType=VARCHAR},
+      </if>
+      <if test="buyername != null">
+        #{buyername,jdbcType=VARCHAR},
+      </if>
+      <if test="buyeridcardnum != null">
+        #{buyeridcardnum,jdbcType=VARCHAR},
+      </if>
+      <if test="customercarduuid != null">
+        #{customercarduuid,jdbcType=VARCHAR},
+      </if>
+      <if test="buyeridcarduuid != null">
+        #{buyeridcarduuid,jdbcType=VARCHAR},
+      </if>
+      <if test="busilicenseuuid != null">
+        #{busilicenseuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="attorneyuuid != null">
+        #{attorneyuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="signcustomerid != null">
+        #{signcustomerid,jdbcType=VARCHAR},
+      </if>
+      <if test="signcount != null">
+        #{signcount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.customer.model.BDLCustomerInfo">
+    update bdl_customerInfo
+    <set>
+      <if test="customerid != null">
+        customerId = #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="storeid != null">
+        storeId = #{storeid,jdbcType=INTEGER},
+      </if>
+      <if test="accounttype != null and accounttype!='' ">
+        accountType = #{accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="isindex != null and isindex!=''">
+        isIndex = #{isindex,jdbcType=VARCHAR},
+      </if>
+      <if test="organizecode != null and organizecode!=''">
+        organizeCode = #{organizecode,jdbcType=VARCHAR},
+      </if>
+      <if test="organizename != null and organizename!=''">
+        organizeName = #{organizename,jdbcType=VARCHAR},
+      </if>
+      <if test="isseal != null and isseal!=''">
+        isSeal = #{isseal,jdbcType=VARCHAR},
+      </if>
+      <if test="buyername != null and buyername!=''">
+        buyerName = #{buyername,jdbcType=VARCHAR},
+      </if>
+      <if test="buyeridcardnum != null and buyeridcardnum!=''">
+        buyerIdCardNum = #{buyeridcardnum,jdbcType=VARCHAR},
+      </if>
+      <if test="customercarduuid != null ">
+        customerCardUUID = #{customercarduuid,jdbcType=VARCHAR},
+      </if>
+      <if test="buyeridcarduuid != null and buyeridcarduuid!=''">
+        buyerIDCardUUID = #{buyeridcarduuid,jdbcType=VARCHAR},
+      </if>
+      <if test="busilicenseuuid != null">
+        busiLicenseUUID = #{busilicenseuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="attorneyuuid != null and attorneyuuid!=''">
+        attorneyUUID = #{attorneyuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="signcustomerid != null and signcustomerid!=''">
+        signCustomerId = #{signcustomerid,jdbcType=VARCHAR},
+      </if>
+      <if test="signcount != null">
+        signCount=#{signcount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where customerInfoId = #{customerinfoid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.customer.model.BDLCustomerInfo">
+    update bdl_customerInfo
+    set customerId = #{customerid,jdbcType=INTEGER},
+      storeId = #{storeid,jdbcType=INTEGER},
+      accountType = #{accounttype,jdbcType=VARCHAR},
+      isIndex = #{isindex,jdbcType=VARCHAR},
+      organizeCode = #{organizecode,jdbcType=VARCHAR},
+      organizeName = #{organizename,jdbcType=VARCHAR},
+      isSeal = #{isseal,jdbcType=VARCHAR},
+      buyerName = #{buyername,jdbcType=VARCHAR},
+      buyerIdCardNum = #{buyeridcardnum,jdbcType=VARCHAR},
+      customerCardUUID = #{customercarduuid,jdbcType=VARCHAR},
+      buyerIDCardUUID = #{buyeridcarduuid,jdbcType=VARCHAR},
+      busiLicenseUUID = #{busilicenseuuid,jdbcType=VARCHAR},
+      attorneyUUID = #{attorneyuuid,jdbcType=VARCHAR},
+      signCustomerId = #{signcustomerid,jdbcType=VARCHAR},
+      signCount=#{signcount,jdbcType=INTEGER}
+    where customerInfoId = #{customerinfoid,jdbcType=INTEGER}
+  </update>
+  <select id="getPrivateInfo" parameterType="com.blchina.customer.model.BDLCustomerInfo" resultMap="BaseResultMap">
+  SELECT * FROM bdl_customerInfo WHERE customerId = #{customerid,jdbcType=INTEGER} and accountType = #{accounttype,jdbcType=VARCHAR}
+  <if test="buyeridcardnum != null and buyeridcardnum !=''">
+   AND buyerIdCardNum = #{buyeridcardnum,jdbcType=VARCHAR}
+  </if>
+    <if test="buyeridcardnum == null">
+      AND (buyerIdCardNum is null OR buyerIdCardNum='')
+    </if>
+</select>
+  <select id="getPublicInfo" parameterType="com.blchina.customer.model.BDLCustomerInfo" resultMap="BaseResultMap">
+    SELECT * FROM bdl_customerInfo WHERE customerId = #{customerid,jdbcType=INTEGER} and organizeCode = #{organizecode,jdbcType=VARCHAR} and accountType = #{accounttype,jdbcType=VARCHAR}
+  </select>
+  <select id="getCustomerInfo" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  SELECT
+	*
+FROM
+	bdl_customerInfo
+WHERE
+
+		customerInfoId = (
+			SELECT
+				MAX(customerInfoId)
+			FROM
+				bdl_customerInfo
+			WHERE
+				customerId = #{customerid,jdbcType=INTEGER}
+			AND accountType = '2'
+		)
+  </select>
+  <select id="getsignCustomerId" parameterType="com.blchina.customer.model.BDLCustomerInfo" resultType="java.lang.String">
+    SELECT  max(signCustomerId) FROM bdl_customerInfo WHERE customerId = #{customerid,jdbcType=INTEGER}
+    	<if test="organizecode != null and organizecode!=''">
+         AND  organizeCode = #{organizecode,jdbcType=VARCHAR}
+        </if>
+        <if test="organizecode==null or organizecode==''">
+          AND  organizeCode is  null
+        </if>
+  </select>
+  <update id="updateCustomerInfoUUID" parameterType="com.blchina.customer.model.BDLCustomerInfo" >
+    update bdl_customerInfo
+    <set>
+      <if test="customercarduuid != null and customercarduuid!=''">
+        customerCardUUID = #{customercarduuid,jdbcType=VARCHAR},
+      </if>
+      <if test="buyeridcarduuid != null and buyeridcarduuid!=''">
+        buyerIDCardUUID = #{buyeridcarduuid,jdbcType=VARCHAR},
+      </if>
+      <if test="busilicenseuuid != null and busilicenseuuid!=''">
+        busiLicenseUUID = #{busilicenseuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="attorneyuuid != null and attorneyuuid!=''">
+        attorneyUUID = #{attorneyuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="accounttype != null and accounttype!='' ">
+        accountType = #{accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="isindex != null and isindex!=''">
+        isIndex = #{isindex,jdbcType=VARCHAR},
+      </if>
+      <if test="organizecode != null and organizecode!=''">
+        organizeCode = #{organizecode,jdbcType=VARCHAR},
+      </if>
+      <if test="organizename != null and organizename!=''">
+        organizeName = #{organizename,jdbcType=VARCHAR},
+      </if>
+      <if test="isseal != null and isseal!=''">
+        isSeal = #{isseal,jdbcType=VARCHAR},
+      </if>
+
+    </set>
+    where customerId = #{customerid,jdbcType=INTEGER}
+    <if test="organizecode != null">
+      and organizeCode = #{organizecode,jdbcType=VARCHAR}
+    </if>
+    <if test="buyeridcardnum != null">
+     and  buyerIdCardNum = #{buyeridcardnum,jdbcType=VARCHAR}
+    </if>
+
+  </update>
+  <select id="getPrivateInfoList"  parameterType="com.blchina.customer.model.BDLCustomerInfo" resultMap="BaseResultMap">
+    SELECT * FROM bdl_customerInfo WHERE customerId = #{customerid,jdbcType=INTEGER} and accountType = #{accounttype,jdbcType=VARCHAR}
+  </select>
+  <select id="getCustomerInfoBase" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT
+    *
+    FROM
+    bdl_customerInfo
+    WHERE
+
+    customerInfoId = (
+    SELECT
+    MAX(customerInfoId)
+    FROM
+    bdl_customerInfo
+    WHERE
+    customerId = #{customerid,jdbcType=INTEGER}
+    AND accountType = '2'
+    )
+    or
+    customerInfoId = (
+    SELECT
+    MAX(customerInfoId)
+    FROM
+    bdl_customerInfo
+    WHERE
+    customerId = #{customerid,jdbcType=INTEGER}
+    AND accountType = '1'   AND (buyerIdCardNum is null OR buyerIdCardNum='')
+    )
+  </select>
+  <select id="getCustomerInfoTotal" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT
+    *
+    FROM
+    bdl_customerInfo
+    WHERE
+  customerId = #{customerid,jdbcType=INTEGER} and  buyerIdCardNum is NULL
+  </select>
+</mapper>

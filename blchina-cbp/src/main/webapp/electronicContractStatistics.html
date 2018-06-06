@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>电子合同统计</title>
+    <script src="js/config.js"></script>
+    <link rel="stylesheet" href="./css/city/framework7.min.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/electronicContractStatistics.css">
+</head>
+<body>
+<div class="electronicContractStatistics">
+    <div class="titleBg"></div>
+    <div class="ECSCon">
+        <div class="ECSTit">
+            <p>电子合同统计</p>
+            <div id="filterBtn" class="filterBtnContainer">
+                <a class="filterBtn" href="javascript:void 0"></a>
+            </div>
+        </div>
+        <div class="ECSFilter">
+            <ul>
+                <li class="ECSTime">
+                    <div class="ECSFLeft">
+                        <p>
+                            <i></i><span>时间:</span>
+                        </p>
+                    </div>
+                    <div class="ECSFRight">
+                        <p><input type="text" id="orderdateStart" value=""></p>
+                        <em></em>
+                        <p><input type="text" id="orderdateEnd" value=""></p>
+                        <p class="Cumulative"><span>累计</span></p>
+                    </div>
+                </li>
+                <li class="ECSBrand">
+                    <div class="ECSFLeft">
+                        <p>
+                            <i class="Brand"></i><span>品牌:</span>
+                        </p>
+                    </div>
+                    <div id="ECSBrand" class="ECSFRight">
+                        <p><span>全部</span></p>
+                        <p><span>奔驰</span></p>
+                        <p><span>保时捷</span></p>
+                        <p><span>奥迪</span></p>
+                        <p><span>大众</span></p>
+                        <p><span>宾利</span></p>
+                    </div>
+                </li>
+                <li class="ECSStore">
+                    <div class="ECSFLeft">
+                        <p>
+                            <i class="Store"></i><span>门店:</span>
+                        </p>
+                    </div>
+                    <div id="ECSStore" class="ECSFRight">
+                        <p class="on"><span>全部</span></p>
+                        <p><span>奔驰</span></p>
+                        <p><span>海淀保时捷</span></p>
+                        <p><span>青岛保时捷</span></p>
+                        <p><span>潍坊保时捷</span></p>
+                        <p><span>奥迪</span></p>
+                        <p><span>海淀大众</span></p>
+                        <p><span>义庄大众</span></p>
+                        <p><span>山东大众</span></p>
+                        <p><span>宾利</span></p>
+                    </div>
+                </li>
+                <li class="ECSSale">
+                    <div class="ECSFLeft">
+                        <p>
+                            <i class="Sale"></i><span>销售:</span>
+                        </p>
+                    </div>
+                    <div class="ECSFRight">
+                        <p id="majordomo"><span class="majordomo">总监<i></i></span></p>
+                        <p id="manager"><span class="manager">经理<i></i></span></p>
+                        <p id="adviser"><span class="adviser">顾问<i></i></span></p>
+                    </div>
+                </li>
+            </ul>
+            <div class="ECSSearch">
+                <a id="ECSSearch" href="javascript:void 0">搜索</a>
+            </div>
+        </div>
+        <div class="ECSResult">
+            <div class="searchCondition">
+                <p class="SCTit"><i></i>搜索条件</p>
+                <p id="searchCriteria" class="SCCon">
+                    2018年01月01日-2018年01月02日 保时捷 全部门店 全部销售总监
+                </p>
+            </div>
+            <div class="resultTable">
+                <div class="tableTit">
+                    <p id="searchDate">2018.01.01-2018.02.02</p>
+                </div>
+                <div class="tableCon">
+                    <div class="TBCLeft">
+                        <p><span>各项</span></p>
+                        <ul id="storeAndEmployeeName">
+                            <li class="TB-store">义庄保时捷</li>
+                            <li>张大千</li>
+                            <li>张大千</li>
+                            <li class="TB-store">海淀保时捷</li>
+                            <li>张大千</li>
+                            <li>张大千</li>
+                            <li>张大千</li>
+                            <li>张大千</li>
+                            <li>张大千</li>
+                            <li>张大千</li>
+                            <li>张大千</li>
+                            <li>张大千</li>
+                            <li>张大千</li>
+                            <li>张大千</li>
+                            <li>张大千</li>
+                            <li>张大千</li>
+                            <li>张大千</li>
+                        </ul>
+                    </div>
+                    <div class="TBCRight">
+                        <div class="TB-inner">
+                            <div class="TB-inner-title">
+                                <ul class="TB-inner-title1">
+                                    <li>电子签</li>
+                                    <li>关闭电子签原因(百分比)</li>
+                                    <li>在线互动(百分比)</li>
+                                    <li>未电子签原因(百分比)</li>
+                                </ul>
+                                <ul class="TB-inner-title2">
+                                    <li>数量(个)</li>
+                                    <li>百分比</li>
+                                    <li>原因1</li>
+                                    <li>原因2</li>
+                                    <li>原因3</li>
+                                    <li>其他</li>
+                                    <li>关注微信</li>
+                                    <li>预约交车</li>
+                                    <li>推送物流</li>
+                                    <li>推送计划</li>
+                                    <li>原因1</li>
+                                    <li>原因2</li>
+                                    <li>原因3</li>
+                                    <li>原因4</li>
+                                </ul>
+                            </div>
+                            <div id="listSearchResult" class="TB-inner-content">
+                                <ul class="TB-store">
+                                    <li>1200</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>2000</li>
+                                    <li>8</li>
+                                </ul>
+                                <ul>
+                                    <li>1200</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>2000</li>
+                                    <li>8</li>
+                                </ul>
+                                <ul>
+                                    <li>1200</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>2000</li>
+                                    <li>8</li>
+                                </ul>
+                                <ul class="TB-store">
+                                    <li>1200</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>2000</li>
+                                    <li>8</li>
+                                </ul>
+                                <ul>
+                                    <li>1200</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>2000</li>
+                                    <li>8</li>
+                                </ul>
+                                <ul>
+                                    <li>1200</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>2000</li>
+                                    <li>8</li>
+                                </ul>
+                                <ul>
+                                    <li>1200</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>2000</li>
+                                    <li>8</li>
+                                </ul>
+                                <ul>
+                                    <li>1200</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>2000</li>
+                                    <li>8</li>
+                                </ul>
+                                <ul>
+                                    <li>1200</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>2000</li>
+                                    <li>8</li>
+                                </ul>
+                                <ul>
+                                    <li>1200</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>2000</li>
+                                    <li>8</li>
+                                </ul>
+                                <ul>
+                                    <li>1200</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>2000</li>
+                                    <li>8</li>
+                                </ul>
+                                <ul>
+                                    <li>1200</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>2000</li>
+                                    <li>8</li>
+                                </ul>
+                                <ul>
+                                    <li>1200</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>2000</li>
+                                    <li>8</li>
+                                </ul>
+                                <ul>
+                                    <li>1200</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>2000</li>
+                                    <li>8</li>
+                                </ul>
+                                <ul>
+                                    <li>1200</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>2000</li>
+                                    <li>8</li>
+                                </ul>
+                                <ul>
+                                    <li>1200</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>2000</li>
+                                    <li>8</li>
+                                </ul>
+                                <ul>
+                                    <li>1200</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>20%</li>
+                                    <li>30%</li>
+                                    <li>100%</li>
+                                    <li>2000</li>
+                                    <li>8</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ECSBtn">
+            <div>
+                <a id="ECSBtnLeft" class="ECSBtnLeft" href="javascript:void 0"><span></span></a>
+                <a id="ECSBtnRight" class="ECSBtnRight" href="javascript:void 0"><span></span></a>
+            </div>
+        </div>
+        <div class="m20"></div>
+    </div>
+</div>
+<div class="ECSDialog">
+    <div class="ECSShadow"></div>
+    <div class="ECSDialogContent">
+        <p class="ECSDialogContent-title">人员选择</p>
+        <ul class="ECSDialogContent-list"></ul>
+        <div class="ECSDialogContent-btn">
+            <a class="ECSDialogContent-btn-cancel" href="javascript:void 0">取消</a>
+            <a class="ECSDialogContent-btn-sure" href="javascript:void 0">确定</a>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/city/framework7.min.js"></script>
+<script type="text/javascript" src="js/electronicContractStatistics.js"></script>
+</html>

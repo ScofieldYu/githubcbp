@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPContractItemMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPContractItem">
+    <id column="itemId" jdbcType="INTEGER" property="itemid" />
+    <result column="itemName" jdbcType="VARCHAR" property="itemname" />
+    <result column="contractId" jdbcType="INTEGER" property="contractid" />
+    <result column="contractUUID" jdbcType="VARCHAR" property="contractuuid" />
+    <result column="contractResult" jdbcType="VARCHAR" property="contractresult"
+    />
+    <result column="requestTime" jdbcType="VARCHAR" property="requesttime" />
+    <result column="contractDes" jdbcType="VARCHAR" property="contractdes" />
+    <result column="contractstatus" jdbcType="VARCHAR" property="contractstatus"
+    />
+  </resultMap>
+  <sql id="Base_Column_List">
+    itemId, itemName, contractId, contractUUID, contractResult, requestTime,
+    contractDes,
+    contractstatus
+  </sql>
+  
+  <select id="selectContractItemByContractIdAndContractStatus" parameterType="java.lang.Integer"
+          resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_contract_item
+    where contractId = #{contractId} and contractstatus = '2'
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+          resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_contract_item
+    where itemId = #{itemid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_contract_item
+    where itemId = #{itemid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPContractItem">
+    insert into cbp_contract_item (itemId, itemName, contractId,
+    contractUUID, contractResult, requestTime,
+    contractDes, contractstatus)
+    values (#{itemid,jdbcType=INTEGER}, #{itemname,jdbcType=VARCHAR}, #
+    {contractid,jdbcType=INTEGER},
+    #{contractuuid,jdbcType=VARCHAR}, #{contractresult,jdbcType=VARCHAR}, #
+    {requesttime,jdbcType=VARCHAR},
+    #{contractdes,jdbcType=VARCHAR}, #{contractstatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective"
+          parameterType="com.blchina.cbp.model.CBPContractItem">
+    insert into cbp_contract_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemid != null">
+        itemId,
+      </if>
+      <if test="itemname != null">
+        itemName,
+      </if>
+      <if test="contractid != null">
+        contractId,
+      </if>
+      <if test="contractuuid != null">
+        contractUUID,
+      </if>
+      <if test="contractresult != null">
+        contractResult,
+      </if>
+      <if test="requesttime != null">
+        requestTime,
+      </if>
+      <if test="contractdes != null">
+        contractDes,
+      </if>
+      <if test="contractstatus != null">
+        contractstatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemid != null">
+        #{itemid,jdbcType=INTEGER},
+      </if>
+      <if test="itemname != null">
+        #{itemname,jdbcType=VARCHAR},
+      </if>
+      <if test="contractid != null">
+        #{contractid,jdbcType=INTEGER},
+      </if>
+      <if test="contractuuid != null">
+        #{contractuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="contractresult != null">
+        #{contractresult,jdbcType=VARCHAR},
+      </if>
+      <if test="requesttime != null">
+        #{requesttime,jdbcType=VARCHAR},
+      </if>
+      <if test="contractdes != null">
+        #{contractdes,jdbcType=VARCHAR},
+      </if>
+      <if test="contractstatus != null">
+        #{contractstatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective"
+          parameterType="com.blchina.cbp.model.CBPContractItem">
+    update cbp_contract_item
+    <set>
+      <if test="itemname != null">
+        itemName = #{itemname,jdbcType=VARCHAR},
+      </if>
+      <if test="contractid != null">
+        contractId = #{contractid,jdbcType=INTEGER},
+      </if>
+      <if test="contractuuid != null">
+        contractUUID = #{contractuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="contractresult != null">
+        contractResult = #{contractresult,jdbcType=VARCHAR},
+      </if>
+      <if test="requesttime != null">
+        requestTime = #{requesttime,jdbcType=VARCHAR},
+      </if>
+      <if test="contractdes != null">
+        contractDes = #{contractdes,jdbcType=VARCHAR},
+      </if>
+      <if test="contractstatus != null">
+        contractstatus = #{contractstatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where itemId = #{itemid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey"
+          parameterType="com.blchina.cbp.model.CBPContractItem">
+    update cbp_contract_item
+    set itemName = #{itemname,jdbcType=VARCHAR},
+    contractId = #{contractid,jdbcType=INTEGER},
+    contractUUID = #{contractuuid,jdbcType=VARCHAR},
+    contractResult = #{contractresult,jdbcType=VARCHAR},
+    requestTime = #{requesttime,jdbcType=VARCHAR},
+    contractDes = #{contractdes,jdbcType=VARCHAR},
+    contractstatus = #{contractstatus,jdbcType=VARCHAR}
+    where itemId = #{itemid,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByContractId" parameterType="java.lang.Integer"
+          resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_contract_item
+    where contractId = #{contractId,jdbcType=INTEGER}
+  </select>
+</mapper>

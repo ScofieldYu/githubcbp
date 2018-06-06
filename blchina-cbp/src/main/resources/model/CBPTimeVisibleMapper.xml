@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPTimeVisibleMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPTimeVisible">
+    <id column="timeVisibleId" jdbcType="INTEGER" property="timevisibleid" />
+    <result column="customerId" jdbcType="INTEGER" property="customerid" />
+    <result column="employeeId" jdbcType="INTEGER" property="employeeid" />
+    <result column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="isVisible" jdbcType="VARCHAR" property="isvisible" />
+    <result column="date" jdbcType="VARCHAR" property="date" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    timeVisibleId, customerId, employeeId, orderId, isVisible, date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_timeVisible
+    where timeVisibleId = #{timevisibleid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_timeVisible
+    where timeVisibleId = #{timevisibleid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPTimeVisible">
+    insert into cbp_timeVisible (timeVisibleId, customerId, employeeId, 
+      orderId, isVisible, date
+      )
+    values (#{timevisibleid,jdbcType=INTEGER}, #{customerid,jdbcType=INTEGER}, #{employeeid,jdbcType=INTEGER}, 
+      #{orderid,jdbcType=INTEGER}, #{isvisible,jdbcType=VARCHAR}, #{date,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPTimeVisible">
+    insert into cbp_timeVisible
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="timevisibleid != null">
+        timeVisibleId,
+      </if>
+      <if test="customerid != null">
+        customerId,
+      </if>
+      <if test="employeeid != null">
+        employeeId,
+      </if>
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="isvisible != null">
+        isVisible,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="timevisibleid != null">
+        #{timevisibleid,jdbcType=INTEGER},
+      </if>
+      <if test="customerid != null">
+        #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="employeeid != null">
+        #{employeeid,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="isvisible != null">
+        #{isvisible,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPTimeVisible">
+    update cbp_timeVisible
+    <set>
+      <if test="customerid != null">
+        customerId = #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="employeeid != null">
+        employeeId = #{employeeid,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null">
+        orderId = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="isvisible != null">
+        isVisible = #{isvisible,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where timeVisibleId = #{timevisibleid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPTimeVisible">
+    update cbp_timeVisible
+    set customerId = #{customerid,jdbcType=INTEGER},
+      employeeId = #{employeeid,jdbcType=INTEGER},
+      orderId = #{orderid,jdbcType=INTEGER},
+      isVisible = #{isvisible,jdbcType=VARCHAR},
+      date = #{date,jdbcType=VARCHAR}
+    where timeVisibleId = #{timevisibleid,jdbcType=INTEGER}
+  </update>
+  <select id="getVisibleByOrderid" parameterType="com.blchina.cbp.model.CBPTimeVisible" resultMap="BaseResultMap">
+    SELECT * FROM cbp_timeVisible WHERE  orderId = #{orderid,jdbcType=INTEGER}
+  </select>
+</mapper>

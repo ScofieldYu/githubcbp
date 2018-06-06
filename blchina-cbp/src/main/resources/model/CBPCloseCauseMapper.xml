@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPCloseCauseMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPCloseCause">
+    <id column="closeCauseId" jdbcType="INTEGER" property="closecauseid" />
+    <result column="contractId" jdbcType="INTEGER" property="contractid" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="closeType" jdbcType="VARCHAR" property="closetype" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    closeCauseId, contractId, description, closeType
+  </sql>
+  <select id="selectTotalCountByCloseType" parameterType="java.lang.String" resultType="java.lang.String">
+    select count(closeCauseId) from cbp_closeCause where closeType = #{closetype}
+  </select>
+  <select id="selectTotalCount" parameterType="java.lang.String" resultType="java.lang.String">
+    select count(closeCauseId) from cbp_closeCause
+  </select>
+  <select id="selectByContractId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_closeCause
+    where contractId = #{contractid}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_closeCause
+    where closeCauseId = #{closecauseid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_closeCause
+    where closeCauseId = #{closecauseid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPCloseCause">
+    insert into cbp_closeCause (closeCauseId, contractId, description, 
+      closeType)
+    values (#{closecauseid,jdbcType=INTEGER}, #{contractid,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, 
+      #{closetype,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPCloseCause">
+    insert into cbp_closeCause
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="closecauseid != null">
+        closeCauseId,
+      </if>
+      <if test="contractid != null">
+        contractId,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="closetype != null">
+        closeType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="closecauseid != null">
+        #{closecauseid,jdbcType=INTEGER},
+      </if>
+      <if test="contractid != null">
+        #{contractid,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="closetype != null">
+        #{closetype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPCloseCause">
+    update cbp_closeCause
+    <set>
+      <if test="contractid != null">
+        contractId = #{contractid,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="closetype != null">
+        closeType = #{closetype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where closeCauseId = #{closecauseid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPCloseCause">
+    update cbp_closeCause
+    set contractId = #{contractid,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      closeType = #{closetype,jdbcType=VARCHAR}
+    where closeCauseId = #{closecauseid,jdbcType=INTEGER}
+  </update>
+</mapper>

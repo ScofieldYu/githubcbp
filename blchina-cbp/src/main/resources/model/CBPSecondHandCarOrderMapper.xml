@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPSecondHandCarOrderMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPSecondHandCarOrder">
+    <id column="secondCarId" jdbcType="INTEGER" property="secondcarid" />
+    <result column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="carBrand" jdbcType="VARCHAR" property="carbrand" />
+    <result column="carSeries" jdbcType="VARCHAR" property="carseries" />
+    <result column="carType" jdbcType="VARCHAR" property="cartype" />
+    <result column="carAppearance" jdbcType="VARCHAR" property="carappearance" />
+    <result column="carInterior" jdbcType="VARCHAR" property="carinterior" />
+    <result column="carYear" jdbcType="VARCHAR" property="caryear" />
+    <result column="kilometers" jdbcType="VARCHAR" property="kilometers" />
+    <result column="realVinNo" jdbcType="VARCHAR" property="realvinno" />
+    <result column="appraiserId" jdbcType="VARCHAR" property="appraiserid" />
+    <result column="appraiserName" jdbcType="VARCHAR" property="appraisername" />
+    <result column="appraiserPhone" jdbcType="VARCHAR" property="appraiserphone" />
+    <result column="reserveTime" jdbcType="VARCHAR" property="reservetime" />
+    <result column="price" jdbcType="VARCHAR" property="price" />
+    <result column="dealPrice" jdbcType="VARCHAR" property="dealprice" />
+    <result column="exchangeMethod" jdbcType="VARCHAR" property="exchangemethod" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    secondCarId, orderId, carBrand, carSeries, carType, carAppearance, carInterior, carYear, 
+    kilometers, realVinNo, appraiserId, appraiserName, appraiserPhone, reserveTime, price, 
+    dealPrice, exchangeMethod, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_secondHandCar_Order
+    where secondCarId = #{secondcarid,jdbcType=INTEGER}
+  </select>
+  <select id="selectSecondHandCarByOrderId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_secondHandCar_Order
+    where orderId = #{orderid}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_secondHandCar_Order
+    where secondCarId = #{secondcarid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPSecondHandCarOrder">
+    insert into cbp_secondHandCar_Order (secondCarId, orderId, carBrand, 
+      carSeries, carType, carAppearance, 
+      carInterior, carYear, kilometers, 
+      realVinNo, appraiserId, appraiserName, 
+      appraiserPhone, reserveTime, price, 
+      dealPrice, exchangeMethod, status
+      )
+    values (#{secondcarid,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, #{carbrand,jdbcType=VARCHAR}, 
+      #{carseries,jdbcType=VARCHAR}, #{cartype,jdbcType=VARCHAR}, #{carappearance,jdbcType=VARCHAR}, 
+      #{carinterior,jdbcType=VARCHAR}, #{caryear,jdbcType=VARCHAR}, #{kilometers,jdbcType=VARCHAR}, 
+      #{realvinno,jdbcType=VARCHAR}, #{appraiserid,jdbcType=VARCHAR}, #{appraisername,jdbcType=VARCHAR}, 
+      #{appraiserphone,jdbcType=VARCHAR}, #{reservetime,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, 
+      #{dealprice,jdbcType=VARCHAR}, #{exchangemethod,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPSecondHandCarOrder">
+    insert into cbp_secondHandCar_Order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="secondcarid != null">
+        secondCarId,
+      </if>
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="carbrand != null">
+        carBrand,
+      </if>
+      <if test="carseries != null">
+        carSeries,
+      </if>
+      <if test="cartype != null">
+        carType,
+      </if>
+      <if test="carappearance != null">
+        carAppearance,
+      </if>
+      <if test="carinterior != null">
+        carInterior,
+      </if>
+      <if test="caryear != null">
+        carYear,
+      </if>
+      <if test="kilometers != null">
+        kilometers,
+      </if>
+      <if test="realvinno != null">
+        realVinNo,
+      </if>
+      <if test="appraiserid != null">
+        appraiserId,
+      </if>
+      <if test="appraisername != null">
+        appraiserName,
+      </if>
+      <if test="appraiserphone != null">
+        appraiserPhone,
+      </if>
+      <if test="reservetime != null">
+        reserveTime,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="dealprice != null">
+        dealPrice,
+      </if>
+      <if test="exchangemethod != null">
+        exchangeMethod,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="secondcarid != null">
+        #{secondcarid,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="carbrand != null">
+        #{carbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="carseries != null">
+        #{carseries,jdbcType=VARCHAR},
+      </if>
+      <if test="cartype != null">
+        #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="carappearance != null">
+        #{carappearance,jdbcType=VARCHAR},
+      </if>
+      <if test="carinterior != null">
+        #{carinterior,jdbcType=VARCHAR},
+      </if>
+      <if test="caryear != null">
+        #{caryear,jdbcType=VARCHAR},
+      </if>
+      <if test="kilometers != null">
+        #{kilometers,jdbcType=VARCHAR},
+      </if>
+      <if test="realvinno != null">
+        #{realvinno,jdbcType=VARCHAR},
+      </if>
+      <if test="appraiserid != null">
+        #{appraiserid,jdbcType=VARCHAR},
+      </if>
+      <if test="appraisername != null">
+        #{appraisername,jdbcType=VARCHAR},
+      </if>
+      <if test="appraiserphone != null">
+        #{appraiserphone,jdbcType=VARCHAR},
+      </if>
+      <if test="reservetime != null">
+        #{reservetime,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="dealprice != null">
+        #{dealprice,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangemethod != null">
+        #{exchangemethod,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPSecondHandCarOrder">
+    update cbp_secondHandCar_Order
+    <set>
+      <if test="orderid != null">
+        orderId = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="carbrand != null">
+        carBrand = #{carbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="carseries != null">
+        carSeries = #{carseries,jdbcType=VARCHAR},
+      </if>
+      <if test="cartype != null">
+        carType = #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="carappearance != null">
+        carAppearance = #{carappearance,jdbcType=VARCHAR},
+      </if>
+      <if test="carinterior != null">
+        carInterior = #{carinterior,jdbcType=VARCHAR},
+      </if>
+      <if test="caryear != null">
+        carYear = #{caryear,jdbcType=VARCHAR},
+      </if>
+      <if test="kilometers != null">
+        kilometers = #{kilometers,jdbcType=VARCHAR},
+      </if>
+      <if test="realvinno != null">
+        realVinNo = #{realvinno,jdbcType=VARCHAR},
+      </if>
+      <if test="appraiserid != null">
+        appraiserId = #{appraiserid,jdbcType=VARCHAR},
+      </if>
+      <if test="appraisername != null">
+        appraiserName = #{appraisername,jdbcType=VARCHAR},
+      </if>
+      <if test="appraiserphone != null">
+        appraiserPhone = #{appraiserphone,jdbcType=VARCHAR},
+      </if>
+      <if test="reservetime != null">
+        reserveTime = #{reservetime,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="dealprice != null">
+        dealPrice = #{dealprice,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangemethod != null">
+        exchangeMethod = #{exchangemethod,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where secondCarId = #{secondcarid,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPSecondHandCarOrder">
+    update cbp_secondHandCar_Order
+    set orderId = #{orderid,jdbcType=INTEGER},
+      carBrand = #{carbrand,jdbcType=VARCHAR},
+      carSeries = #{carseries,jdbcType=VARCHAR},
+      carType = #{cartype,jdbcType=VARCHAR},
+      carAppearance = #{carappearance,jdbcType=VARCHAR},
+      carInterior = #{carinterior,jdbcType=VARCHAR},
+      carYear = #{caryear,jdbcType=VARCHAR},
+      kilometers = #{kilometers,jdbcType=VARCHAR},
+      realVinNo = #{realvinno,jdbcType=VARCHAR},
+      appraiserId = #{appraiserid,jdbcType=VARCHAR},
+      appraiserName = #{appraisername,jdbcType=VARCHAR},
+      appraiserPhone = #{appraiserphone,jdbcType=VARCHAR},
+      reserveTime = #{reservetime,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      dealPrice = #{dealprice,jdbcType=VARCHAR},
+      exchangeMethod = #{exchangemethod,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where secondCarId = #{secondcarid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByOrderId" parameterType="com.blchina.cbp.model.CBPSecondHandCarOrder">
+    update cbp_secondHandCar_Order
+   set 
+      carBrand = #{carbrand,jdbcType=VARCHAR},
+      carSeries = #{carseries,jdbcType=VARCHAR},
+      carType = #{cartype,jdbcType=VARCHAR},
+      carAppearance = #{carappearance,jdbcType=VARCHAR},
+      carInterior = #{carinterior,jdbcType=VARCHAR},
+      carYear = #{caryear,jdbcType=VARCHAR},
+      kilometers = #{kilometers,jdbcType=VARCHAR},
+      realVinNo = #{realvinno,jdbcType=VARCHAR},
+      appraiserId = #{appraiserid,jdbcType=VARCHAR},
+      appraiserName = #{appraisername,jdbcType=VARCHAR},
+      appraiserPhone = #{appraiserphone,jdbcType=VARCHAR},
+      reserveTime = #{reservetime,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      dealPrice = #{dealprice,jdbcType=VARCHAR},
+      exchangeMethod = #{exchangemethod,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+
+</mapper>

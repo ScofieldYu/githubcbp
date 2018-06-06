@@ -1,0 +1,105 @@
+{
+    "code": "0",
+    "message": "成功",
+    "accountType": 0,
+    "data": [
+        {
+            "brandId": null,
+            "storeCnShort": null,
+            "brandType": 1,
+            "brandName": "奥迪",
+            "employeeId": null,
+            "titleId": 0,
+            "brandStore": [
+                {
+                    "brandId": "2002",
+                    "storeCnShort": "亦庄奥迪"
+                },
+                {
+                    "brandId": "2028",
+                    "storeCnShort": "海淀奥迪"
+                }
+            ]
+        },
+        {
+            "brandId": null,
+            "storeCnShort": null,
+            "brandType": 2,
+            "brandName": "奔驰",
+            "employeeId": null,
+            "titleId": 0,
+            "brandStore": [
+                {
+                    "brandId": "2005",
+                    "storeCnShort": "海淀奔驰"
+                }
+            ]
+        },
+        {
+            "brandId": null,
+            "storeCnShort": null,
+            "brandType": 3,
+            "brandName": "保时捷",
+            "employeeId": null,
+            "titleId": 0,
+            "brandStore": [
+                {
+                    "brandId": "2003",
+                    "storeCnShort": "亦庄保时捷"
+                },
+                {
+                    "brandId": "2004",
+                    "storeCnShort": "海淀保时捷"
+                },
+                {
+                    "brandId": "2008",
+                    "storeCnShort": "天津保时捷"
+                },
+                {
+                    "brandId": "2038",
+                    "storeCnShort": "金牛保时捷"
+                },
+                {
+                    "brandId": "2039",
+                    "storeCnShort": "机场保时捷"
+                }
+            ]
+        },
+        {
+            "brandId": null,
+            "storeCnShort": null,
+            "brandType": 4,
+            "brandName": "大众",
+            "employeeId": null,
+            "titleId": 0,
+            "brandStore": [
+                {
+                    "brandId": "2017",
+                    "storeCnShort": "杭州大众"
+                },
+                {
+                    "brandId": "2023",
+                    "storeCnShort": "青岛大众"
+                },
+                {
+                    "brandId": "2024",
+                    "storeCnShort": "潍坊大众"
+                }
+            ]
+        },
+        {
+            "brandId": null,
+            "storeCnShort": null,
+            "brandType": 5,
+            "brandName": "宾利",
+            "employeeId": null,
+            "titleId": 0,
+            "brandStore": [
+                {
+                    "brandId": "2026",
+                    "storeCnShort": "青岛宾利"
+                }
+            ]
+        }
+    ]
+}

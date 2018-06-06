@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>订单详情</title>
+    <script src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <link href="../css/city/framework7.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/paperlessOfficeSales/quartetInfo.css">
+</head>
+<body>
+<div class="quartetInfo" id="quartetInfo">
+    <div class="quartetInfoTit">
+        <a id="goBack" href="javascript:void 0"  onclick="history.back();"></a>
+        <p>客户资料</p>
+    </div>
+    <div class="quartetList">
+        <p class="quartetTitle"><i class="saleParty"></i>售达方</p>
+        <div class="quartetUpImg">
+            <div class="imgCon">
+                <input capture="camera" accept="image/*" class="uploadBtn" type="file" id="uploadBtn1">
+                <div class="upBg"><span>证件上传</span></div>
+                <b class="close"></b>
+            </div>
+        </div>
+        <ul id="saleParty">
+            <li>
+                <span>姓名/公司名称</span>
+                <input type="text" value="" placeholder="客户姓名或公司名称">
+            </li>
+            <li>
+                <span>证件号码</span>
+                <input class="salePartyFlag" type="text" value="" placeholder="客户证件号码">
+            </li>
+            <li>
+                <span>手机号码</span>
+                <input type="text" value="" placeholder="客户联系电话">
+            </li>
+            <li>
+                <span>所在区域</span>
+                <input id="J_Address" readonly type="text" value="" placeholder="客户所在选择地区">
+                <i></i>
+            </li>
+            <li>
+                <span>详细地址</span>
+                <input type="text" value="" placeholder="街道、楼牌号等">
+            </li>
+        </ul>
+        <div class="synchronization">
+            <a id="synchronization" href="javascript:void 0"><i></i>四方同步</a>
+        </div>
+    </div>
+    <div class="quartetList">
+        <div class="quartetTitle"><i class="payer"></i>付款方</div>
+        <div class="quartetUpImg">
+            <div class="imgCon">
+                <input capture="camera" accept="image/*" class="uploadBtn" type="file" id="uploadBtn1">
+                <div class="upBg"><span>证件上传</span></div>
+                <b class="close"></b>
+            </div>
+        </div>
+        <ul id="payer">
+            <li>
+                <span>姓名/公司名称</span>
+                <input type="text" value="" placeholder="客户姓名或公司名称">
+            </li>
+            <li>
+                <span>证件号码</span>
+                <input type="text" value="" placeholder="客户证件号码">
+            </li>
+            <li>
+                <span>手机号码</span>
+                <input type="text" value="" placeholder="客户联系电话">
+            </li>
+            <li>
+                <span>所在区域</span>
+                <input id="J_Address2" readonly type="text" value="" placeholder="客户所在选择地区">
+                <i></i>
+            </li>
+            <li>
+                <span>详细地址</span>
+                <input type="text" value="" placeholder="街道、楼牌号等">
+            </li>
+        </ul>
+    </div>
+    <div class="quartetList">
+        <p class="quartetTitle"><i class="ticketHolder"></i>收票方</p>
+        <div class="quartetUpImg">
+            <div class="imgCon">
+                <input capture="camera" accept="image/*" class="uploadBtn" type="file" id="uploadBtn1">
+                <div class="upBg"><span>证件上传</span></div>
+                <b class="close"></b>
+            </div>
+        </div>
+        <ul id="ticketHolder">
+            <li>
+                <span>姓名/公司名称</span>
+                <input type="text" value="" placeholder="客户姓名或公司名称">
+            </li>
+            <li>
+                <span>证件号码</span>
+                <input type="text" value="" placeholder="客户证件号码">
+            </li>
+            <li>
+                <span>手机号码</span>
+                <input type="text" value="" placeholder="客户联系电话">
+            </li>
+            <li>
+                <span>所在区域</span>
+                <input id="J_Address3" readonly type="text" value="" placeholder="客户所在选择地区">
+                <i></i>
+            </li>
+            <li>
+                <span>详细地址</span>
+                <input type="text" value="" placeholder="街道、楼牌号等">
+            </li>
+        </ul>
+    </div>
+    <div class="quartetList">
+        <p class="quartetTitle"><i class="shipToParty"></i>送达方</p>
+        <div class="quartetUpImg">
+            <div class="imgCon">
+                <input capture="camera" accept="image/*" class="uploadBtn" type="file" id="uploadBtn1">
+                <div class="upBg"><span>证件上传</span></div>
+                <b class="close"></b>
+            </div>
+        </div>
+        <ul id="shipToParty">
+            <li>
+                <span>姓名/公司名称</span>
+                <input type="text" value="" placeholder="客户姓名或公司名称">
+            </li>
+            <li>
+                <span>证件号码</span>
+                <input type="text" value="" placeholder="客户证件号码">
+            </li>
+            <li>
+                <span>手机号码</span>
+                <input type="text" value="" placeholder="客户联系电话">
+            </li>
+            <li>
+                <span>所在区域</span>
+                <input id="J_Address4" readonly type="text" value="" placeholder="客户所在选择地区">
+                <i></i>
+            </li>
+            <li>
+                <span>详细地址</span>
+                <input type="text" value="" placeholder="街道、楼牌号等">
+            </li>
+        </ul>
+    </div>
+    <div class="completeBtn">
+        <a href="javascript:void 0">完成</a>
+    </div>
+</div>
+<div class="ECSDialog">
+    <div class="ECSShadow"></div>
+    <div class="ECSDialogContent">
+        <p class="ECSDialogContent-title">选择客户信息</p>
+        <ul class="ECSDialogContent-list">
+            <li>
+                <p>身份证号：<span>130424199108212236</span></p>
+                <p>联系电话：<span>13333333333</span></p>
+            </li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="ECSDialogContent-btn">
+            <a id="manualInput" href="javascript:void 0">手动输入</a>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/city/framework7.min.js"></script>
+<script src="../js/city/regionsObject2.js"></script>
+<script src="../js/city/cityPicker.js"></script>
+<script src="../js/paperlessOfficeSales/quartetInfo.js"></script>
+</html>

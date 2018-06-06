@@ -1,0 +1,565 @@
+html {
+  /*1rem == 100px*/
+  font-size: 100px;
+}
+html,
+body {
+  height: 100%;
+  font-family: PingFangSC-Regular, sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.orderList {
+  display: none;
+  position: relative;
+  width: 100%;
+  background: #FFFFFF;
+}
+.orderList .titleBg {
+  height: 0.48rem;
+  background: #475d82;
+}
+.orderList .orderCon {
+  margin: -0.48rem 0.12rem 0;
+}
+.orderList .orderCon .orderTit {
+  width: 100%;
+  height: 0.43rem;
+  line-height: 0.43rem;
+  text-align: center;
+  background: #546e9a;
+  font-size: 0.18rem;
+  color: #FFFFFF;
+}
+.orderList .orderCon .orderTit:before,
+.orderList .orderCon .orderTit:after {
+  content: '';
+  position: absolute;
+  width: 0.12rem;
+  height: 0.42rem;
+  background: #546e9a;
+}
+.orderList .orderCon .orderTit:before {
+  left: 0.06rem;
+  transform: skewX(15deg);
+}
+.orderList .orderCon .orderTit:after {
+  right: 0.06rem;
+  transform: skewX(-15deg);
+}
+.orderList .orderCon .orderTit .saporder {
+  float: left;
+  margin-left: 0.05rem;
+  margin-right: 0.05rem;
+}
+.orderList .orderCon .orderTit .signing {
+  float: left;
+  font-size: 0.13rem;
+}
+.orderList .orderCon .orderTit .signing i {
+  display: inline-block;
+  margin-right: 0.04rem;
+  width: 0.01rem;
+  height: 0.16rem;
+  vertical-align: -0.04rem;
+  background: url("../img/dd-line.png") no-repeat;
+  background-size: 100%;
+}
+.orderList .orderCon .orderTit .signing p {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+}
+.orderList .orderCon .orderDetail {
+  box-sizing: border-box;
+  border: 0.01rem solid #f1f1f1;
+  border-bottom: 0.02rem solid #f1f1f1;
+  padding: 0.15rem 0.2rem;
+  background: #fbfbfb;
+}
+.orderList .orderCon .orderDetail ul {
+  border-top: 0.01rem solid #f1f1f1;
+}
+.orderList .orderCon .orderDetail ul li {
+  margin: 0.06rem;
+  font-size: 0.13rem;
+  color: #262626;
+}
+.orderList .orderCon .orderDetail ul li p {
+  display: inline-block;
+}
+.orderList .orderCon .orderDetail ul li .cartype {
+  width: 2.5rem;
+  vertical-align: top;
+  display: inline-block;
+}
+.orderList .orderCon .orderDetail ul.buyer {
+  border-top: none;
+}
+.orderList .orderCon .orderDetail .orderState {
+  box-sizing: border-box;
+  margin: 0 -0.09rem;
+  border-top: 0.005rem solid #f1f1f1;
+  height: 0.4rem;
+}
+.orderList .orderCon .orderDetail .orderState .payment {
+  float: left;
+  margin-top: 0.15rem;
+  margin-left: 0.13rem;
+}
+.orderList .orderCon .orderDetail .orderState p {
+  font-size: 0.13rem;
+  color: #262626;
+}
+.orderList .orderCon .buyingFile,
+.orderList .orderCon .logistics,
+.orderList .orderCon .payment {
+  margin-top: 0.05rem;
+  background: #fbfbfb;
+}
+.orderList .orderCon .buyingFile .bfTit,
+.orderList .orderCon .logistics .bfTit,
+.orderList .orderCon .payment .bfTit,
+.orderList .orderCon .buyingFile .lgTit,
+.orderList .orderCon .logistics .lgTit,
+.orderList .orderCon .payment .lgTit,
+.orderList .orderCon .buyingFile .paymentTit,
+.orderList .orderCon .logistics .paymentTit,
+.orderList .orderCon .payment .paymentTit {
+  height: 0.4rem;
+  line-height: 0.4rem;
+  background: #fbfbfb;
+  font-size: 0.15rem;
+  color: #666666;
+  border: 0.005rem solid #f1f1f1;
+  border-bottom: none;
+}
+.orderList .orderCon .buyingFile .bfTit i,
+.orderList .orderCon .logistics .bfTit i,
+.orderList .orderCon .payment .bfTit i,
+.orderList .orderCon .buyingFile .lgTit i,
+.orderList .orderCon .logistics .lgTit i,
+.orderList .orderCon .payment .lgTit i,
+.orderList .orderCon .buyingFile .paymentTit i,
+.orderList .orderCon .logistics .paymentTit i,
+.orderList .orderCon .payment .paymentTit i {
+  margin-left: 0.12rem;
+  margin-right: 0.12rem;
+  display: inline-block;
+  width: 0.18rem;
+  height: 0.18rem;
+  vertical-align: -0.04rem;
+  background: url("../img/f-icon.png") no-repeat;
+  background-size: 100%;
+}
+.orderList .orderCon .buyingFile .bfTit i.p-icon,
+.orderList .orderCon .logistics .bfTit i.p-icon,
+.orderList .orderCon .payment .bfTit i.p-icon,
+.orderList .orderCon .buyingFile .lgTit i.p-icon,
+.orderList .orderCon .logistics .lgTit i.p-icon,
+.orderList .orderCon .payment .lgTit i.p-icon,
+.orderList .orderCon .buyingFile .paymentTit i.p-icon,
+.orderList .orderCon .logistics .paymentTit i.p-icon,
+.orderList .orderCon .payment .paymentTit i.p-icon {
+  background-image: url("../img/p-icon.png");
+}
+.orderList .orderCon .buyingFile .bfTit i.w-icon,
+.orderList .orderCon .logistics .bfTit i.w-icon,
+.orderList .orderCon .payment .bfTit i.w-icon,
+.orderList .orderCon .buyingFile .lgTit i.w-icon,
+.orderList .orderCon .logistics .lgTit i.w-icon,
+.orderList .orderCon .payment .lgTit i.w-icon,
+.orderList .orderCon .buyingFile .paymentTit i.w-icon,
+.orderList .orderCon .logistics .paymentTit i.w-icon,
+.orderList .orderCon .payment .paymentTit i.w-icon {
+  background-image: url("../img/w-icon.png");
+}
+.orderList .orderCon .buyingFile .bfList,
+.orderList .orderCon .logistics .bfList,
+.orderList .orderCon .payment .bfList,
+.orderList .orderCon .buyingFile .lgList,
+.orderList .orderCon .logistics .lgList,
+.orderList .orderCon .payment .lgList,
+.orderList .orderCon .buyingFile .paymentList,
+.orderList .orderCon .logistics .paymentList,
+.orderList .orderCon .payment .paymentList {
+  box-sizing: border-box;
+  border: 0.01rem solid #f1f1f1;
+  border-bottom: 0.02rem solid #f1f1f1;
+  text-align: center;
+  font-size: 0.13rem;
+  color: #262626;
+}
+.orderList .orderCon .buyingFile .bfList .select,
+.orderList .orderCon .logistics .bfList .select,
+.orderList .orderCon .payment .bfList .select,
+.orderList .orderCon .buyingFile .lgList .select,
+.orderList .orderCon .logistics .lgList .select,
+.orderList .orderCon .payment .lgList .select,
+.orderList .orderCon .buyingFile .paymentList .select,
+.orderList .orderCon .logistics .paymentList .select,
+.orderList .orderCon .payment .paymentList .select {
+  margin-top: 0.21rem;
+  border: 0.005rem solid #dddddd;
+  border-radius: 0.04rem;
+  width: 0.85rem;
+  height: 0.34rem;
+  line-height: 0.34rem;
+  text-align: center;
+  font-size: 0.14rem;
+  color: #262626;
+}
+.orderList .orderCon .buyingFile .bfList .select.file,
+.orderList .orderCon .logistics .bfList .select.file,
+.orderList .orderCon .payment .bfList .select.file,
+.orderList .orderCon .buyingFile .lgList .select.file,
+.orderList .orderCon .logistics .lgList .select.file,
+.orderList .orderCon .payment .lgList .select.file,
+.orderList .orderCon .buyingFile .paymentList .select.file,
+.orderList .orderCon .logistics .paymentList .select.file,
+.orderList .orderCon .payment .paymentList .select.file,
+.orderList .orderCon .buyingFile .bfList .select.download,
+.orderList .orderCon .logistics .bfList .select.download,
+.orderList .orderCon .payment .bfList .select.download,
+.orderList .orderCon .buyingFile .lgList .select.download,
+.orderList .orderCon .logistics .lgList .select.download,
+.orderList .orderCon .payment .lgList .select.download,
+.orderList .orderCon .buyingFile .paymentList .select.download,
+.orderList .orderCon .logistics .paymentList .select.download,
+.orderList .orderCon .payment .paymentList .select.download {
+  display: inline-block;
+  margin-left: 0.1rem;
+  background: #FFFFFF;
+  color: #666666;
+}
+.orderList .orderCon .buyingFile .bfList .select.file:active,
+.orderList .orderCon .logistics .bfList .select.file:active,
+.orderList .orderCon .payment .bfList .select.file:active,
+.orderList .orderCon .buyingFile .lgList .select.file:active,
+.orderList .orderCon .logistics .lgList .select.file:active,
+.orderList .orderCon .payment .lgList .select.file:active,
+.orderList .orderCon .buyingFile .paymentList .select.file:active,
+.orderList .orderCon .logistics .paymentList .select.file:active,
+.orderList .orderCon .payment .paymentList .select.file:active,
+.orderList .orderCon .buyingFile .bfList .select.download:active,
+.orderList .orderCon .logistics .bfList .select.download:active,
+.orderList .orderCon .payment .bfList .select.download:active,
+.orderList .orderCon .buyingFile .lgList .select.download:active,
+.orderList .orderCon .logistics .lgList .select.download:active,
+.orderList .orderCon .payment .lgList .select.download:active,
+.orderList .orderCon .buyingFile .paymentList .select.download:active,
+.orderList .orderCon .logistics .paymentList .select.download:active,
+.orderList .orderCon .payment .paymentList .select.download:active {
+  background-color: #e7e7e7;
+}
+.orderList .orderCon .buyingFile .bfList,
+.orderList .orderCon .logistics .bfList,
+.orderList .orderCon .payment .bfList {
+  height: 0.78rem;
+}
+.orderList .orderCon .buyingFile .bfList .viewTheContract,
+.orderList .orderCon .logistics .bfList .viewTheContract,
+.orderList .orderCon .payment .bfList .viewTheContract {
+  box-sizing: border-box;
+  margin: 0.17rem auto 0;
+  border: 0.005rem solid #546e9a;
+  width: 2.89rem;
+  height: 0.43rem;
+  line-height: 0.43rem;
+  text-align: center;
+  background: #546e9a;
+  border-radius: 0.04rem;
+  box-shadow: 0 0.01rem 0.01rem rgba(0, 0, 0, 0.2);
+}
+.orderList .orderCon .buyingFile .bfList .viewTheContract:active,
+.orderList .orderCon .logistics .bfList .viewTheContract:active,
+.orderList .orderCon .payment .bfList .viewTheContract:active {
+  background-color: #475d82;
+}
+.orderList .orderCon .buyingFile .bfList .viewTheContract a,
+.orderList .orderCon .logistics .bfList .viewTheContract a,
+.orderList .orderCon .payment .bfList .viewTheContract a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 0.15rem;
+  color: #ffffff;
+}
+.orderList .orderCon .buyingFile .bfList .viewTheContract a i,
+.orderList .orderCon .logistics .bfList .viewTheContract a i,
+.orderList .orderCon .payment .bfList .viewTheContract a i {
+  display: inline-block;
+  margin-right: 0.1rem;
+  width: 0.21rem;
+  height: 0.18rem;
+  vertical-align: -0.03rem;
+  background-image: url("../img/ht-btn.png");
+  background-size: 100%;
+}
+.orderList .orderCon .buyingFile .lgList p,
+.orderList .orderCon .logistics .lgList p,
+.orderList .orderCon .payment .lgList p {
+  margin: 0.21rem 0;
+  font-size: 0.14rem;
+  text-align: center;
+  color: #262626;
+}
+.orderList .orderCon .buyingFile .lgList p.confirmDemand,
+.orderList .orderCon .logistics .lgList p.confirmDemand,
+.orderList .orderCon .payment .lgList p.confirmDemand {
+  display: none;
+}
+.orderList .orderCon .buyingFile .lgList p.toShop,
+.orderList .orderCon .logistics .lgList p.toShop,
+.orderList .orderCon .payment .lgList p.toShop {
+  display: block;
+}
+.orderList .orderCon .buyingFile .lgList .extractCarBtn,
+.orderList .orderCon .logistics .lgList .extractCarBtn,
+.orderList .orderCon .payment .lgList .extractCarBtn {
+  display: none;
+  box-sizing: border-box;
+  margin: 0.17rem auto 0.17rem;
+  border: 0.005rem solid #546e9a;
+  width: 2.89rem;
+  height: 0.43rem;
+  line-height: 0.43rem;
+  text-align: center;
+  background: #546e9a;
+  border-radius: 0.04rem;
+  box-shadow: 0 0.01rem 0.01rem rgba(0, 0, 0, 0.2);
+}
+.orderList .orderCon .buyingFile .lgList .extractCarBtn:active,
+.orderList .orderCon .logistics .lgList .extractCarBtn:active,
+.orderList .orderCon .payment .lgList .extractCarBtn:active {
+  background-color: #475d82;
+}
+.orderList .orderCon .buyingFile .lgList .extractCarBtn a,
+.orderList .orderCon .logistics .lgList .extractCarBtn a,
+.orderList .orderCon .payment .lgList .extractCarBtn a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 0.15rem;
+  color: #ffffff;
+}
+.orderList .orderCon .buyingFile .lgList .extractCarBtn a i,
+.orderList .orderCon .logistics .lgList .extractCarBtn a i,
+.orderList .orderCon .payment .lgList .extractCarBtn a i {
+  display: inline-block;
+  margin-right: 0.1rem;
+  width: 0.21rem;
+  height: 0.18rem;
+  vertical-align: -0.03rem;
+  background-image: url("../img/wl-btn.png");
+  background-size: 100%;
+}
+.orderList .orderCon .buyingFile .lgList .changeTimeBtn,
+.orderList .orderCon .logistics .lgList .changeTimeBtn,
+.orderList .orderCon .payment .lgList .changeTimeBtn {
+  display: none;
+  margin: 0.21rem 0;
+  font-size: 0.14rem;
+  text-align: center;
+  color: #262626;
+}
+.orderList .orderCon .buyingFile .lgList .changeTimeBtn i,
+.orderList .orderCon .logistics .lgList .changeTimeBtn i,
+.orderList .orderCon .payment .lgList .changeTimeBtn i {
+  color: #C9C9C9;
+}
+.orderList .orderCon .buyingFile .wholeBtn,
+.orderList .orderCon .logistics .wholeBtn,
+.orderList .orderCon .payment .wholeBtn {
+  float: right;
+  font-size: 0.12rem;
+  color: #666666;
+}
+.orderList .orderCon .buyingFile .wholeBtn b,
+.orderList .orderCon .logistics .wholeBtn b,
+.orderList .orderCon .payment .wholeBtn b {
+  display: inline-block;
+  /* font-size: 20px; */
+  vertical-align: 0.01rem;
+  margin-left: 0.02rem;
+  margin-right: 0.12rem;
+  color: #C9C9C9;
+}
+.orderList .orderCon .buyingFile .paymentList,
+.orderList .orderCon .logistics .paymentList,
+.orderList .orderCon .payment .paymentList {
+  padding-top: 0.35rem;
+}
+.orderList .orderCon .buyingFile .paymentList .worth,
+.orderList .orderCon .logistics .paymentList .worth,
+.orderList .orderCon .payment .paymentList .worth {
+  margin: 0.1rem auto;
+  font-size: 0.18rem;
+  width: 2.88rem;
+  color: #262626;
+}
+.orderList .orderCon .buyingFile .paymentList .worth span,
+.orderList .orderCon .logistics .paymentList .worth span,
+.orderList .orderCon .payment .paymentList .worth span {
+  display: inline-block;
+  width: 1.5rem;
+  text-align: right;
+}
+.orderList .orderCon .buyingFile .paymentList .worth span:last-child,
+.orderList .orderCon .logistics .paymentList .worth span:last-child,
+.orderList .orderCon .payment .paymentList .worth span:last-child {
+  width: 1.3rem;
+  text-align: left;
+}
+.orderList .orderCon .buyingFile .paymentList .btn,
+.orderList .orderCon .logistics .paymentList .btn,
+.orderList .orderCon .payment .paymentList .btn {
+  box-sizing: border-box;
+  margin: 0.17rem auto 0;
+  border: 0.005rem solid #546e9a;
+  width: 2.89rem;
+  height: 0.43rem;
+  line-height: 0.43rem;
+  text-align: center;
+  background: #546e9a;
+  border-radius: 0.04rem;
+  box-shadow: 0 0.01rem 0.01rem rgba(0, 0, 0, 0.2);
+  /*&.prove{
+            border-color: #546e9a;
+            background: #ffffff;
+            &:active{
+              background-color: #e7e7e7;
+            }
+            a{
+              color: #546e9a;
+              i{
+                background-image: url("../img/dd-btn3.png");
+              }
+            }
+          }*/
+}
+.orderList .orderCon .buyingFile .paymentList .btn:active,
+.orderList .orderCon .logistics .paymentList .btn:active,
+.orderList .orderCon .payment .paymentList .btn:active {
+  background-color: #475d82;
+}
+.orderList .orderCon .buyingFile .paymentList .btn a,
+.orderList .orderCon .logistics .paymentList .btn a,
+.orderList .orderCon .payment .paymentList .btn a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 0.15rem;
+  color: #ffffff;
+}
+.orderList .orderCon .buyingFile .paymentList .btn a i,
+.orderList .orderCon .logistics .paymentList .btn a i,
+.orderList .orderCon .payment .paymentList .btn a i {
+  display: inline-block;
+  margin-right: 0.1rem;
+  width: 0.21rem;
+  height: 0.18rem;
+  vertical-align: -0.03rem;
+  background-image: url("../img/dd-btn1.png");
+  background-size: 100%;
+}
+.orderList .orderCon .buyingFile .paymentList .btn.prove a i,
+.orderList .orderCon .logistics .paymentList .btn.prove a i,
+.orderList .orderCon .payment .paymentList .btn.prove a i {
+  background-image: url("../img/dd-btn3-2.png");
+}
+.orderList .orderCon .buyingFile .paymentList .msg,
+.orderList .orderCon .logistics .paymentList .msg,
+.orderList .orderCon .payment .paymentList .msg {
+  margin: 0.17rem auto 0.2rem;
+  font-size: 0.12rem;
+  color: #999999;
+}
+.orderList .orderCon .buyingFile .paymentList .msg a,
+.orderList .orderCon .logistics .paymentList .msg a,
+.orderList .orderCon .payment .paymentList .msg a {
+  text-decoration: underline;
+  color: #546e9a;
+}
+.orderList .orderCon .m20 {
+  margin-top: 0.05rem;
+  width: 100%;
+  height: 0.001rem;
+}
+.moreList {
+  position: relative;
+  z-index: 1;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  background: #fbfbfb;
+  font-size: 0.15rem;
+  color: #666666;
+  border: 0.005rem solid #f1f1f1;
+}
+.moreList i {
+  margin-left: 0.12rem;
+  margin-right: 0.12rem;
+  display: inline-block;
+  width: 0.18rem;
+  height: 0.18rem;
+  vertical-align: -0.04rem;
+  background: url("../img/f-icon.png") no-repeat;
+  background-size: 100%;
+}
+.moreList .mBtn {
+  float: right;
+  margin: 0.15rem 0.25rem 0;
+  width: 0.14rem;
+  height: 0.09rem;
+  background-image: url("../img/dd-arrow1.png");
+  background-size: 100%;
+}
+.moreList .mBtn.on {
+  background-image: url("../img/dd-arrow2.png");
+}
+.moreList.m30 {
+  margin-bottom: 0.15rem;
+}
+.contract {
+  display: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: #FFFFFF;
+}
+.contract .ifreamClose {
+  display: block;
+  position: absolute;
+  left: 0.1rem;
+  top: 0.1rem;
+  width: 0.8rem;
+  height: 0.3rem;
+  line-height: 0.3rem;
+  background: #546e9a;
+  color: #ffffff;
+  text-align: center;
+  font-size: 0.14rem;
+  border-radius: 0.4rem;
+  z-index: 1;
+  opacity: 0.8;
+}
+.contract img {
+  width: 100%;
+  height: 100%;
+}
+.contract iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.paymentConfirm span {
+  display: block;
+  margin-top: 0.09rem;
+  font-size: 0.17rem;
+  color: #666666;
+  text-align: center;
+}

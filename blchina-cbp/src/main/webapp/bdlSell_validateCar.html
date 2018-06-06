@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./js/config.js"></script>
+    <script type="text/javascript" src="./js/bdl_rem.js"></script>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/bdlSell_validateCar.css">
+    <title>验车上牌</title>
+</head>
+<body>
+    <div class="bdl_main">
+        <header class="bdl_title">
+            <span class="leave"></span>
+            <span>验车上牌</span>
+            <span></span>
+        </header>
+        <section class="bdl_box">
+            <div class="list">
+                <span class="odd">代缴购置税</span>
+                <div id="issign1" class="tarSwitch on">
+                        <div class="tarRound"></div>
+                </div>
+            </div>
+            <div class="list">
+                <span class="odd">代办理临牌</span>
+                <div id="issign2" class="tarSwitch on">
+                        <div class="tarRound"></div>
+                </div>
+            </div>
+            <div class="list">
+                <span class="odd">代办理验车上牌</span>
+                <div id="issign3" class="tarSwitch on">
+                        <div class="tarRound"></div>
+                </div>
+            </div>
+            <div class="list missionMain">
+               <span class="odd">选号方式</span>
+               <div class="bdl_change">
+                     <input type="text" disabled class="input missionInput"><span class="rightPu mission"></span>                   
+               </div>
+            </div>
+        </section>
+        <!--<footer>-->
+            <div class="completeBtn">
+                <a href="javascript:void 0">提交</a>
+            </div>
+        <!--</footer>-->
+    </div>
+    <div class="carAppearance">
+    <div class="carLineContent">
+        <p>任务列表</p>
+        <ul id="appearance">
+            <li>保留原号</li>
+            <li>50选一</li>
+            <li>自编号牌</li>
+        </ul>
+    </div>
+    </div>
+</body>
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/bdlSell_validateCar.js"></script>
+</html>

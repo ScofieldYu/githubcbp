@@ -1,0 +1,56 @@
+@import 'mixin';
+html,body{
+    @include body;
+    font-size: .14rem;
+}
+.bdl_main{
+    @include Dom;
+    .bdl_title{
+        height: .45rem;
+        display: flex;
+        padding: 0 .12rem;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: .01rem solid  #dddddd;
+        font-size: .18rem;
+        background: #fff;
+    }
+    .bdl_title span:nth-child(1){
+        justify-content: flex-start;
+    }
+    .bdl_title span:nth-child(3){
+         height: .17rem;
+        width: .1rem;
+    }
+    .bdl_title span:nth-child(1){
+        height: .17rem;
+        width: .1rem;
+        display: flex;
+        background: url(../img/goBack.png) no-repeat;
+        background-size: cover;
+    }
+    .bdl_box{
+        width: 100%;
+        border-top: .01rem solid  #dddddd;
+        margin-top:.1rem;
+        .list{
+            background: #fff;
+            display: flex;
+            width: 100%;
+            align-items: center;
+            height: 0.5rem;
+        }
+        .icon{
+            height:.15rem;
+            width:.15rem;
+            background: url(../img/paperlessOfficeSales/sc-selectNot.png) no-repeat;
+            background-size: cover;
+            margin: 0 .12rem;
+        }
+        .on{
+            background: url(../img/paperlessOfficeSales/sc-selectOn.png) no-repeat;
+            background-size: cover;
+
+        }
+    }
+}

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPDeliverMessageMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPDeliverMessage">
+    <id column="messageId" jdbcType="INTEGER" property="messageid" />
+    <result column="messageType" jdbcType="VARCHAR" property="messagetype" />
+    <result column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    messageId, messageType, orderId, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_deliverMessage
+    where messageId = #{messageid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_deliverMessage
+    where messageId = #{messageid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPDeliverMessage">
+    insert into cbp_deliverMessage (messageId, messageType, orderId, 
+      status)
+    values (#{messageid,jdbcType=INTEGER}, #{messagetype,jdbcType=VARCHAR}, #{orderid,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPDeliverMessage">
+    insert into cbp_deliverMessage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="messageid != null">
+        messageId,
+      </if>
+      <if test="messagetype != null">
+        messageType,
+      </if>
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="messageid != null">
+        #{messageid,jdbcType=INTEGER},
+      </if>
+      <if test="messagetype != null">
+        #{messagetype,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPDeliverMessage">
+    update cbp_deliverMessage
+    <set>
+      <if test="messagetype != null">
+        messageType = #{messagetype,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null">
+        orderId = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where messageId = #{messageid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPDeliverMessage">
+    update cbp_deliverMessage
+    set messageType = #{messagetype,jdbcType=VARCHAR},
+      orderId = #{orderid,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR}
+    where messageId = #{messageid,jdbcType=INTEGER}
+  </update>
+  <select id="getMessageByOrderAndType" resultMap="BaseResultMap" parameterType="com.blchina.cbp.model.CBPDeliverMessage">
+    SELECT * FROM cbp_deliverMessage WHERE  messageType = #{messagetype,jdbcType=VARCHAR} and orderId = #{orderid,jdbcType=INTEGER}
+  </select>
+  <update id="updateSetByOrderAndType" parameterType="com.blchina.cbp.model.CBPDeliverMessage">
+      update cbp_deliverMessage
+    set  status = #{status,jdbcType=VARCHAR}
+    where  orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+  <select id="getMessageStatus" parameterType="com.blchina.cbp.model.CBPDeliverMessage" resultMap="BaseResultMap">
+    SELECT * FROM cbp_deliverMessage WHERE   messageType = #{messagetype,jdbcType=VARCHAR} and orderId = #{orderid,jdbcType=INTEGER}
+  </select>
+  <select id="getMessageByOrderId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT * FROM cbp_deliverMessage WHERE  orderId = #{orderid,jdbcType=INTEGER}
+  </select>
+</mapper>

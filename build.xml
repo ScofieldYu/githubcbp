@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="blchina" default="default" >
+    <import file="buildConfig.xml" />
+
+    <tstamp prefix="build">
+        <format property="time" pattern="yyyy-MM-dd.HH.mm.ss"/>
+        <format property="date" pattern="yyyyMMddHHmmss"/>
+    </tstamp>
+
+    <tstamp>
+        <format property="TODAY_UK" pattern="yyyyMMdd_HHmmsssss"  locale="cn,CN"/>
+    </tstamp>
+
+    <!-- deploy dir -->
+    <property name="admin.deploy.dir" value="/app/deploy/blchina/admin" />
+    <property name="app.deploy.dir" value="/app/deploy/blchina/app" />
+    <property name="huanche.deploy.dir" value="/app/deploy/blchina/huanche" />
+
+    <!-- war -->
+    <property name="admin-war" value="${basedir}/blchina-admin/target/blchina-admin-1.0-SNAPSHOT.war" />
+    <property name="app-war" value="${basedir}/blchina-app/target/blchina-app-1.0-SNAPSHOT.war" />
+    <property name="huanche-war" value="${basedir}/blchina-huanche/target/blchina-huanche-1.0-SNAPSHOT.war" />
+
+    <target name="prepare-admin">
+        <exec executable="/bin/bash" >
+            <arg line="-c 'rm -rf ${admin.deploy.dir}'" />
+        </exec>
+        <mkdir dir="${admin.deploy.dir}"/>
+    </target>
+
+    <target name="prepare-app">
+        <exec executable="/bin/bash" >
+            <arg line="-c 'mv ${app.deploy.dir} ${app.deploy.dir}_${TODAY_UK}'" />
+        </exec>
+        <exec executable="/bin/bash" >
+            <arg line="-c 'rm -rf ${app.deploy.dir}'" />
+        </exec>
+        <mkdir dir="${app.deploy.dir}"/>
+    </target>
+
+    <target name="prepare-huanche">
+        <exec executable="/bin/bash" >
+            <arg line="-c 'rm -rf ${huanche.deploy.dir}'" />
+        </exec>
+        <mkdir dir="${huanche.deploy.dir}"/>
+    </target>
+
+    <target name="war-admin-trunk" >
+        <echo>War this project ..</echo>
+        <exec executable="mvn" >
+            <arg value="clean"/>
+            <arg value="package"/>
+            <arg value="-Dmaven.test.skip=true"/>
+            <arg value="-am"/>
+            <arg value="-pl"/>
+            <arg value="blchina-admin"/>
+        </exec>
+        <echo>War Success : ${war.dir}</echo>
+    </target>
+
+    <target name="war-admin-beta" >
+        <echo>War this project ..</echo>
+        <exec executable="mvn" >
+            <arg value="clean"/>
+            <arg value="package"/>
+            <arg value="-Pbeta"/>
+            <arg value="-Dmaven.test.skip=true"/>
+            <arg value="-am"/>
+            <arg value="-pl"/>
+            <arg value="blchina-admin"/>
+        </exec>
+        <echo>War Success : ${war.dir}</echo>
+    </target>
+
+    <target name="war-admin-preproduct" >
+        <echo>War this project ..</echo>
+        <exec executable="mvn" >
+            <arg value="clean"/>
+            <arg value="package"/>
+            <arg value="-Ppreproduct"/>
+            <arg value="-Dmaven.test.skip=true"/>
+            <arg value="-am"/>
+            <arg value="-pl"/>
+            <arg value="blchina-admin"/>
+        </exec>
+        <echo>War Success : ${war.dir}</echo>
+    </target>
+
+    <target name="war-admin-product" >
+        <echo>War this project ..</echo>
+        <exec executable="mvn" >
+            <arg value="clean"/>
+            <arg value="package"/>
+            <arg value="-Pproduct"/>
+            <arg value="-Dmaven.test.skip=true"/>
+            <arg value="-am"/>
+            <arg value="-pl"/>
+            <arg value="blchina-admin"/>
+        </exec>
+        <echo>War Success : ${war.dir}</echo>
+    </target>
+
+    <target name="war-app-trunk" >
+        <echo>War this project ..</echo>
+        <exec executable="mvn" >
+            <arg value="clean"/>
+            <arg value="package"/>
+            <arg value="-Dmaven.test.skip=true"/>
+            <arg value="-am"/>
+            <arg value="-pl"/>
+            <arg value="blchina-app"/>
+        </exec>
+        <echo>War Success : ${war.dir}</echo>
+    </target>
+
+    <target name="war-app-beta" >
+        <echo>War this project ..</echo>
+        <exec executable="mvn" >
+            <arg value="clean"/>
+            <arg value="package"/>
+            <arg value="-Pbeta"/>
+            <arg value="-Dmaven.test.skip=true"/>
+            <arg value="-am"/>
+            <arg value="-pl"/>
+            <arg value="blchina-app"/>
+        </exec>
+        <echo>War Success : ${war.dir}</echo>
+    </target>
+
+    <target name="war-app-product" >
+        <echo>War this project ..</echo>
+        <exec executable="mvn" >
+            <arg value="clean"/>
+            <arg value="package"/>
+            <arg value="-Pproduct"/>
+            <arg value="-Dmaven.test.skip=true"/>
+            <arg value="-am"/>
+            <arg value="-pl"/>
+            <arg value="blchina-app"/>
+        </exec>
+        <echo>War Success : ${war.dir}</echo>
+    </target>
+
+    <target name="war-app-preproduct" >
+        <echo>War this project ..</echo>
+        <exec executable="mvn" >
+            <arg value="clean"/>
+            <arg value="package"/>
+            <arg value="-Ppreproduct"/>
+            <arg value="-Dmaven.test.skip=true"/>
+            <arg value="-am"/>
+            <arg value="-pl"/>
+            <arg value="blchina-app"/>
+        </exec>
+        <echo>War Success : ${war.dir}</echo>
+    </target>
+
+    <target name="war-huanche-trunk" >
+        <echo>War this project ..</echo>
+        <exec executable="mvn" >
+            <arg value="clean"/>
+            <arg value="package"/>
+            <arg value="-Dmaven.test.skip=true"/>
+            <arg value="-am"/>
+            <arg value="-pl"/>
+            <arg value="blchina-huanche"/>
+        </exec>
+        <echo>War Success : ${war.dir}</echo>
+    </target>
+
+    <target name="war-huanche-beta" >
+        <echo>War this project ..</echo>
+        <exec executable="mvn" >
+            <arg value="clean"/>
+            <arg value="package"/>
+            <arg value="-Pbeta"/>
+            <arg value="-Dmaven.test.skip=true"/>
+            <arg value="-am"/>
+            <arg value="-pl"/>
+            <arg value="blchina-huanche"/>
+        </exec>
+        <echo>War Success : ${war.dir}</echo>
+    </target>
+
+    <target name="war-huanche-product" >
+        <echo>War this project ..</echo>
+        <exec executable="mvn" >
+            <arg value="clean"/>
+            <arg value="package"/>
+            <arg value="-Pproduct"/>
+            <arg value="-Dmaven.test.skip=true"/>
+            <arg value="-am"/>
+            <arg value="-pl"/>
+            <arg value="blchina-huanche"/>
+        </exec>
+        <echo>War Success : ${war.dir}</echo>
+    </target>
+
+    <target name="war-huanche-preproduct" >
+        <echo>War this project ..</echo>
+        <exec executable="mvn" >
+            <arg value="clean"/>
+            <arg value="package"/>
+            <arg value="-Ppreproduct"/>
+            <arg value="-Dmaven.test.skip=true"/>
+            <arg value="-am"/>
+            <arg value="-pl"/>
+            <arg value="blchina-huanche"/>
+        </exec>
+        <echo>War Success : ${war.dir}</echo>
+    </target>
+
+
+    <!-- ##################################deploy######################################-->
+
+    <target name="deploy-app-trunk" depends="prepare-app, war-app-trunk">
+        <echo>Begin deploy...</echo>
+        <exec executable="jar" dir="${app.deploy.dir}">
+            <arg value="-xfM"/>
+            <arg value="${app-war}" />
+        </exec>
+        <echo>deploy complete at ${build.time}.</echo>
+        <echo>now you can start the app tomcat.</echo>
+    </target>
+
+    <target name="deploy-app-beta" depends="prepare-app, war-app-beta">
+        <echo>Begin deploy...</echo>
+        <exec executable="jar" dir="${app.deploy.dir}">
+            <arg value="-xfM"/>
+            <arg value="${app-war}" />
+        </exec>
+        <echo>deploy complete at ${build.time}.</echo>
+        <echo>now you can start the app tomcat.</echo>
+    </target>
+
+    <target name="deploy-app-preproduct" depends="prepare-app, war-app-preproduct">
+        <echo>Begin deploy...</echo>
+        <exec executable="jar" dir="${app.deploy.dir}">
+            <arg value="-xfM"/>
+            <arg value="${app-war}" />
+        </exec>
+        <echo>deploy complete at ${build.time}.</echo>
+        <echo>now you can start the app tomcat.</echo>
+    </target>
+
+    <target name="deploy-app-product" depends="prepare-app, war-app-product">
+        <echo>Begin deploy...</echo>
+        <exec executable="jar" dir="${app.deploy.dir}">
+            <arg value="-xfM"/>
+            <arg value="${app-war}" />
+        </exec>
+        <echo>deploy complete at ${build.time}.</echo>
+        <echo>now you can start the app tomcat.</echo>
+    </target>
+
+    <target name="deploy-huanche-trunk" depends="prepare-huanche, war-huanche-trunk">
+        <echo>Begin deploy...</echo>
+        <exec executable="jar" dir="${huanche.deploy.dir}">
+            <arg value="-xfM"/>
+            <arg value="${huanche-war}" />
+        </exec>
+        <echo>deploy complete at ${build.time}.</echo>
+        <echo>now you can start the huanche tomcat.</echo>
+    </target>
+
+    <target name="deploy-huanche-beta" depends="prepare-huanche, war-huanche-beta">
+        <echo>Begin deploy...</echo>
+        <exec executable="jar" dir="${huanche.deploy.dir}">
+            <arg value="-xfM"/>
+            <arg value="${huanche-war}" />
+        </exec>
+
+        <echo>deploy complete at ${build.time}.</echo>
+        <echo>now you can start the huanche tomcat.</echo>
+    </target>
+
+    <target name="deploy-huanche-product" depends="prepare-huanche, war-huanche-product">
+        <echo>Begin deploy...</echo>
+        <exec executable="jar" dir="${huanche.deploy.dir}">
+            <arg value="-xfM"/>
+            <arg value="${huanche-war}" />
+        </exec>
+        <echo>deploy complete at ${build.time}.</echo>
+        <echo>now you can start the huanche tomcat.</echo>
+    </target>
+
+    <target name="deploy-huanche-preproduct" depends="prepare-huanche, war-huanche-preproduct">
+        <echo>Begin deploy...</echo>
+        <exec executable="jar" dir="${huanche.deploy.dir}">
+            <arg value="-xfM"/>
+            <arg value="${huanche-war}" />
+        </exec>
+        <echo>deploy complete at ${build.time}.</echo>
+        <echo>now you can start the huanche tomcat.</echo>
+    </target>
+
+    <target name="default">
+        <echo>ant deploy-app-trunk</echo>
+        <echo>ant deploy-app-beta</echo>
+        <echo>ant deploy-app-preproduct</echo>
+        <echo>ant deploy-app-product</echo>
+
+        <echo>ant deploy-huanche-trunk</echo>
+        <echo>ant deploy-huanche-beta</echo>
+        <echo>ant deploy-huanche-preproduct</echo>
+        <echo>ant deploy-huanche-product</echo>
+
+
+    </target>
+</project>

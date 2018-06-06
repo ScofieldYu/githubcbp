@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPInsuranceOrderMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPInsuranceOrder">
+    <id column="insuranceOrderId" jdbcType="INTEGER" property="insuranceorderid" />
+    <result column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="insuranceLimit" jdbcType="VARCHAR" property="insurancelimit" />
+    <result column="insuranceId" jdbcType="INTEGER" property="insuranceid" />
+    <result column="expense" jdbcType="VARCHAR" property="expense" />
+    <result column="isNoDeductible" jdbcType="VARCHAR" property="isnodeductible" />
+    <result column="insuranceType" jdbcType="VARCHAR" property="insurancetype" />
+    <result column="insuranceName" jdbcType="VARCHAR" property="insurancename" />
+    <result column="insuranceCompanyId" jdbcType="INTEGER" property="insurancecompanyid" />
+    <result column="insuranceCompanyName" jdbcType="VARCHAR" property="insurancecompanyname" />
+    <result column="insuranceBeneficiary" jdbcType="VARCHAR" property="insurancebeneficiary" />
+    <result column="insuranceInvoice" jdbcType="VARCHAR" property="insuranceinvoice" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="giveInsurance" jdbcType="VARCHAR" property="giveinsurance" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    insuranceOrderId, orderId, insuranceLimit, insuranceId, expense, isNoDeductible, 
+    insuranceType, insuranceName, insuranceCompanyId, insuranceCompanyName, insuranceBeneficiary, 
+    insuranceInvoice, status,giveInsurance
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_insurance_Order
+    where insuranceOrderId = #{insuranceorderid,jdbcType=INTEGER}
+  </select>
+    <select id="selectInsuranceOrderListByOrderId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_insurance_Order
+    where orderId = #{orderId,jdbcType=INTEGER}
+  </select> 
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_insurance_Order
+    where insuranceOrderId = #{insuranceorderid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPInsuranceOrder">
+    insert into cbp_insurance_Order (insuranceOrderId, orderId, insuranceLimit, 
+      insuranceId, expense, isNoDeductible, 
+      insuranceType, insuranceName, insuranceCompanyId, 
+      insuranceCompanyName, insuranceBeneficiary, 
+      insuranceInvoice, status,giveInsurance)
+    values (#{insuranceorderid,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, #{insurancelimit,jdbcType=VARCHAR}, 
+      #{insuranceid,jdbcType=INTEGER}, #{expense,jdbcType=VARCHAR}, #{isnodeductible,jdbcType=VARCHAR}, 
+      #{insurancetype,jdbcType=VARCHAR}, #{insurancename,jdbcType=VARCHAR}, #{insurancecompanyid,jdbcType=INTEGER}, 
+      #{insurancecompanyname,jdbcType=VARCHAR}, #{insurancebeneficiary,jdbcType=VARCHAR}, 
+      #{insuranceinvoice,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},#{giveinsurance})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPInsuranceOrder">
+    insert into cbp_insurance_Order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="insuranceorderid != null">
+        insuranceOrderId,
+      </if>
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="insurancelimit != null">
+        insuranceLimit,
+      </if>
+      <if test="insuranceid != null">
+        insuranceId,
+      </if>
+      <if test="expense != null">
+        expense,
+      </if>
+      <if test="isnodeductible != null">
+        isNoDeductible,
+      </if>
+      <if test="insurancetype != null">
+        insuranceType,
+      </if>
+      <if test="insurancename != null">
+        insuranceName,
+      </if>
+      <if test="insurancecompanyid != null">
+        insuranceCompanyId,
+      </if>
+      <if test="insurancecompanyname != null">
+        insuranceCompanyName,
+      </if>
+      <if test="insurancebeneficiary != null">
+        insuranceBeneficiary,
+      </if>
+      <if test="insuranceinvoice != null">
+        insuranceInvoice,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="giveinsurance != null">
+        giveInsurance,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="insuranceorderid != null">
+        #{insuranceorderid,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="insurancelimit != null">
+        #{insurancelimit,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceid != null">
+        #{insuranceid,jdbcType=INTEGER},
+      </if>
+      <if test="expense != null">
+        #{expense,jdbcType=VARCHAR},
+      </if>
+      <if test="isnodeductible != null">
+        #{isnodeductible,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancetype != null">
+        #{insurancetype,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancename != null">
+        #{insurancename,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancecompanyid != null">
+        #{insurancecompanyid,jdbcType=INTEGER},
+      </if>
+      <if test="insurancecompanyname != null">
+        #{insurancecompanyname,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancebeneficiary != null">
+        #{insurancebeneficiary,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceinvoice != null">
+        #{insuranceinvoice,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="giveinsurance != null">
+        #{giveinsurance,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPInsuranceOrder">
+    update cbp_insurance_Order
+    <set>
+      <if test="orderid != null">
+        orderId = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="insurancelimit != null">
+        insuranceLimit = #{insurancelimit,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceid != null">
+        insuranceId = #{insuranceid,jdbcType=INTEGER},
+      </if>
+      <if test="expense != null">
+        expense = #{expense,jdbcType=VARCHAR},
+      </if>
+      <if test="isnodeductible != null">
+        isNoDeductible = #{isnodeductible,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancetype != null">
+        insuranceType = #{insurancetype,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancename != null">
+        insuranceName = #{insurancename,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancecompanyid != null">
+        insuranceCompanyId = #{insurancecompanyid,jdbcType=INTEGER},
+      </if>
+      <if test="insurancecompanyname != null">
+        insuranceCompanyName = #{insurancecompanyname,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancebeneficiary != null">
+        insuranceBeneficiary = #{insurancebeneficiary,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceinvoice != null">
+        insuranceInvoice = #{insuranceinvoice,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="giveinsurance != null">
+        giveInsurance = #{giveinsurance,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where insuranceOrderId = #{insuranceorderid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPInsuranceOrder">
+    update cbp_insurance_Order
+    set orderId = #{orderid,jdbcType=INTEGER},
+      insuranceLimit = #{insurancelimit,jdbcType=VARCHAR},
+      insuranceId = #{insuranceid,jdbcType=INTEGER},
+      expense = #{expense,jdbcType=VARCHAR},
+      isNoDeductible = #{isnodeductible,jdbcType=VARCHAR},
+      insuranceType = #{insurancetype,jdbcType=VARCHAR},
+      insuranceName = #{insurancename,jdbcType=VARCHAR},
+      insuranceCompanyId = #{insurancecompanyid,jdbcType=INTEGER},
+      insuranceCompanyName = #{insurancecompanyname,jdbcType=VARCHAR},
+      insuranceBeneficiary = #{insurancebeneficiary,jdbcType=VARCHAR},
+      insuranceInvoice = #{insuranceinvoice,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      giveInsurance = #{giveinsurance,jdbcType=VARCHAR},
+    where insuranceOrderId = #{insuranceorderid,jdbcType=INTEGER}
+  </update>
+  <select id="getInsuranceOrder" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT * from cbp_insurance_Order t where t.orderId=#{orderid}
+  </select>
+  <update id="updateInsuranceByOrderId" parameterType="java.lang.Integer">
+    update cbp_insurance_Order
+    <set>
+      <if test="insurancelimit != null">
+        insuranceLimit = #{insurancelimit,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceid != null">
+        insuranceId = #{insuranceid,jdbcType=INTEGER},
+      </if>
+      <if test="expense != null">
+        expense = #{expense,jdbcType=VARCHAR},
+      </if>
+      <if test="isnodeductible != null">
+        isNoDeductible = #{isnodeductible,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancetype != null">
+        insuranceType = #{insurancetype,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancename != null">
+        insuranceName = #{insurancename,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancecompanyid != null">
+        insuranceCompanyId = #{insurancecompanyid,jdbcType=INTEGER},
+      </if>
+      <if test="insurancecompanyname != null">
+        insuranceCompanyName = #{insurancecompanyname,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancebeneficiary != null">
+        insuranceBeneficiary = #{insurancebeneficiary,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceinvoice != null">
+        insuranceInvoice = #{insuranceinvoice,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="giveinsurance != null">
+        giveInsurance = #{giveinsurance,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+</mapper>

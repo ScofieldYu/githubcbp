@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.employee.dao.BDLDutyMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.employee.model.BDLDuty">
+    <id column="dutyId" jdbcType="INTEGER" property="dutyid" />
+    <result column="dutyName" jdbcType="VARCHAR" property="dutyname" />
+    <result column="departmentId" jdbcType="INTEGER" property="departmentid" />
+    <result column="departmentName" jdbcType="VARCHAR" property="departmentname" />
+    <result column="titleId" jdbcType="INTEGER" property="titleid" />
+    <result column="titleName" jdbcType="VARCHAR" property="titlename" />
+    <result column="startDate" jdbcType="VARCHAR" property="startdate" />
+    <result column="endDate" jdbcType="VARCHAR" property="enddate" />
+    <result column="ZZF1" jdbcType="VARCHAR" property="zzf1" />
+    <result column="ZZF2" jdbcType="VARCHAR" property="zzf2" />
+    <result column="ZZF3" jdbcType="VARCHAR" property="zzf3" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    dutyId, dutyName, departmentId, departmentName, titleId, titleName, startDate, endDate, 
+    ZZF1, ZZF2, ZZF3
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_duty
+    where dutyId = #{dutyid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bdl_duty
+    where dutyId = #{dutyid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.employee.model.BDLDuty">
+    insert into bdl_duty (dutyId, dutyName, departmentId, 
+      departmentName, titleId, titleName, 
+      startDate, endDate, ZZF1, 
+      ZZF2, ZZF3)
+    values (#{dutyid,jdbcType=INTEGER}, #{dutyname,jdbcType=VARCHAR}, #{departmentid,jdbcType=INTEGER}, 
+      #{departmentname,jdbcType=VARCHAR}, #{titleid,jdbcType=INTEGER}, #{titlename,jdbcType=VARCHAR}, 
+      #{startdate,jdbcType=VARCHAR}, #{enddate,jdbcType=VARCHAR}, #{zzf1,jdbcType=VARCHAR}, 
+      #{zzf2,jdbcType=VARCHAR}, #{zzf3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.employee.model.BDLDuty">
+    insert into bdl_duty
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dutyid != null">
+        dutyId,
+      </if>
+      <if test="dutyname != null">
+        dutyName,
+      </if>
+      <if test="departmentid != null">
+        departmentId,
+      </if>
+      <if test="departmentname != null">
+        departmentName,
+      </if>
+      <if test="titleid != null">
+        titleId,
+      </if>
+      <if test="titlename != null">
+        titleName,
+      </if>
+      <if test="startdate != null">
+        startDate,
+      </if>
+      <if test="enddate != null">
+        endDate,
+      </if>
+      <if test="zzf1 != null">
+        ZZF1,
+      </if>
+      <if test="zzf2 != null">
+        ZZF2,
+      </if>
+      <if test="zzf3 != null">
+        ZZF3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dutyid != null">
+        #{dutyid,jdbcType=INTEGER},
+      </if>
+      <if test="dutyname != null">
+        #{dutyname,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentid != null">
+        #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="departmentname != null">
+        #{departmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="titleid != null">
+        #{titleid,jdbcType=INTEGER},
+      </if>
+      <if test="titlename != null">
+        #{titlename,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null">
+        #{startdate,jdbcType=VARCHAR},
+      </if>
+      <if test="enddate != null">
+        #{enddate,jdbcType=VARCHAR},
+      </if>
+      <if test="zzf1 != null">
+        #{zzf1,jdbcType=VARCHAR},
+      </if>
+      <if test="zzf2 != null">
+        #{zzf2,jdbcType=VARCHAR},
+      </if>
+      <if test="zzf3 != null">
+        #{zzf3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.employee.model.BDLDuty">
+    update bdl_duty
+    <set>
+      <if test="dutyname != null">
+        dutyName = #{dutyname,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentid != null">
+        departmentId = #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="departmentname != null">
+        departmentName = #{departmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="titleid != null">
+        titleId = #{titleid,jdbcType=INTEGER},
+      </if>
+      <if test="titlename != null">
+        titleName = #{titlename,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null">
+        startDate = #{startdate,jdbcType=VARCHAR},
+      </if>
+      <if test="enddate != null">
+        endDate = #{enddate,jdbcType=VARCHAR},
+      </if>
+      <if test="zzf1 != null">
+        ZZF1 = #{zzf1,jdbcType=VARCHAR},
+      </if>
+      <if test="zzf2 != null">
+        ZZF2 = #{zzf2,jdbcType=VARCHAR},
+      </if>
+      <if test="zzf3 != null">
+        ZZF3 = #{zzf3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dutyId = #{dutyid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.employee.model.BDLDuty">
+    update bdl_duty
+    set dutyName = #{dutyname,jdbcType=VARCHAR},
+      departmentId = #{departmentid,jdbcType=INTEGER},
+      departmentName = #{departmentname,jdbcType=VARCHAR},
+      titleId = #{titleid,jdbcType=INTEGER},
+      titleName = #{titlename,jdbcType=VARCHAR},
+      startDate = #{startdate,jdbcType=VARCHAR},
+      endDate = #{enddate,jdbcType=VARCHAR},
+      ZZF1 = #{zzf1,jdbcType=VARCHAR},
+      ZZF2 = #{zzf2,jdbcType=VARCHAR},
+      ZZF3 = #{zzf3,jdbcType=VARCHAR}
+    where dutyId = #{dutyid,jdbcType=INTEGER}
+  </update>
+</mapper>

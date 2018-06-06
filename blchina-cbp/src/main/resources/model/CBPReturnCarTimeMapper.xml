@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPReturnCarTimeMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPReturnCarTime">
+    <id column="retCarId" jdbcType="INTEGER" property="retcarid" />
+    <result column="customerId" jdbcType="INTEGER" property="customerid" />
+    <result column="employeeId" jdbcType="INTEGER" property="employeeid" />
+    <result column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="startTime" jdbcType="VARCHAR" property="starttime" />
+    <result column="endTime" jdbcType="VARCHAR" property="endtime" />
+    <result column="date" jdbcType="VARCHAR" property="date" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    retCarId, customerId, employeeId, orderId, startTime, endTime, date, status
+  </sql>
+  
+  <select id="getMaxDateByOrderId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT r.retCarId,r.customerId,r.employeeId,r.orderId,r.startTime,
+r.endTime,r.`status`,CONCAT(DATE_FORMAT(r.date,'%Y年%m月%d日')," ",
+CONCAT(r.startTime,"-",r.endTime)) 
+as date from cbp_returnCarTime r 
+where r.retCarId = (SELECT MAX(retCarId) 
+from cbp_returnCarTime where orderId = #{orderid} GROUP BY orderId)
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_returnCarTime
+    where retCarId = #{retcarid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_returnCarTime
+    where retCarId = #{retcarid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPReturnCarTime">
+    insert into cbp_returnCarTime (retCarId, customerId, employeeId, 
+      orderId, startTime, endTime, 
+      date, status)
+    values (#{retcarid,jdbcType=INTEGER}, #{customerid,jdbcType=INTEGER}, #{employeeid,jdbcType=INTEGER}, 
+      #{orderid,jdbcType=INTEGER}, #{starttime,jdbcType=VARCHAR}, #{endtime,jdbcType=VARCHAR}, 
+      #{date,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPReturnCarTime">
+    insert into cbp_returnCarTime
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="retcarid != null">
+        retCarId,
+      </if>
+      <if test="customerid != null">
+        customerId,
+      </if>
+      <if test="employeeid != null">
+        employeeId,
+      </if>
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="starttime != null">
+        startTime,
+      </if>
+      <if test="endtime != null">
+        endTime,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="retcarid != null">
+        #{retcarid,jdbcType=INTEGER},
+      </if>
+      <if test="customerid != null">
+        #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="employeeid != null">
+        #{employeeid,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPReturnCarTime">
+    update cbp_returnCarTime
+    <set>
+      <if test="customerid != null">
+        customerId = #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="employeeid != null">
+        employeeId = #{employeeid,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null">
+        orderId = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null">
+        startTime = #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null">
+        endTime = #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where retCarId = #{retcarid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPReturnCarTime">
+    update cbp_returnCarTime
+    set customerId = #{customerid,jdbcType=INTEGER},
+      employeeId = #{employeeid,jdbcType=INTEGER},
+      orderId = #{orderid,jdbcType=INTEGER},
+      startTime = #{starttime,jdbcType=VARCHAR},
+      endTime = #{endtime,jdbcType=VARCHAR},
+      date = #{date,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where retCarId = #{retcarid,jdbcType=INTEGER}
+  </update>
+  <select id="getEmployeeReturnTime" parameterType="com.blchina.cbp.model.CBPReturnCarTime" resultMap="BaseResultMap">
+    SELECT * FROM cbp_returnCarTime where   employeeId = #{employeeid,jdbcType=INTEGER} and   unix_timestamp(date) &gt; unix_timestamp(#{date})
+    order by unix_timestamp(date)
+  </select>
+  <select id="getCustomerReturnTime" parameterType="com.blchina.cbp.dto.CBPReturnCarTimeDTO" resultMap="BaseResultMap">
+    SELECT * FROM cbp_returnCarTime where   employeeId = #{employeeid,jdbcType=INTEGER} and   unix_timestamp(date) &gt; unix_timestamp(#{date})
+   AND  unix_timestamp(date) &lt; unix_timestamp(#{endDay}) order by unix_timestamp(date)
+  </select>
+  <select id="getReturnTimeByOrder" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT * FROM cbp_returnCarTime where   orderId = #{orderid,jdbcType=INTEGER}
+  </select>
+  <select id="getDayReturnTime" parameterType="com.blchina.cbp.model.CBPReturnCarTime" resultType="com.blchina.cbp.dto.ReturnCustomerDTO">
+         SELECT
+          t.startTime as starttime,
+          t.endTime as endtime,
+          o.carType as cartype,
+           o.realVinNo as vinno,
+          o.orderId as orderid,
+          o.customerName as customername,
+                 o.phoneNumber as phonenumber
+      FROM
+          cbp_returnCarTime t
+      LEFT JOIN cbp_order o ON o.orderId = t.orderId
+      WHERE t.date = #{date,jdbcType=VARCHAR}  AND
+     t.status = #{status,jdbcType=VARCHAR}  AND   t.employeeId = #{employeeid,jdbcType=INTEGER}
+     AND  t.orderId is not null
+  </select>
+  <select id="gettheReturnTime" parameterType="com.blchina.cbp.model.CBPReturnCarTime" resultMap="BaseResultMap">
+    SELECT *
+    FROM
+    cbp_returnCarTime
+    WHERE date = #{date,jdbcType=VARCHAR}   AND   employeeId = #{employeeid,jdbcType=INTEGER}
+    <if test="starttime != null">
+      and  startTime = #{starttime,jdbcType=VARCHAR}
+    </if>
+    <if test="endtime != null">
+      and endTime = #{endtime,jdbcType=VARCHAR}
+    </if>
+  </select>
+   <select id="getEmployeeReturnTimeAll"  parameterType="java.lang.Integer" resultMap="BaseResultMap">
+      SELECT * FROM cbp_returnCarTime where   employeeId = #{employeeid,jdbcType=INTEGER} order by unix_timestamp(date)
+   </select>
+</mapper>

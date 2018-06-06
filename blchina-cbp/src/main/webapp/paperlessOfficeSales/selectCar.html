@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>订单详情</title>
+    <script src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/paperlessOfficeSales/selectCar.css">
+</head>
+<body>
+<div class="selectCar" id="selectCar">
+    <div class="selectCarTit">
+        <a href="javascript:void 0" onclick="history.back();"></a>
+        <p>选车</p>
+    </div>
+    <div class="selectCarList">
+        <ul>
+            <li class="selectCarLine">
+                <p class="selectTit">车系</p>
+                <p id="carseries" class="selectContent"></p>
+                <p><a href="javascript:void 0"></a></p>
+            </li>
+            <li class="selectCarModels">
+                <p class="selectTit">车型</p>
+                <p id="cartype" class="selectContent"></p>
+                <p><a href="javascript:void 0"></a></p>
+            </li>
+            <li class="appearance">
+                <p class="selectTit">外观</p>
+                <p id="carappearance" class="selectContent"></p>
+                <p><a href="javascript:void 0"></a></p>
+            </li>
+            <li class="interiorTrim">
+                <p class="selectTit">内饰</p>
+                <p id="carinterior" class="selectContent"></p>
+                <p><a href="javascript:void 0"></a></p>
+            </li>
+        </ul>
+    </div>
+    <div class="carImgAndPrice">
+        <p class="price">
+            <i></i>
+            指导价: ￥
+            <span>3000,000</span>
+        </p>
+        <div class="carImg">
+            <img class="appearanceImg" src="../img/paperlessOfficeSales/未标题-1.png" alt="">
+            <img class="InteriorTrimImg" src="../img/paperlessOfficeSales/未标题-2.png" alt="">
+        </div>
+        <div class="VIN">
+            <p>车架号 <span id="realvinno">4JGBB56E39A518228</span><i></i></p>
+        </div>
+    </div>
+    <div class="completeBtn">
+        <a href="javascript:void 0">完成</a>
+    </div>
+</div>
+<div class="carLine">
+    <div id="carLine" class="carLineContent">
+        <p>国产</p>
+        <ul class="domestic" carLine="国产">
+            <li>A3</li>
+            <li>A4</li>
+            <li>A4L</li>
+            <li>A6</li>
+            <li>A6L</li>
+            <li>Q3</li>
+            <li>Q5</li>
+            <li>A6</li>
+            <li>A6L</li>
+            <li>Q3</li>
+            <li>Q5</li>
+            <li>A6</li>
+            <li>A6L</li>
+            <li>Q3</li>
+            <li>Q5</li>
+        </ul>
+        <p>进口</p>
+        <ul class="imported" carLine="进口">
+            <li>A3</li>
+            <li>A4</li>
+            <li>A4L</li>
+            <li>A6</li>
+            <li>A6L</li>
+            <li>A6</li>
+            <li>A6L</li>
+            <li>A6</li>
+            <li>A6L</li>
+            <li>A6</li>
+            <li>A6L</li>
+            <li>A6</li>
+            <li>A6L</li>
+        </ul>
+    </div>
+</div>
+<div class="carModels">
+    <div id="carModels" class="carLineContent">
+        <p>2018款</p>
+        <ul models="2018">
+            <li>40TFIS 技术型</li>
+            <li>40TFIS 进取型</li>
+            <li>40TFIS 动感型plus</li>
+            <li>40TFIS 动感型plus</li>
+            <li>40TFIS 动感型plus</li>
+            <li>40TFIS 动感型plus</li>
+            <li>40TFIS 动感型plus</li>
+            <li>40TFIS 动感型plus</li>
+            <li>40TFIS 进取型</li>
+            <li>40TFIS 进取型</li>
+            <li>40TFIS 进取型</li>
+        </ul>
+        <p>2017款</p>
+        <ul models="2017">
+            <li>3.0 TFSI quattro</li>
+            <li>45TFIS quattro 越野型</li>
+            <li>45TFIS quattro 运动型</li>
+            <li>45TFIS quattro 进取型</li>
+            <li>40TFIS 动感型plus</li>
+            <li>40TFIS 动感型plus</li>
+            <li>40TFIS 动感型plus</li>
+            <li>40TFIS 动感型plus</li>
+            <li>40TFIS 动感型plus</li>
+            <li>40TFIS 动感型plus</li>
+            <li>40TFIS 进取型</li>
+            <li>40TFIS 进取型</li>
+            <li>40TFIS 进取型</li>
+        </ul>
+    </div>
+</div>
+<div class="carAppearance">
+    <div class="carLineContent">
+        <p>外观</p>
+        <ul id="appearance">
+            <li>白色</li>
+            <li>黑色</li>
+            <li>蓝色</li>
+            <li>红色</li>
+            <li>金色</li>
+        </ul>
+    </div>
+</div>
+<div class="carInteriorTrim">
+    <div class="carLineContent">
+        <p>内饰</p>
+        <ul id="interiorTrim">
+            <li>白色</li>
+            <li>黑色</li>
+            <li>蓝色</li>
+            <li>红色</li>
+            <li>金色</li>
+        </ul>
+    </div>
+</div>
+<div class="ECSDialog">
+    <div class="ECSShadow"></div>
+    <div class="ECSDialogContent">
+        <p class="ECSDialogContent-title">录入车架号</p>
+        <ul class="ECSDialogContent-list">
+            <li class="selectVIN">
+                <span>车架号：</span>
+                <input id="selectVINInput" type="text" value="" placeholder="请录入车架号">
+            </li>
+            <li class="selectVINReason">
+                <span>原&nbsp;&nbsp;&nbsp;&nbsp;因：</span>
+                <textarea id="selectVINReason" placeholder="请输入选车原因" maxlength="140"></textarea>
+                <p><span class="wordwrap"><var class="word">140</var>/140</span></p>
+            </li>
+        </ul>
+        <div class="ECSDialogContent-btn">
+            <a class="ECSDialogContent-btn-cancel" href="javascript:void 0">取消</a>
+            <a class="ECSDialogContent-btn-sure" href="javascript:void 0">确定</a>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/paperlessOfficeSales/selectCar.js"></script>
+</html>

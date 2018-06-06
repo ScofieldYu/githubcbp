@@ -1,0 +1,370 @@
+html {
+  /*1rem == 100px*/
+  font-size: 100px;
+}
+html,
+body {
+  height: 100%;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.header {
+  position: fixed;
+  top: 0;
+  box-sizing: border-box;
+  padding: 0 0.15rem 0 0.1rem;
+  width: 100%;
+  height: 0.3rem;
+  background: #f8f8f8;
+}
+.header .h_left {
+  float: left;
+  height: 0.3rem;
+  line-height: 0.3rem;
+  font-size: 0.15rem;
+  color: #ff0000;
+}
+.header .h_left .lBtn {
+  font-size: 0.24rem;
+  font-weight: 900;
+  vertical-align: -0.01rem;
+}
+.header .h_left .year {
+  margin-left: 0.02rem;
+}
+.header .h_right {
+  float: right;
+  height: 0.3rem;
+  line-height: 0.3rem;
+}
+.header .h_right .sign {
+  float: left;
+  margin-left: 0.13rem;
+  font-size: 0.08rem;
+  color: #666666;
+}
+.header .h_right .sign i {
+  display: inline-block;
+  width: 0.06rem;
+  height: 0.06rem;
+  border-radius: 50%;
+  border: 1px solid;
+  vertical-align: 0.01rem;
+}
+.header .h_right .sign i.free {
+  background: #FFFFFF;
+  border-color: #FFFFFF;
+}
+.header .h_right .sign i.general {
+  background: #ecebeb;
+  border-color: #ecebeb;
+}
+.header .h_right .sign i.busy {
+  background: #d0d6e0;
+  border-color: #d0d6e0;
+}
+.header .h_right .sign i.booking {
+  background: #ffffff;
+  border-color: #ff6600;
+}
+.header .h_right .sign span {
+  margin-left: -0.01rem;
+}
+.calendar_week {
+  position: fixed;
+  top: 0.3rem;
+  padding: 0 0.1rem;
+  width: 100%;
+  height: 0.17rem;
+  line-height: 0.17rem;
+  background: #f8f8f8;
+  border-bottom: 1px solid #d3d3d3;
+}
+.calendar_week .weekList li {
+  float: left;
+  width: 0.5rem;
+  height: 0.17rem;
+  line-height: 0.17rem;
+  text-align: center;
+  font-size: 0.1rem;
+  font-weight: 700;
+  color: #000000;
+}
+.calendar_week .weekList li.sun,
+.calendar_week .weekList li.sat {
+  color: #8b8b8b;
+}
+.calendar {
+  margin-top: 0.48rem;
+}
+.calendar .calendar_date .month {
+  padding-left: 0.15rem;
+  border-bottom: 1px solid #ebebeb;
+  height: 0.36rem;
+  line-height: 0.36rem;
+  color: #ff0000;
+  font-size: 0.15rem;
+  font-weight: 900;
+}
+.calendar .calendar_date .dayList {
+  margin-top: -1px;
+  padding-left: 0.1rem;
+}
+.calendar .calendar_date .dayList li {
+  visibility: hidden;
+  float: left;
+  width: 0.5rem;
+  height: 0.6rem;
+  line-height: 0.6rem;
+  text-align: center;
+  border-top: 1px solid #e5e5e5;
+  user-select: none;
+}
+.calendar .calendar_date .dayList li.show {
+  visibility: visible;
+}
+.calendar .calendar_date .dayList li.topLine {
+  border-color: #e6e6e6;
+}
+.calendar .calendar_date .dayList li div {
+  margin: 0.13rem auto 0;
+  width: 0.32rem;
+  height: 0.32rem;
+  background: #8796b0;
+  border-radius: 50%;
+  border: 0.02rem solid #ecebeb;
+  cursor: pointer;
+}
+.calendar .calendar_date .dayList li div b {
+  display: block;
+  width: 100%;
+  height: 0.19rem;
+  line-height: 0.19rem;
+  text-align: center;
+  font-size: 0.16rem;
+  font-weight: normal;
+  color: #999999;
+}
+.calendar .calendar_date .dayList li div i {
+  display: block;
+  width: 100%;
+  height: 0.08rem;
+  line-height: 0.08rem;
+  text-align: center;
+  font-size: 0.08rem;
+  color: #999999;
+}
+.calendar .calendar_date .dayList li div.free {
+  background-color: #FFFFFF;
+  border-color: #FFFFFF;
+}
+.calendar .calendar_date .dayList li div.free i {
+  color: #333333;
+}
+.calendar .calendar_date .dayList li div.free i:after {
+  content: '空闲';
+}
+.calendar .calendar_date .dayList li div.general {
+  background-color: #ecebeb;
+  border-color: #ecebeb;
+}
+.calendar .calendar_date .dayList li div.general i:after {
+  content: '一般';
+}
+.calendar .calendar_date .dayList li div.busy {
+  background-color: #d0d6e0;
+  border-color: #d0d6e0;
+}
+.calendar .calendar_date .dayList li div.busy b {
+  color: #FFFFFF;
+}
+.calendar .calendar_date .dayList li div.busy i {
+  color: #FFFFFF;
+}
+.calendar .calendar_date .dayList li div.busy i:after {
+  content: '忙碌';
+}
+.calendar .calendar_date .dayList li.booking div {
+  background-color: #ecebeb;
+  border-color: #e15868;
+}
+.calendar .calendar_date .dayList li.booking div i:after {
+  content: '预约';
+}
+.checkDeliverBtn {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 0.9rem;
+  line-height: 0.9rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+  bottom: 0;
+}
+.checkDeliverBtn a {
+  display: inline-block;
+  margin: 0 auto;
+  border-radius: 0.04rem;
+  box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.3);
+  width: 2.89rem;
+  height: 0.43rem;
+  line-height: 0.43rem;
+  background: #546e9a;
+  color: #FFFFFF;
+  font-size: 0.14rem;
+}
+.dialog_selectTime .selectTime {
+  width: 100%;
+  height: 0.6rem;
+  line-height: 0.6rem;
+  text-align: center;
+  font-size: 0.17rem;
+  color: #666666;
+}
+.dialog_selectTime .time {
+  margin: 0.1rem auto;
+  border: 1px solid #dddddd;
+  width: 2.5rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  border-radius: 0.04rem;
+  background: linear-gradient(to bottom, #f5f5f5 0, #fefefe 20%, #ffffff 25%, #ffffff 75%, #fefefe 80%, #f5f5f5);
+  font-size: 0.15rem;
+  color: #262626;
+}
+.dialog_selectTime .time b {
+  display: inline-block;
+  margin-left: 0.12rem;
+  width: 0.09rem;
+  height: 0.09rem;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, #e6e6e6 0, #4d4d4d);
+}
+.dialog_selectTime .time span {
+  margin-left: 0.16rem;
+}
+.dialog_selectTime .time i {
+  display: inline-block;
+  margin-left: 0.7rem;
+  vertical-align: -0.1rem;
+  width: 0.24rem;
+  height: 0.24rem;
+  background: url("../img/3-1-icon03.png") no-repeat;
+  background-size: 100%;
+}
+.dialog_selectTime .time.on {
+  border-color: #546e9a;
+}
+.dialog_selectTime .time.on b {
+  background: linear-gradient(to bottom, #bcc9e1 0, #476291);
+}
+.dialog_selectTime .time.on span {
+  color: #546e9a;
+}
+.dialog_selectTime .time.on i {
+  background-image: url("../img/3-1-icon04.png");
+}
+.dialog_sure p {
+  margin-top: 0.24rem;
+  width: 100%;
+  text-align: center;
+  font-size: 0.17rem;
+  color: #666666;
+}
+.dialog_appointment {
+  color: #666666;
+}
+.dialog_appointment .head {
+  margin-top: 0.18rem;
+  font-size: 0.17rem;
+  text-align: center;
+}
+.dialog_appointment .dialogCloseBtn {
+  width: 0.25rem;
+  height: 0.25rem;
+  background: url("../img/closeBtn.png") no-repeat;
+  background-size: 100%;
+  position: absolute;
+  right: 0.2rem;
+  top: 0.2rem;
+}
+.dialog_appointment .bdcon {
+  margin-top: 0.15rem;
+}
+.dialog_appointment .bdcon .pCon {
+  margin: 0.03rem auto 0;
+  border: 1px solid #dddddd;
+  border-radius: 0.04rem;
+  width: 2.64rem;
+  height: 1.16rem;
+}
+.dialog_appointment .bdcon .pCon .timeSection {
+  border-bottom: 1px solid #dddddd;
+  border-radius: 0.04rem;
+  width: 2.64rem;
+  height: 0.29rem;
+  line-height: 0.29rem;
+  text-align: center;
+  font-size: 0.17rem;
+  color: #546e9a;
+  background: linear-gradient(to bottom, #f5f5f5 0, #fefefe 20%, #ffffff 25%, #ffffff 75%, #fefefe 80%, #f5f5f5);
+}
+.dialog_appointment .bdcon .pCon .ulData {
+  padding: 0.06rem 0.15rem;
+  font-size: 0.12rem;
+}
+.dialog_appointment .bdcon .pCon .ulData li {
+  height: 0.25rem;
+  line-height: 0.25rem;
+}
+.dialog_appointment .bdcon .pCon .ulData li.phone {
+  float: right;
+}
+.dialog_appointment .bdcon .pCon .ulData li.cartype {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.dialog_appointment .bdcon .pCon.on {
+  border-color: #546e9a;
+}
+.dialog_appointment .bdcon .pCon.on .timeSection {
+  border-color: #546e9a;
+}
+.selectCustomer .tit {
+  margin-top: 0.25rem;
+  font-size: 0.17rem;
+  text-align: center;
+}
+.selectCustomer .seList {
+  margin-top: 0.15rem;
+  text-align: center;
+}
+.selectCustomer .seList span {
+  font-size: 0.15rem;
+  color: #262626;
+}
+.selectCustomer .seList .select {
+  display: inline-block;
+  margin-left: 0.1rem;
+  border: 1px solid #dddddd;
+  width: 1.9rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  border-radius: 0.04rem;
+  background: linear-gradient(to bottom, #f5f5f5 0, #fefefe 20%, #ffffff 25%, #ffffff 75%, #fefefe 80%, #f5f5f5);
+  font-size: 0.15rem;
+  text-align: left;
+  color: #262626;
+}
+.selectCustomer .seList .select label {
+  display: block;
+  margin-left: 0.12rem;
+  font-size: 0.14rem;
+  color: #262626;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  user-select: none;
+}

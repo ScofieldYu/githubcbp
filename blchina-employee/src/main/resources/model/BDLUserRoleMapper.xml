@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.employee.dao.BDLUserRoleMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.employee.model.BDLUserRole">
+    <id column="userroleId" jdbcType="INTEGER" property="userroleid" />
+    <result column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="roleId" jdbcType="INTEGER" property="roleid" />
+    <result column="companyCode" jdbcType="VARCHAR" property="companycode" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userroleId, userId, roleId, companyCode, area
+  </sql>
+  
+  <select id="getRoleKeyByEmployeeId" parameterType="java.lang.Integer" resultType="com.blchina.employee.model.BDLRole">
+    select * from bdl_role where roleId =  
+(select roleId from bdl_user_role where userroleId = (select 
+MAX(userroleId) from bdl_user_role where userId = #{userid}));
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_user_role
+    where userroleId = #{userroleid,jdbcType=INTEGER}
+  </select>
+  <select id="getUserIdByCompanyCodeAndRoleId" parameterType="com.blchina.employee.model.BDLUserRole" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_user_role
+    where roleId = #{roleid,jdbcType=INTEGER} and companyCode = #{companycode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bdl_user_role
+    where userroleId = #{userroleid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.employee.model.BDLUserRole">
+    insert into bdl_user_role (userroleId, userId, roleId, 
+      companyCode, area)
+    values (#{userroleid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, 
+      #{companycode,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.employee.model.BDLUserRole">
+    insert into bdl_user_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userroleid != null">
+        userroleId,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="roleid != null">
+        roleId,
+      </if>
+      <if test="companycode != null">
+        companyCode,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userroleid != null">
+        #{userroleid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null">
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="companycode != null">
+        #{companycode,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.employee.model.BDLUserRole">
+    update bdl_user_role
+    <set>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null">
+        roleId = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="companycode != null">
+        companyCode = #{companycode,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userroleId = #{userroleid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.employee.model.BDLUserRole">
+    update bdl_user_role
+    set userId = #{userid,jdbcType=INTEGER},
+      roleId = #{roleid,jdbcType=INTEGER},
+      companyCode = #{companycode,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR}
+    where userroleId = #{userroleid,jdbcType=INTEGER}
+  </update>
+</mapper>

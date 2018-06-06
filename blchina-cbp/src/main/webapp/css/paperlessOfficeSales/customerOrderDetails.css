@@ -1,0 +1,668 @@
+html {
+  /*1rem == 100px*/
+  font-size: 100px;
+}
+html,
+body {
+  background: #f6f6f6;
+  height: 100%;
+  font-family: PingFangSC-Regular, sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.orderContent .orderTit {
+  position: relative;
+  box-sizing: border-box;
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  height: 0.45rem;
+  line-height: 0.45rem;
+  background: #FFFFFF;
+}
+.orderContent .orderTit p {
+  text-align: center;
+  font-size: 0.18rem;
+  color: #333333;
+}
+.orderContent .orderTit a {
+  position: absolute;
+  top: 0.15rem;
+  right: 0.15rem;
+  width: 0.15rem;
+  height: 0.15rem;
+  background: url("../../img/paperlessOfficeSales/od-more.png") no-repeat;
+  background-size: 100%;
+}
+.orderContent .orderInfo {
+  box-sizing: border-box;
+  border-bottom: 1px solid #eeeeee;
+  padding: 0.2rem;
+  background: #FFFFFF;
+}
+.orderContent .orderInfo p {
+  height: 0.27rem;
+  font-size: 0.12rem;
+  color: #666666;
+}
+.orderContent .orderInfo p:last-child {
+  height: auto;
+}
+.orderContent .orderInfo p span {
+  display: inline-block;
+  margin-left: 0.04rem;
+  color: #333333;
+}
+.orderContent .orderInfo2 {
+  border-bottom: 1px solid #dddddd;
+  background: #FFFFFF;
+}
+.orderContent .orderInfo2 p {
+  color: #666666;
+}
+.orderContent .orderInfo2 a {
+  display: inline-block;
+  margin-top: 0.1rem;
+  color: #408bfc;
+}
+.orderContent .orderInfo2 a i {
+  display: inline-block;
+  margin-left: 0.1rem;
+  width: 0.06rem;
+  height: 0.11rem;
+  vertical-align: middle;
+  background: url("../../img/paperlessOfficeSales/c-left-s.png") no-repeat;
+  background-size: 100%;
+}
+.orderContent .orderInfo2 .orderInfo2-logistics {
+  float: left;
+  box-sizing: border-box;
+  padding-left: 0.45rem;
+  padding-top: 0.15rem;
+  padding-bottom: 0.15rem;
+  width: 1.52rem;
+}
+.orderContent .orderInfo2 .orderInfo2-retainage {
+  margin-left: 1.52rem;
+  border-left: 1px solid #eeeeee;
+  padding-left: 0.3rem;
+  padding-top: 0.15rem;
+  padding-bottom: 0.15rem;
+}
+.orderContent .orderMsg {
+  margin-top: 0.69rem;
+}
+.orderContent .orderMsg p {
+  margin-bottom: 0.08rem;
+  text-align: center;
+  color: #999999;
+}
+.orderContent .backlog {
+  box-sizing: border-box;
+  margin-top: 0.1rem;
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  background: #FFFFFF;
+}
+.orderContent .backlog .title {
+  box-sizing: border-box;
+  border-bottom: 1px solid #eeeeee;
+  padding-left: 0.2rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  color: #666666;
+}
+.orderContent .backlog .title i {
+  vertical-align: middle;
+  display: inline-block;
+  margin-right: 0.1rem;
+  width: 0.15rem;
+  height: 0.15rem;
+  background: url("../../img/paperlessOfficeSales/cod-backlog.png") no-repeat;
+  background-size: 100%;
+}
+.orderContent .backlog ul {
+  padding-left: 0.45rem;
+  border-bottom: 1px solid #eeeeee;
+}
+.orderContent .backlog ul:last-of-type {
+  border-bottom: none;
+}
+.orderContent .backlog ul li {
+  position: relative;
+  box-sizing: border-box;
+  border-bottom: 1px solid #eeeeee;
+  height: 0.55rem;
+  line-height: 0.55rem;
+  font-size: 0.15rem;
+}
+.orderContent .backlog ul li:last-child {
+  border-bottom: none;
+}
+.orderContent .backlog ul li p {
+  display: inline-block;
+  width: 1.1rem;
+}
+.orderContent .backlog ul li p:last-of-type {
+  margin-left: 0.6rem;
+  text-align: right;
+  color: #999999;
+}
+.orderContent .backlog ul li a {
+  position: absolute;
+  top: 50%;
+  right: 0.2rem;
+  margin-top: -0.08rem;
+  width: 0.09rem;
+  height: 0.165rem;
+  background: url("../../img/paperlessOfficeSales/sc-def.png") no-repeat;
+  background-size: 100%;
+}
+.orderContent .processing {
+  box-sizing: border-box;
+  margin-top: 0.1rem;
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  background: #FFFFFF;
+}
+.orderContent .processing .title {
+  box-sizing: border-box;
+  border-bottom: 1px solid #eeeeee;
+  padding-left: 0.2rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  color: #666666;
+}
+.orderContent .processing .title i {
+  vertical-align: middle;
+  display: inline-block;
+  margin-right: 0.1rem;
+  width: 0.15rem;
+  height: 0.15rem;
+  background: url("../../img/paperlessOfficeSales/cod-backlog.png") no-repeat;
+  background-size: 100%;
+}
+.orderContent .processing ul {
+  padding-left: 0.45rem;
+  border-bottom: 1px solid #eeeeee;
+}
+.orderContent .processing ul:last-of-type {
+  border-bottom: none;
+}
+.orderContent .processing ul li {
+  position: relative;
+  box-sizing: border-box;
+  border-bottom: 1px solid #eeeeee;
+  height: 0.55rem;
+  line-height: 0.55rem;
+  font-size: 0.15rem;
+}
+.orderContent .processing ul li:last-child {
+  border-bottom: none;
+}
+.orderContent .processing ul li p {
+  display: inline-block;
+  width: 1.1rem;
+}
+.orderContent .processing ul li p:last-of-type {
+  margin-left: 0.6rem;
+  text-align: right;
+  color: #999999;
+}
+.orderContent .processing ul li a {
+  position: absolute;
+  top: 50%;
+  right: 0.2rem;
+  margin-top: -0.08rem;
+  width: 0.09rem;
+  height: 0.165rem;
+  background: url("../../img/paperlessOfficeSales/sc-def.png") no-repeat;
+  background-size: 100%;
+}
+.orderContent .processing .title i {
+  background-image: url("../../img/paperlessOfficeSales/cod-processing.png");
+}
+.orderContent .completed {
+  box-sizing: border-box;
+  margin-top: 0.1rem;
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  background: #FFFFFF;
+}
+.orderContent .completed .title {
+  box-sizing: border-box;
+  border-bottom: 1px solid #eeeeee;
+  padding-left: 0.2rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  color: #666666;
+}
+.orderContent .completed .title i {
+  vertical-align: middle;
+  display: inline-block;
+  margin-right: 0.1rem;
+  width: 0.15rem;
+  height: 0.15rem;
+  background: url("../../img/paperlessOfficeSales/cod-backlog.png") no-repeat;
+  background-size: 100%;
+}
+.orderContent .completed ul {
+  padding-left: 0.45rem;
+  border-bottom: 1px solid #eeeeee;
+}
+.orderContent .completed ul:last-of-type {
+  border-bottom: none;
+}
+.orderContent .completed ul li {
+  position: relative;
+  box-sizing: border-box;
+  border-bottom: 1px solid #eeeeee;
+  height: 0.55rem;
+  line-height: 0.55rem;
+  font-size: 0.15rem;
+}
+.orderContent .completed ul li:last-child {
+  border-bottom: none;
+}
+.orderContent .completed ul li p {
+  display: inline-block;
+  width: 1.1rem;
+}
+.orderContent .completed ul li p:last-of-type {
+  margin-left: 0.6rem;
+  text-align: right;
+  color: #999999;
+}
+.orderContent .completed ul li a {
+  position: absolute;
+  top: 50%;
+  right: 0.2rem;
+  margin-top: -0.08rem;
+  width: 0.09rem;
+  height: 0.165rem;
+  background: url("../../img/paperlessOfficeSales/sc-def.png") no-repeat;
+  background-size: 100%;
+}
+.orderContent .completed .title i {
+  background-image: url("../../img/paperlessOfficeSales/cod-completed.png");
+}
+.orderContent .orderListSum {
+  box-sizing: border-box;
+  margin-top: 0.1rem;
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  background: #FFFFFF;
+}
+.orderContent .orderListSum .title {
+  box-sizing: border-box;
+  border-bottom: 1px solid #eeeeee;
+  padding-left: 0.2rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  color: #666666;
+}
+.orderContent .orderListSum .title i {
+  vertical-align: middle;
+  display: inline-block;
+  margin-right: 0.1rem;
+  width: 0.15rem;
+  height: 0.15rem;
+  background: url("../../img/paperlessOfficeSales/cod-backlog.png") no-repeat;
+  background-size: 100%;
+}
+.orderContent .orderListSum ul {
+  padding-left: 0.45rem;
+  border-bottom: 1px solid #eeeeee;
+}
+.orderContent .orderListSum ul:last-of-type {
+  border-bottom: none;
+}
+.orderContent .orderListSum ul li {
+  position: relative;
+  box-sizing: border-box;
+  border-bottom: 1px solid #eeeeee;
+  height: 0.55rem;
+  line-height: 0.55rem;
+  font-size: 0.15rem;
+}
+.orderContent .orderListSum ul li:last-child {
+  border-bottom: none;
+}
+.orderContent .orderListSum ul li p {
+  display: inline-block;
+  width: 1.1rem;
+}
+.orderContent .orderListSum ul li p:last-of-type {
+  margin-left: 0.6rem;
+  text-align: right;
+  color: #999999;
+}
+.orderContent .orderListSum ul li a {
+  position: absolute;
+  top: 50%;
+  right: 0.2rem;
+  margin-top: -0.08rem;
+  width: 0.09rem;
+  height: 0.165rem;
+  background: url("../../img/paperlessOfficeSales/sc-def.png") no-repeat;
+  background-size: 100%;
+}
+.orderContent .orderListSum .title {
+  position: relative;
+  height: 0.55rem;
+  line-height: 0.55rem;
+}
+.orderContent .orderListSum .title i {
+  vertical-align: -0.05rem;
+  background-image: url("../../img/paperlessOfficeSales/cod-orderList.png");
+}
+.orderContent .orderListSum .title a {
+  position: absolute;
+  top: 50%;
+  right: 0.2rem;
+  margin-top: -0.08rem;
+  width: 0.09rem;
+  height: 0.165rem;
+  background: url("../../img/paperlessOfficeSales/sc-def.png") no-repeat;
+  background-size: 100%;
+}
+.orderContent .orderListSum .orderTotal {
+  padding-left: 0.2rem;
+  box-sizing: border-box;
+  height: 0.55rem;
+  line-height: 0.55rem;
+  font-size: 0.15rem;
+}
+.orderContent .orderListSum .orderTotal span {
+  float: right;
+  margin-right: 0.2rem;
+  color: #cc0000;
+}
+.orderContent .signBtnList {
+  box-sizing: border-box;
+  width: 100%;
+  height: 0.95rem;
+  line-height: 0.95rem;
+}
+.orderContent .signBtnList .callAdviser {
+  float: left;
+  margin-top: 0.3rem;
+  margin-left: 0.4rem;
+  box-sizing: border-box;
+  border: 1px solid #408bfc;
+  border-radius: 0.03rem;
+  width: 1.3rem;
+  height: 0.35rem;
+  line-height: 0.35rem;
+  text-align: center;
+  background: #FFFFFF;
+}
+.orderContent .signBtnList .callAdviser a {
+  display: block;
+  font-size: 0.15rem;
+  color: #408bfc;
+}
+.orderContent .signBtnList .paymentTail {
+  float: left;
+  margin-top: 0.3rem;
+  margin-left: 0.4rem;
+  box-sizing: border-box;
+  border: 1px solid #408bfc;
+  border-radius: 0.03rem;
+  width: 1.3rem;
+  height: 0.35rem;
+  line-height: 0.35rem;
+  text-align: center;
+  background: #FFFFFF;
+  border-color: #cc0000;
+  background: #cc0000;
+}
+.orderContent .signBtnList .paymentTail a {
+  display: block;
+  font-size: 0.15rem;
+  color: #408bfc;
+}
+.orderContent .signBtnList .paymentTail a {
+  color: #FFFFFF;
+}
+.orderContent .signBtnList .totalPrice {
+  float: left;
+  box-sizing: border-box;
+  width: 1.51rem;
+  height: 0.55rem;
+  line-height: 0.55rem;
+}
+.orderContent .signBtnList .totalPrice span {
+  display: block;
+  text-align: center;
+  font-size: 0.12rem;
+}
+.orderContent .signBtnList .totalPrice span b {
+  font-size: 0.15rem;
+  font-weight: normal;
+  color: #cc0000;
+}
+.orderContent .signBtnList .orderListBtn {
+  float: left;
+  width: 1.05rem;
+  height: 0.55rem;
+}
+.orderContent .signBtnList .orderListBtn a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url("../../img/paperlessOfficeSales/cod-orderListBtn.png") no-repeat;
+  background-size: 100%;
+}
+.orderContent .signBtnList .signBtn {
+  float: right;
+  width: 1.19rem;
+  height: 0.55rem;
+  line-height: 0.55rem;
+  background: #cc0000;
+}
+.orderContent .signBtnList .signBtn a {
+  display: block;
+  text-align: center;
+  background: #cc0000;
+  font-size: 0.15rem;
+  color: #FFFFFF;
+}
+.paymentPage {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+.paymentPage .truePaymentPage {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #FFFFFF;
+}
+.paymentPage .truePaymentPage .closeBtn {
+  position: relative;
+  height: 0.41rem;
+}
+.paymentPage .truePaymentPage .closeBtn a {
+  position: absolute;
+  top: 0.15rem;
+  right: 0.2rem;
+  width: 0.15rem;
+  height: 0.15rem;
+  background: url("../../img/paperlessOfficeSales/closeBtn.png") no-repeat;
+  background-size: 100%;
+}
+.paymentPage .truePaymentPage .payTitle {
+  box-sizing: border-box;
+  border-bottom: 1px solid #eeeeee;
+  height: 0.58rem;
+  line-height: 0.58rem;
+}
+.paymentPage .truePaymentPage .payTitle p {
+  font-size: 0.18rem;
+  color: #333333;
+  text-align: center;
+}
+.paymentPage .truePaymentPage .payList ul {
+  border-bottom: 1px solid #eeeeee;
+}
+.paymentPage .truePaymentPage .payList ul li {
+  box-sizing: border-box;
+  margin-left: 0.35rem;
+  border-bottom: 1px solid #eeeeee;
+  height: 0.45rem;
+  line-height: 0.45rem;
+}
+.paymentPage .truePaymentPage .payList ul li:last-child {
+  border-bottom: none;
+}
+.paymentPage .truePaymentPage .payList ul li em {
+  vertical-align: text-top;
+  display: inline-block;
+  margin-right: 0.2rem;
+  width: 0.15rem;
+  height: 0.15rem;
+  background: url("../../img/paperlessOfficeSales/sc-selectNot.png") no-repeat;
+  background-size: 100%;
+}
+.paymentPage .truePaymentPage .payList ul li span {
+  font-size: 0.15rem;
+  color: #666666;
+}
+.paymentPage .truePaymentPage .payList ul li span b {
+  font-weight: normal;
+}
+.paymentPage .truePaymentPage .payList ul li.paymentSelect em {
+  background-image: url("../../img/paperlessOfficeSales/cod-selectNot.png");
+}
+.paymentPage .truePaymentPage .paySureBtn {
+  margin-top: 0.45rem;
+  margin-bottom: 0.3rem;
+}
+.paymentPage .truePaymentPage .paySureBtn a {
+  display: block;
+  margin: 0 auto;
+  width: 3.35rem;
+  height: 0.43rem;
+  line-height: 0.43rem;
+  text-align: center;
+  font-size: 0.15rem;
+  color: #FFFFFF;
+  background: #cc0000;
+}
+.invoiceInfoPage {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+.invoiceInfoPage .trueInvoiceInfoPage {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #FFFFFF;
+}
+.invoiceInfoPage .trueInvoiceInfoPage .closeBtn {
+  position: absolute;
+  right: 0;
+  width: 0.63rem;
+  height: 0.63rem;
+  line-height: 0.63rem;
+  text-align: center;
+}
+.invoiceInfoPage .trueInvoiceInfoPage .closeBtn a {
+  display: inline-block;
+  width: 0.15rem;
+  height: 0.15rem;
+  background: url("../../img/paperlessOfficeSales/closeBtn.png") no-repeat;
+  background-size: 100%;
+}
+.invoiceInfoPage .trueInvoiceInfoPage .invoiceInfoTitle {
+  margin-left: 0.2rem;
+  box-sizing: border-box;
+  height: 0.62rem;
+  line-height: 0.62rem;
+  font-size: 0.15rem;
+  color: #333333;
+}
+.invoiceInfoPage .trueInvoiceInfoPage .invoiceInfoList ul li {
+  margin-left: 0.2rem;
+  margin-bottom: 0.1rem;
+  box-sizing: border-box;
+  padding-left: 0.15rem;
+  border-radius: 0.03rem;
+  width: 3.35rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  background: #f6f6f6;
+}
+.invoiceInfoPage .trueInvoiceInfoPage .invoiceInfoList ul li:last-child {
+  margin-bottom: auto;
+}
+.invoiceInfoPage .trueInvoiceInfoPage .invoiceInfoList ul li input {
+  display: inline-block;
+  border: none;
+  width: 100%;
+  background: #f6f6f6;
+  font-size: 0.15rem;
+  color: #333333;
+}
+.invoiceInfoPage .trueInvoiceInfoPage .invoiceInfoSureBtn {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.invoiceInfoPage .trueInvoiceInfoPage .invoiceInfoSureBtn a {
+  display: block;
+  margin: 0 auto;
+  width: 3.35rem;
+  height: 0.43rem;
+  line-height: 0.43rem;
+  text-align: center;
+  font-size: 0.15rem;
+  color: #FFFFFF;
+  background: #cc0000;
+}
+.animated {
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes fadeInUp {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+.fadeInUp {
+  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInUp;
+}

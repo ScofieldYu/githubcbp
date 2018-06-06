@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPDepositMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPDeposit">
+    <id column="depositId" jdbcType="INTEGER" property="depositid" />
+    <result column="sapOrderId" jdbcType="VARCHAR" property="saporderid" />
+    <result column="bukrs" jdbcType="INTEGER" property="bukrs" />
+    <result column="belnr" jdbcType="INTEGER" property="belnr" />
+    <result column="gjahr" jdbcType="INTEGER" property="gjahr" />
+    <result column="depositFirst" jdbcType="VARCHAR" property="depositfirst" />
+    <result column="depositStatus" jdbcType="VARCHAR" property="depositstatus" />
+    <result column="depositSum" jdbcType="VARCHAR" property="depositsum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    depositId, sapOrderId, bukrs, belnr, gjahr, depositFirst, depositStatus, depositSum
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_deposit
+    where depositId = #{depositid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_deposit
+    where depositId = #{depositid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPDeposit">
+    insert into cbp_deposit (depositId, sapOrderId, bukrs, 
+      belnr, gjahr, depositFirst, 
+      depositStatus, depositSum)
+    values (#{depositid,jdbcType=INTEGER}, #{saporderid,jdbcType=VARCHAR}, #{bukrs,jdbcType=INTEGER}, 
+      #{belnr,jdbcType=INTEGER}, #{gjahr,jdbcType=INTEGER}, #{depositfirst,jdbcType=VARCHAR}, 
+      #{depositstatus,jdbcType=VARCHAR}, #{depositsum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPDeposit">
+    insert into cbp_deposit
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="depositid != null">
+        depositId,
+      </if>
+      <if test="saporderid != null">
+        sapOrderId,
+      </if>
+      <if test="bukrs != null">
+        bukrs,
+      </if>
+      <if test="belnr != null">
+        belnr,
+      </if>
+      <if test="gjahr != null">
+        gjahr,
+      </if>
+      <if test="depositfirst != null">
+        depositFirst,
+      </if>
+      <if test="depositstatus != null">
+        depositStatus,
+      </if>
+      <if test="depositsum != null">
+        depositSum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="depositid != null">
+        #{depositid,jdbcType=INTEGER},
+      </if>
+      <if test="saporderid != null">
+        #{saporderid,jdbcType=VARCHAR},
+      </if>
+      <if test="bukrs != null">
+        #{bukrs,jdbcType=INTEGER},
+      </if>
+      <if test="belnr != null">
+        #{belnr,jdbcType=INTEGER},
+      </if>
+      <if test="gjahr != null">
+        #{gjahr,jdbcType=INTEGER},
+      </if>
+      <if test="depositfirst != null">
+        #{depositfirst,jdbcType=VARCHAR},
+      </if>
+      <if test="depositstatus != null">
+        #{depositstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="depositsum != null">
+        #{depositsum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+   <select id="selectBySapOrderId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_deposit
+    where sapOrderId = #{parseInt}
+  </select>
+  <select id="selectByOrderId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_deposit
+     where cbp_deposit.sapOrderId = 
+	(select cbp_order.sapOrderId from cbp_order where orderId = #{parseInt})
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPDeposit">
+    update cbp_deposit
+    <set>
+      <if test="saporderid != null">
+        sapOrderId = #{saporderid,jdbcType=VARCHAR},
+      </if>
+      <if test="bukrs != null">
+        bukrs = #{bukrs,jdbcType=INTEGER},
+      </if>
+      <if test="belnr != null">
+        belnr = #{belnr,jdbcType=INTEGER},
+      </if>
+      <if test="gjahr != null">
+        gjahr = #{gjahr,jdbcType=INTEGER},
+      </if>
+      <if test="depositfirst != null">
+        depositFirst = #{depositfirst,jdbcType=VARCHAR},
+      </if>
+      <if test="depositstatus != null">
+        depositStatus = #{depositstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="depositsum != null">
+        depositSum = #{depositsum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where depositId = #{depositid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPDeposit">
+    update cbp_deposit
+    set sapOrderId = #{saporderid,jdbcType=VARCHAR},
+      bukrs = #{bukrs,jdbcType=INTEGER},
+      belnr = #{belnr,jdbcType=INTEGER},
+      gjahr = #{gjahr,jdbcType=INTEGER},
+      depositFirst = #{depositfirst,jdbcType=VARCHAR},
+      depositStatus = #{depositstatus,jdbcType=VARCHAR},
+      depositSum = #{depositsum,jdbcType=VARCHAR}
+    where depositId = #{depositid,jdbcType=INTEGER}
+  </update>
+</mapper>

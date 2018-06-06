@@ -1,0 +1,204 @@
+html {
+  /*1rem == 100px*/
+  font-size: 100px;
+}
+html,
+body {
+  height: 100%;
+  font-family: PingFangSC-Regular, sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.orderList {
+  position: relative;
+  width: 100%;
+  background: #FFFFFF;
+}
+.orderList .titleBg {
+  height: 0.48rem;
+  background: #475d82;
+}
+.orderList .orderCon {
+  margin: -0.48rem 0.12rem 0;
+}
+.orderList .orderCon .orderTit {
+  width: 100%;
+  height: 0.43rem;
+  line-height: 0.43rem;
+  text-align: center;
+  background: #546e9a;
+  font-size: 0.18rem;
+  color: #FFFFFF;
+}
+.orderList .orderCon .orderTit:before,
+.orderList .orderCon .orderTit:after {
+  content: '';
+  position: absolute;
+  top: -0.01rem;
+  width: 0.12rem;
+  height: 0.43rem;
+  background: #546e9a;
+}
+.orderList .orderCon .orderTit:before {
+  left: 0.06rem;
+  transform: skewX(15deg);
+}
+.orderList .orderCon .orderTit:after {
+  right: 0.06rem;
+  transform: skewX(-15deg);
+}
+.orderList .orderCon .buyingFile {
+  background: #fbfbfb;
+}
+.orderList .orderCon .buyingFile .bfTit {
+  height: 0.4rem;
+  line-height: 0.4rem;
+  background: #fbfbfb;
+  font-size: 0.15rem;
+  color: #666666;
+  border: 0.005rem solid #f1f1f1;
+  border-bottom: none;
+}
+.orderList .orderCon .buyingFile .bfTit i {
+  margin-left: 0.12rem;
+  margin-right: 0.12rem;
+  display: inline-block;
+  width: 0.18rem;
+  height: 0.18rem;
+  vertical-align: -0.04rem;
+  background: url("../img/dd-icon4.png") no-repeat;
+  background-size: 100%;
+}
+.orderList .orderCon .buyingFile .bfList {
+  box-sizing: border-box;
+  border: 0.01rem solid #f1f1f1;
+  border-bottom: 0.02rem solid #f1f1f1;
+  text-align: center;
+  font-size: 0.13rem;
+  color: #262626;
+}
+.orderList .orderCon .buyingFile .bfList .uploadList .upload {
+  position: relative;
+  box-sizing: border-box;
+  margin: 0.21rem auto 0;
+  border: 0.005rem solid #dddddd;
+  width: 2.89rem;
+  height: 1.7rem;
+  border-radius: 0.04rem;
+  background: #FFFFFF;
+  box-shadow: 0 0.02rem 0.025rem rgba(0, 0, 0, 0.08);
+}
+.orderList .orderCon .buyingFile .bfList .uploadList .upload .uploadBtn {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 1;
+}
+.orderList .orderCon .buyingFile .bfList .uploadList .upload .upBg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -0.39rem;
+  margin-left: -0.4rem;
+  width: 0.8rem;
+  height: 0.58rem;
+  background: url("../img/zl-pic02.png") no-repeat;
+  background-size: 100%;
+  z-index: 0;
+}
+.orderList .orderCon .buyingFile .bfList .uploadList .upload .upBg span {
+  position: absolute;
+  bottom: -0.25rem;
+  left: 0;
+  width: 0.8rem;
+  color: #666666;
+}
+.orderList .orderCon .buyingFile .bfList .uploadList .upload .close {
+  display: none;
+  position: absolute;
+  top: 0.1rem;
+  right: 0.1rem;
+  width: 0.22rem;
+  height: 0.22rem;
+  background: url("../img/closeBtn.png") no-repeat;
+  background-size: 100%;
+  z-index: 10;
+}
+.orderList .orderCon .buyingFile .bfList .uploadList .upload img {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+.orderList .orderCon .buyingFile .bfList .uploadList .upload.on .close {
+  display: block;
+}
+.orderList .orderCon .buyingFile .bfList .addBtn {
+  box-sizing: border-box;
+  margin: 0.17rem auto 0;
+  border: 0.005rem solid #dddddd;
+  width: 2.89rem;
+  height: 0.43rem;
+  line-height: 0.43rem;
+  text-align: center;
+  background: #f3f3f3;
+  border-radius: 0.04rem;
+  box-shadow: 0 0.02rem 0.025rem rgba(0, 0, 0, 0.08);
+}
+.orderList .orderCon .buyingFile .bfList .addBtn:active {
+  background-color: #FFFFFF;
+}
+.orderList .orderCon .buyingFile .bfList .addBtn a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 0.15rem;
+  color: #666666;
+}
+.orderList .orderCon .buyingFile .bfList .addBtn a i {
+  display: inline-block;
+  width: 0.21rem;
+  height: 0.18rem;
+  vertical-align: 0.01rem;
+}
+.orderList .orderCon .buyingFile .bfList .msg {
+  margin: 0.17rem auto 0.2rem;
+  font-size: 0.12rem;
+  color: #999999;
+}
+.orderList .orderCon .buyingFile .bfList .msg a {
+  text-decoration: underline;
+  color: #546e9a;
+}
+.orderList .orderCon .submitBtn {
+  display: block;
+  margin: 0.21rem auto 0.2rem;
+  width: 3.51rem;
+  height: 0.43rem;
+  line-height: 0.43rem;
+  border-radius: 0.04rem;
+  background: #546e9a;
+  box-shadow: 0 0.02rem 0.025rem rgba(0, 0, 0, 0.15);
+  text-align: center;
+  font-size: 0.14rem;
+  color: #FFFFFF;
+}
+.orderList .orderCon .m20 {
+  margin-top: 0.05rem;
+  width: 100%;
+  height: 0.001rem;
+}
+.bgImgShow {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}

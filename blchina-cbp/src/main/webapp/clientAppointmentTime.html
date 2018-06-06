@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <!--<meta name="format-detection" content="telephone=no"/>-->
+    <!--<meta name="apple-mobile-web-app-capable" content="yes"/>-->
+    <!--<meta name="apple-mobile-web-app-status-bar-style" content="black">-->
+    <title>预约交车</title>
+
+    <link rel="stylesheet" href="css/reset.css">
+
+    <script src="js/jquery.min.js"></script>
+
+    <script src="js/clientAppointmentTime.js"></script>
+
+    <link href="css/clientAppointmentTime.css" rel="stylesheet" />
+
+
+</head>
+<body>
+    <div class="bookingContent">
+
+
+        <!--<div class="content ">
+            <div class="dateTit">
+                <div class="col-xs-4">
+                    <i></i>12月22日
+                </div>
+            </div>
+            <div class="dateCon clearfix">
+                <div class="dateConTime ">
+                    <span class="timeSlot">
+                        09:30-11:30
+                    </span>
+                <em class=""></em>  
+
+                </div>
+                <div class="dateConTime select">
+                    <span class="timeSlot">
+                        11:30-15:30
+                    </span>
+                    <em class="q1"></em>            
+                </div>
+                <div class="dateConTime">
+                    <span class="timeSlot">
+                        15:30-17:30
+                    </span>
+                    <em></em>
+                </div>
+            </div>
+            <div class="shadow"></div>
+        </div>-->
+
+        <!--<div class="content prohibit ">
+            <div class="dateTit">
+                <div class="col-xs-4">
+                    <i></i>12月23日
+                </div>
+            </div>
+            <div class="dateCon clearfix">
+                <div class="dateConTime">
+                    <span class="timeSlot">
+                        09:30-11:30
+                    </span>
+                    <em></em>
+                </div>
+                <div class="dateConTime">
+                    <span class="timeSlot">
+                        11:30-15:30
+                    </span>
+                    <em></em>
+                </div>
+                <div class="dateConTime ">
+                    <span class="timeSlot">
+                        15:30-17:30
+                    </span>
+                    <em></em>
+                </div>
+            </div>
+            <div class="shadow"></div>
+        </div>
+        <div class="content ">
+            <div class="dateTit">
+                <div class="col-xs-4">
+                    <i></i>12月24日
+                </div>
+            </div>
+            <div class="dateCon clearfix">
+                <div class="dateConTime ">
+                    <span class="timeSlot">
+                        09:30-11:30
+                    </span>
+                    <em></em>
+                </div>
+                <div class="dateConTime impletion">
+
+                    <span class="timeSlot">
+                        11:30-15:30
+                    </span>
+                    <em></em>
+                    <i></i>
+                </div>
+                <div class="dateConTime">
+                    <span class="timeSlot">
+                        15:30-17:30
+                    </span>
+                    <em></em>
+                    
+                </div>
+            </div>
+            <div class="shadow"></div>
+        </div>
+        <div class="content ">
+            <div class="dateTit">
+                <div class="col-xs-4">
+                    <i></i>12月25日
+                </div>
+            </div>
+            <div class="dateCon clearfix">
+                <div class="dateConTime">
+                    <span class="timeSlot">
+                        09:30-11:30
+                    </span>
+                    <em></em>
+                </div>
+                <div class="dateConTime">
+                    <span class="timeSlot">
+                        11:30-15:30
+                    </span>
+                    <em></em>
+
+                </div>
+                <div class="dateConTime">
+                    <span class="timeSlot">
+                        15:30-17:30
+                    </span>
+                    <em></em>
+                </div>
+            </div>
+
+            <div class="shadow"></div>
+        </div>
+        <div class="content ">
+            <div class="dateTit">
+                <div class="col-xs-4">
+                    <i></i>12月26日
+                </div>     
+            </div>
+            <div class="dateCon clearfix">
+                <div class="dateConTime">
+                    <span class="timeSlot">
+                        09:30-11:30
+                    </span>
+                    <em></em>
+                </div>
+                <div class="dateConTime">
+                    <span class="timeSlot">
+                        11:30-15:30
+                    </span>
+                    <em></em>
+                </div>
+                <div class="dateConTime">
+                    <span class="timeSlot">
+                        15:30-17:30
+                    </span>
+                    <em></em>
+                </div>
+            </div>
+            <div class="shadow"></div>
+        </div>-->
+    </div>
+
+    <div class="bookingBtn">
+        <a href="javascript:void 0">确 定</a>
+    </div>
+
+
+</body>
+</html>
+
+<script>
+
+    //->动态计算REM的换算比例
+    /*~function (desW) {
+        var winW = document.documentElement.clientWidth;
+        document.documentElement.style.fontSize = winW / desW * 100 + "px";
+    }(375);*/
+
+    (function(doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function() {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                docEl.style.fontSize = 100 * (clientWidth / 375) + 'px';
+            };
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+
+</script>

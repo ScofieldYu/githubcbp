@@ -1,0 +1,142 @@
+@import 'mixin';
+body,html{
+    @include body;
+}
+.bdl_SellAdd{
+    @include Dom;
+    .list{
+        background: #fff;
+        display: flex;
+        height: .47rem;
+        padding: 0 .2rem;
+        align-items: center;
+        border-bottom: 1px solid #fafafa;
+        .rightPu{
+            @include addPu;
+        }
+        .txt{
+            @include display;
+            width: .4rem;
+            white-space: nowrap;
+            font-size: .13rem;
+        }
+        .input{
+            height: .38rem;
+            text-align: right;
+            background: #fff;
+            box-sizing: border-box;
+            flex:1;
+            border:0;
+        }
+    }
+    .bdl_pushAdd{
+        @include bdl_pushAdd;
+    }
+    .inputFile{
+         @include inputFile;
+    }
+}
+.carAppearance{
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #FFFFFF;
+  overflow-y: scroll;
+  .carLineContent{
+    p{
+      box-sizing: border-box;
+      border-top: 1px solid #dddddd;
+      border-bottom: 1px solid #dddddd;
+      padding-left: 0.2rem;
+      height: 0.25rem;
+      line-height: 0.25rem;
+      background: #eeeeee;
+      font-size: 0.12rem;
+      color: #999999;
+    }
+    ul{
+      li{
+        box-sizing: border-box;
+        margin-left: 0.2rem;
+        border-bottom: 1px solid #dddddd;
+        padding-left: 0.35rem;
+        height: 0.45rem;
+        line-height: 0.45rem;
+        font-size: 0.15rem;
+        color: #666666;
+        &:last-child{
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}
+.animated {
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+.fadeInRight {
+  -webkit-animation-name: fadeInRight;
+  animation-name: fadeInRight;
+}
+
+@-webkit-keyframes fadeOutRight {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+}
+@keyframes fadeOutRight {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+}
+.fadeOutRight {
+  -webkit-animation-name: fadeOutRight;
+  animation-name: fadeOutRight;
+}
+.input{
+    color:#999;
+}

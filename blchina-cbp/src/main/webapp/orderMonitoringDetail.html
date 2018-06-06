@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>订单详情</title>
+    <script src="js/config.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/orderMonitoringDetail.css">
+</head>
+<body>
+<div class="orderDetail">
+    <div class="headImg">
+        <div class="dateImg"></div>
+        <div class="orderNumber">
+            <span>订单编号</span>
+            <span id="saporderid"></span>
+        </div>
+        <div class="logistics">
+            <p>
+                <i></i>
+                <span id="logistStatus"></span>
+            </p>
+        </div>
+    </div>
+    <div class="orderBrief">
+        <div class="customerInfo">
+            <p>
+                <em class="customerName"></em>
+                <span>客户姓名</span>
+                <span id="customername"></span>
+            </p>
+            <p>
+                <em class="customerId"></em>
+                <span>证件号码</span>
+                <span id="idcardnum"></span>
+            </p>
+        </div>
+        <div class="employeeInfo">
+            <p>
+                <em class="brandId"></em>
+                <span>门店编号</span>
+                <span id="brandid"></span>
+            </p>
+            <p>
+                <em class="employeeName"></em>
+                <span>顾问名称</span>
+                <span id="employeename"></span>
+            </p>
+        </div>
+    </div>
+    <div class="orderState">
+        <ul>
+            <li>
+                <span>已触发具备交车按钮</span>
+                <b>.........................................</b>
+                <span id="delivertime"></span>
+            </li>
+            <li>
+                <span>关闭已下发无效合同</span>
+                <b>.........................................</b>
+                <span id="contractstatus"></span>
+            </li>
+            <li>
+                <span>顾问完成微信预约交车</span>
+                <b>.....................................</b>
+                <span id="employeeSet"></span>
+            </li>
+            <li>
+                <span>客户微信确认预约交车</span>
+                <b>.....................................</b>
+                <span id="customerSet"></span>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+<script src="./js/orderMonitoringDetail.js"></script>
+</html>

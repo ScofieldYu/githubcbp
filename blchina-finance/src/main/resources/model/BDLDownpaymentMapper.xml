@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.finance.dao.BDLDownpaymentMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.finance.model.BDLDownpayment">
+    <id column="downpaymentId" jdbcType="INTEGER" property="downpaymentid" />
+    <result column="bankId" jdbcType="INTEGER" property="bankid" />
+    <result column="downpaymentValue" jdbcType="VARCHAR" property="downpaymentvalue" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    downpaymentId, bankId, downpaymentValue
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_downpayment
+    where downpaymentId = #{downpaymentid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bdl_downpayment
+    where downpaymentId = #{downpaymentid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.finance.model.BDLDownpayment">
+    insert into bdl_downpayment (downpaymentId, bankId, downpaymentValue
+      )
+    values (#{downpaymentid,jdbcType=INTEGER}, #{bankid,jdbcType=INTEGER}, #{downpaymentvalue,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.finance.model.BDLDownpayment">
+    insert into bdl_downpayment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="downpaymentid != null">
+        downpaymentId,
+      </if>
+      <if test="bankid != null">
+        bankId,
+      </if>
+      <if test="downpaymentvalue != null">
+        downpaymentValue,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="downpaymentid != null">
+        #{downpaymentid,jdbcType=INTEGER},
+      </if>
+      <if test="bankid != null">
+        #{bankid,jdbcType=INTEGER},
+      </if>
+      <if test="downpaymentvalue != null">
+        #{downpaymentvalue,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.finance.model.BDLDownpayment">
+    update bdl_downpayment
+    <set>
+      <if test="bankid != null">
+        bankId = #{bankid,jdbcType=INTEGER},
+      </if>
+      <if test="downpaymentvalue != null">
+        downpaymentValue = #{downpaymentvalue,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where downpaymentId = #{downpaymentid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.finance.model.BDLDownpayment">
+    update bdl_downpayment
+    set bankId = #{bankid,jdbcType=INTEGER},
+      downpaymentValue = #{downpaymentvalue,jdbcType=VARCHAR}
+    where downpaymentId = #{downpaymentid,jdbcType=INTEGER}
+  </update>
+</mapper>

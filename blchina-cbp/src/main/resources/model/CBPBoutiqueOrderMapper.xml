@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPBoutiqueOrderMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPBoutiqueOrder">
+    <id column="boutiqueOrderId" jdbcType="INTEGER" property="boutiqueorderid" />
+    <result column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="createTime" jdbcType="VARCHAR" property="createtime" />
+    <result column="boutiqueConsultantId" jdbcType="INTEGER" property="boutiqueconsultantid" />
+    <result column="boutiqueConsultantName" jdbcType="VARCHAR" property="boutiqueconsultantname" />
+    <result column="boutiqueConsultantPhone" jdbcType="VARCHAR" property="boutiqueconsultantphone" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    boutiqueOrderId, orderId, createTime, boutiqueConsultantId, boutiqueConsultantName, 
+    boutiqueConsultantPhone, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_boutique_Order
+    where boutiqueOrderId = #{boutiqueorderid,jdbcType=INTEGER}
+  </select>
+  <select id="selectBoutiqueByOrderId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_boutique_Order
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_boutique_Order
+    where boutiqueOrderId = #{boutiqueorderid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPBoutiqueOrder">
+    insert into cbp_boutique_Order (boutiqueOrderId, orderId, createTime, 
+      boutiqueConsultantId, boutiqueConsultantName, 
+      boutiqueConsultantPhone, status)
+    values (#{boutiqueorderid,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, #{createtime,jdbcType=VARCHAR}, 
+      #{boutiqueconsultantid,jdbcType=INTEGER}, #{boutiqueconsultantname,jdbcType=VARCHAR}, 
+      #{boutiqueconsultantphone,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPBoutiqueOrder">
+    insert into cbp_boutique_Order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="boutiqueorderid != null">
+        boutiqueOrderId,
+      </if>
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="boutiqueconsultantid != null">
+        boutiqueConsultantId,
+      </if>
+      <if test="boutiqueconsultantname != null">
+        boutiqueConsultantName,
+      </if>
+      <if test="boutiqueconsultantphone != null">
+        boutiqueConsultantPhone,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="boutiqueorderid != null">
+        #{boutiqueorderid,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="boutiqueconsultantid != null">
+        #{boutiqueconsultantid,jdbcType=INTEGER},
+      </if>
+      <if test="boutiqueconsultantname != null">
+        #{boutiqueconsultantname,jdbcType=VARCHAR},
+      </if>
+      <if test="boutiqueconsultantphone != null">
+        #{boutiqueconsultantphone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPBoutiqueOrder">
+    update cbp_boutique_Order
+    <set>
+      <if test="orderid != null">
+        orderId = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="boutiqueconsultantid != null">
+        boutiqueConsultantId = #{boutiqueconsultantid,jdbcType=INTEGER},
+      </if>
+      <if test="boutiqueconsultantname != null">
+        boutiqueConsultantName = #{boutiqueconsultantname,jdbcType=VARCHAR},
+      </if>
+      <if test="boutiqueconsultantphone != null">
+        boutiqueConsultantPhone = #{boutiqueconsultantphone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where boutiqueOrderId = #{boutiqueorderid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPBoutiqueOrder">
+    update cbp_boutique_Order
+    set orderId = #{orderid,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=VARCHAR},
+      boutiqueConsultantId = #{boutiqueconsultantid,jdbcType=INTEGER},
+      boutiqueConsultantName = #{boutiqueconsultantname,jdbcType=VARCHAR},
+      boutiqueConsultantPhone = #{boutiqueconsultantphone,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where boutiqueOrderId = #{boutiqueorderid,jdbcType=INTEGER}
+  </update>
+  <update id="updateCreateTime" parameterType="com.blchina.cbp.model.CBPBoutiqueOrder">
+   update cbp_boutique_Order
+    set orderId = #{orderid,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=VARCHAR},
+      boutiqueConsultantId = #{boutiqueconsultantid,jdbcType=INTEGER},
+      boutiqueConsultantName = #{boutiqueconsultantname,jdbcType=VARCHAR},
+      boutiqueConsultantPhone = #{boutiqueconsultantphone,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+  <delete id="deleteBoutiqueOrderByBoutiqueId" parameterType="java.lang.Integer">
+  	delete from cbp_boutique_Order
+  	  where boutiqueOrderId = #{boutiqueorderid,jdbcType=INTEGER}
+  </delete>
+  
+</mapper>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPTimeConfMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPTimeConf">
+    <id column="timeConfId" jdbcType="INTEGER" property="timeconfid" />
+    <result column="storeId" jdbcType="INTEGER" property="storeid" />
+    <result column="storeName" jdbcType="VARCHAR" property="storename" />
+    <result column="dayNum" jdbcType="VARCHAR" property="daynum" />
+    <result column="paperCost" jdbcType="VARCHAR" property="paperCost" />
+    <result column="contractCount" jdbcType="INTEGER" property="contractCount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    timeConfId, storeId, storeName, dayNum,paperCost,contractCount
+  </sql>
+  <select id="getEveryContractCountAndPrice" parameterType="com.blchina.cbp.dto.SignMonitorDTO" resultMap="BaseResultMap">
+	select storeId,timeConfId,contractCount,paperCost from cbp_timeConf
+	where storeId = #{brandId} and timeConfId in (select MAX(timeConfId) from cbp_timeConf where
+    storeId = #{brandId}); 
+  </select>
+  
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_timeConf
+    where timeConfId = #{timeconfid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_timeConf
+    where timeConfId = #{timeconfid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPTimeConf">
+      <selectKey keyProperty="timeconfid" resultType="int">
+        select LAST_INSERT_ID()
+      </selectKey>
+    insert into cbp_timeConf ( storeId, storeName,
+      dayNum,
+      paperCost,contractCount)
+    values ( #{storeid,jdbcType=INTEGER}, #{storename,jdbcType=VARCHAR},
+      #{daynum,jdbcType=VARCHAR},#{paperCost,jdbcType=VARCHAR},
+      #{contractCount,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPTimeConf">
+    insert into cbp_timeConf
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="timeconfid != null">
+        timeConfId,
+      </if>
+      <if test="storeid != null">
+        storeId,
+      </if>
+      <if test="storename != null">
+        storeName,
+      </if>
+      <if test="daynum != null">
+        dayNum,
+      </if>
+      <if test="paperCost != null">
+        paperCost,
+      </if>
+      <if test="contractCount != null">
+        contractCount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="timeconfid != null">
+        #{timeconfid,jdbcType=INTEGER},
+      </if>
+      <if test="storeid != null">
+        #{storeid,jdbcType=INTEGER},
+      </if>
+      <if test="storename != null">
+        #{storename,jdbcType=VARCHAR},
+      </if>
+      <if test="daynum != null">
+        #{daynum,jdbcType=VARCHAR},
+      </if>
+       <if test="paperCost != null">
+        #{paperCost,jdbcType=VARCHAR},
+      </if>
+       <if test="contractCount != null">
+        #{contractCount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPTimeConf">
+    update cbp_timeConf
+    <set>
+      <if test="storeid != null">
+        storeId = #{storeid,jdbcType=INTEGER},
+      </if>
+      <if test="storename != null">
+        storeName = #{storename,jdbcType=VARCHAR},
+      </if>
+      <if test="daynum != null">
+        dayNum = #{daynum,jdbcType=VARCHAR},
+      </if>
+      <if test="paperCost != null">
+        paperCost = #{paperCost,jdbcType=VARCHAR},
+      </if>
+      <if test="contractCount != null">
+        contractCount = #{contractCount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where timeConfId = #{timeconfid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPTimeConf">
+    update cbp_timeConf
+    set storeId = #{storeid,jdbcType=INTEGER},
+      storeName = #{storename,jdbcType=VARCHAR},
+      dayNum = #{daynum,jdbcType=VARCHAR},
+      paperCost = #{paperCost,jdbcType=VARCHAR},
+      contractCount = #{contractCount,jdbcType=INTEGER}
+    where timeConfId = #{timeconfid,jdbcType=INTEGER}
+  </update>
+  <select id="getShopConfig" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select *
+    from cbp_timeConf
+    where storeId = #{shop}
+  </select>
+</mapper>

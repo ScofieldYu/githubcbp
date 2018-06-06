@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>创建订单</title>
+    <script src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/paperlessOfficeSales/createAnOrder.css">
+</head>
+<body>
+<div class="orderContent">
+    <div class="orderTit">
+        <p>订单编号: <span id="saporderid">暂无</span></p>
+        <a class="moreBtn" href="javascript:void 0"></a>
+        <div class="moreList">
+            <i class="orY"></i>
+            <ul>
+                <li>
+                    <a id="goSearchOrder" class="moreCon" href="javascript:void 0">
+                        <em></em>
+                        搜索订单
+                    </a>
+                </li>
+                <li>
+                    <a id="goOrderList" class="moreCon" href="javascript:void 0">
+                        <em class="homeIcon"></em>
+                        订单列表
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="orderInfo">
+        <div class="orderInfoList">
+            <p>
+                <span>订单状态: <b id="orderstatus">待下单</b></span>
+            </p>
+            <p>
+                <span>下单时间: <b id="orderdate">2018年01月29日</b></span>
+            </p>
+        </div>
+    </div>
+    <div class="orderDetail">
+        <ul>
+            <li>
+                <div id="customerInfo" class="detailDef">
+                    <p>暂无客户资料</p>
+                    <a id="goCustomerInfo" href="javascript:void 0">创建客户</a>
+                </div>
+            </li>
+            <li>
+                <div id="selectCar" class="detailDef">
+                    <p>暂无车辆信息</p>
+                    <a id="goSelectCar" href="javascript:void 0">选车</a>
+                </div>
+            </li>
+            <li>
+                <div class="detailDef">
+                    <p>暂无贷款信息</p>
+                    <a id="goLoanInfo" href="javascript:void 0">贷款</a>
+                </div>
+            </li>
+            <li>
+                <div class="detailDef">
+                    <p>暂无车辆置换信息</p>
+                    <a id="goCarSubstitution" href="javascript:void 0">车辆置换</a>
+                </div>
+            </li>
+            <li>
+                <div id="selectInsurance" class="detailDef">
+                    <p>暂无保险信息</p>
+                    <a id="goSelectInsurance" href="javascript:void 0">车险</a>
+                </div>
+            </li>
+            <li>
+                <div class="detailDef">
+                    <p>暂无验车上牌信息</p>
+                    <a id="goLicensing" href="javascript:void 0">验车上牌</a>
+                </div>
+            </li>
+            <li>
+                <div class="detailDef">
+                    <p>暂无精品信息</p>
+                    <a id="goBoutique" href="javascript:void 0">精品</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+<script src="../js/paperlessOfficeSales/createAnOrder.js"></script>
+</html>

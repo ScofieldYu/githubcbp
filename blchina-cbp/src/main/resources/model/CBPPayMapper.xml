@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPPayMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPPay">
+    <id column="payId" jdbcType="INTEGER" property="payid" />
+    <result column="payStatus" jdbcType="VARCHAR" property="paystatus" />
+    <result column="paySum" jdbcType="VARCHAR" property="paysum" />
+    <result column="payClass" jdbcType="VARCHAR" property="payclass" />
+    <result column="payType" jdbcType="VARCHAR" property="paytype" />
+    <result column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="openId" jdbcType="VARCHAR" property="openid" />
+    <result column="isRecNotiify" jdbcType="VARCHAR" property="isrecnotiify" />
+    <result column="bankType" jdbcType="VARCHAR" property="banktype" />
+    <result column="payTime" jdbcType="VARCHAR" property="paytime" />
+    <result column="tradeType" jdbcType="VARCHAR" property="tradetype" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    payId, payStatus, paySum, payClass, payType, orderId, openId, isRecNotiify, bankType, 
+    payTime, tradeType
+  </sql>
+  
+  <select id="selectPayByOrderId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_pay
+    where orderid = #{orderid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_pay
+    where payId = #{payid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_pay
+    where payId = #{payid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPPay">
+    insert into cbp_pay (payId, payStatus, paySum, 
+      payClass, payType, orderId, 
+      openId, isRecNotiify, bankType, 
+      payTime, tradeType)
+    values (#{payid,jdbcType=INTEGER}, #{paystatus,jdbcType=VARCHAR}, #{paysum,jdbcType=VARCHAR}, 
+      #{payclass,jdbcType=VARCHAR}, #{paytype,jdbcType=VARCHAR}, #{orderid,jdbcType=INTEGER}, 
+      #{openid,jdbcType=VARCHAR}, #{isrecnotiify,jdbcType=VARCHAR}, #{banktype,jdbcType=VARCHAR}, 
+      #{paytime,jdbcType=VARCHAR}, #{tradetype,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPPay">
+    insert into cbp_pay
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="payid != null">
+        payId,
+      </if>
+      <if test="paystatus != null">
+        payStatus,
+      </if>
+      <if test="paysum != null">
+        paySum,
+      </if>
+      <if test="payclass != null">
+        payClass,
+      </if>
+      <if test="paytype != null">
+        payType,
+      </if>
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="openid != null">
+        openId,
+      </if>
+      <if test="isrecnotiify != null">
+        isRecNotiify,
+      </if>
+      <if test="banktype != null">
+        bankType,
+      </if>
+      <if test="paytime != null">
+        payTime,
+      </if>
+      <if test="tradetype != null">
+        tradeType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="payid != null">
+        #{payid,jdbcType=INTEGER},
+      </if>
+      <if test="paystatus != null">
+        #{paystatus,jdbcType=VARCHAR},
+      </if>
+      <if test="paysum != null">
+        #{paysum,jdbcType=VARCHAR},
+      </if>
+      <if test="payclass != null">
+        #{payclass,jdbcType=VARCHAR},
+      </if>
+      <if test="paytype != null">
+        #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="isrecnotiify != null">
+        #{isrecnotiify,jdbcType=VARCHAR},
+      </if>
+      <if test="banktype != null">
+        #{banktype,jdbcType=VARCHAR},
+      </if>
+      <if test="paytime != null">
+        #{paytime,jdbcType=VARCHAR},
+      </if>
+      <if test="tradetype != null">
+        #{tradetype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPPay">
+    update cbp_pay
+    <set>
+      <if test="paystatus != null">
+        payStatus = #{paystatus,jdbcType=VARCHAR},
+      </if>
+      <if test="paysum != null">
+        paySum = #{paysum,jdbcType=VARCHAR},
+      </if>
+      <if test="payclass != null">
+        payClass = #{payclass,jdbcType=VARCHAR},
+      </if>
+      <if test="paytype != null">
+        payType = #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null">
+        orderId = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null">
+        openId = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="isrecnotiify != null">
+        isRecNotiify = #{isrecnotiify,jdbcType=VARCHAR},
+      </if>
+      <if test="banktype != null">
+        bankType = #{banktype,jdbcType=VARCHAR},
+      </if>
+      <if test="paytime != null">
+        payTime = #{paytime,jdbcType=VARCHAR},
+      </if>
+      <if test="tradetype != null">
+        tradeType = #{tradetype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where payId = #{payid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPPay">
+    update cbp_pay
+    set payStatus = #{paystatus,jdbcType=VARCHAR},
+      paySum = #{paysum,jdbcType=VARCHAR},
+      payClass = #{payclass,jdbcType=VARCHAR},
+      payType = #{paytype,jdbcType=VARCHAR},
+      orderId = #{orderid,jdbcType=INTEGER},
+      openId = #{openid,jdbcType=VARCHAR},
+      isRecNotiify = #{isrecnotiify,jdbcType=VARCHAR},
+      bankType = #{banktype,jdbcType=VARCHAR},
+      payTime = #{paytime,jdbcType=VARCHAR},
+      tradeType = #{tradetype,jdbcType=VARCHAR}
+    where payId = #{payid,jdbcType=INTEGER}
+  </update>
+</mapper>

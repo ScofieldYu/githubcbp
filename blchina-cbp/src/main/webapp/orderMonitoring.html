@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>订单监控</title>
+    <script src="js/config.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <link href="css/city/framework7.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/orderMonitoring.css">
+</head>
+<body>
+    <div class="orderMonitoring">
+        <div class="dataList">
+            <ul>
+                <li>
+                    <span>门店编号</span>
+                    <input id="brandid" class="trueInput" type="text" value="" placeholder="请输入门店编号">
+                </li>
+                <li id="accouttype" style="display: none">
+                    <span>顾问姓名</span>
+                    <input id="employeename" class="trueInput" type="text" value="" placeholder="请输入顾问姓名">
+                </li>
+                <li>
+                    <span>开始时间</span>
+                    <a href="javascript:void 0"><input type="text" id="orderdateStart" value=""><i></i></a>
+                </li>
+                <li>
+                    <span>结束时间</span>
+                    <a href="javascript:void 0"><input type="text" id="orderdateEnd" value=""><i></i></a>
+                </li>
+                <li>
+                    <span>电子签</span>
+                    <div id="issign" class="tarSwitch on">
+                        <div class="tarRound"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <p>备注：开始时间及结束时间均为订单创建时间。</p>
+    </div>
+    <div class="searchBtn">
+        <a href="javascript:void 0 ">搜 索</a>
+    </div>
+</body>
+<script src="./js/city/framework7.min.js"></script>
+<script src="./js/city/dataObject.js"></script>
+<script src="./js/orderMonitoring.js"></script>
+</html>

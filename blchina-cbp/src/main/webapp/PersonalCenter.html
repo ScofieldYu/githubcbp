@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>个人中心</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+
+        @font-face {
+            font-family: 'glyphicons-halflings-regular';
+            src: url('fonts/glyphicons-halflings-regular.eot') format('embedded-opentype');
+        }
+body {
+           padding:0;
+           margin:0;
+        }
+                .xian{ 
+    width:100%;
+     height:2px;
+     font-size:15px;
+     background:#b7b7b7;
+     text-align:center;
+    }
+
+    </style>
+
+</head>
+
+<body>
+
+  <div class="container-fluid" style="background-color:#e8e8e8">
+
+      <div class="row" style="background-color:#cccccc;text-align:center;height:50px;line-height:50px">
+
+          <div class="col-xs-2" style="margin-left:0">
+
+              <img src="img/百得利图标.png" style="height:40px"/>
+
+          </div>
+
+          <div class="col-xs-2 col-xs-offset-8">
+              <button type="button" class="btn btn-default" aria-label="Left Align">
+                  <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+              </button>
+          </div>
+
+      </div>
+
+      <div class="row" style="background-color:#e8e8e8">
+
+          <div class="col-xs-12" style="padding-top:20px">
+
+              <img src="img/头像.png" alt="img-responsive" class="img-circle center-block">
+          </div>
+      </div>
+
+      <div class="row" style="text-align:center;background-color:#e8e8e8">
+          <div class="col-xs-12" style="padding-top:10px">
+              <label>黄豆豆</label>&nbsp;&nbsp;
+
+              <label>12356576568</label>
+          </div>
+      </div>
+
+      <div class="row" style="text-align:center;background-color:#e8e8e8">
+
+          <div class="col-xs-12" style="padding-top:12px;padding-bottom:15px">
+              <button id="btn_grzl" type="button" class="btn btn-default" style="border-radius:15px;background-color:#8796b0;color:white;width:100px">个人资料</button>
+           
+      </div>
+  </div>
+     
+          <div class="row">
+      <div class="xian"></div>
+          </div>
+      
+      <div class="row">
+
+          <div class="col-xs-10"style="height:35px;line-height:35px;background-color:#cccccc">
+
+              <label>购车订单<span class="badge">4</span></label>
+
+          </div>
+
+         <div class="col-xs-2" style="height:35px;text-align:center;line-height:35px;background-color:#cccccc;float:right">
+             <img src="img/箭头.png"/>
+         </div>
+      </div>
+
+      <!--<div class="row"><div class="xian"></div></div>-->
+
+      <div class="row" style="background-color:#f8f8f8">
+
+          <div class="col-xs-4"style="text-align:center;border:1px solid #bfbfbf;height:100px"><label style="font-size:25px;margin-top:15px">0</label><p>添加爱车</p></div>
+          <div class="col-xs-4" style="text-align:center;border:1px solid #bfbfbf;height:100px"><label style="font-size:25px;margin-top:15px">0</label><p>优惠券</p></div>
+          <div class="col-xs-4"style="text-align:center;border:1px solid #bfbfbf; height:100px"><label style="font-size:25px;margin-top:15px">0</label><P>到店次数</P></div>
+    
+      </div>
+
+    <div class="row" style="background-color:#f8f8f8">                      
+        <div class="col-xs-2"style="text-align:center">
+            <img src="img/储存余额图标.png" style="width:55px;height:45px;margin-top:15px"/>
+        </div>
+        <div class="col-xs-7"style="padding-top:12px">
+            <label style="font-size:15px">储值总余额</label>
+            <label style="color:#666666">所有爱车的存储余额合计</label>
+        </div> 
+        <div class="col-xs-3"style="text-align:center;float:right;padding-top:20px;padding-bottom:20px">
+            <label>0</label>
+            <img src="img/箭头.png"style="height:30px"/>
+        </div>
+    </div>
+
+      <div class="row"><div class="xian"></div></div>
+
+      <div class="row" style="background-color:#f8f8f8">
+          <div class="col-xs-2" style="text-align:center">
+              <img src="img/消费总积分.png" style="width:55px;height:45px;margin-top:10px" />
+          </div>
+          <div class="col-xs-6" style="padding-top:12px">
+              <label style="font-size:15px">累计消费总积分</label>
+              <label style="color:#666666">所有爱车的消费积分总计</label>
+          </div>
+          <div class="col-xs-3 " style="text-align:center;float:right;padding-top:20px;padding-bottom:20px">
+              <label>0</label>
+              <img src="img/箭头.png" style="height:30px" />
+
+          </div>
+      </div>
+      <div class="row"><div class="xian"></div></div>
+      <div class="row" style="background-color:#f8f8f8">
+
+          <div class="col-xs-2" style="text-align:center">
+              <img src="img/参与活动.png" style="width:55px;height:45px;margin-top:10px" />
+          </div>
+
+          <div class="col-xs-6" style="padding-top:12px">
+              <label style="font-size:15px">可参与活动</label>
+              <label style="color:#666666">您可以亲身体验现场活动</label>
+          </div>
+
+          <div class="col-xs-3" style="text-align:center;float:right;padding-top:20px;padding-bottom:20px">
+              <label>0</label>
+              <img src="img/箭头.png" style="height:30px" />
+          </div>
+
+      </div>
+
+      <div class="row"><div class="xian" style="background-color:#bfbfbf"></div></div>
+
+      <div class="row"style="background-color:#f8f8f8">
+
+          <div class="col-xs-2" style="text-align:center">
+              <img src="img/消息提醒.png" style="width:55px;height:45px;margin-top:10px" />
+          </div>
+         
+          <div class="col-xs-6" style="padding-top:12px">
+
+              <label style="font-size:15px">消息提醒<span class="badge">1</span></label>
+              <label style="color:#666666">部门推送给您的通知,提醒等</label>
+
+          </div>
+
+          <div class="col-xs-3" style="text-align:center;float:right;padding-top:20px;padding-bottom:20px">
+              <label>1</label>
+              <img src="img/箭头.png" style="height:30px" />
+          </div>
+      </div>
+
+      </div>
+</body>
+</html>
+<script>
+    $(function () {
+        $("#btn_grzl").click(function () {
+            window.location.href = "gerenziliao.html";
+        })
+    })
+  
+
+    
+</script>
+

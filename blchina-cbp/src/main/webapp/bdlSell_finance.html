@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./js/config.js"></script>
+    <script type="text/javascript" src="./js/bdl_rem.js"></script>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/bdlSell_finance.css">
+    <title>金融分期</title>
+</head>
+<body>
+    <div class="bdl_main">
+        <header class="bdl_title">
+            <span class="leave"></span>
+            <span>金融分期</span>
+            <span></span>
+        </header>
+        <section class="bdl_box">
+            <div class="list missionMain1">
+               <div class="list_list">
+               <span class="ico bank"></span>
+               <span class="odd">银行</span>
+               <div class="bdl_change">
+                     <input type="text" disabled class="input missionInput1" bankid><span class="rightPu mission"></span>                   
+               </div>
+               </div>
+            </div>
+            <div class="list">
+               <div class="list_list">
+               <span class="ico loan"></span>
+               <span class="odd">贷款总额</span>
+               <div class="bdl_change">
+                    <span class="monClo">￥</span><input type="text" class="input loanInput"><span class="col">元</span>
+               </div>
+               </div>
+            </div>
+            <div class="list">
+               <div class="list_list">
+               <span class="ico downPayment"></span>
+               <span class="odd">首付</span>
+               <div class="bdl_change">
+                    <span class="monClo">￥</span><input type="text" class="input downPaymentInput"><span class="col">元</span>
+               </div>
+               </div>
+            </div>
+            <div class="list missionMain2">
+               <div class="list_list">
+               <span class="ico periods"></span>
+               <span class="odd">期数</span>
+               <div class="bdl_change">
+                     <input type="text" disabled class="input missionInput2" periodid><span class="rightPu mission"></span>                   
+               </div>
+               </div>
+            </div>
+            <div class="list">
+               <div class="list_list">
+               <span class="ico poundage"></span>
+               <span class="odd">手续费</span>
+               <div class="bdl_change">
+                    <span class="monClo">￥</span><input type="text" class="input poundageInput"><span class="col">元</span>
+               </div>
+               </div>
+            </div>
+        </section>
+        <div class="completeBtn">
+                <a href="javascript:void 0">完成</a>
+        </div>
+    </div>
+    <div class="carAppearance carAppearanceBank">
+    <div class="carLineContent">
+        <p>银行列表</p>
+        <ul id="appearance" class="bankList">
+            <!--<li>保留原号</li>
+            <li>50选一</li>
+            <li>自编号牌</li>-->
+        </ul>
+    </div>
+    </div>
+    <div class="carAppearance carAppearancePeriods">
+    <div class="carLineContent">
+        <p>期数列表</p>
+        <ul id="appearance" class="periodsOdd"></ul>
+    </div>
+    </div>
+</body>
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/bdlSell_finance.js"></script>
+</html>

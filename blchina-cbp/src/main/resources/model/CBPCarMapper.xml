@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPCarMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPCar">
+    <id column="carId" jdbcType="INTEGER" property="carid" />
+    <result column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="carBrand" jdbcType="VARCHAR" property="carbrand" />
+    <result column="carSeries" jdbcType="VARCHAR" property="carseries" />
+    <result column="carAppearance" jdbcType="VARCHAR" property="carappearance" />
+    <result column="carInterior" jdbcType="VARCHAR" property="carinterior" />
+    <result column="carYear" jdbcType="VARCHAR" property="caryear" />
+    <result column="carType" jdbcType="VARCHAR" property="cartype" />
+    <result column="vinNo" jdbcType="VARCHAR" property="vinno" />
+    <result column="carPrice" jdbcType="VARCHAR" property="carprice" />
+    <result column="discount" jdbcType="VARCHAR" property="discount" />
+    <result column="carDoFo" jdbcType="VARCHAR" property="cardofo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    carId, orderId, carBrand, carSeries, carAppearance, carInterior, carYear, carType, 
+    vinNo, carPrice, discount, carDoFo
+  </sql>
+  <select id="selectCarByOrderId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select * from cbp_car where carId = (select MAX(carId) from cbp_car where orderId = #{orderid})
+  </select> 
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_car
+    where carId = #{carid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_car
+    where carId = #{carid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPCar">
+    insert into cbp_car (carId, orderId, carBrand, 
+      carSeries, carAppearance, carInterior, 
+      carYear, carType, vinNo, 
+      carPrice, discount, carDoFo
+      )
+    values (#{carid,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, #{carbrand,jdbcType=VARCHAR}, 
+      #{carseries,jdbcType=VARCHAR}, #{carappearance,jdbcType=VARCHAR}, #{carinterior,jdbcType=VARCHAR}, 
+      #{caryear,jdbcType=VARCHAR}, #{cartype,jdbcType=VARCHAR}, #{vinno,jdbcType=VARCHAR}, 
+      #{carprice,jdbcType=VARCHAR}, #{discount,jdbcType=VARCHAR}, #{cardofo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPCar">
+    insert into cbp_car
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="carid != null">
+        carId,
+      </if>
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="carbrand != null">
+        carBrand,
+      </if>
+      <if test="carseries != null">
+        carSeries,
+      </if>
+      <if test="carappearance != null">
+        carAppearance,
+      </if>
+      <if test="carinterior != null">
+        carInterior,
+      </if>
+      <if test="caryear != null">
+        carYear,
+      </if>
+      <if test="cartype != null">
+        carType,
+      </if>
+      <if test="vinno != null">
+        vinNo,
+      </if>
+      <if test="carprice != null">
+        carPrice,
+      </if>
+      <if test="discount != null">
+        discount,
+      </if>
+      <if test="cardofo != null">
+        carDoFo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="carid != null">
+        #{carid,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="carbrand != null">
+        #{carbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="carseries != null">
+        #{carseries,jdbcType=VARCHAR},
+      </if>
+      <if test="carappearance != null">
+        #{carappearance,jdbcType=VARCHAR},
+      </if>
+      <if test="carinterior != null">
+        #{carinterior,jdbcType=VARCHAR},
+      </if>
+      <if test="caryear != null">
+        #{caryear,jdbcType=VARCHAR},
+      </if>
+      <if test="cartype != null">
+        #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="vinno != null">
+        #{vinno,jdbcType=VARCHAR},
+      </if>
+      <if test="carprice != null">
+        #{carprice,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="cardofo != null">
+        #{cardofo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPCar">
+    update cbp_car
+    <set>
+      <if test="orderid != null">
+        orderId = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="carbrand != null">
+        carBrand = #{carbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="carseries != null">
+        carSeries = #{carseries,jdbcType=VARCHAR},
+      </if>
+      <if test="carappearance != null">
+        carAppearance = #{carappearance,jdbcType=VARCHAR},
+      </if>
+      <if test="carinterior != null">
+        carInterior = #{carinterior,jdbcType=VARCHAR},
+      </if>
+      <if test="caryear != null">
+        carYear = #{caryear,jdbcType=VARCHAR},
+      </if>
+      <if test="cartype != null">
+        carType = #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="vinno != null">
+        vinNo = #{vinno,jdbcType=VARCHAR},
+      </if>
+      <if test="carprice != null">
+        carPrice = #{carprice,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        discount = #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="cardofo != null">
+        carDoFo = #{cardofo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where carId = #{carid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPCar">
+    update cbp_car
+    set orderId = #{orderid,jdbcType=INTEGER},
+      carBrand = #{carbrand,jdbcType=VARCHAR},
+      carSeries = #{carseries,jdbcType=VARCHAR},
+      carAppearance = #{carappearance,jdbcType=VARCHAR},
+      carInterior = #{carinterior,jdbcType=VARCHAR},
+      carYear = #{caryear,jdbcType=VARCHAR},
+      carType = #{cartype,jdbcType=VARCHAR},
+      vinNo = #{vinno,jdbcType=VARCHAR},
+      carPrice = #{carprice,jdbcType=VARCHAR},
+      discount = #{discount,jdbcType=VARCHAR},
+      carDoFo = #{cardofo,jdbcType=VARCHAR}
+    where carId = #{carid,jdbcType=INTEGER}
+  </update>
+</mapper>

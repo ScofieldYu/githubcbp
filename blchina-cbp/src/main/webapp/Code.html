@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/Code.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+   
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th>预约id</th>
+                    <th>顾客id</th>
+                    <th>销售id</th>
+                    <th>订单id</th>
+                    <th>开始时间</th>
+          
+
+                </tr>
+            </table>
+        </div>
+        <span id="url"></span>
+
+
+</body>
+<script src="js/jquery.min.js"></script>
+<script>
+    $(function () {
+        window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wwbdd6268d34756056&redirect_uri=http://bdl-cbp.blchina.com/cbp/new-bookingHandCar.html&response_type=code&scope=snsapi_base&agentid=1000002#wechat_redirec';
+
+            alert(window.location.href)
+
+        setInterval(function () {
+            $('#url').html(window.location.href);
+            alert(window.location.href)
+        },8000)
+    })
+
+</script>
+</html>

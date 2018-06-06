@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPFinanceOrderMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPFinanceOrder">
+    <id column="financeOrderId" jdbcType="INTEGER" property="financeorderid" />
+    <result column="totalLoan" jdbcType="INTEGER" property="totalloan" />
+    <result column="bankName" jdbcType="VARCHAR" property="bankname" />
+    <result column="fee" jdbcType="VARCHAR" property="fee" />
+    <result column="periodNum" jdbcType="VARCHAR" property="periodnum" />
+    <result column="firstPay" jdbcType="VARCHAR" property="firstpay" />
+    <result column="bankId" jdbcType="VARCHAR" property="bankid" />
+    <result column="periodId" jdbcType="VARCHAR" property="periodid" />
+    <result column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="reserveTime" jdbcType="VARCHAR" property="reservetime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    financeOrderId, totalLoan, bankName, fee, periodNum, firstPay, bankId, periodId, orderId ,reserveTime ,status
+  </sql>
+  <select id="selectFianceByOrderId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_finance_Order
+    where orderId = #{orderid}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_finance_Order
+    where financeOrderId = #{financeorderid,jdbcType=INTEGER}
+  </select>
+  <select id="selectFinanceOrderByOrderId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_finance_Order
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </select>
+  <select id="getFinanceByOrderId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_finance_Order
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_finance_Order
+    where financeOrderId = #{financeorderid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPFinanceOrder">
+    insert into cbp_finance_Order (financeOrderId, totalLoan, bankName, 
+      fee, periodNum, firstPay, bankId, 
+      periodId,orderId,reserveTime,status)
+    values (#{financeorderid,jdbcType=INTEGER}, #{totalloan,jdbcType=INTEGER}, #{bankname,jdbcType=VARCHAR}, 
+      #{fee,jdbcType=VARCHAR}, #{periodnum,jdbcType=VARCHAR}, #{firstpay,jdbcType=VARCHAR},#{bankid,jdbcType=VARCHAR}, 
+      #{periodid,jdbcType=VARCHAR}, #{orderid,jdbcType=INTEGER}, #{reservetime,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPFinanceOrder">
+    insert into cbp_finance_Order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="financeorderid != null">
+        financeOrderId,
+      </if>
+      <if test="totalloan != null">
+        totalLoan,
+      </if>
+      <if test="bankname != null">
+        bankName,
+      </if>
+      <if test="fee != null">
+        fee,
+      </if>
+      <if test="periodnum != null">
+        periodNum,
+      </if>
+      <if test="firstpay != null">
+        firstPay,
+      </if>
+      <if test="bankid != null">
+        bankId,
+      </if>
+      <if test="periodid != null">
+        periodId,
+      </if>
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="reservetime != null">
+        reserveTime,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="financeorderid != null">
+        #{financeorderid,jdbcType=INTEGER},
+      </if>
+      <if test="totalloan != null">
+        #{totalloan,jdbcType=INTEGER},
+      </if>
+      <if test="bankname != null">
+        #{bankname,jdbcType=VARCHAR},
+      </if>
+      <if test="fee != null">
+        #{fee,jdbcType=VARCHAR},
+      </if>
+      <if test="periodnum != null">
+        #{periodnum,jdbcType=VARCHAR},
+      </if>
+      <if test="firstpay != null">
+        #{firstpay,jdbcType=VARCHAR},
+      </if>
+      <if test="bankid != null">
+        #{bankid,jdbcType=VARCHAR},
+      </if>
+      <if test="periodid != null">
+        #{periodid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="reservetime != null">
+        #{reservetime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPFinanceOrder">
+    update cbp_finance_Order
+    <set>
+      <if test="totalloan != null">
+        totalLoan = #{totalloan,jdbcType=INTEGER},
+      </if>
+      <if test="bankname != null">
+        bankName = #{bankname,jdbcType=VARCHAR},
+      </if>
+      <if test="fee != null">
+        fee = #{fee,jdbcType=VARCHAR},
+      </if>
+      <if test="periodnum != null">
+        periodNum = #{periodnum,jdbcType=VARCHAR},
+      </if>
+      <if test="firstpay != null">
+        firstPay = #{firstpay,jdbcType=VARCHAR},
+      </if>
+      <if test="bankid != null">
+        bankId = #{bankid,jdbcType=VARCHAR},
+      </if>
+      <if test="periodid != null">
+        periodId = #{periodid,jdbcType=VARCHAR},
+      </if>
+       <if test="orderid != null">
+        orderId = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="reservetime != null">
+        reserveTime = #{reservetime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where financeOrderId = #{financeorderid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPFinanceOrder">
+    update cbp_finance_Order
+    set totalLoan = #{totalloan,jdbcType=INTEGER},
+      bankName = #{bankname,jdbcType=VARCHAR},
+      fee = #{fee,jdbcType=VARCHAR},
+      periodNum = #{periodnum,jdbcType=VARCHAR},
+      firstPay = #{firstpay,jdbcType=VARCHAR},
+      bankId = #{bankid,jdbcType=VARCHAR},
+      periodId = #{periodid,jdbcType=VARCHAR},
+      orderId = #{orderid,jdbcType=INTEGER},
+      reserveTime = #{reservetime,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where financeOrderId = #{financeorderid,jdbcType=INTEGER}
+  </update>
+  <update id="updateReserveTimeByOrderid" parameterType="com.blchina.cbp.model.CBPFinanceOrder">
+    update cbp_finance_Order
+    set totalLoan = #{totalloan,jdbcType=INTEGER},
+      bankName = #{bankname,jdbcType=VARCHAR},
+      fee = #{fee,jdbcType=VARCHAR},
+      periodNum = #{periodnum,jdbcType=VARCHAR},
+      firstPay = #{firstpay,jdbcType=VARCHAR},
+      bankId = #{bankid,jdbcType=VARCHAR},
+      periodId = #{periodid,jdbcType=VARCHAR},
+      reserveTime = #{reservetime,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+</mapper>

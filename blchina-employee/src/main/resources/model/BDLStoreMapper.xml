@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.employee.dao.BDLStoreMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.employee.model.BDLStore">
+    <id column="storeId" jdbcType="INTEGER" property="storeid" />
+    <result column="brandId" jdbcType="VARCHAR" property="brandid" />
+    <result column="storeName" jdbcType="VARCHAR" property="storename" />
+    <result column="storeEnShort" jdbcType="VARCHAR" property="storeenshort" />
+    <result column="storeCnShort" jdbcType="VARCHAR" property="storecnshort" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="appId" jdbcType="VARCHAR" property="appid" />
+    <result column="appSecret" jdbcType="VARCHAR" property="appsecret" />
+    <result column="merchantNum" jdbcType="VARCHAR" property="merchantnum" />
+    <result column="merchantAPIKey" jdbcType="VARCHAR" property="merchantapikey" />
+    <result column="payUpper" jdbcType="VARCHAR" property="payupper" />
+    <result column="signStoreId" jdbcType="VARCHAR" property="signstoreid" />
+    <result column="ZZF1" jdbcType="VARCHAR" property="zzf1" />
+    <result column="ZZF2" jdbcType="VARCHAR" property="zzf2" />
+    <result column="ZZF3" jdbcType="VARCHAR" property="zzf3" />
+    <result column="cardTemplateId" jdbcType="VARCHAR" property="cardtemplateid" />
+    <result column="brandType" jdbcType="VARCHAR" property="brandType" />
+
+  </resultMap>
+  <sql id="Base_Column_List">
+    storeId, brandId, storeName, storeEnShort, storeCnShort, area, appId, appSecret,
+    merchantNum, merchantAPIKey, payUpper, signStoreId, ZZF1, ZZF2, ZZF3,cardTemplateId,brandType
+  </sql>
+  <select id="selectByBrandId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_store
+    where brandId = #{companycode,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_store
+    where storeId = #{storeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bdl_store
+    where storeId = #{storeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.employee.model.BDLStore">
+    insert into bdl_store (storeId, brandId, storeName,
+    storeEnShort, storeCnShort, area,
+    appId, appSecret, merchantNum,
+    merchantAPIKey, payUpper, signStoreId,
+    ZZF1, ZZF2, ZZF3,cardTemplateId,brandType)
+    values (#{storeid,jdbcType=INTEGER}, #{brandid,jdbcType=VARCHAR}, #{storename,jdbcType=VARCHAR},
+    #{storeenshort,jdbcType=VARCHAR}, #{storecnshort,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR},
+    #{appid,jdbcType=VARCHAR}, #{appsecret,jdbcType=VARCHAR}, #{merchantnum,jdbcType=VARCHAR},
+    #{merchantapikey,jdbcType=VARCHAR}, #{payupper,jdbcType=VARCHAR}, #{signstoreid,jdbcType=VARCHAR},
+    #{zzf1,jdbcType=VARCHAR}, #{zzf2,jdbcType=VARCHAR}, #{zzf3,jdbcType=VARCHAR}, #{cardtemplateid,jdbcType=VARCHAR}, #{brandType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.employee.model.BDLStore">
+    insert into bdl_store
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="storeid != null">
+        storeId,
+      </if>
+      <if test="brandid != null">
+        brandId,
+      </if>
+      <if test="storename != null">
+        storeName,
+      </if>
+      <if test="storeenshort != null">
+        storeEnShort,
+      </if>
+      <if test="storecnshort != null">
+        storeCnShort,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="appid != null">
+        appId,
+      </if>
+      <if test="appsecret != null">
+        appSecret,
+      </if>
+      <if test="merchantnum != null">
+        merchantNum,
+      </if>
+      <if test="merchantapikey != null">
+        merchantAPIKey,
+      </if>
+      <if test="payupper != null">
+        payUpper,
+      </if>
+      <if test="signstoreid != null">
+        signStoreId,
+      </if>
+      <if test="zzf1 != null">
+        ZZF1,
+      </if>
+      <if test="zzf2 != null">
+        ZZF2,
+      </if>
+      <if test="zzf3 != null">
+        ZZF3,
+      </if>
+      <if test="cardtemplateid != null">
+        cardTemplateId,
+      </if>
+      <if test="brandType != null">
+        brandType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="storeid != null">
+        #{storeid,jdbcType=INTEGER},
+      </if>
+      <if test="brandid != null">
+        #{brandid,jdbcType=VARCHAR},
+      </if>
+      <if test="storename != null">
+        #{storename,jdbcType=VARCHAR},
+      </if>
+      <if test="storeenshort != null">
+        #{storeenshort,jdbcType=VARCHAR},
+      </if>
+      <if test="storecnshort != null">
+        #{storecnshort,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="appsecret != null">
+        #{appsecret,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantnum != null">
+        #{merchantnum,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantapikey != null">
+        #{merchantapikey,jdbcType=VARCHAR},
+      </if>
+      <if test="payupper != null">
+        #{payupper,jdbcType=VARCHAR},
+      </if>
+      <if test="signstoreid != null">
+        #{signstoreid,jdbcType=VARCHAR},
+      </if>
+      <if test="zzf1 != null">
+        #{zzf1,jdbcType=VARCHAR},
+      </if>
+      <if test="zzf2 != null">
+        #{zzf2,jdbcType=VARCHAR},
+      </if>
+      <if test="zzf3 != null">
+        #{zzf3,jdbcType=VARCHAR},
+      </if>
+      <if test="cardtemplateid != null">
+        #{cardtemplateid,jdbcType=VARCHAR},
+      </if>
+      <if test="brandType != null">
+        #{brandType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.employee.model.BDLStore">
+    update bdl_store
+    <set>
+      <if test="brandid != null">
+        brandId = #{brandid,jdbcType=VARCHAR},
+      </if>
+      <if test="storename != null">
+        storeName = #{storename,jdbcType=VARCHAR},
+      </if>
+      <if test="storeenshort != null">
+        storeEnShort = #{storeenshort,jdbcType=VARCHAR},
+      </if>
+      <if test="storecnshort != null">
+        storeCnShort = #{storecnshort,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        appId = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="appsecret != null">
+        appSecret = #{appsecret,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantnum != null">
+        merchantNum = #{merchantnum,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantapikey != null">
+        merchantAPIKey = #{merchantapikey,jdbcType=VARCHAR},
+      </if>
+      <if test="payupper != null">
+        payUpper = #{payupper,jdbcType=VARCHAR},
+      </if>
+      <if test="signstoreid != null">
+        signStoreId = #{signstoreid,jdbcType=VARCHAR},
+      </if>
+      <if test="zzf1 != null">
+        ZZF1 = #{zzf1,jdbcType=VARCHAR},
+      </if>
+      <if test="zzf2 != null">
+        ZZF2 = #{zzf2,jdbcType=VARCHAR},
+      </if>
+      <if test="zzf3 != null">
+        ZZF3 = #{zzf3,jdbcType=VARCHAR},
+      </if>
+      <if test="cardtemplateid != null">
+        cardTemplateId = #{cardtemplateid,jdbcType=VARCHAR},
+      </if>
+      <if test="brandType != null">
+        brandType = #{brandType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where storeId = #{storeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.employee.model.BDLStore">
+    update bdl_store
+    set brandId = #{brandid,jdbcType=VARCHAR},
+    storeName = #{storename,jdbcType=VARCHAR},
+    storeEnShort = #{storeenshort,jdbcType=VARCHAR},
+    storeCnShort = #{storecnshort,jdbcType=VARCHAR},
+    area = #{area,jdbcType=VARCHAR},
+    appId = #{appid,jdbcType=VARCHAR},
+    appSecret = #{appsecret,jdbcType=VARCHAR},
+    merchantNum = #{merchantnum,jdbcType=VARCHAR},
+    merchantAPIKey = #{merchantapikey,jdbcType=VARCHAR},
+    payUpper = #{payupper,jdbcType=VARCHAR},
+    signStoreId = #{signstoreid,jdbcType=VARCHAR},
+    ZZF1 = #{zzf1,jdbcType=VARCHAR},
+    ZZF2 = #{zzf2,jdbcType=VARCHAR},
+    ZZF3 = #{zzf3,jdbcType=VARCHAR},
+    cardTemplateId = #{cardtemplateid,jdbcType=VARCHAR},
+    brandType = #{brandType,jdbcType=VARCHAR}
+    where storeId = #{storeid,jdbcType=INTEGER}
+  </update>
+  <select id="getSignStoreIdByBrandId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT * from  bdl_store WHERE  brandId = #{brandid,jdbcType=VARCHAR}
+  </select>
+  <select id="getAllStore" resultMap="BaseResultMap">
+    SELECT * from  bdl_store
+  </select>
+
+</mapper>

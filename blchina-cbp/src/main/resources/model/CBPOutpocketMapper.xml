@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPOutpocketMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPOutpocket">
+    <id column="outpocketId" jdbcType="INTEGER" property="outpocketid" />
+    <result column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="outpocketUUID" jdbcType="VARCHAR" property="outpocketuuid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    outpocketId, orderId, outpocketUUID
+  </sql>
+  <select id="getOutpocketCountByBrandIdAndOrderStatus" parameterType="com.blchina.cbp.dto.SignMonitorDTO" resultType="java.lang.Integer">
+	select COUNT(outpocketId) from cbp_outpocket where orderId in (
+	select orderId from cbp_order where orderStatus = '2'
+          AND brandId = #{brandId}
+	<if test='dateStart !=null'>
+		and unix_timestamp(DATE_FORMAT(orderDate,'%Y-%m-%d')) &gt;=
+		unix_timestamp(#{dateStart})
+	</if>
+	<if test='dateEnd !=null'>
+		and unix_timestamp(DATE_FORMAT(orderDate,'%Y-%m-%d')) &lt;=
+		unix_timestamp(#{dateEnd})
+	</if>
+	)
+	and outpocketUUID is NOT NULL and outpocketUUID !='';
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_outpocket
+    where outpocketId = #{outpocketid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByOrderId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_outpocket
+    where orderId = #{parseInt,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_outpocket
+    where outpocketId = #{outpocketid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPOutpocket">
+    insert into cbp_outpocket (outpocketId, orderId, outpocketUUID
+      )
+    values (#{outpocketid,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, #{outpocketuuid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPOutpocket">
+    insert into cbp_outpocket
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="outpocketid != null">
+        outpocketId,
+      </if>
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="outpocketuuid != null">
+        outpocketUUID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="outpocketid != null">
+        #{outpocketid,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="outpocketuuid != null">
+        #{outpocketuuid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPOutpocket">
+    update cbp_outpocket
+    <set>
+      <if test="orderid != null">
+        orderId = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="outpocketuuid != null">
+        outpocketUUID = #{outpocketuuid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where outpocketId = #{outpocketid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPOutpocket">
+    update cbp_outpocket
+    set orderId = #{orderid,jdbcType=INTEGER},
+      outpocketUUID = #{outpocketuuid,jdbcType=VARCHAR}
+    where outpocketId = #{outpocketid,jdbcType=INTEGER}
+  </update>
+</mapper>

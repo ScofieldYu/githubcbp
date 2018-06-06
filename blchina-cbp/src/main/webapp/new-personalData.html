@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <meta charset="utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <script src="js/config.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <link href="css/city/framework7.min.css" rel="stylesheet"/>
+    <link href="css/reset.css" rel="stylesheet"/>
+    <link href="css/new-personalData.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="orderList">
+    <div class="titleBg"></div>
+    <div class="orderCon">
+        <div class="orderTit">
+            <div class="shihu" style="" id="shihu1">
+                <div class="t" id="t" meg="1">
+                    <span></span>私 户
+                </div>
+            </div>
+            <div class="gonghu" id="gonghu1">
+                <div>
+                    <span></span>公 户
+                </div>
+            </div>
+        </div>
+        <!--私户-->
+        <div class="orderDetail">
+            <table class="titlehand">
+                <tr>
+                    <td class="titIcon"><img src="img/zl-icon1.png"></td>
+                    <td class="titBg">实名认证</td>
+                </tr>
+            </table>
+            <div class="personal">
+                <form class="form1">
+                    <table class="tab1" style="margin:auto;border-collapse:separate; border-spacing:0.13rem 0.2rem;">
+                        <tr>
+                            <td class="lab">姓名</td>
+                            <td class="labIn"><input type="text" id="customername" name="customername"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lab">身份证号</td>
+                            <td class="labIn"><input type="text" id="identitycardnum" name="identitycardnum"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lab">手机号</td>
+                            <td class="labIn"><input type="text" id="phonenumber" name="phonenumber"/></td>
+                        </tr>
+                    </table>
+                    <div class="geren_btn">
+                        <button id="detailsUpload" type="button">实名认证</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <form class="form2">
+            <div class="buyingFile">
+                <table class="titlehand">
+                    <tr>
+                        <td><img src="img/zl-icon2.png"/></td>
+                        <td class="titBg">详细信息</td>
+                    </tr>
+                </table>
+                <div class="personal" style="position:relative">
+                    <table class="tab2" style="margin:auto;border-collapse:separate; border-spacing:0.13rem 0.2rem;">
+                        <tr>
+                            <td class="lab">邮箱</td>
+                            <td class="labIn"><input type="text" id="email"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lab">所在地区</td>
+                            <td class="labIn">
+                                <input type="text" placeholder="点击选择地区" readonly id="J_Address" name="location">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="lab">详细地址</td>
+                            <td class="labIn"><input type="text" id="Area"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lab">邮编</td>
+                            <td class="labIn"><input type="text" id="youbian"/></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="geren_btn" style="text-align:center;margin-top:0.2rem">
+                <button id="accomplish" type="button">完 成</button>
+            </div>
+        </form>
+        <!--公户-->
+        <div class="qiyeAttestation" style="height:4rem">
+            <table class="titlehand" style="float:left">
+                <tr>
+                    <td><img src="img/zl-icon4.png"/></td>
+                    <td class="titBg">企业实名认证</td>
+                </tr>
+            </table>
+            <div class="qiyeRz" style="margin-top:0.36rem">
+                <form class="form3">
+                    <table class="tab4" style="margin:auto;border-collapse:separate; border-spacing:0.1rem 0.2rem">
+                        <tr>
+                            <td class="lab">企业名称</td>
+                            <td><input type="text" id="organizename"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lab">统一社会信用代码</td>
+                            <td><input type="text" id="organizeid"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lab">联系人姓名</td>
+                            <td><input type="text" id="customername1"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lab">联系人身份证号</td>
+                            <td><input type="text" id="identitycardnum1"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lab">联系人手机号</td>
+                            <td><input type="text" id="phonenumber1"/></td>
+                        </tr>
+                    </table>
+                    <div class="geren_btn">
+                        <button id="qiyeDetailsUpload" type="button">企业实名认证</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <form class="form4">
+            <div class="detailedinformation" style="margin-top:0.1rem">
+                <table class="titlehand">
+                    <tr>
+                        <td><img src="img/zl-icon2.png"/></td>
+                        <td class="titBg">联系人详细信息</td>
+                    </tr>
+                </table>
+                <div class="personal">
+                    <table class="tab2" style="margin:auto;border-collapse:separate; border-spacing:0.13rem 0.2rem;">
+                        <tr>
+                            <td class="lab">邮箱</td>
+                            <td><input type="text" id="email1"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lab">所在地区</td>
+                            <td><input type="text" id="J_Address2" placeholder="点击选择地区"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lab">详细地址</td>
+                            <td><input type="text" id="Area1"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lab">邮编</td>
+                            <td><input type="text" id="postcode"/></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="geren_btn" style="text-align:center;margin-top:0.2rem">
+                <button id="companyAccountsUpload" type="button">完 成</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+<script src="./js/city/framework7.min.js"></script>
+<script src="./js/city/regionsObject2.js"></script>
+<script src="./js/city/cityPicker.js"></script>
+<script src="js/dialog/dialog.js"></script>
+<script src="js/new-personalData.js"></script>

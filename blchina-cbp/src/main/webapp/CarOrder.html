@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>购车订单</title>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .xian {
+            width: 100%;
+            height: 2px;
+            font-size: 15px;
+            background: #b7b7b7;
+            text-align: center;
+        }
+        #ul1 {
+            list-style:none;
+        }
+            #ul1 li {
+                height:30px;
+                line-height:30px;
+            }
+    </style>
+
+</head>
+
+<body>
+    <div class="container-fluid">
+
+
+        <div class="row"style="background-color:#e8e8e8;height:45px;line-height:45px">
+            <div class="col-xs-6" style="text-align:center">
+              订单编号：<span>8720</span>
+            </div>
+            <div class="col-xs-6"style="text-align:center;float:right">
+              订单状态：<span>待支付</span>
+            </div>
+        </div>
+
+        <div class="row"><div class="xian"></div></div>
+
+        <div class="row" style="background-color:#e8e8e8;height:45px;line-height:45px">
+            <div class="col-xs-4">
+            </div>
+            <div class="col-xs-8"style="float:right;text-align:center">
+                <span>签订时间：<span>2017年11月1日</span></span>
+            </div>
+        </div>
+        <div class="row"><div class="xian"></div></div>
+
+<div class="row">
+        <ul id="ul1" >
+            <li>买方名称：<span>胡歌</span></li>
+            <li>买方证件号码：<span>1234543213456765432</span></li>
+            <li>联系人：<span>张三</span></li>
+            <li>联系人证件号码：<span>23456543213465432</span></li>
+            <li>车型：<span>奥迪16A8l3.0t8档自动舒适型进口45</span></li>
+            <li>车架号：<span>WBSDJHSDHJSDSEFAMNFA</span></li>
+        </ul>
+</div>
+        <div class="row"><div class="xian"></div></div>
+        <div class="row" style="background-color:#e8e8e8;height:45px;line-height:45px">
+            <div class="col-xs-6">
+                购车文件
+            </div>
+            <div class="col-xs-6"></div>
+        </div>
+
+        <div class="row"><div class="xian"></div></div>
+        <div class="row" style="height:45px;line-height:45px">
+<div class="col-xs-6" style="text-align:center">
+    查看文件
+</div>
+
+            <div class="col-xs-6"style="text-align:center">
+                下载文件
+            </div>
+
+        </div>
+        <div class="row">        
+            <div class="col-xs-6" style="text-align:center">    
+                <button type="button" class="btn btn-default"style="width:120px;" data-toggle="modal" data-target="#myModal">查看合同<span class="badge" style="background-color:#f69002">3</span></button>
+            </div>
+          
+            <div class="col-xs-6"style="text-align:center">
+                <button type="button" class="btn btn-default" style="width:120px;">下载合同</button>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:20px">
+            <div class="col-xs-6" style="text-align:center">
+                <button type="button" class="btn btn-default" style="width:120px;">查看收据<span class="badge"style="background-color:#f69002"></span></button>
+            </div>
+            <div class="col-xs-6" style="text-align:center">
+                <button type="button" class="btn btn-default" style="width:120px;">下载收据</button>
+            </div>
+        </div>
+
+        <div class="row"><div class="xian"></div></div>
+
+        <div class="row" style="background-color:#e8e8e8;height:45px;line-height:45px">
+            <div class="col-xs-6">
+               支付款项
+            </div>
+            <div class="col-xs-6"></div>
+        </div>
+
+        <div class="row"><div class="xian"></div></div>
+
+        <div class="row"style="">
+
+            <div class="col-xs-10 col-xs-offset-1"style="margin-top:20px">
+
+                <select class="form-control">
+                    <option>定金</option>
+                    <option>全款</option>                  
+                </select>
+            </div>
+        </div>
+
+        <div class="row" style="text-align:center">
+
+            <div class="col-xs-10 col-xs-offset-1" style="margin-top:20px">
+                <button type="button" class="btn btn-default  btn-block" style="background-color:#8796b0">微信支付</button>             
+            </div>
+        </div>
+
+        <div class="row" style="text-align:center">
+            <div class="col-xs-10 col-xs-offset-1" style="margin-top:20px">
+                <button type="button" class="btn btn-default  btn-block" style="background-color:#8796b0">电子汇款</button>
+            </div>
+        </div>
+
+        <div class="row" style="text-align:center;margin-top:20px">
+            <div class="col-xs-10 col-xs-offset-1"style="font-size:6px">
+              如需使用其他支付方式，请联系销售顾问&nbsp;<span style="color:#fc0404">12445467889</span>
+            </div>
+        </div>
+
+ <div class="row" style="margin-top:20px"><div class="xian"></div></div>
+        <div class="row" style="background-color:#e8e8e8;height:45px;line-height:45px">
+            <div class="col-xs-6">
+              更多订单
+            </div>
+            <div class="col-xs-6"></div>
+        </div>  
+    </div>
+    
+    <!-- 模态框 -->
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel"style="text-align:center">您有两份合同可以查看</h4>
+                </div>
+
+                <div class="modal-body">
+
+                    <div style="text-align:center">
+                        <button type="button" class="btn btn-default" aria-label=" Align">合同编号324556</button>
+                        <button type="button" class="btn btn-default" aria-label=" Align" style="background-color:#8796b0">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                 
+                    <div style="text-align:center;margin-top:10px">
+                        <button type="button" class="btn btn-default" aria-label=" Align">合同编号324556</button>
+                        <button type="button" class="btn btn-default" aria-label=" Align" style="background-color:#8796b0">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                        </button>
+                    </div>
+
+
+</div>
+
+                <!--<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>-->
+
+            </div>
+        </div>
+    </div>
+   
+
+   
+</body>
+</html>
+<script>
+
+ 
+     
+   
+</script>

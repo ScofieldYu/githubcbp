@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>订单详情</title>
+    <script src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/paperlessOfficeSales/customerOrderDetails.css">
+</head>
+<body>
+<div class="orderContent">
+    <div class="orderTit">
+        <p>订单编号: <span id="saporderid"></span></p>
+        <!--<a href="javascript:void 0"></a>-->
+    </div>
+    <div class="orderInfo">
+        <p>订单状态：<span id="orderstatus">待支付</span></p>
+        <p>下单时间：<span id="orderdate"></span></p>
+        <p>车型：<span id="carTypeInfo"></span></p>
+        <p>车架号：<span id="realvinno"></span></p>
+    </div>
+    <div class="orderInfo2">
+        <div class="orderInfo2-logistics">
+            <p>物流信息</p>
+            <a id="logistics" href="javascript:void 0">车辆已在途<i></i></a>
+        </div>
+        <div class="orderInfo2-retainage">
+            <p>预约交车时间</p>
+            <a id="returnCarTime" href="javascript:void 0">2018年02月08日09:00-11:00<i></i></a>
+        </div>
+    </div>
+    <div class="orderMsg" style="display: none;">
+        <p>温馨提示：已为您成功下单，</p>
+        <p>请您联系销售顾问咨询后续事宜。</p>
+    </div>
+    <div class="backlog">
+        <p class="title">
+            <i></i>代办任务
+        </p>
+        <ul>
+            <li class="goFinance item-Finance">
+                <p>申请贷款</p>
+                <p></p>
+                <a href="javascript:void 0"></a>
+            </li>
+            <li class="goVehicleReplacement item-SecondHandCar">
+                <p>车辆置换</p>
+                <p></p>
+                <a href="javascript:void 0"></a>
+            </li>
+            <li class="goSelectInsurance item-SelectInsurance">
+                <p>车险办理</p>
+                <p></p>
+                <a href="javascript:void 0"></a>
+            </li>
+            <li class="goValidateCar item-CheckCarNum">
+                <p>验车上牌</p>
+                <p></p>
+                <a href="javascript:void 0"></a>
+            </li>
+            <li class="goCompetitiveProducts item-Boutique">
+                <p>加装精品</p>
+                <p></p>
+                <a href="javascript:void 0"></a>
+            </li>
+        </ul>
+    </div>
+    <div class="processing">
+        <p class="title">
+            <i></i>处理中任务
+        </p>
+        <ul class="item-Finance">
+            <li class="goFinance">
+                <p>申请贷款</p>
+                <p>正在为您办理</p>
+                <a href="javascript:void 0"></a>
+            </li>
+            <li>
+                <p></p>
+                <p>相关文件</p>
+                <a href="javascript:void 0"></a>
+            </li>
+        </ul>
+        <ul class="item-SecondHandCar">
+            <li class="goVehicleReplacement">
+                <p>车辆置换</p>
+                <p>正在为您办理</p>
+                <a href="javascript:void 0"></a>
+            </li>
+            <li>
+                <p></p>
+                <p>相关文件</p>
+                <a href="javascript:void 0"></a>
+            </li>
+        </ul>
+        <ul class="item-SelectInsurance">
+            <li class="goSelectInsurance">
+                <p>车险办理</p>
+                <p>正在为您办理</p>
+                <a href="javascript:void 0"></a>
+            </li>
+            <li>
+                <p></p>
+                <p>相关文件</p>
+                <a href="javascript:void 0"></a>
+            </li>
+        </ul>
+        <ul class="item-CheckCarNum">
+            <li class="goValidateCar">
+                <p>验车上牌</p>
+                <p>正在为您办理</p>
+                <a href="javascript:void 0"></a>
+            </li>
+            <li>
+                <p></p>
+                <p>相关文件</p>
+                <a href="javascript:void 0"></a>
+            </li>
+        </ul>
+        <ul class="item-Boutique">
+            <li class="goCompetitiveProducts">
+                <p>加装精品</p>
+                <p>正在为您办理</p>
+                <a href="javascript:void 0"></a>
+            </li>
+            <li>
+                <p></p>
+                <p>相关文件</p>
+                <a href="javascript:void 0"></a>
+            </li>
+        </ul>
+    </div>
+    <div class="completed">
+        <p class="title">
+            <i></i>已完成任务
+        </p>
+        <ul class="item-Finance">
+            <li class="goFinance">
+                <p>申请贷款</p>
+                <p>已为您办理</p>
+                <a href="javascript:void 0"></a>
+            </li>
+            <li>
+                <p></p>
+                <p>相关文件</p>
+                <a href="javascript:void 0"></a>
+            </li>
+        </ul>
+        <ul class="item-SecondHandCar">
+            <li class="goVehicleReplacement">
+                <p>车辆置换</p>
+                <p>已为您办理</p>
+                <a href="javascript:void 0"></a>
+            </li>
+            <li>
+                <p></p>
+                <p>相关文件</p>
+                <a href="javascript:void 0"></a>
+            </li>
+        </ul>
+        <ul class="item-SelectInsurance">
+            <li class="goSelectInsurance">
+                <p>车险办理</p>
+                <p>已为您办理</p>
+                <a href="javascript:void 0"></a>
+            </li>
+            <li>
+                <p></p>
+                <p>相关文件</p>
+                <a href="javascript:void 0"></a>
+            </li>
+        </ul>
+        <ul class="item-CheckCarNum">
+            <li class="goValidateCar">
+                <p>验车上牌</p>
+                <p>已为您办理</p>
+                <a href="javascript:void 0"></a>
+            </li>
+            <li>
+                <p></p>
+                <p>相关文件</p>
+                <a href="javascript:void 0"></a>
+            </li>
+        </ul>
+        <ul class="item-Boutique">
+            <li class="goCompetitiveProducts">
+                <p>加装精品</p>
+                <p>已为您办理</p>
+                <a href="javascript:void 0"></a>
+            </li>
+            <li>
+                <p></p>
+                <p>相关文件</p>
+                <a href="javascript:void 0"></a>
+            </li>
+        </ul>
+    </div>
+    <div class="orderListSum">
+        <p class="title">
+            <i></i>订单文件汇总
+            <a href="javascript:void 0"></a>
+        </p>
+        <p class="orderTotal">
+            总价：
+            <span id="totalprice">￥300,000</span>
+        </p>
+    </div>
+    <div class="signBtnList">
+        <div class="callAdviser">
+            <a id="contactAdviser" href="javascript:void 0">联系销售顾问</a>
+        </div>
+        <div class="paymentTail">
+            <a id="signBtn" href="javascript:void 0">去支付</a>
+        </div>
+    </div>
+    <div class="invoiceInfoPage">
+        <div class="trueInvoiceInfoPage">
+            <div class="closeBtn invoiceInfoPageCloseBtn">
+                <a href="javascript:void 0"></a>
+            </div>
+            <div class="invoiceInfoTitle">
+                开票信息
+            </div>
+            <div class="invoiceInfoList">
+                <ul>
+                    <li>
+                        <input id="invoiceName" type="text" value="" placeholder="个人姓名或公司名称">
+                    </li>
+                    <li>
+                        <input id="invoiceId" type="text" value="" placeholder="身份证号或统一社会信用代码">
+                    </li>
+                </ul>
+            </div>
+            <div class="invoiceInfoSureBtn">
+                <a href="javascript:void 0">确定</a>
+            </div>
+        </div>
+    </div>
+    <div class="paymentPage">
+        <div class="truePaymentPage">
+            <div class="closeBtn">
+                <a class="paymentPageCloseBtn" href="javascript:void 0"></a>
+            </div>
+            <div class="payTitle">
+                <p>
+                    已选：
+                    <span id="payMethod">定金￥0.01</span>，
+                    <span id="payType">微信支付</span>
+                </p>
+            </div>
+            <div class="payList">
+                <ul>
+                    <li class="paymentSelect">
+                        <em></em>
+                        <span id="depositfirst" class="payMethod" payMethod="定金￥0.01">定金：￥<b>0.01</b></span>
+                    </li>
+                    <li>
+                        <em></em>
+                        <span id="depositsum" class="payMethod" payMethod="全款￥290,800">全款：￥<b>290,800</b></span>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="paymentSelect">
+                        <em></em>
+                        <span class="payType" payType="微信支付">微信支付</span>
+                    </li>
+                    <li>
+                        <em></em>
+                        <span class="payType" payType="线下支付">线下支付</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="paySureBtn">
+                <a href="javascript:void 0">支付</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/paperlessOfficeSales/customerOrderDetails.js"></script>
+</html>

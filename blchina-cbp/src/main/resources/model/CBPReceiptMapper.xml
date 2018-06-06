@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPReceiptMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPReceipt">
+    <id column="receiptId" jdbcType="INTEGER" property="receiptid" />
+    <result column="sapOrderId" jdbcType="VARCHAR" property="saporderid" />
+    <result column="receiptUUID" jdbcType="VARCHAR" property="receiptuuid" />
+    <result column="receiptName" jdbcType="VARCHAR" property="receiptname" />
+    <result column="receiptType" jdbcType="VARCHAR" property="receipttype" />
+    <result column="receiptSum" jdbcType="VARCHAR" property="receiptsum" />
+    <result column="receiptDate" jdbcType="VARCHAR" property="receiptdate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    receiptId, sapOrderId, receiptUUID, receiptName, receiptType, receiptSum, receiptDate
+  </sql>
+  <select id="getReceiptCountByBrandIdAndOrderStatus" parameterType="com.blchina.cbp.dto.SignMonitorDTO" resultType="java.lang.Integer">
+	select COUNT(receiptId) from cbp_receipt where sapOrderId in (
+	select sapOrderId from cbp_order where orderStatus = '2' AND brandId = #{brandId}
+	<if test='dateStart !=null'>
+		and unix_timestamp(DATE_FORMAT(orderDate,'%Y-%m-%d')) &gt;=
+		unix_timestamp(#{dateStart})
+	</if>
+	<if test='dateEnd !=null'>
+		and unix_timestamp(DATE_FORMAT(orderDate,'%Y-%m-%d')) &lt;=
+		unix_timestamp(#{dateEnd})
+	</if>
+	)
+	and receiptUUID is NOT NULL and receiptUUID !='';
+  </select>
+  
+   <select id="selectReceipt" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_receipt
+    where orderId = #{orderId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_receipt
+    where receiptId = #{receiptid,jdbcType=INTEGER}
+  </select>
+  <select id="selectBySapOrderId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_receipt
+    where sapOrderId = #{saporderid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_receipt
+    where receiptId = #{receiptid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPReceipt">
+    insert into cbp_receipt (receiptId, sapOrderId, receiptUUID, 
+      receiptName, receiptType, receiptSum, 
+      receiptDate)
+    values (#{receiptid,jdbcType=INTEGER}, #{saporderid,jdbcType=VARCHAR}, #{receiptuuid,jdbcType=VARCHAR}, 
+      #{receiptname,jdbcType=VARCHAR}, #{receipttype,jdbcType=VARCHAR}, #{receiptsum,jdbcType=VARCHAR}, 
+      #{receiptdate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPReceipt">
+    insert into cbp_receipt
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="receiptid != null">
+        receiptId,
+      </if>
+      <if test="saporderid != null">
+        sapOrderId,
+      </if>
+      <if test="receiptuuid != null">
+        receiptUUID,
+      </if>
+      <if test="receiptname != null">
+        receiptName,
+      </if>
+      <if test="receipttype != null">
+        receiptType,
+      </if>
+      <if test="receiptsum != null">
+        receiptSum,
+      </if>
+      <if test="receiptdate != null">
+        receiptDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="receiptid != null">
+        #{receiptid,jdbcType=INTEGER},
+      </if>
+      <if test="saporderid != null">
+        #{saporderid,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptuuid != null">
+        #{receiptuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptname != null">
+        #{receiptname,jdbcType=VARCHAR},
+      </if>
+      <if test="receipttype != null">
+        #{receipttype,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptsum != null">
+        #{receiptsum,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptdate != null">
+        #{receiptdate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPReceipt">
+    update cbp_receipt
+    <set>
+      <if test="saporderid != null">
+        sapOrderId = #{saporderid,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptuuid != null">
+        receiptUUID = #{receiptuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptname != null">
+        receiptName = #{receiptname,jdbcType=VARCHAR},
+      </if>
+      <if test="receipttype != null">
+        receiptType = #{receipttype,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptsum != null">
+        receiptSum = #{receiptsum,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptdate != null">
+        receiptDate = #{receiptdate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where receiptId = #{receiptid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPReceipt">
+    update cbp_receipt
+    set sapOrderId = #{saporderid,jdbcType=VARCHAR},
+      receiptUUID = #{receiptuuid,jdbcType=VARCHAR},
+      receiptName = #{receiptname,jdbcType=VARCHAR},
+      receiptType = #{receipttype,jdbcType=VARCHAR},
+      receiptSum = #{receiptsum,jdbcType=VARCHAR},
+      receiptDate = #{receiptdate,jdbcType=VARCHAR}
+    where receiptId = #{receiptid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.insurance.dao.BDLInsuranceLimitMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.insurance.model.BDLInsuranceLimit">
+    <id column="insuranceLimitId" jdbcType="INTEGER" property="insurancelimitid" />
+    <result column="insuranceId" jdbcType="INTEGER" property="insuranceid" />
+    <result column="limitAccount" jdbcType="VARCHAR" property="limitaccount" />
+    <result column="insuranceCompanyId" jdbcType="INTEGER" property="insurancecompanyid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    insuranceLimitId, insuranceId, limitAccount, insuranceCompanyId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_insuranceLimit
+    where insuranceLimitId = #{insurancelimitid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bdl_insuranceLimit
+    where insuranceLimitId = #{insurancelimitid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.insurance.model.BDLInsuranceLimit">
+    insert into bdl_insuranceLimit (insuranceLimitId, insuranceId, limitAccount, 
+      insuranceCompanyId)
+    values (#{insurancelimitid,jdbcType=INTEGER}, #{insuranceid,jdbcType=INTEGER}, #{limitaccount,jdbcType=VARCHAR}, 
+      #{insurancecompanyid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.insurance.model.BDLInsuranceLimit">
+    insert into bdl_insuranceLimit
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="insurancelimitid != null">
+        insuranceLimitId,
+      </if>
+      <if test="insuranceid != null">
+        insuranceId,
+      </if>
+      <if test="limitaccount != null">
+        limitAccount,
+      </if>
+      <if test="insurancecompanyid != null">
+        insuranceCompanyId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="insurancelimitid != null">
+        #{insurancelimitid,jdbcType=INTEGER},
+      </if>
+      <if test="insuranceid != null">
+        #{insuranceid,jdbcType=INTEGER},
+      </if>
+      <if test="limitaccount != null">
+        #{limitaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancecompanyid != null">
+        #{insurancecompanyid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.insurance.model.BDLInsuranceLimit">
+    update bdl_insuranceLimit
+    <set>
+      <if test="insuranceid != null">
+        insuranceId = #{insuranceid,jdbcType=INTEGER},
+      </if>
+      <if test="limitaccount != null">
+        limitAccount = #{limitaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancecompanyid != null">
+        insuranceCompanyId = #{insurancecompanyid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where insuranceLimitId = #{insurancelimitid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.insurance.model.BDLInsuranceLimit">
+    update bdl_insuranceLimit
+    set insuranceId = #{insuranceid,jdbcType=INTEGER},
+      limitAccount = #{limitaccount,jdbcType=VARCHAR},
+      insuranceCompanyId = #{insurancecompanyid,jdbcType=INTEGER}
+    where insuranceLimitId = #{insurancelimitid,jdbcType=INTEGER}
+  </update>
+  <select id="getInsuranceLimitList" parameterType="com.blchina.insurance.dto.InsuranceDTO" resultMap="BaseResultMap">
+    SELECT * FROM  bdl_insuranceLimit WHERE  insuranceCompanyId =#{insurancecompanyid} and insuranceId = #{insuranceid,jdbcType=INTEGER}
+  </select>
+  <select id="getAllLimit" resultMap="BaseResultMap">
+    SELECT * FROM bdl_insuranceLimit
+  </select>
+</mapper>

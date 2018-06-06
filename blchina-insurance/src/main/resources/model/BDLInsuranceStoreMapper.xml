@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.insurance.dao.BDLInsuranceStoreMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.insurance.model.BDLInsuranceStore">
+    <id column="insuranceStoreId" jdbcType="INTEGER" property="insurancestoreid" />
+    <result column="insuranceId" jdbcType="INTEGER" property="insuranceid" />
+    <result column="storeId" jdbcType="INTEGER" property="storeid" />
+    <result column="insuranceName" jdbcType="VARCHAR" property="insurancename" />
+    <result column="insuranceType" jdbcType="VARCHAR" property="insurancetype" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    insuranceStoreId, insuranceId, storeId, insuranceName, insuranceType
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_insuranceStore
+    where insuranceStoreId = #{insurancestoreid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bdl_insuranceStore
+    where insuranceStoreId = #{insurancestoreid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.insurance.model.BDLInsuranceStore">
+    insert into bdl_insuranceStore (insuranceStoreId, insuranceId, storeId, 
+      insuranceName, insuranceType)
+    values (#{insurancestoreid,jdbcType=INTEGER}, #{insuranceid,jdbcType=INTEGER}, #{storeid,jdbcType=INTEGER}, 
+      #{insurancename,jdbcType=VARCHAR}, #{insurancetype,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.insurance.model.BDLInsuranceStore">
+    insert into bdl_insuranceStore
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="insurancestoreid != null">
+        insuranceStoreId,
+      </if>
+      <if test="insuranceid != null">
+        insuranceId,
+      </if>
+      <if test="storeid != null">
+        storeId,
+      </if>
+      <if test="insurancename != null">
+        insuranceName,
+      </if>
+      <if test="insurancetype != null">
+        insuranceType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="insurancestoreid != null">
+        #{insurancestoreid,jdbcType=INTEGER},
+      </if>
+      <if test="insuranceid != null">
+        #{insuranceid,jdbcType=INTEGER},
+      </if>
+      <if test="storeid != null">
+        #{storeid,jdbcType=INTEGER},
+      </if>
+      <if test="insurancename != null">
+        #{insurancename,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancetype != null">
+        #{insurancetype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.insurance.model.BDLInsuranceStore">
+    update bdl_insuranceStore
+    <set>
+      <if test="insuranceid != null">
+        insuranceId = #{insuranceid,jdbcType=INTEGER},
+      </if>
+      <if test="storeid != null">
+        storeId = #{storeid,jdbcType=INTEGER},
+      </if>
+      <if test="insurancename != null">
+        insuranceName = #{insurancename,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancetype != null">
+        insuranceType = #{insurancetype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where insuranceStoreId = #{insurancestoreid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.insurance.model.BDLInsuranceStore">
+    update bdl_insuranceStore
+    set insuranceId = #{insuranceid,jdbcType=INTEGER},
+      storeId = #{storeid,jdbcType=INTEGER},
+      insuranceName = #{insurancename,jdbcType=VARCHAR},
+      insuranceType = #{insurancetype,jdbcType=VARCHAR}
+    where insuranceStoreId = #{insurancestoreid,jdbcType=INTEGER}
+  </update>
+</mapper>

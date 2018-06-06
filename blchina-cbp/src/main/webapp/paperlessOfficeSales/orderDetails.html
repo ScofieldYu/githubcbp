@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>订单详情</title>
+    <script src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/paperlessOfficeSales/orderDetails.css">
+</head>
+<body>
+<div class="orderContent">
+    <div class="orderTit">
+        <p>订单编号: <span id="saporderid">110102</span></p>
+        <a class="moreBtn" href="javascript:void 0"></a>
+        <div class="moreList">
+            <i class="orY"></i>
+            <ul>
+                <li>
+                    <a id="goSearchOrder" class="moreCon" href="javascript:void 0">
+                        <em></em>
+                        搜索订单
+                    </a>
+                </li>
+                <li>
+                    <a id="goOrderList" class="moreCon" href="javascript:void 0">
+                        <em class="homeIcon"></em>
+                        订单列表
+                    </a>
+                </li>
+                <li>
+                    <a id="refreshOrder" class="moreCon" href="javascript:void 0">
+                        <em class="refreshIcon"></em>
+                        刷新订单
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="orderInfo">
+        <div class="orderInfoList">
+            <p>
+                <span>订单状态: <b id="orderstatus">待支付</b></span>
+                <span>下单时间: <b id="orderdate">2018年01月29日</b></span>
+            </p>
+            <p>
+                <span>买方: <b id="buyername">张大开</b></span>
+                <span>手机号码: <b id="buyerphonenumber">13333333333</b></span>
+            </p>
+            <p>
+                <span>联系人: <b id="customername">张大开</b></span>
+                <span>手机号码: <b id="customerphonenumber">13888888888</b></span>
+            </p>
+        </div>
+        <div  id="goCustomer" class="customer">
+            <p class="title">
+                <i></i>客户资料<em></em>
+            </p>
+        </div>
+    </div>
+    <div class="carInfo">
+        <div id="goSelectCar" class="orderInfoList">
+            <p id="cartype">1</p>
+            <p>
+                <span>外观: <b id="appearanceinterior">张大开</b></span>
+                <span>内饰: <b id="derivename">13333333333</b></span>
+            </p>
+            <p>
+                <span>车架号: <b id="realvinno">张大开</b></span>
+            </p>
+            <em></em>
+        </div>
+        <div class="customer logistics">
+            <p class="title">
+                <i></i>物流信息：
+                <a id="logisticsInfo" href="javascript:void 0">车辆已在途<b></b></a>
+            </p>
+        </div>
+        <div class="customer">
+            <p class="title">
+                <i></i>交车时间：
+                <a id="returnCarTime" href="javascript:void 0">2018年2月14日<b></b></a>
+            </p>
+        </div>
+    </div>
+    <div class="backlog">
+        <p class="title">
+            <i></i>代办任务
+        </p>
+        <ul>
+            <li class="item-Finance">
+                <p>暂无金融分期信息</p>
+                <a class="goFinance" href="javascript:void 0">金融分期</a>
+            </li>
+            <li class="item-SecondHandCar">
+                <p>暂无车辆置换信息</p>
+                <a class="goVehicleReplacement" href="javascript:void 0">车辆置换</a>
+            </li>
+            <li class="item-SelectInsurance">
+                <p>暂无车辆保险信息</p>
+                <a class="goSelectInsurance" href="javascript:void 0">车辆保险</a>
+            </li>
+            <li class="item-CheckCarNum">
+                <p>暂无验车上牌信息</p>
+                <a class="goValidateCar" href="javascript:void 0">验车上牌</a>
+            </li>
+            <li class="item-Boutique">
+                <p>暂无精品业务信息</p>
+                <a class="goCompetitiveProducts" href="javascript:void 0">精品业务</a>
+            </li>
+        </ul>
+    </div>
+    <div class="processing">
+        <p class="title">
+            <i></i>处理中任务
+        </p>
+        <ul id="finance" class="finance item-Finance">
+            <li class="goFinance">
+                <p>金融分期信息</p>
+                <em></em>
+            </li>
+            <li>
+                <p>金融经理</p>
+                <a id="financephonenumber" class="contactTelBtn" href="javascript:void 0"><b></b>联系经理</a>
+            </li>
+            <li>
+                <p>预约家访</p>
+                <a class="contactTelBtn customerPhone" href="javascript:void 0"><b></b>联系客户</a>
+            </li>
+            <li>
+                <p>家访时间：<a href="javascript:void 0"><span id="reservetime">2018年02月08日上午</span><i class="arrowRight"></i></a></p>
+            </li>
+            <li>
+                <p>相关文件：</p>
+                <a class="seeBtn" href="javascript:void 0">查看<i></i></a>
+            </li>
+        </ul>
+        <ul id="secondHandCar" class="secondHandCar item-SecondHandCar">
+            <li class="goVehicleReplacement">
+                <p>车辆置换信息</p>
+                <em></em>
+            </li>
+            <li>
+                <p>评估师</p>
+                <a id="secondhandcarphonenumber" class="contactTelBtn" href="javascript:void 0"><b></b>联系评估师</a>
+            </li>
+            <li>
+                <p>二手车评估</p>
+            </li>
+            <li>
+                <p>预约时间：<a href="javascript:void 0"><span id="reserveSHCTime">2018年02月08日上午</span><i class="arrowRight"></i></a></p>
+            </li>
+            <li>
+                <p>相关文件：</p>
+                <a class="seeBtn" href="javascript:void 0">查看<i></i></a>
+            </li>
+        </ul>
+        <ul id="selectInsurance" class="selectInsurance item-SelectInsurance">
+            <li class="goSelectInsurance">
+                <p>车辆保险信息</p>
+                <em></em>
+            </li>
+            <li>
+                <p>相关文件：</p>
+                <a class="seeBtn" href="javascript:void 0">查看<i></i></a>
+            </li>
+        </ul>
+        <ul id="checkCarNum" class="checkCarNum item-CheckCarNum">
+            <li class="goValidateCar">
+                <p>验车上牌信息</p>
+                <em></em>
+            </li>
+            <li class="buytax">
+                <p>已缴纳购置税</p>
+            </li>
+            <li class="buytax">
+                <p>所需资料：<a href="javascript:void 0"><span id="buytaxsize">完整度1/9</span><i class="arrowRight"></i></a></p>
+            </li>
+            <li class="tempplate">
+                <p>已办理临牌</p>
+            </li>
+            <li class="tempplate">
+                <p>客户已办理临牌次数：<a href="javascript:void 0"><span id="tempplatecount">1次</span><i class="arrowDown"></i></a></p>
+                <a class="contactTelBtn customerPhone" href="javascript:void 0"><b></b>联系客户</a>
+            </li>
+            <li class="tempplate">
+                <p>所需资料：<a href="javascript:void 0"><span id="tempplatesize">完整度1/9</span><i class="arrowRight"></i></a></p>
+            </li>
+            <li class="checkcar">
+                <p>已办理验车上牌</p>
+            </li>
+            <li class="checkcar">
+                <p>客户选号方式：<a href="javascript:void 0"><span id="choosetype">50选1</span><i class="arrowDown"></i></a></p>
+                <a class="contactTelBtn customerPhone" href="javascript:void 0"><b></b>联系客户</a>
+            </li>
+            <li class="checkcar">
+                <p>办理时间：<a href="javascript:void 0"><span id="reservecheckcartime">2018年02月08日上午</span><i class="arrowRight"></i></a></p>
+            </li>
+            <li class="checkcar">
+                <p>所需资料：<a href="javascript:void 0"><span id="checkcarsize">完整度1/9</span><i class="arrowRight"></i></a></p>
+            </li>
+            <li>
+                <p>相关文件：</p>
+                <a class="seeBtn" href="javascript:void 0">查看<i></i></a>
+            </li>
+        </ul>
+        <ul id="boutique" class="boutique item-Boutique">
+            <li class="goCompetitiveProducts">
+                <p>精品业务信息</p>
+                <em></em>
+            </li>
+            <li>
+                <p>办理时间：<a href="javascript:void 0"><span id="createtime">2018年02月08日上午</span><i class="arrowRight"></i></a></p>
+            </li>
+            <li>
+                <p>施工开始确认：<span>完成</span></p>
+            </li>
+            <li>
+                <p>精品完成确认：<a class="boutiqueOkBtn" href="javascript:void 0"><b></b>确认完成</a></p>
+            </li>
+            <li>
+                <p>相关文件：</p>
+                <a class="seeBtn" href="javascript:void 0">查看<i></i></a>
+            </li>
+        </ul>
+    </div>
+    <div class="completed">
+        <p class="title">
+            <i></i>已完成任务
+        </p>
+        <ul class="item-Finance">
+            <li class="goFinance">
+                <p>金融分期信息</p>
+                <p></p>
+                <em></em>
+            </li>
+            <li>
+                <p></p>
+                <p>相关文件：</p>
+                <a href="javascript:void 0">查看<i></i></a>
+            </li>
+        </ul>
+        <ul class="item-SecondHandCar">
+            <li class="goVehicleReplacement" >
+                <p>车辆置换信息</p>
+                <p></p>
+                <em></em>
+            </li>
+            <li>
+                <p></p>
+                <p>相关文件：</p>
+                <a href="javascript:void 0">查看<i></i></a>
+            </li>
+        </ul>
+        <ul class="item-SelectInsurance">
+            <li class="goSelectInsurance">
+                <p>车辆保险信息</p>
+                <p></p>
+                <em></em>
+            </li>
+            <li>
+                <p></p>
+                <p>相关文件：</p>
+                <a href="javascript:void 0">查看<i></i></a>
+            </li>
+        </ul>
+        <ul class="item-CheckCarNum">
+            <li class="goValidateCar">
+                <p>验车上牌信息</p>
+                <p></p>
+                <em></em>
+            </li>
+            <li>
+                <p></p>
+                <p>相关文件：</p>
+                <a href="javascript:void 0">查看<i></i></a>
+            </li>
+        </ul>
+        <ul class="item-Boutique">
+            <li class="goCompetitiveProducts">
+                <p>精品业务信息</p>
+                <p></p>
+                <em></em>
+            </li>
+            <li>
+                <p></p>
+                <p>相关文件：</p>
+                <a href="javascript:void 0">查看<i></i></a>
+            </li>
+        </ul>
+    </div>
+    <div class="orderListSum">
+        <p class="title">
+            <i></i>订单文件汇总
+            <a href="javascript:void 0"></a>
+        </p>
+        <p class="orderTotal">
+            总价：
+            <a id="goTotalPrice" href="javascript:void 0"><span id="totalprice">￥300,000</span><i></i></a>
+        </p>
+    </div>
+    <div class="signBtnList">
+        <div style="display: none;" class="callAdviser">
+            <a id="contactAdviser customerPhone" href="javascript:void 0">联系客户</a>
+        </div>
+        <div style="display: none;" class="paymentTail">
+            <a id="signBtn" href="javascript:void 0">签署合同</a>
+        </div>
+        <div class="signContract">
+            <a id="signContractBtn" href="javascript:void 0">签署合同</a>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/paperlessOfficeSales/orderDetails.js"></script>
+</html>

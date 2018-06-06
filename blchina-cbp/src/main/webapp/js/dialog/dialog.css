@@ -1,0 +1,104 @@
+.plugin_dialog {
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: 1000;
+    visibility: hidden;
+}
+.plugin_dialog.show{
+    visibility: visible;
+}
+.plugin_dialog .plugin_dialog_bg {
+    background: #000;
+    filter: alpha(opacity=30);
+    min-height: 100%;
+    opacity: .6;
+    position: fixed;
+    width: 100%;
+}
+.plugin_dialog .cssStyle{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    perspective: 600px;
+}
+.plugin_dialog .plugin_dialog_content {
+    position: fixed;
+    z-index: 1000;
+    border-radius: 0.08rem;
+    background: #FFFFFF;
+    /*background: url('../../img/test.png');*/
+    /*background-size: 100%;*/
+    /*overflow: hidden;*/
+    border: 0.02rem solid;
+    /*border-image: linear-gradient(#9d9d9d , #323232) 30 ;*/
+    border-image: url('../../img/test.png') 4 4 4 4;
+}
+.plugin_dialog .plugin_dialog_content.scale{
+    transform: scale(0.5);
+    opacity: 0;
+}
+.plugin_dialog.show .plugin_dialog_content.scale{
+    transform: scale(1);
+    opacity: 1;
+    transition: 500ms cubic-bezier(0.4, 0, 0, 1.5);
+}
+.plugin_dialog .plugin_dialog_content .plugin_dialog_tit{
+    position: absolute;
+    left: 50%;
+    margin-top: -0.525rem;
+    margin-left: -0.525rem;
+    box-sizing: border-box;
+    border: 0.02rem solid #404040;
+    width: 1.05rem;
+    height: 1.05rem;
+    line-height: 1.05rem;
+    border-radius: 50%;
+    text-align: center;
+    background: #232120;
+    font-size: 0.19rem;
+    color: #FFFFFF;
+}
+.plugin_dialog .plugin_dialog_bd {
+    position: relative;
+    padding-top: 0.525rem;
+}
+.plugin_dialog .Btn {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+.plugin_dialog .plugin_dialog_btn{
+    display: inline-block;
+    box-sizing: border-box;
+    border-top: 1px solid #cccccc;
+    width: 50%;
+    height: 0.53rem;
+    line-height: 0.53rem;
+    font-size: 0.18rem;
+    outline: none;
+    color: #8796b0;
+    background: linear-gradient(to bottom, #FFFFFF, #f1f1f1 50%, #c8c8c8);
+}
+.plugin_dialog .Btn .plugin_dialog_btn.send{
+    border-left: 1px solid #FFFFFF;
+    border-bottom-right-radius: 0.03rem;
+    color: #546e9a;
+}
+.plugin_dialog .Btn .plugin_dialog_btn.close{
+    border-right: 1px solid #cccccc;
+    border-bottom-left-radius: 0.03rem;
+    color: #404040;
+}
+.plugin_dialog .Btn .okBtn{
+    margin-bottom: 0.36rem;
+    border-radius: 0.03rem;
+    width: 2.5rem;
+    height: 0.4rem;
+    color: #ffffff;
+    font-size: 0.15rem;
+    background: #546e9a;
+    box-shadow: 0 0.02rem 0.03rem rgba(0,0,0,.5);
+}

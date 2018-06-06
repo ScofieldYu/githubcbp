@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+    <!--<bean id="contextSource"-->
+          <!--class="org.springframework.user.core.support.LdapContextSource">-->
+        <!--<property name="url" value="user://192.168.16.XXX:389" />-->
+        <!--<property name="base" value="OU=XXX,OU=XXX,OU=XXX,OU=XXX,DC=XXX,DC=XXX,DC=XXX" />-->
+        <!--<property name="userDn" value="XXX@headquarter" />-->
+        <!--<property name="password" value="XXX" />-->
+    <!--</bean>-->
+
+    <bean id="ldapContextSource"
+          class="org.springframework.ldap.core.support.LdapContextSource">
+        <property name="url" value="${ldap.url}" />
+        <!--<property name="base" value="OU=百得利集团公共帐号,DC=betterlifecar,DC=com;OU=Audi奥迪品牌,DC=betterlifecar,DC=com" />-->
+        <property name="base" value="DC=betterlifecar,DC=com" />
+        <!--<property name="base" value="OU=百得利集团公共帐号,DC=betterlifecar,DC=com" />-->
+        <!--<property name="base" value="OU=Audi奥迪品牌,DC=betterlifecar,DC=com" />-->
+        <!--<property name="base" value="${user.base}" />-->
+        <property name="userDn" value="${ldap.userDn}" />
+        <property name="password" value="${ldap.password}" />
+    </bean>
+
+    <bean id="ldapTemplate" class="org.springframework.ldap.core.LdapTemplate">
+        <constructor-arg ref="ldapContextSource" />
+    </bean>
+
+
+</beans>

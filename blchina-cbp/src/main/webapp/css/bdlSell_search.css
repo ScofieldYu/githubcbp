@@ -1,0 +1,88 @@
+body, html {
+  width: 100%;
+  height: 100%;
+  min-width: 3.2rem;
+  font-size: 100px;
+  font-family: PingFangSC-Regular, sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background: #f6f6f6; }
+
+.bdlSerch_main {
+  width: 100%;
+  height: 100%;
+  font-size: .12rem; }
+  .bdlSerch_main .title_search {
+    padding: 0 .1rem;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    height: .45rem;
+    align-items: center; }
+    .bdlSerch_main .title_search .bdl_input {
+      height: .32rem;
+      width: 3.2rem;
+      box-sizing: border-box;
+      border: 1px solid #eee;
+      border-radius: .15rem;
+      display: flex;
+      align-items: center; }
+    .bdlSerch_main .title_search .inputSearch {
+      height: .28rem;
+      flex: 1;
+      border: 0;
+      box-sizing: border-box;
+      border-radius: .15rem;
+      padding-right: .1rem; }
+    .bdlSerch_main .title_search .search_img {
+      height: .14rem;
+      width: .13rem;
+      margin-left: .08rem;
+      margin-right: .08rem;
+      background: url(../img/icon01.png) no-repeat;
+      background-size: cover; }
+    .bdlSerch_main .title_search .leave {
+      padding-left: .1rem;
+      font-weight: bold;
+      white-space: nowrap; }
+  .bdlSerch_main .history {
+    padding: 0 .1rem;
+    height: auto;
+    display: flex;
+    flex-direction: column; }
+    .bdlSerch_main .history .historyTxt {
+      color: #666; }
+    .bdlSerch_main .history .garbageBin {
+      height: .2rem;
+      width: .15rem;
+      background: url(../img/icon_trash_alt.png) no-repeat;
+      background-size: cover;
+      margin-right: .2rem;
+      color: #666; }
+    .bdlSerch_main .history .titletxt {
+      display: flex;
+      justify-content: space-between;
+      margin-top: .15rem;
+      align-items: center;
+      margin-bottom: .15rem; }
+    .bdlSerch_main .history .hisTList {
+      display: flex;
+      flex-wrap: wrap; }
+      .bdlSerch_main .history .hisTList span {
+        width: 18%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: .25rem;
+        height: .31rem;
+        border: 1px solid #aaa;
+        color: #333;
+        font-size: .15rem;
+        white-space: nowrap;
+        font-weight: bold;
+        box-sizing: border-box;
+        margin: .1rem .05rem .1rem 0; }
+
+/*# sourceMappingURL=bdlSell_search.css.map */

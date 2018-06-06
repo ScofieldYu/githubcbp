@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.finance.dao.BDLPeriodMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.finance.model.BDLPeriod">
+    <id column="periodId" jdbcType="INTEGER" property="periodid" />
+    <result column="bankId" jdbcType="INTEGER" property="bankid" />
+    <result column="periodValue" jdbcType="VARCHAR" property="periodvalue" />
+    <result column="yearAccrual" jdbcType="VARCHAR" property="yearaccrual" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    periodId, bankId, periodValue, yearAccrual
+  </sql>
+  <select id="getAllPeriodList"  resultMap="BaseResultMap">
+    select p.bankId,b.bankName,p.periodId,p.periodValue,p.yearAccrual
+    from bdl_bank b left join bdl_period p on b.bankId = p.bankId
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_period
+    where periodId = #{periodid,jdbcType=INTEGER}
+  </select>
+  <select id="getPeriodListByBankId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_period
+    where bankId = #{bankid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bdl_period
+    where periodId = #{periodid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.finance.model.BDLPeriod">
+    insert into bdl_period (periodId, bankId, periodValue,
+    yearAccrual)
+    values (#{periodid,jdbcType=INTEGER},#{bankid,jdbcType=INTEGER}, #{periodvalue,jdbcType=VARCHAR}, 
+      #{yearaccrual,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.finance.model.BDLPeriod">
+    insert into bdl_period
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="periodid != null">
+        periodId,
+      </if>
+      <if test="bankid != null">
+        bankId,
+      </if>
+      <if test="periodvalue != null">
+        periodValue,
+      </if>
+      <if test="yearaccrual != null">
+        yearAccrual,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="periodid != null">
+        #{periodid,jdbcType=INTEGER},
+      </if>
+      <if test="bankid != null">
+        #{bankid,jdbcType=INTEGER},
+      </if>
+      <if test="periodvalue != null">
+        #{periodvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="yearaccrual != null">
+        #{yearaccrual,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.finance.model.BDLPeriod">
+    update bdl_period
+    <set>
+      <if test="bankid != null">
+        bankId = #{bankid,jdbcType=INTEGER},
+      </if>
+      <if test="periodvalue != null">
+        periodValue = #{periodvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="yearaccrual != null">
+        yearAccrual = #{yearaccrual,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where periodId = #{periodid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.finance.model.BDLPeriod">
+    update bdl_period
+    set bankId = #{bankid,jdbcType=INTEGER},
+      periodValue = #{periodvalue,jdbcType=VARCHAR},
+      yearAccrual = #{yearaccrual,jdbcType=VARCHAR}
+    where periodId = #{periodid,jdbcType=INTEGER}
+  </update>
+</mapper>

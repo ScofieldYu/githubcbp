@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.insurance.dao.BDLInsuranceCompanyMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.insurance.model.BDLInsuranceCompany">
+    <id column="insuranceCompanyId" jdbcType="INTEGER" property="insurancecompanyid" />
+    <result column="InsuranceCompanyName" jdbcType="VARCHAR" property="insurancecompanyname" />
+    <result column="companyLogo" jdbcType="VARCHAR" property="companylogo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    insuranceCompanyId, InsuranceCompanyName, companyLogo
+  </sql>
+  <select id="selectListByInsuranceId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select ic.* from bdl_insurancecompany ic where ic.insuranceCompanyId in (
+select insuranceCompanyId from bdl_insuranceandcom where insuranceId in (${substring}))
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_insuranceCompany
+    where insuranceCompanyId = #{insurancecompanyid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bdl_insuranceCompany
+    where insuranceCompanyId = #{insurancecompanyid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.insurance.model.BDLInsuranceCompany">
+    insert into bdl_insuranceCompany (insuranceCompanyId, InsuranceCompanyName, 
+      companyLogo)
+    values (#{insurancecompanyid,jdbcType=INTEGER}, #{insurancecompanyname,jdbcType=VARCHAR}, 
+      #{companylogo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.insurance.model.BDLInsuranceCompany">
+    insert into bdl_insuranceCompany
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="insurancecompanyid != null">
+        insuranceCompanyId,
+      </if>
+      <if test="insurancecompanyname != null">
+        InsuranceCompanyName,
+      </if>
+      <if test="companylogo != null">
+        companyLogo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="insurancecompanyid != null">
+        #{insurancecompanyid,jdbcType=INTEGER},
+      </if>
+      <if test="insurancecompanyname != null">
+        #{insurancecompanyname,jdbcType=VARCHAR},
+      </if>
+      <if test="companylogo != null">
+        #{companylogo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.insurance.model.BDLInsuranceCompany">
+    update bdl_insuranceCompany
+    <set>
+      <if test="insurancecompanyname != null">
+        InsuranceCompanyName = #{insurancecompanyname,jdbcType=VARCHAR},
+      </if>
+      <if test="companylogo != null">
+        companyLogo = #{companylogo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where insuranceCompanyId = #{insurancecompanyid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.insurance.model.BDLInsuranceCompany">
+    update bdl_insuranceCompany
+    set InsuranceCompanyName = #{insurancecompanyname,jdbcType=VARCHAR},
+      companyLogo = #{companylogo,jdbcType=VARCHAR}
+    where insuranceCompanyId = #{insurancecompanyid,jdbcType=INTEGER}
+  </update>
+  <select id="getInsuranceCompany" resultMap="BaseResultMap">
+    SELECT * from bdl_insuranceCompany
+  </select>
+</mapper>

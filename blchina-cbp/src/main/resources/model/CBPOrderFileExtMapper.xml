@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPOrderFileExtMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPOrderFileExt">
+    <id column="orderextFileId" jdbcType="INTEGER" property="orderextfileid" />
+    <result column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="fileType" jdbcType="VARCHAR" property="filetype" />
+    <result column="fileuuid" jdbcType="VARCHAR" property="fileuuid" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="createTime" jdbcType="VARCHAR" property="createtime" />
+    <result column="fileTypeName" jdbcType="VARCHAR" property="filetypename" />
+    <result column="fileTypeExt" jdbcType="VARCHAR" property="filetypeext" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    orderextFileId, orderId, fileType, fileuuid, status, createTime, fileTypeName,fileTypeExt
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_orderfile_ext
+    where orderextFileId = #{orderextfileid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_orderfile_ext
+    where orderextFileId = #{orderextfileid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPOrderFileExt">
+    insert into cbp_orderfile_ext (orderextFileId, orderId, fileType, 
+      fileuuid, status, createTime, 
+      fileTypeName,fileTypeExt)
+    values (#{orderextfileid,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, #{filetype,jdbcType=VARCHAR}, 
+      #{fileuuid,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, 
+      #{filetypename,jdbcType=VARCHAR},#{filetypeext})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPOrderFileExt">
+    insert into cbp_orderfile_ext
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderextfileid != null">
+        orderextFileId,
+      </if>
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="filetype != null">
+        fileType,
+      </if>
+      <if test="fileuuid != null">
+        fileuuid,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="filetypename != null">
+        fileTypeName,
+      </if>
+      <if test="filetypeext !=null">
+        fileTypeExt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderextfileid != null">
+        #{orderextfileid,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="filetype != null">
+        #{filetype,jdbcType=VARCHAR},
+      </if>
+      <if test="fileuuid != null">
+        #{fileuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="filetypename != null">
+        #{filetypename,jdbcType=VARCHAR},
+      </if>
+      <if test="filetypeext !=null">
+        #{filetypeext}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPOrderFileExt">
+    update cbp_orderfile_ext
+    <set>
+      <if test="orderid != null">
+        orderId = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="filetype != null">
+        fileType = #{filetype,jdbcType=VARCHAR},
+      </if>
+      <if test="fileuuid != null">
+        fileuuid = #{fileuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="filetypename != null">
+        fileTypeName = #{filetypename,jdbcType=VARCHAR},
+      </if>
+      <if test="filetypeext !=null">
+        fileTypeExt=#{filetypeext},
+      </if>
+    </set>
+    where orderextFileId = #{orderextfileid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPOrderFileExt">
+    update cbp_orderfile_ext
+    set orderId = #{orderid,jdbcType=INTEGER},
+      fileType = #{filetype,jdbcType=VARCHAR},
+      fileuuid = #{fileuuid,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=VARCHAR},
+      fileTypeName = #{filetypename,jdbcType=VARCHAR},
+      fileTypeExt=#{filetypeext}
+    where orderextFileId = #{orderextfileid,jdbcType=INTEGER}
+  </update>
+  <delete id="deleteOrderFileByType" parameterType="com.blchina.cbp.model.CBPOrderFileExt">
+    DELETE from cbp_orderfile_ext where fileType = #{filetype,jdbcType=VARCHAR} and orderId = #{orderid,jdbcType=INTEGER};
+  </delete>
+  <select id="selectFileExt" parameterType="com.blchina.cbp.dto.UploadDTO" resultMap="BaseResultMap">
+    SELECT * from cbp_orderfile_ext  t where t.orderId = #{orderid,jdbcType=INTEGER} and (t.fileTypeExt=#{filetypeext}
+    <if test="typeList !=null">
+      or t.fileType
+      <foreach collection="typeList" item="typeList" open="in (" close=")" separator=",">
+        #{typeList}
+      </foreach>
+    </if>
+    )
+  </select>
+</mapper>

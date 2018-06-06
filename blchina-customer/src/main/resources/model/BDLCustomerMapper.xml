@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.customer.dao.BDLCustomerMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.customer.model.BDLCustomer">
+    <id column="customerId" jdbcType="INTEGER" property="customerid" />
+    <result column="wxheadimgUrl" jdbcType="VARCHAR" property="wxheadimgurl" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="phoneNumber" jdbcType="BIGINT" property="phonenumber" />
+    <result column="idcardNum" jdbcType="VARCHAR" property="idcardnum" />
+    <result column="customerName" jdbcType="VARCHAR" property="customername" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="sapCustomerId" jdbcType="VARCHAR" property="sapcustomerid" />
+    <result column="postCode" jdbcType="VARCHAR" property="postcode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    customerId, wxheadimgUrl, nickname, phoneNumber, idcardNum, customerName, email, 
+    address, sapCustomerId, postCode
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_customer
+    where customerId = #{customerid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bdl_customer
+    where customerId = #{customerid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.customer.model.BDLCustomer">
+    <selectKey keyProperty="customerid" resultType="int">
+      select LAST_INSERT_ID()
+    </selectKey> 
+    insert into bdl_customer (customerId, wxheadimgUrl, nickname, 
+      phoneNumber, idcardNum, customerName, 
+      email, address, sapCustomerId, 
+      postCode)
+    values (#{customerid,jdbcType=INTEGER}, #{wxheadimgurl,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
+      #{phonenumber,jdbcType=BIGINT}, #{idcardnum,jdbcType=VARCHAR}, #{customername,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{sapcustomerid,jdbcType=VARCHAR}, 
+      #{postcode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.customer.model.BDLCustomer">
+    insert into bdl_customer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="customerid != null">
+        customerId,
+      </if>
+      <if test="wxheadimgurl != null">
+        wxheadimgUrl,
+      </if>
+      <if test="nickname != null">
+        nickname,
+      </if>
+      <if test="phonenumber != null">
+        phoneNumber,
+      </if>
+      <if test="idcardnum != null">
+        idcardNum,
+      </if>
+      <if test="customername != null">
+        customerName,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="sapcustomerid != null">
+        sapCustomerId,
+      </if>
+      <if test="postcode != null">
+        postCode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="customerid != null">
+        #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="wxheadimgurl != null">
+        #{wxheadimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null">
+        #{phonenumber,jdbcType=BIGINT},
+      </if>
+      <if test="idcardnum != null">
+        #{idcardnum,jdbcType=VARCHAR},
+      </if>
+      <if test="customername != null">
+        #{customername,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="sapcustomerid != null">
+        #{sapcustomerid,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null">
+        #{postcode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.customer.model.BDLCustomer">
+    update bdl_customer
+    <set>
+      <if test="wxheadimgurl != null">
+        wxheadimgUrl = #{wxheadimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null">
+        phoneNumber = #{phonenumber,jdbcType=BIGINT},
+      </if>
+      <if test="idcardnum != null">
+        idcardNum = #{idcardnum,jdbcType=VARCHAR},
+      </if>
+      <if test="customername != null">
+        customerName = #{customername,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="sapcustomerid != null">
+        sapCustomerId = #{sapcustomerid,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null">
+        postCode = #{postcode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where customerId = #{customerid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.customer.model.BDLCustomer">
+    update bdl_customer
+    set wxheadimgUrl = #{wxheadimgurl,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      phoneNumber = #{phonenumber,jdbcType=BIGINT},
+      idcardNum = #{idcardnum,jdbcType=VARCHAR},
+      customerName = #{customername,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      sapCustomerId = #{sapcustomerid,jdbcType=VARCHAR},
+      postCode = #{postcode,jdbcType=VARCHAR}
+    where customerId = #{customerid,jdbcType=INTEGER}
+  </update>
+  <select id="findCustmerByPhone"
+          parameterType="com.blchina.customer.model.BDLCustomer"
+          resultMap="BaseResultMap">
+    select * from bdl_customer where
+    phoneNumber = #{phonenumber,jdbcType=BIGINT} ORDER BY customerId asc
+  </select>
+  <select id="getCustmerByCard"
+          parameterType="com.blchina.customer.model.BDLCustomer"
+          resultMap="BaseResultMap">
+    select * from bdl_customer where
+     idcardNum = #{idcardnum,jdbcType=VARCHAR}
+  </select>
+  <update id="updateCustmerByPhone"
+          parameterType="com.blchina.customer.model.BDLCustomer">
+    update bdl_customer
+    <set>
+      <if test="wxheadimgurl != null">
+        wxheadimgUrl = #{wxheadimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null">
+        phoneNumber = #{phonenumber,jdbcType=BIGINT},
+      </if>
+      <if test="idcardnum != null">
+        idcardNum = #{idcardnum,jdbcType=VARCHAR},
+      </if>
+      <if test="customername != null">
+        customerName = #{customername,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="sapcustomerid != null">
+        sapCustomerId = #{sapcustomerid,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null">
+        postCode = #{postcode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where phoneNumber =#{phonenumber,jdbcType=BIGINT}
+  </update>
+  <update id="updateCustmerByCard"
+          parameterType="com.blchina.customer.model.BDLCustomer">
+    update bdl_customer
+    <set>
+      <if test="wxheadimgurl != null">
+        wxheadimgUrl = #{wxheadimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null">
+        phoneNumber = #{phonenumber,jdbcType=BIGINT},
+      </if>
+      <if test="idcardnum != null">
+        idcardNum = #{idcardnum,jdbcType=VARCHAR},
+      </if>
+      <if test="customername != null">
+        customerName = #{customername,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="sapcustomerid != null">
+        sapCustomerId = #{sapcustomerid,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null">
+        postCode = #{postcode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where  idcardNum = #{idcardnum,jdbcType=VARCHAR}
+  </update>
+  <select id="getCustmerByPhoneBase"
+          parameterType="com.blchina.customer.model.BDLCustomer"
+          resultMap="BaseResultMap">
+    select * from bdl_customer where
+    phoneNumber = #{phonenumber,jdbcType=BIGINT} ORDER BY customerId DESC
+  </select>
+  <select id="findOpenId" resultType="com.blchina.customer.dto.OpenIdDTO">
+    SELECT t.customerId as customerid,s.openId as openid,s.brandId as brandid FROM `bdl_customer` t
+     LEFT JOIN bdl_customerStore s on s.customerId=t.customerId where s.openId is not null;
+  </select>
+</mapper>

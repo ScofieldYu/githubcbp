@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPInsuranceExtMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPInsuranceExt">
+    <id column="insuranceExtId" jdbcType="INTEGER" property="insuranceextid" />
+    <result column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="insuranceLimit" jdbcType="VARCHAR" property="insurancelimit" />
+    <result column="insuranceType" jdbcType="VARCHAR" property="insurancetype" />
+    <result column="insuranceName" jdbcType="VARCHAR" property="insurancename" />
+    <result column="insuranceid" jdbcType="INTEGER" property="insuranceid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    insuranceExtId, orderId, insuranceLimit, insuranceType, insuranceName,insuranceid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_insurance_ext
+    where insuranceExtId = #{insuranceextid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_insurance_ext
+    where insuranceExtId = #{insuranceextid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPInsuranceExt">
+    insert into cbp_insurance_ext (insuranceExtId, orderId, insuranceLimit, 
+      insuranceType, insuranceName,insuranceid)
+    values (#{insuranceextid,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, #{insurancelimit,jdbcType=VARCHAR}, 
+      #{insurancetype,jdbcType=VARCHAR}, #{insurancename,jdbcType=VARCHAR},#{insuranceid})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPInsuranceExt">
+    insert into cbp_insurance_ext
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="insuranceextid != null">
+        insuranceExtId,
+      </if>
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="insurancelimit != null">
+        insuranceLimit,
+      </if>
+      <if test="insurancetype != null">
+        insuranceType,
+      </if>
+      <if test="insurancename != null">
+        insuranceName,
+      </if>
+      <if test="insuranceid != null">
+        insuranceid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="insuranceextid != null">
+        #{insuranceextid,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="insurancelimit != null">
+        #{insurancelimit,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancetype != null">
+        #{insurancetype,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancename != null">
+        #{insurancename,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceid != null">
+        #{insuranceid},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPInsuranceExt">
+    update cbp_insurance_ext
+    <set>
+      <if test="orderid != null">
+        orderId = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="insurancelimit != null">
+        insuranceLimit = #{insurancelimit,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancetype != null">
+        insuranceType = #{insurancetype,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancename != null">
+        insuranceName = #{insurancename,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceid != null">
+        insuranceid = #{insuranceid},
+      </if>
+    </set>
+    where insuranceExtId = #{insuranceextid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPInsuranceExt">
+    update cbp_insurance_ext
+    set orderId = #{orderid,jdbcType=INTEGER},
+      insuranceLimit = #{insurancelimit,jdbcType=VARCHAR},
+      insuranceType = #{insurancetype,jdbcType=VARCHAR},
+      insuranceName = #{insurancename,jdbcType=VARCHAR},
+      insuranceid=#{insuranceid}
+    where insuranceExtId = #{insuranceextid,jdbcType=INTEGER}
+  </update>
+  <select id="getOrderExtInsurance" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT * FROM  cbp_insurance_ext where orderId = #{orderid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteOrderExtInsurance" parameterType="java.lang.Integer">
+    DELETE  FROM  cbp_insurance_ext where orderId = #{orderid,jdbcType=INTEGER}
+  </delete>
+</mapper>

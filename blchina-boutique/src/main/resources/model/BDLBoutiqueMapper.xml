@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.boutique.dao.BDLBoutiqueMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.boutique.model.BDLBoutique">
+    <id column="boutiqueId" jdbcType="INTEGER" property="boutiqueid" />
+    <result column="boutiqueName" jdbcType="VARCHAR" property="boutiquename" />
+    <result column="boutiquePrice" jdbcType="VARCHAR" property="boutiqueprice" />
+    <result column="serialNumber" jdbcType="VARCHAR" property="serialnumber" />
+    <result column="stock" jdbcType="VARCHAR" property="stock" />
+    <result column="sapboutiqueId" jdbcType="VARCHAR" property="sapboutiqueid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    boutiqueId, boutiqueName, boutiquePrice, serialNumber, stock, sapboutiqueId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_boutique
+    where boutiqueId = #{boutiqueid,jdbcType=INTEGER}
+  </select>
+  <select id="getBoutiqueListBySerialNumber" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_boutique
+    where serialNumber = #{serialnumber,jdbcType=INTEGER}
+  </select>
+  <select id="getBoutiqueByBoutiqueName" parameterType="com.blchina.boutique.model.BDLBoutique" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_boutique
+    where boutiqueName = #{boutiquename,jdbcType=VARCHAR}
+  </select>
+  <select id="getBoutiqueList" resultMap="BaseResultMap">
+  	select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bdl_boutique
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bdl_boutique
+    where boutiqueId = #{boutiqueid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.boutique.model.BDLBoutique">
+    insert into bdl_boutique (boutiqueId, boutiqueName, boutiquePrice, 
+      serialNumber, stock, sapboutiqueId
+      )
+    values (#{boutiqueid,jdbcType=INTEGER}, #{boutiquename,jdbcType=VARCHAR}, #{boutiqueprice,jdbcType=VARCHAR}, 
+      #{serialnumber,jdbcType=VARCHAR}, #{stock,jdbcType=VARCHAR}, #{sapboutiqueid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.boutique.model.BDLBoutique">
+    insert into bdl_boutique
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="boutiqueid != null">
+        boutiqueId,
+      </if>
+      <if test="boutiquename != null">
+        boutiqueName,
+      </if>
+      <if test="boutiqueprice != null">
+        boutiquePrice,
+      </if>
+      <if test="serialnumber != null">
+        serialNumber,
+      </if>
+      <if test="stock != null">
+        stock,
+      </if>
+      <if test="sapboutiqueid != null">
+        sapboutiqueId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="boutiqueid != null">
+        #{boutiqueid,jdbcType=INTEGER},
+      </if>
+      <if test="boutiquename != null">
+        #{boutiquename,jdbcType=VARCHAR},
+      </if>
+      <if test="boutiqueprice != null">
+        #{boutiqueprice,jdbcType=VARCHAR},
+      </if>
+      <if test="serialnumber != null">
+        #{serialnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="stock != null">
+        #{stock,jdbcType=VARCHAR},
+      </if>
+      <if test="sapboutiqueid != null">
+        #{sapboutiqueid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.boutique.model.BDLBoutique">
+    update bdl_boutique
+    <set>
+      <if test="boutiquename != null">
+        boutiqueName = #{boutiquename,jdbcType=VARCHAR},
+      </if>
+      <if test="boutiqueprice != null">
+        boutiquePrice = #{boutiqueprice,jdbcType=VARCHAR},
+      </if>
+      <if test="serialnumber != null">
+        serialNumber = #{serialnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="stock != null">
+        stock = #{stock,jdbcType=VARCHAR},
+      </if>
+      <if test="sapboutiqueid != null">
+        sapboutiqueId = #{sapboutiqueid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where boutiqueId = #{boutiqueid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.boutique.model.BDLBoutique">
+    update bdl_boutique
+    set boutiqueName = #{boutiquename,jdbcType=VARCHAR},
+      boutiquePrice = #{boutiqueprice,jdbcType=VARCHAR},
+      serialNumber = #{serialnumber,jdbcType=VARCHAR},
+      stock = #{stock,jdbcType=VARCHAR},
+      sapboutiqueId = #{sapboutiqueid,jdbcType=VARCHAR}
+    where boutiqueId = #{boutiqueid,jdbcType=INTEGER}
+  </update>
+   <update id="updateBoutiqueStockByBoutiqueName" parameterType="com.blchina.boutique.model.BDLBoutique">
+    update bdl_boutique
+    <set>
+      <if test="boutiquename != null">
+        boutiqueName = #{boutiquename,jdbcType=VARCHAR},
+      </if>
+      <if test="boutiqueprice != null">
+        boutiquePrice = #{boutiqueprice,jdbcType=VARCHAR},
+      </if>
+      <if test="serialnumber != null">
+        serialNumber = #{serialnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="stock != null">
+        stock = #{stock,jdbcType=VARCHAR},
+      </if>
+      <if test="sapboutiqueid != null">
+        sapboutiqueId = #{sapboutiqueid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where boutiqueName = #{boutiquename,jdbcType=VARCHAR}
+  </update>
+  <select id="getBoutiqueListByBoutiqueName" parameterType="com.blchina.boutique.model.BDLBoutique" resultMap="BaseResultMap">
+  	select * from bdl_boutique where 
+  	<if test="boutiqueName != null and boutiqueName != ''">    
+          boutiqueName like CONCAT('%','${boutiqueName}','%' )   
+     </if>   
+  </select>
+  
+</mapper>

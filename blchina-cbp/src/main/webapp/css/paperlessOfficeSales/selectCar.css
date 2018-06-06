@@ -1,0 +1,406 @@
+html {
+  /*1rem == 100px*/
+  font-size: 100px;
+}
+html,
+body {
+  background: #f6f6f6;
+  height: 100%;
+  font-family: PingFangSC-Regular, sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  overflow-x: hidden;
+}
+.selectCar {
+  background: #f6f6f6;
+}
+.selectCar .selectCarTit {
+  position: relative;
+  box-sizing: border-box;
+  border-bottom: 1px solid #dddddd;
+  height: 0.45rem;
+  line-height: 0.45rem;
+  text-align: center;
+  background: #FFFFFF;
+}
+.selectCar .selectCarTit a {
+  position: absolute;
+  top: 0.12rem;
+  left: 0.1rem;
+  width: 0.1rem;
+  height: 0.17rem;
+  background: url("../../img/paperlessOfficeSales/goBack.png") no-repeat;
+  background-size: 100%;
+}
+.selectCar .selectCarTit p {
+  font-size: 0.18rem;
+  color: #333333;
+}
+.selectCar .selectCarList {
+  margin-top: 0.1rem;
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+}
+.selectCar .selectCarList li {
+  box-sizing: border-box;
+  border-bottom: 1px solid #eeeeee;
+  padding: 0 0.2rem;
+  height: 0.55rem;
+  line-height: 0.55rem;
+  background: #FFFFFF;
+}
+.selectCar .selectCarList li p {
+  float: left;
+  height: 100%;
+  font-size: 0.15rem;
+  color: #333333;
+}
+.selectCar .selectCarList li p.selectTit {
+  width: 0.35rem;
+}
+.selectCar .selectCarList li p.selectContent {
+  width: 2.8rem;
+  text-align: right;
+  color: #999999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.selectCar .selectCarList li p:last-child {
+  float: right;
+  position: relative;
+  width: 0.1rem;
+  height: 100%;
+}
+.selectCar .selectCarList li p:last-child a {
+  position: absolute;
+  top: 0.18rem;
+  width: 0.09rem;
+  height: 0.165rem;
+  background: url("../../img/paperlessOfficeSales/sc-def.png") no-repeat;
+  background-size: 100%;
+}
+.selectCar .selectCarList li:last-child {
+  border-bottom: none;
+}
+.selectCar .selectCarList li:active {
+  background-color: #d9d9d9;
+}
+.selectCar .selectCarList li:active p a {
+  background-image: url("../../img/paperlessOfficeSales/sc-on.png");
+}
+.selectCar .carImgAndPrice {
+  display: none;
+  margin-top: 0.1rem;
+  box-sizing: border-box;
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  padding: 0.2rem;
+  background: #FFFFFF;
+}
+.selectCar .carImgAndPrice .price {
+  box-sizing: border-box;
+  border-bottom: 1px solid #dddddd;
+  height: 0.35rem;
+  text-align: center;
+  color: #cc0000;
+}
+.selectCar .carImgAndPrice .price i {
+  margin-right: 0.1rem;
+  display: inline-block;
+  width: 0.175rem;
+  height: 0.17rem;
+  vertical-align: text-top;
+  background: url("../../img/paperlessOfficeSales/sc-guidance.png") no-repeat;
+  background-size: 100%;
+}
+.selectCar .carImgAndPrice .carImg {
+  margin-top: 0.15rem;
+  height: 1.1rem;
+}
+.selectCar .carImgAndPrice .carImg img {
+  display: block;
+  width: 1.65rem;
+  height: 1.1rem;
+}
+.selectCar .carImgAndPrice .carImg img.appearanceImg {
+  float: left;
+}
+.selectCar .carImgAndPrice .carImg img.InteriorTrimImg {
+  float: right;
+}
+.selectCar .carImgAndPrice .VIN {
+  margin-top: 0.15rem;
+  box-sizing: border-box;
+  border: 1px solid #dddddd;
+  height: 0.35rem;
+  line-height: 0.3rem;
+  text-align: center;
+  color: #333333;
+}
+.selectCar .carImgAndPrice .VIN span {
+  margin-right: 0.09rem;
+}
+.selectCar .carImgAndPrice .VIN i {
+  display: inline-block;
+  vertical-align: -0.01rem;
+  width: 0.06rem;
+  height: 0.11rem;
+  background: url("../../img/paperlessOfficeSales/c-left-s.png") no-repeat;
+  background-size: 100%;
+}
+.selectCar .completeBtn {
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+}
+.selectCar .completeBtn a {
+  display: block;
+  margin: 0 auto;
+  width: 2.75rem;
+  height: 0.35rem;
+  line-height: 0.35rem;
+  border-radius: 0.03rem;
+  background: #dddddd;
+  font-size: 0.15rem;
+  text-align: center;
+  color: #FFFFFF;
+}
+.selectCar .completeBtn a.on {
+  background: #3764be;
+}
+.carLine {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  overflow-y: scroll;
+}
+.carLine .carLineContent {
+  float: right;
+  width: 2.5rem;
+  background: #FFFFFF;
+}
+.carLine .carLineContent p {
+  box-sizing: border-box;
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  padding-left: 0.1rem;
+  height: 0.25rem;
+  line-height: 0.25rem;
+  background: #eeeeee;
+  font-size: 0.12rem;
+  color: #999999;
+}
+.carLine .carLineContent ul li {
+  box-sizing: border-box;
+  margin-left: 0.1rem;
+  border-bottom: 1px solid #dddddd;
+  padding-left: 0.25rem;
+  height: 0.45rem;
+  line-height: 0.45rem;
+  font-size: 0.15rem;
+  color: #333333;
+}
+.carLine .carLineContent ul li:last-child {
+  border-bottom: none;
+}
+.carModels,
+.carAppearance,
+.carInteriorTrim {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #FFFFFF;
+  overflow-y: scroll;
+}
+.carModels .carLineContent p,
+.carAppearance .carLineContent p,
+.carInteriorTrim .carLineContent p {
+  box-sizing: border-box;
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  padding-left: 0.2rem;
+  height: 0.25rem;
+  line-height: 0.25rem;
+  background: #eeeeee;
+  font-size: 0.12rem;
+  color: #999999;
+}
+.carModels .carLineContent ul li,
+.carAppearance .carLineContent ul li,
+.carInteriorTrim .carLineContent ul li {
+  box-sizing: border-box;
+  margin-left: 0.2rem;
+  border-bottom: 1px solid #dddddd;
+  padding-left: 0.35rem;
+  height: 0.45rem;
+  line-height: 0.45rem;
+  font-size: 0.15rem;
+  color: #666666;
+}
+.carModels .carLineContent ul li:last-child,
+.carAppearance .carLineContent ul li:last-child,
+.carInteriorTrim .carLineContent ul li:last-child {
+  border-bottom: none;
+}
+.ECSDialog {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+}
+.ECSDialog .ECSShadow {
+  width: 100%;
+  height: 100%;
+}
+.ECSDialog .ECSDialogContent {
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -1.55rem;
+  border-radius: 0.1rem;
+  width: 3.1rem;
+  background: #f9f9f9;
+}
+.ECSDialog .ECSDialogContent .ECSDialogContent-title {
+  height: 0.7rem;
+  line-height: 0.7rem;
+  font-size: 0.15rem;
+  text-align: center;
+  color: #333333;
+}
+.ECSDialog .ECSDialogContent .ECSDialogContent-list {
+  box-sizing: border-box;
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+  overflow-y: scroll;
+  background: #f6f6f6;
+}
+.ECSDialog .ECSDialogContent .ECSDialogContent-list li {
+  padding: 0 0.2rem;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  font-size: 0.15rem;
+  border-bottom: 1px solid #eeeeee;
+}
+.ECSDialog .ECSDialogContent .ECSDialogContent-list li span {
+  margin-right: 0.08rem;
+  color: #666666;
+}
+.ECSDialog .ECSDialogContent .ECSDialogContent-list li input {
+  display: inline-block;
+  border: none;
+  background: none;
+  font-size: 0.15rem;
+  color: #333333;
+}
+.ECSDialog .ECSDialogContent .ECSDialogContent-list li.selectVINReason {
+  position: relative;
+  height: 1.1rem;
+}
+.ECSDialog .ECSDialogContent .ECSDialogContent-list li.selectVINReason span {
+  float: left;
+}
+.ECSDialog .ECSDialogContent .ECSDialogContent-list li.selectVINReason textarea {
+  padding-top: 0.15rem;
+  border: none;
+  width: 1.8rem;
+  height: 0.5rem;
+  font-size: 0.15rem;
+  background: none;
+}
+.ECSDialog .ECSDialogContent .ECSDialogContent-list li.selectVINReason p {
+  position: absolute;
+  right: 0.2rem;
+  bottom: 0;
+}
+.ECSDialog .ECSDialogContent .ECSDialogContent-list li.selectVINReason p .word {
+  color: #333333;
+}
+.ECSDialog .ECSDialogContent .ECSDialogContent-btn {
+  height: 0.5rem;
+}
+.ECSDialog .ECSDialogContent .ECSDialogContent-btn a {
+  float: left;
+  width: 1.55rem;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  text-align: center;
+  font-size: 0.15rem;
+  color: #999999;
+}
+.ECSDialog .ECSDialogContent .ECSDialogContent-btn a:last-child {
+  box-sizing: border-box;
+  border-left: 1px solid #f1f1f1;
+  color: #3764be;
+}
+.animated {
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+.fadeInRight {
+  -webkit-animation-name: fadeInRight;
+  animation-name: fadeInRight;
+}
+@-webkit-keyframes fadeOutRight {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+}
+@keyframes fadeOutRight {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+}
+.fadeOutRight {
+  -webkit-animation-name: fadeOutRight;
+  animation-name: fadeOutRight;
+}

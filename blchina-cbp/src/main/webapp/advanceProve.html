@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>购车订单</title>
+    <script src="js/config.js"></script>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/advanceProve.css">
+</head>
+<body>
+<div class="orderList">
+    <div class="titleBg"></div>
+    <div class="orderCon">
+        <div class="orderTit">
+            <div class="saporder">
+                订单编号：<span class="saporderid">8720</span>
+            </div>
+        </div>
+        <div class="buyingFile">
+            <div class="bfTit">
+                <i></i>补充垫付证明
+            </div>
+            <div class="bfList">
+                <div class="uploadList">
+                    <div class="upload">
+                        <input capture="camera" accept="image/*" class="uploadBtn" type="file">
+                        <div class="upBg"><span>垫付证明上传</span></div>
+                        <b class="close"></b>
+                    </div>
+                </div>
+                <div class="addBtn">
+                    <a href="javascript:void 0"><i>+</i>增加垫付证明</a>
+                </div>
+                <p class="msg">
+                    您若使用其他支付方式,请联系销售顾问
+                    <a href="javascript:void 0">13602194843</a>
+                </p>
+            </div>
+        </div>
+        <a class="submitBtn" href="javascript:void 0">提 交</a>
+        <div class="m20"></div>
+    </div>
+</div>
+<div class="bgImgShow">
+    <img style="width: 100%;height: 100%" src="" alt="">
+</div>
+</body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/dialog/dialog.js"></script>
+
+
+
+<script type="text/javascript" src="js/lrz.all.bundle.js"></script>
+<script type="text/javascript" src="js/mobileBUGFix.mini.js"></script>
+<script>
+
+    //获取页面url信息
+    var url = window.location.href; //获取当前页url
+    var sendData = url.queryURLParameter(); //转query
+    var orderid = sendData.orderid;  //订单id
+    var employeeid = sendData.employeeid; //销售顾问id
+    var saporderid = sendData.saporderid; //sapID
+    var employeePhone = sendData.employeePhone; //销售顾问电话
+
+
+    $('.msg').find('a').text(employeePhone).attr('href', 'tel:' + employeePhone); //销售顾问电话
+
+    var getFile = {
+        orderId: orderid, //订单ID
+        documentType: 7 //文档类型
+    };
+    //获取已经上传过的垫付证明
+    $.ajax({
+        //async: false, //同步请求,阻止js继续执行
+        type: "POST",
+        url: srcConfig.getDocumentQuery,
+        dataType: 'json',
+        contentType: "application/json",
+        data: JSON.stringify(getFile),
+        /* beforeSend: function (request) {
+         request.setRequestHeader("MSESSIONID", token);
+         },*/
+        success: function (data) {
+            if (data.code == 0) {
+                //数据绑定
+                ~function (imgList) {
+                    if(imgList.length != 0){
+                        var curHtml = '';
+                        for (var i = 0; i < imgList.length; i++) {
+                            curHtml += '<div class="upload on"><input capture="camera" accept="image/*" class="uploadBtn" type="file"><div class="upBg"><span>垫付证明上传</span></div><b class="close"></b><img src="' + imgList[i] + '" alt=""></div>'
+                        }
+                        //放入页面中,在执行事件绑定
+                        $('.uploadList').html(curHtml).find('img').click(function () {
+                            $('.bgImgShow').show().find('img').attr('src',this.src)
+                        });
+                        imgChangeEvent();
+                        removeImg();
+                    }
+                }(data.data)
+            } else {
+                alert(data.message)
+            }
+        },
+        error: function (data) {
+            alert(data)
+        }
+    });
+
+    //订单号绑定
+    $('.saporderid').text(saporderid);
+
+    //先默认绑定一次
+    imgChangeEvent();
+    removeImg();
+
+    //增加垫付证明上传
+    $('.addBtn a').click(function () {
+        var addHtml = '<div class="upload"><input capture="camera" accept="image/*" class="uploadBtn" type="file"><div class="upBg"><span>垫付证明上传</span></div><b class="close"></b></div>';
+        $('.uploadList').append(addHtml);
+        imgChangeEvent();
+        removeImg()
+    });
+
+    //图片上传
+    function imgChangeEvent() {
+        function imgChagen() {
+            var $this = $(this);
+            lrz(this.files[0])
+                .then(function (rst) {
+                    // 处理成功会执行
+                    console.log(rst);
+                    var img = new Image();
+                    img.src = rst.base64;
+                    $this.parent().find('img').remove();
+                    $this.parent().addClass('on').append(img); //呈现图像(拍照結果);
+                    $this.parent().find('img').click(function () {
+                        $('.bgImgShow').show().find('img').attr('src',img.src)
+                    })
+                })
+                .catch(function (err) {
+                    // 处理失败会执行
+                })
+                .always(function () {
+                    // 不管是成功失败，都会执行
+                });
+        }
+
+        $('.uploadBtn').map(function (p1, p2) {
+            p2.removeEventListener('change', imgChagen, false); //先移除再绑定,防止事件多次触发
+            p2.addEventListener('change', imgChagen, false);
+        })
+    }
+
+    //图片移除
+    function removeImg() {
+        $('.close').unbind('click').click(function () {
+            $(this).parent().remove();
+        });
+    }
+
+    //提交按钮
+    $('.submitBtn').click(function () {
+        var imgList = $('.uploadList img');
+        var fileList = [];
+        var uuidList = [];
+        for (var i = 0; i < imgList.length; i++) {
+            var src = imgList[i].src;
+            if((/^http/).test(src)){
+                uuidList.push(src.queryURLParameter().uuid)
+            } else {
+                fileList.push(src.split(',')[1])
+            }
+        }
+        var uploadData = {
+            type: 7,//7--垫付证明
+            file: fileList,//文件
+            uuidList: uuidList,//UUid
+            orderid: orderid//订单id
+        };
+        $.ajax({
+            type: "POST",
+            url: srcConfig.upload,
+            dataType: 'json',
+            contentType: "application/json",
+            data: JSON.stringify(uploadData),
+            /* beforeSend: function (request) {
+             request.setRequestHeader("MSESSIONID", token);
+             },*/
+            success: function (data) {
+                if (data.code == 0) {
+                    alert('上传成功')
+                } else {
+                    console.log(data.message)
+                }
+            },
+            error: function (data) {
+                alert('上传失败')
+            }
+        });
+    });
+
+    //大图点击事件
+    $('.bgImgShow').click(function () {
+        $(this).hide()
+    })
+</script>
+</html>

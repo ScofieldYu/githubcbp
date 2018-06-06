@@ -1,0 +1,37 @@
+.nameJ{
+    position: relative;
+}
+.nameJAdd{
+    border-top:1px solid #3764be;
+    border-bottom:1px solid #3764be;
+}
+.shopList{
+    display:none;
+    overflow-y: auto;
+    background: #fff;
+    width:100%;
+    height:auto;
+    position: absolute;
+    top:.5rem;
+    left:0;
+    border-top:1px solid #3764be;
+    border-bottom:1px solid #999;
+}
+.listUl{
+    height:1.2rem;
+    width:100%;
+}
+.shopList li{
+    text-indent: .2rem;
+    height:.3rem;
+    display: flex;
+    align-items: center;
+    font-size: .14rem;
+}
+.mon{
+    flex:1;
+    text-indent: .5rem;
+}
+.lon{
+    width:.5rem;
+}

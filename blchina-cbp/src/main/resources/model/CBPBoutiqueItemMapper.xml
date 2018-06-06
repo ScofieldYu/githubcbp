@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPBoutiqueItemMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPBoutiqueItem">
+    <id column="boutiqueItemId" jdbcType="INTEGER" property="boutiqueitemid" />
+    <result column="boutiqueOrderId" jdbcType="INTEGER" property="boutiqueorderid" />
+    <result column="boutiqueName" jdbcType="VARCHAR" property="boutiquename" />
+    <result column="boutiquePrice" jdbcType="VARCHAR" property="boutiqueprice" />
+    <result column="serialNumber" jdbcType="VARCHAR" property="serialnumber" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    boutiqueItemId, boutiqueOrderId, boutiqueName, boutiquePrice, serialNumber
+  </sql>
+  <select id="selectBoutiqueItemList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_boutique_Item
+    where boutiqueOrderId = #{boutiqueorderid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_boutique_Item
+    where boutiqueItemId = #{boutiqueitemid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_boutique_Item
+    where boutiqueItemId = #{boutiqueitemid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPBoutiqueItem">
+    insert into cbp_boutique_Item (boutiqueItemId, boutiqueOrderId, 
+      boutiqueName, boutiquePrice, serialNumber
+      )
+    values (#{boutiqueitemid,jdbcType=INTEGER}, #{boutiqueorderid,jdbcType=INTEGER}, 
+      #{boutiquename,jdbcType=VARCHAR}, #{boutiqueprice,jdbcType=VARCHAR}, #{serialnumber,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPBoutiqueItem">
+    insert into cbp_boutique_Item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="boutiqueitemid != null">
+        boutiqueItemId,
+      </if>
+      <if test="boutiqueorderid != null">
+        boutiqueOrderId,
+      </if>
+      <if test="boutiquename != null">
+        boutiqueName,
+      </if>
+      <if test="boutiqueprice != null">
+        boutiquePrice,
+      </if>
+      <if test="serialnumber != null">
+        serialNumber,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="boutiqueitemid != null">
+        #{boutiqueitemid,jdbcType=INTEGER},
+      </if>
+      <if test="boutiqueorderid != null">
+        #{boutiqueorderid,jdbcType=INTEGER},
+      </if>
+      <if test="boutiquename != null">
+        #{boutiquename,jdbcType=VARCHAR},
+      </if>
+      <if test="boutiqueprice != null">
+        #{boutiqueprice,jdbcType=VARCHAR},
+      </if>
+      <if test="serialnumber != null">
+        #{serialnumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="saveSelective" parameterType="com.blchina.cbp.dto.CBPBoutiqueItemDTO">
+    insert into cbp_boutique_Item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="boutiqueitemid != null">
+        boutiqueItemId,
+      </if>
+      <if test="boutiqueorderid != null">
+        boutiqueOrderId,
+      </if>
+      <if test="boutiquename != null">
+        boutiqueName,
+      </if>
+      <if test="boutiqueprice != null">
+        boutiquePrice,
+      </if>
+      <if test="serialnumber != null">
+        serialNumber,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="boutiqueitemid != null">
+        #{boutiqueitemid,jdbcType=INTEGER},
+      </if>
+      <if test="boutiqueorderid != null">
+        #{boutiqueorderid,jdbcType=INTEGER},
+      </if>
+      <if test="boutiquename != null">
+        #{boutiquename,jdbcType=VARCHAR},
+      </if>
+      <if test="boutiqueprice != null">
+        #{boutiqueprice,jdbcType=VARCHAR},
+      </if>
+      <if test="serialnumber != null">
+        #{serialnumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPBoutiqueItem">
+    update cbp_boutique_Item
+    <set>
+      <if test="boutiqueorderid != null">
+        boutiqueOrderId = #{boutiqueorderid,jdbcType=INTEGER},
+      </if>
+      <if test="boutiquename != null">
+        boutiqueName = #{boutiquename,jdbcType=VARCHAR},
+      </if>
+      <if test="boutiqueprice != null">
+        boutiquePrice = #{boutiqueprice,jdbcType=VARCHAR},
+      </if>
+      <if test="serialnumber != null">
+        serialNumber = #{serialnumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where boutiqueItemId = #{boutiqueitemid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPBoutiqueItem">
+    update cbp_boutique_Item
+    set boutiqueOrderId = #{boutiqueorderid,jdbcType=INTEGER},
+      boutiqueName = #{boutiquename,jdbcType=VARCHAR},
+      boutiquePrice = #{boutiqueprice,jdbcType=VARCHAR},
+      serialNumber = #{serialnumber,jdbcType=VARCHAR}
+    where boutiqueItemId = #{boutiqueitemid,jdbcType=INTEGER}
+  </update>
+</mapper>

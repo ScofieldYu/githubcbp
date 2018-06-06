@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:aop="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task" 
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:beans="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+  <task:annotation-driven /> 
+	<!-- <context:component-scan base-package="com.blchina.cbp.controller" use-default-filters="false">  
+       <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>  
+       <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/> 
+   	</context:component-scan>   -->
+    <context:component-scan base-package="com.blchina.finance.controller" />
+   
+    <bean	class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                    <constructor-arg value="UTF-8"/>
+                    <property name="writeAcceptCharset" value="false"></property>
+                    <property name="supportedMediaTypes">
+                        <list>
+                            <value>text/html;charset=UTF-8</value>
+                            <value>application/json</value>
+                            <value>text/plain;charset=UTF-8</value>
+                        </list>
+                    </property>
+                </bean>
+                <bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"/>
+                <bean id="mappingJacksonHttpMessageConverter"
+                      class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                    <property name="supportedMediaTypes">
+                        <list>
+                            <value>application/json;charset=UTF-8</value>
+                            <value>text/plain;charset=UTF-8</value>
+                        </list>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+    <!-- view
+    <bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="resourceLoaderPath" value="/vm/" />
+        <property name="velocityProperties">
+            <props>
+                <prop key="input.encoding">gbk</prop>
+                <prop key="output.encoding">gbk</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+        <property name="prefix" value="" />
+        <property name="suffix" value=".vm" />
+        <property name="order" value="0" />
+        <property name="cache" value="false" />
+    </bean>
+-->
+    <!-- 启动SpringMVC的注解功能，它会自动注册HandlerMapping、HandlerAdapter、ExceptionResolver的相关实例 -->
+    <mvc:annotation-driven />
+    <mvc:default-servlet-handler />
+    <!-- 启动Spring的组件自动扫描机制 -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <!--   <property name="prefix" value="/jsp/" />
+        <property name="suffix" value=".jsp" /> -->
+        <property name="order" value="0" />
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="maxUploadSize" value="10800000" />
+    </bean>
+    <!-- 缺省的异步任务线程池 -->   
+	<!-- <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">  
+        核心线程数       
+        <property name="corePoolSize" value="${task.core_pool_size}" />  
+        最大线程数    
+        <property name="maxPoolSize" value="${task.max_pool_size}" />  
+        队列最大长度  
+        <property name="queueCapacity" value="${task.queue_capacity}" />  
+        线程池维护线程所允许的空闲时间，默认为60s  
+        <property name="keepAliveSeconds" value="${task.keep_alive_seconds}" />  
+    </bean>  --> 
+    <!-- 注解式 -->  
+    <!-- <task:annotation-driven /> -->  
+    <!-- 缺省的异步任务线程池   
+<task:executor id="executor" pool-size="50" />  
+<task:scheduler id="scheduler" pool-size="1000" /> 
+<task:annotation-driven executor="executor" scheduler="scheduler" />  
+--> 
+<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">  
+        <!-- 核心线程数 -->       
+        <property name="corePoolSize" value="5" />  
+        <!-- 最大线程数 -->    
+        <property name="maxPoolSize" value="10" />  
+        <!-- 队列最大长度 -->  
+        <property name="queueCapacity" value="20" />  
+        <!-- 线程池维护线程所允许的空闲时间，默认为60s -->  
+        <property name="keepAliveSeconds" value="60000" />  
+</bean>  
+    <!-- 注解式 -->  
+    
+    
+  <!--   <mvc:interceptors>
+        微应用 access_token验证
+        <mvc:interceptor>
+            需要拦截的地址
+            <mvc:mapping path="/**"/>
+            需要排除拦截的地址
+            <mvc:exclude-mapping path="/**/getToken"/>登录
+            <bean class="com.blchina.cbp.intercept.TokenInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors> -->
+</beans>

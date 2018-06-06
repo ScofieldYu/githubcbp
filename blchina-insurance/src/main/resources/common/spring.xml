@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+    
+    <!-- 自动扫描注解类型 -->
+    <context:component-scan base-package="com.blchina.insurance"/>
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" >
+        <property name="locations">
+            <list>
+                <value>classpath:init.properties</value>
+            </list>
+        </property>
+        <property name="fileEncoding" value="UTF-8" />
+    </bean>
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="${datasource.driverClassName}" />
+        <property name="jdbcUrl" value="${datasource.url}" />
+        <property name="user" value="${datasource.username}" />
+        <property name="password" value="${datasource.password}" />
+        <property name="initialPoolSize" value="${datasource.initialPoolSize}" />
+        <property name="maxPoolSize" value="${datasource.maxPoolSize}" />
+        <property name="minPoolSize" value="${datasource.minPoolSize}" />
+        <property name="maxIdleTime" value="${datasource.maxIdleTime}" />
+    </bean>
+
+    <!--<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">-->
+        <!--<property name="configLocation" value="classpath:sqlMapConfig.xml" />-->
+        <!--<property name="mappingLocations">-->
+            <!--<value>classpath*:model/**/*.xml</value>-->
+        <!--</property>-->
+        <!--<property name="dataSource" ref="dataSource" />-->
+        <!--<property name="useTransactionAwareDataSource" value="true" />-->
+    <!--</bean>-->
+
+    <!-- ========================================针对myBatis的配置项============================== -->
+    <!-- 配置sqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:mybatis-config.xml" />
+        <property name="mapperLocations">
+            <value>classpath*:model/**/*.xml</value>
+        </property>
+    </bean>
+    <!-- 配置扫描器 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.blchina.insurance.dao;com.blchina.insurance.model;com.blchina.insurance.service.impl;" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+        <property name="rollbackOnCommitFailure" value="true" />
+    </bean>
+
+    <aop:config proxy-target-class="true">
+        <aop:advisor pointcut="execution(* com.blchina.insurance.service..*Service*.*(..))" advice-ref="txAdvice" />
+    </aop:config>
+
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="apply*" rollback-for="Exception" read-only="false" />
+            <tx:method name="change*" rollback-for="Exception" read-only="false"/>
+            <tx:method name="del*" rollback-for="Exception" read-only="false" />
+            <tx:method name="batch*" rollback-for="Exception" read-only="false"/>
+            <tx:method name="create*" rollback-for="Exception" read-only="false" />
+            <tx:method name="modify*" rollback-for="Exception" read-only="false" />
+            <tx:method name="save*" rollback-for="Exception" read-only="false" />
+            <tx:method name="clear*" rollback-for="Exception" read-only="false" />
+            <tx:method name="update*" rollback-for="Exception" read-only="false" />
+            <tx:method name="edit*" rollback-for="Exception" read-only="false" />
+            <tx:method name="move*" rollback-for="Exception" read-only="false"/>
+            <tx:method name="remove*" rollback-for="Exception" read-only="false"/>
+            <tx:method name="delete*" rollback-for="Exception" read-only="false"/>
+            <tx:method name="add*" rollback-for="Exception" read-only="false"/>
+            <tx:method name="new*" rollback-for="Exception" read-only="false"/>
+            <tx:method name="gen*" rollback-for="Exception" />
+            <tx:method name="insert*" rollback-for="Exception" read-only="false"/>
+            <tx:method name="adviseUser" rollback-for="Exception" read-only="false" />
+            <tx:method name="call*" rollback-for="Exception" read-only="false" />
+            <tx:method name="close*" rollback-for="Exception" read-only="false" />
+        </tx:attributes>
+    </tx:advice>
+
+    <bean id="systemConfig" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="fileEncoding" value="UTF-8"></property>
+        <property name="locations">
+            <list>
+                <value>classpath:config.properties</value>
+            </list>
+        </property>
+    </bean>
+   <!--  <bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"/>-->
+</beans>

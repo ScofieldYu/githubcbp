@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blchina.cbp.dao.CBPTimePeriodMapper">
+  <resultMap id="BaseResultMap" type="com.blchina.cbp.model.CBPTimePeriod">
+    <id column="timeperiodId" jdbcType="INTEGER" property="timeperiodid" />
+    <result column="timeConfId" jdbcType="INTEGER" property="timeconfid" />
+    <result column="startTime" jdbcType="VARCHAR" property="starttime" />
+    <result column="endTime" jdbcType="VARCHAR" property="endtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    timeperiodId, timeConfId, startTime, endTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cbp_timePeriod
+    where timeperiodId = #{timeperiodid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cbp_timePeriod
+    where timeperiodId = #{timeperiodid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blchina.cbp.model.CBPTimePeriod">
+    insert into cbp_timePeriod (timeperiodId, timeConfId, startTime,endTime)
+    values (#{timeperiodid,jdbcType=INTEGER}, #{timeconfid,jdbcType=INTEGER}, #{starttime,jdbcType=VARCHAR},#{endtime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blchina.cbp.model.CBPTimePeriod">
+    insert into cbp_timePeriod
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="timeperiodid != null">
+        timeperiodId,
+      </if>
+      <if test="timeconfid != null">
+        timeConfId,
+      </if>
+      <if test="starttime != null">
+        startTime,
+      </if>
+      <if test="endtime != null">
+        endTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="timeperiodid != null">
+        #{timeperiodid,jdbcType=INTEGER},
+      </if>
+      <if test="timeconfid != null">
+        #{timeconfid,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blchina.cbp.model.CBPTimePeriod">
+    update cbp_timePeriod
+    <set>
+      <if test="timeconfid != null">
+        timeConfId = #{timeconfid,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null">
+        startTime = #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null">
+        endTime = #{endtime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where timeperiodId = #{timeperiodid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blchina.cbp.model.CBPTimePeriod">
+    update cbp_timePeriod
+    set timeConfId = #{timeconfid,jdbcType=INTEGER},
+      startTime = #{starttime,jdbcType=VARCHAR},
+      endTime = #{endtime,jdbcType=VARCHAR}
+    where timeperiodId = #{timeperiodid,jdbcType=INTEGER}
+  </update>
+  <select id="getTimePeriodByConfig" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT  * from cbp_timePeriod WHERE  timeConfId=#{timeconfid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteShopTemplateByshop" parameterType="java.lang.Integer" >
+    DELETE FROM cbp_timePeriod WHERE timeConfId = #{timeconfid,jdbcType=INTEGER}
+  </delete>
+</mapper>

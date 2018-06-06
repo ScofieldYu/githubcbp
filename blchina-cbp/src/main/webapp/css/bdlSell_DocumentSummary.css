@@ -1,0 +1,267 @@
+body, html {
+  width: 100%;
+  height: 100%;
+  min-width: 3.2rem;
+  font-size: 100px;
+  font-family: PingFangSC-Regular, sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background: #f6f6f6; }
+
+.bdl_main {
+  width: 100%;
+  height: 100%;
+  font-size: .14rem;
+  display: flex;
+  flex-direction: column; }
+  .bdl_main .bottomCard {
+    flex-shrink: 0;
+    font-size: .12rem;
+    color: #666666;
+    width: 100%;
+    height: .55rem;
+    background: #fff;
+    display: flex;
+    align-items: center; }
+  .bdl_main .left, .bdl_main .right {
+    width: .4rem;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+  .bdl_main .tabtitle {
+    z-index: 90;
+    width: 225%;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    font-size: .12rem;
+    height: .55rem;
+    align-items: center;
+    justify-content: center;
+    background: #fff; }
+  .bdl_main .maintab {
+    flex-shrink: 1;
+    flex-grow: 1;
+    overflow-y: auto;
+    width: 100%; }
+  .bdl_main .tabtitle {
+    z-index: 90;
+    width: 225%;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    font-size: .12rem;
+    flex-wrap: wrap;
+    height: .55rem;
+    align-items: center;
+    justify-content: center;
+    background: #fff; }
+  .bdl_main .boxList {
+    overflow: hidden; }
+  .bdl_main .tabtitle li {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+  .bdl_main .tabtitle li a {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+  .bdl_main .tabhover a {
+    color: #3764be;
+    border-bottom: 1px solid #3764be; }
+  .bdl_main .tabcontent {
+    margin: 0 .12rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column; }
+  .bdl_main .left {
+    width: .13rem;
+    height: .15rem;
+    display: inline-block;
+    background: url(../img/left1.png) no-repeat;
+    background-size: cover; }
+  .bdl_main .right {
+    width: .13rem;
+    height: .15rem;
+    display: inline-block;
+    background: url(../img/right1.png) no-repeat;
+    background-size: cover; }
+  .bdl_main .photo {
+    height: auto;
+    width: 100%;
+    background: #fff; }
+  .bdl_main .ppL, .bdl_main .ppR {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+  .bdl_main .ppL {
+    padding-left: .12rem;
+    padding-right: .12rem; }
+  .bdl_main .leftDown {
+    background: url(../img/left.png) no-repeat;
+    background-size: cover;
+    display: inline-block;
+    width: .13rem;
+    height: .15rem; }
+  .bdl_main .rightDown {
+    background: url(../img/right.png) no-repeat;
+    background-size: cover;
+    display: inline-block;
+    width: .13rem;
+    height: .15rem; }
+  .bdl_main .ppR {
+    padding-right: .12rem;
+    padding-left: .12rem; }
+  .bdl_main .bdl_textTitleOdd {
+    white-space: nowrap; }
+  .bdl_main .txtBoo {
+    display: flex;
+    flex-direction: column;
+    background: #f6f6f6; }
+  .bdl_main .title {
+    height: .4rem;
+    font-size: .14rem;
+    padding: 0 .2rem;
+    display: flex;
+    align-items: center; }
+  .bdl_main .fTwo {
+    border-bottom: 1px solid #eee;
+    margin-top: .1rem;
+    background: #fff;
+    border-top: 1px solid #eee; }
+  .bdl_main .num {
+    margin-right: .1rem;
+    border-radius: 50%;
+    background: #3764be;
+    color: #fff;
+    height: .15rem;
+    width: .15rem;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+  .bdl_main .title {
+    height: .4rem;
+    font-size: .14rem;
+    padding: 0 .2rem;
+    display: flex;
+    align-items: center; }
+  .bdl_main .uploadListBig {
+    display: flex;
+    flex: 1;
+    justify-content: center; }
+  .bdl_main .uploadListBig .upload {
+    position: relative;
+    box-sizing: border-box;
+    width: 2.1rem;
+    height: 1.3rem;
+    border-radius: .05rem;
+    background: #f7f7f7;
+    border: 1px dashed #c7c7c7;
+    display: flex;
+    flex-direction: column; }
+  .bdl_main .uploadListBig .upload .uploadBtn {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 1; }
+  .bdl_main .uploadListBig .upload .upBg {
+    position: absolute;
+    width: .49rem;
+    height: .35rem;
+    top: .1rem;
+    background: url("../img/photo.png") no-repeat;
+    background-size: 100%;
+    z-index: 0; }
+  .bdl_main .uploadList .upload .uploadBtn {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 1; }
+  .bdl_main .uploadList .upload .upBg {
+    position: absolute;
+    width: .49rem;
+    height: .35rem;
+    background: #f7f7f7;
+    border: 1px dashed #c7c7c7;
+    background: url("../img/photo.png") no-repeat;
+    background-size: 100%;
+    z-index: 0; }
+  .bdl_main .upload .close {
+    display: none;
+    position: absolute;
+    top: 0.1rem;
+    right: 0.1rem;
+    width: 0.2rem;
+    height: 0.2rem;
+    background: url("../img/closeBtn1.png") no-repeat;
+    background-size: 100%;
+    z-index: 10; }
+  .bdl_main .upload.on .close {
+    display: block;
+    z-index: 888; }
+  .bdl_main .bdl_listZhaoAdd {
+    display: flex;
+    justify-content: space-between;
+    margin-top: .25rem;
+    box-sizing: border-box; }
+  .bdl_main .bottom {
+    width: 100%;
+    display: flex;
+    margin-top: .3rem;
+    justify-content: center;
+    font-size: .15rem; }
+  .bdl_main .bottom input {
+    width: 1.3rem;
+    border-radius: 5px;
+    height: .35rem;
+    font-size: .14rem; }
+  .bdl_main .bottom input:nth-child(1) {
+    background: #fff;
+    border: 1px solid #3764be;
+    color: #3764be;
+    margin-right: .2rem; }
+  .bdl_main .bottom input:nth-child(2) {
+    background: #3764be;
+    border: 1px solid #3764be;
+    color: #fff;
+    margin-left: .2rem; }
+  .bdl_main .boxP {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -.4rem;
+    margin-top: -.4rem;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    width: .8rem;
+    height: .7rem;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    color: #bebebe; }
+  .bdl_main .boxP p {
+    position: absolute;
+    bottom: 0; }
+  .bdl_main .photoBox {
+    height: auto;
+    width: 100%;
+    display: flex; }
+  .bdl_main .img1, .bdl_main .img2, .bdl_main .img3, .bdl_main .img4, .bdl_main .img5 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 88; }
+
+/*# sourceMappingURL=bdlSell_DocumentSummary.css.map */

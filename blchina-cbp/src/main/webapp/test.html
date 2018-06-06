@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>Title</title>
+    <style>
+    body,html{
+        font-family: "微软雅黑";
+        height: 100%;
+        width: 100%;
+    }
+    html {
+            width: 100%;
+            height: 100%;
+            font-size: 100px;
+            overflow: hidden;
+        }
+
+        h1 {
+            margin: 0.1rem auto;
+            font-size: 0.1rem;
+        }
+
+        input {
+            border: 1px solid #000000;
+            width: 3rem;
+            height: 0.4rem;
+            font-size: 0.2rem;
+        }
+
+        button {
+            margin: 0 auto;
+        }
+        h1{
+            padding: .1rem 0;
+            font-size: .14rem;
+            display: flex;
+            align-items: center;
+            border-bottom:.01rem solid #eee;
+        }
+        input{
+            text-indent: .15rem;
+            border-radius: .05rem;
+            flex:1;
+            margin-right:.3rem;
+        }
+        .btn{
+            width: 100%;
+        }
+        h1 label{
+            width: .7rem;
+            display: inline-block;
+            display: flex;
+            font-size: .16rem;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+       .btn button{
+           width: 80%;
+           display: inline-block;
+           background:skyblue;
+           color:#fff;
+           outline: none;
+           border:0.01rem solid skyblue;
+           border-radius: .04rem;
+           font-size: .16rem;
+       }
+</style>
+</head>
+<body>
+<h1>授权成功！</h1>
+<h1>openId:<span id="openid"></span></h1>
+<h1>昵称:<span id="nickname"></span></h1>
+<h1>地址:<span id="city"></span></h1>
+<h1>头像:<span id="headimgurl"></span></h1>
+<h1>手 机 号:<input type="text" value="15910767374" id="phonenumber"></h1>
+<h1>身份证号:<input type="text" value="110103191212232930" id="idcardnum"></h1>
+<div class="btn"><button id="geren" type="button" style="width:2rem;height:0.5rem;display:block">个人资料</button></div>
+<div class="btn"><button id="gouche" type="button" style="margin-top: 0.2rem;width:2rem;height:0.5rem;display:block">购车订单</button></div>
+</body>
+<script src="./js/jquery.min.js"></script>
+<script>
+    ~function (desW) {
+        var winW = document.documentElement.clientWidth;
+        document.documentElement.style.fontSize = winW / desW * 100 + "px";
+    }(375);
+    //字符串公共方法
+    ~function (pro) {
+        //queryURLParameter:Gets the parameters in the URL address bar //截取URL
+        pro.queryURLParameter = function queryURLParameter() {
+            var reg = /([^?&=]+)=([^?&=]+)/g, obj = {};
+            this.replace(reg, function () {
+                obj[arguments[1]] = decodeURI(arguments[2]) ;
+            });
+            return obj;
+        };
+    }(String.prototype);
+    var strUrl = window.location.href;
+    //alert(strUrl);
+    var queryUrl = strUrl.queryURLParameter();
+    var d = null;
+    var storage = window.localStorage;
+    $.ajax({
+        async:false,
+        type: "POST",
+        url: 'http://cbp-qas.xbotech.com/cbp/openId/setOpenId',
+        // url: './js/orderList.txt',
+        dataType: 'json',
+        contentType: "application/json",
+        data: JSON.stringify({
+            code:queryUrl.code
+        }),
+        success: function (data) {
+            alert(JSON.stringify(data));
+            if(data.code == 0){
+                d = data.data;
+                $("#openid").html(d.openid);
+                $("#nickname").html(d.nickname);
+                $("#city").html(d.province + ' ' + d.city);
+                $("#headimgurl").html(d.headimgurl);
+            }
+        },
+        error: function (data) {
+            alert(data.message)
+        }
+    });
+    var storage = window.localStorage;
+    var gerenIpt = document.getElementById('phonenumber');//手机号
+    var goucheIpt = document.getElementById('idcardnum');//身份证号
+    var gerenBtn = document.getElementById('geren');
+    var goucheBtn = document.getElementById('gouche');
+    var phone = gerenIpt.value || '';
+    var gouche = goucheIpt.value || '';
+    
+    var $phone = storage.getItem("phone") ||'';
+    var $goucheIpt = storage.getItem("goucheIpt") || '';
+    
+    if(storage.getItem("phone")){
+        gerenIpt.value = $phone;
+    }
+    if(storage.getItem("goucheIpt")){
+        goucheIpt.value = $goucheIpt;
+    }
+    $('#geren').click(function () {
+        var phonenumber = $("#phonenumber").val();
+        var idcardnum = $("#idcardnum").val();
+        var urlStr = "http://cbp-qas.xbotech.com/cbp/new-personalData.html?phonenumber=" + phonenumber + "&openId=" + d.openid +"&idcardnum=" + idcardnum + "&nickname=" + d.nickname +"&wxheadimgurl=" + d.headimgurl +"&brandId=2028";
+        //alert(urlStr);
+        window.location.href = urlStr;
+        storage.setItem("phone",phonenumber);
+        storage.setItem("goucheIpt",idcardnum);
+    });
+    $('#gouche').click(function () {
+        var phonenumber = $("#phonenumber").val();
+        var idcardnum = $("#idcardnum").val();
+        var urlStr = "http://cbp-qas.xbotech.com/cbp/new-carOrder.html?phonenumber=" + phonenumber + "&openId=" + d.openid +"&idcardnum=" + idcardnum + "&nickname=" + d.nickname +"&wxheadimgurl=" + d.headimgurl +"&brandId=2028";
+        //alert(urlStr);
+        window.location.href = urlStr;
+        storage.setItem("phone",phonenumber);
+        storage.setItem("goucheIpt",idcardnum);
+    })
+
+
+
+/*    var gerenIpt = document.getElementById('phonenumber');
+    var gerenBtn = document.getElementById('geren');
+    var goucheIpt = document.getElementById('idcardnum');
+    var goucheBtn = document.getElementById('gouche');
+    gerenBtn.onclick = function () {
+        alert("测试click事件");
+        var phonenumber = gerenIpt.getAttribute('value');
+        var idcardnum = goucheIpt.getAttribute('value');
+
+        alert(phonenumber);
+//        var urlStr = "http://cbp-qas.xbotech.com/cbp/new-personalData.html?phonenumber=" + phonenumber + "&openId=" + ${openId} +"&idcardnum=" + idcardnum + "&nickname=" + ${nickname} +"&wxheadimgurl=" + ${headimgurl} +"&brandId=2028";
+        window.location.href = urlStr;
+    };
+    goucheBtn.onclick = function () {
+        var phonenumber = gerenIpt.getAttribute('value');
+        var idcardnum = goucheIpt.getAttribute('value');
+//        var urlStr = "http://cbp-qas.xbotech.com/cbp/new-personalData.html?phonenumber=" + phonenumber + "&openId=" + ${openId} +"&idcardnum=" + idcardnum + "&nickname=" + ${nickname} +"&wxheadimgurl=" + ${headimgurl} +"&brandId=2028";
+        alert(urlStr);
+        window.location.href = urlStr;
+    }*/
+</script>
+</html>
